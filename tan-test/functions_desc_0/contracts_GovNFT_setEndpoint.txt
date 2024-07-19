@@ -1,0 +1,12 @@
+This code snippet defines an external function named `setEndpoint` that allows the contract owner to set a new value for the `endpoint` variable of type `ILayerZeroEndpoint`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_endpoint`: This parameter is of type `ILayerZeroEndpoint` and represents the new endpoint address that the owner wants to set.
+
+Functionality:
+- The function `setEndpoint` is marked as `external`, meaning it can be called from outside the contract.
+- The function checks if the `_endpoint` address is not equal to the zero address using the `require` statement. If the `_endpoint` address is the zero address, it will revert the transaction with the error message "ZeroAddress".
+- If the `_endpoint` address is valid (not the zero address), the function updates the `endpoint` variable with the new `_endpoint` address provided by the owner.
+
+Summary:
+The `setEndpoint` function allows the contract owner to update the `endpoint` variable with a new address of type `ILayerZeroEndpoint`. It ensures that the new address is not the zero address before updating the `endpoint` variable.

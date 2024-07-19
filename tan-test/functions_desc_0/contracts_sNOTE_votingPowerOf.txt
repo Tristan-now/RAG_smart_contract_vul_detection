@@ -1,0 +1,13 @@
+This code defines an external function named `votingPowerOf` that calculates the voting power of a specific account. The function takes one parameter, which is the address of the account for which the voting power needs to be calculated. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `account`: The address of the account for which the voting power is to be calculated.
+
+Return Value:
+The function returns a `uint256` value representing the voting power of the specified account.
+
+Code Breakdown:
+The function signature includes the parameter `account`, which is the address of the account for which the voting power is to be calculated. The function is defined as `external`, meaning it can be called from outside the contract. The function calls another function named `getVotingPower` and passes the result of `balanceOf(account)` as an argument. The `balanceOf` function is assumed to be a function that returns the balance of tokens held by a specific account. The result of `balanceOf(account)` is used as input to the `getVotingPower` function, which calculates the voting power based on the account balance. The calculated voting power is then returned as the output of the `votingPowerOf` function.
+
+Summary:
+The `votingPowerOf` function provides a convenient way to retrieve the voting power of a specific account by calling the `getVotingPower` function with the account's token balance as input. This function allows external entities to query the voting power of any account on the blockchain.

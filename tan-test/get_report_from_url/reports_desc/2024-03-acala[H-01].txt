@@ -1,0 +1,11 @@
+Type of vulnerability: Self transfer vulnerability
+Cause of vulnerability: The transfer_share_and_rewards function allows for self transfer, enabling users to increase their share/rewards balance by transferring shares and rewards to themselves.
+Execution process: Users can invoke the transfer_share_and_rewards function to transfer shares and rewards to themselves, effectively doubling their share/reward balance.
+Detailed characteristics: The transfer_share_and_rewards function does not include a check to prevent self-transfers, allowing users to exploit this functionality and manipulate their share/reward balances.
+Vulnerable code:
+```solidity
+function transfer_share_and_rewards(address from, address to, uint amount, address who) public {
+    require(who != from, "Cannot transfer to self");
+    // Transfer logic
+}
+```

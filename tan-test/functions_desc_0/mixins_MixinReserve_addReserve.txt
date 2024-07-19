@@ -1,0 +1,13 @@
+This code defines an internal function named `addReserve`, which adds funds to a reserve held by a specific address. The function takes two parameters: `_reserveHolder`, which is the address of the reserve holder, and `_amount`, which is the amount of funds to be added to the reserve. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_reserveHolder`: The address of the reserve holder to whom the funds will be added.
+2. `_amount`: The amount of funds to be added to the reserve.
+
+Code Breakdown:
+The function `addReserve` is an internal function, meaning it can only be called within the contract or its derived contracts. The function takes two parameters: `_reserveHolder` and `_amount`. Inside the function, the funds of the `_reserveHolder` address in the `reserves` mapping are increased by the `_amount` using the `add` function, which is a safe math operation to prevent overflow. This operation effectively adds the `_amount` to the existing funds of the `_reserveHolder`.
+
+After updating the funds in the `reserves` mapping, the function emits an `ReserveFunded` event, indicating that funds have been added to the reserve held by `_reserveHolder`. The event includes the `_reserveHolder` address and the `_amount` that was added to the reserve.
+
+Summary:
+The `addReserve` function adds funds to a specific reserve holder's funds stored in the `reserves` mapping. It ensures that the funds are added safely using the `add` function and emits an event to notify external parties about the addition of funds to the reserve.

@@ -1,0 +1,17 @@
+This code defines an external function named `redeem` that allows a user to redeem their vested bond tokens. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_depositor`: The address of the user who wants to redeem their bond tokens.
+
+Return Value:
+The function returns a `uint` value representing the amount of tokens redeemed by the user.
+
+Code Breakdown:
+1. The function starts by retrieving the bond information for the `_depositor` address from the `bondInfo` mapping and calculating the percentage vested based on the elapsed time since the last interaction and the remaining vesting term.
+2. If the user is fully vested (percentVested >= MAX_PERCENT_VESTED), the function deletes the user's bond information, emits a `BondRedeemed` event with the user's address and payout amount, transfers the payout tokens to the user, and returns the payout amount.
+3. If the user is not fully vested, the function calculates the payout amount based on the percentage vested.
+4. The function updates the user's bond information with the reduced payout and adjusted vesting period.
+5. It emits a `BondRedeemed` event with the user's address, the payout amount, and the remaining payout.
+6. Finally, the function transfers the calculated payout amount to the user and returns the payout value.
+
+This function allows users to redeem their bond tokens either in full if fully vested or partially based on the percentage vested. It ensures that users receive their vested tokens based on the vesting schedule and remaining vesting period.

@@ -1,0 +1,12 @@
+This code snippet defines an internal function named `_burn` that overrides a function from a parent contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: A `uint256` variable representing the unique identifier of the bond to be burned.
+
+Code Breakdown:
+The `_burn` function is marked as `internal` and is declared to override a function from the parent contract. Within the function, the `_idToBond` mapping is accessed using the `_id` parameter, and the corresponding bond data is deleted from the mapping using the `delete` keyword. This operation effectively removes the bond associated with the given `_id`.
+
+Next, the `super._burn(_id)` statement is called to invoke the `_burn` function from the parent contract. This allows the parent contract to perform any additional logic related to burning the bond.
+
+Summary:
+The `_burn` function deletes the bond data associated with the given `_id` from the `_idToBond` mapping and then calls the `_burn` function from the parent contract to complete the burning process.

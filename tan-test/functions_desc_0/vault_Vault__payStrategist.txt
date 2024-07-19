@@ -1,0 +1,21 @@
+This code snippet contains a series of internal virtual functions that are meant to be implemented in derived contracts. Let's break down each function and its purpose:
+
+1. `_payStrategist(uint256 amount, address strategist) internal virtual;`
+   - This function is responsible for transferring a specified `amount` of tokens to the `strategist` address. It is marked as `internal` and `virtual`, indicating that it can only be called within the contract or its derived contracts, and it must be implemented in the derived contracts.
+
+2. `_transfer(address to, uint256 amount) internal virtual;`
+   - This function handles the transfer of a specified `amount` of tokens to the `to` address. Similar to the previous function, it is marked as `internal` and `virtual`, meaning it needs to be implemented in the derived contracts.
+
+3. `_depositToReserve(uint256 amount) internal virtual;`
+   - This function is responsible for depositing a specified `amount` of tokens into a reserve. It is marked as `internal` and `virtual`, indicating that it needs to be implemented in the derived contracts.
+
+4. `_depositToTreasury(uint256 amount) internal virtual;`
+   - This function handles the deposit of a specified `amount` of tokens into a treasury. Like the previous functions, it is marked as `internal` and `virtual`, requiring implementation in the derived contracts.
+
+5. `_availableUnderlying() internal view virtual returns (uint256);`
+   - This function is a view function that returns the amount of underlying tokens available. It is marked as `internal`, `view`, and `virtual`, indicating that it can only be viewed, and it must be implemented in the derived contracts.
+
+6. `_computeNewAllocated(uint256 allocated, uint256 withdrawn) internal pure returns (uint256)`
+   - This function calculates the new allocated amount after a withdrawal. If the `allocated` amount is greater than the `withdrawn` amount, it subtracts the withdrawn amount from the allocated amount and returns the result. If the allocated amount is not greater than the withdrawn amount, it returns 0. This function is marked as `internal`, `pure`, and `virtual`, meaning it must be implemented in the derived contracts.
+
+In summary, these internal virtual functions provide a framework for handling token transfers, deposits, and calculations related to token allocations in a contract. Derived contracts must implement these functions to define the specific behavior and logic for these operations.

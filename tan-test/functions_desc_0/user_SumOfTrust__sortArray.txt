@@ -1,0 +1,14 @@
+This code defines a private pure function named `_sortArray` that sorts an array of `LockedInfo` structs based on the `vouchingAmount` field in ascending or descending order. The function accepts two parameters: an array of `LockedInfo` structs (`arr`) and a boolean flag (`isPositive`) indicating whether to sort in ascending order (if `isPositive` is true) or descending order (if `isPositive` is false). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `arr`: An array of `LockedInfo` structs that stores information about locked amounts.
+2. `isPositive`: A boolean flag that determines the sorting order. If true, the array will be sorted in ascending order; if false, it will be sorted in descending order.
+
+Return Value:
+The function returns the sorted array of `LockedInfo` structs.
+
+Code Breakdown:
+The function signature includes the parameters `arr` and `isPositive`. `_sortArray` is a private pure function, meaning it does not modify the state of the contract and does not read from external data. The function accepts an array of `LockedInfo` structs and a boolean flag to determine the sorting order. The function initializes a variable `length` to store the length of the input array `arr`. Two nested `for` loops are used to compare each element of the array with every other element. The outer loop iterates over each element of the array starting from index 0, while the inner loop iterates over the remaining elements starting from the next index. Within the nested loops, the function checks the value of `isPositive` to determine whether to sort in ascending or descending order. If `isPositive` is true, the function compares the `vouchingAmount` of the current element (`arr[i]`) with the `vouchingAmount` of the next element (`arr[j]`). If the current element's `vouchingAmount` is less than the next element's `vouchingAmount`, a swap is performed to sort the elements in ascending order. If `isPositive` is false, the function performs a similar comparison but in reverse order to sort the elements in descending order. After sorting the array, the function returns the sorted array of `LockedInfo` structs.
+
+Summary:
+The `_sortArray` function sorts an array of `LockedInfo` structs based on the `vouchingAmount` field in either ascending or descending order, depending on the value of the `isPositive` flag. The function uses nested loops to compare and swap elements accordingly, resulting in a sorted array based on the specified sorting order.

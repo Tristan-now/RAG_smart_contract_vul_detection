@@ -1,0 +1,20 @@
+This code defines an internal function named `_addCollateralAssets`, which is responsible for adding new collateral assets to a SetToken. The function takes two parameters: `_setToken`, which is an instance of the SetToken contract, and `_newCollateralAssets`, an array of ERC20 token addresses representing the new collateral assets to be added.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the SetToken contract to which the new collateral assets will be added.
+2. `_newCollateralAssets`: An array of ERC20 token addresses representing the new collateral assets to be added.
+
+Code Breakdown:
+The function starts with a `for` loop that iterates over the `_newCollateralAssets` array. Inside the loop, the function performs the following steps for each new collateral asset:
+1. It retrieves the ERC20 token address at index `i` from the `_newCollateralAssets` array and assigns it to the `collateralAsset` variable.
+2. It calls the `_validateNewCollateralAsset` function to validate the new collateral asset before adding it to the SetToken.
+3. It calls the `_updateUseReserveAsCollateral` function to update the use of the collateral asset as collateral within the SetToken.
+4. It sets the `collateralAssetEnabled` mapping for the `_setToken` and `collateralAsset` to `true`, indicating that the collateral asset is enabled for the SetToken.
+5. It adds the address of the collateral asset to the `collateralAssets` array within the `enabledAssets` mapping for the `_setToken`.
+
+After iterating over all new collateral assets, the function emits a `CollateralAssetsUpdated` event, indicating that the collateral assets have been successfully added to the SetToken.
+
+Summary:
+The `_addCollateralAssets` function iterates over an array of new collateral assets, performs validation and updates within the SetToken contract for each asset, and adds the assets to the SetToken's list of enabled collateral assets. Finally, it emits an event to notify that the collateral assets have been updated.

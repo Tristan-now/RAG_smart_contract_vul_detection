@@ -1,0 +1,15 @@
+This code defines a private function named `_linkAddress` that links a secondary address to a master address with a specified activation delay. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_linked`: The secondary address that will be linked to the master address.
+2. `_master`: The master address to which the secondary address will be linked.
+
+Code Breakdown:
+The `_linkAddress` function is a private function, meaning it can only be called within the contract where it is defined. The function takes two parameters: `_linked` and `_master`, representing the secondary and master addresses, respectively. Inside the function, a variable named `_linkedAddressActivatesAt` is declared and initialized with the current block timestamp plus the `activationDelay` value. This variable represents the time at which the linked address will become active.
+
+Next, a new entry is added to the `linkedAddresses` mapping. The key is the `_linked` address, and the value is a struct of type `LinkedAddress` containing two fields: `_linkedAddressActivatesAt` and `_master`. This struct stores the activation time of the linked address and the master address to which it is linked.
+
+Finally, an event `AddressLinked` is emitted, providing information about the linked addresses (`_linked` and `_master`) and the activation time (`_linkedAddressActivatesAt`).
+
+Summary:
+The `_linkAddress` function links a secondary address to a master address by storing the activation time and master address in the `linkedAddresses` mapping. It emits an event to notify the linking of the addresses.

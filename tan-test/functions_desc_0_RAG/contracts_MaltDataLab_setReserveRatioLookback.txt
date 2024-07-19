@@ -1,0 +1,16 @@
+This code defines an external function named `setReserveRatioLookback`, which allows setting the lookback period for the reserve ratio. The function is accessible externally and requires the caller to have the admin role. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_lookback`: A `uint256` value representing the lookback period for the reserve ratio.
+
+Function Modifiers:
+- `onlyRole(ADMIN_ROLE, "Must have admin role")`: This modifier ensures that only addresses with the admin role can call the `setReserveRatioLookback` function.
+
+Code Breakdown:
+The `setReserveRatioLookback` function takes a single parameter `_lookback`, which represents the desired lookback period for the reserve ratio. The function first checks if the `_lookback` value is greater than 0 using the `require` statement. If the `_lookback` value is not greater than 0, the function reverts with the error message "Cannot have 0 lookback". If the `_lookback` value is valid, the function updates the `reserveRatioLookback` variable with the new `_lookback` value.
+
+Vulnerability Prediction:
+This function does not exhibit any vulnerabilities based on the provided vulnerability reports. However, it is important to ensure that only authorized addresses with the admin role can call this function to prevent unauthorized changes to the lookback period.
+
+Summary:
+The `setReserveRatioLookback` function allows setting the lookback period for the reserve ratio. It enforces that the lookback period must be greater than 0 and updates the `reserveRatioLookback` variable with the new value if the requirement is met. The function is restricted to addresses with the admin role to maintain proper access control.

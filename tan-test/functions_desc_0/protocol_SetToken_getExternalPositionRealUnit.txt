@@ -1,0 +1,19 @@
+This code defines a public view function named `getExternalPositionRealUnit` that retrieves the real unit value of an external position for a given component and position module. The function takes two parameters: `_component`, which is the address of the component token, and `_positionModule`, which is the address of the position module.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_component`: The address of the component token for which the real unit value of the external position needs to be retrieved.
+2. `_positionModule`: The address of the position module that holds the external position.
+
+Return Value:
+The function returns an `int256` value representing the real unit value of the external position for the given component and position module.
+
+Code Breakdown:
+The function signature includes the parameters `_component` and `_positionModule`. `getExternalPositionRealUnit` is a public view function, meaning it can be called externally and does not modify the state of the contract.
+Within the function, the `_externalPositionVirtualUnit` function is called with `_component` and `_positionModule` as parameters. This function retrieves the virtual unit value of the external position for the given component and position module.
+The `_convertVirtualToRealUnit` function is then called with the virtual unit value obtained from `_externalPositionVirtualUnit` as a parameter. This function converts the virtual unit value to a real unit value and returns it.
+The real unit value of the external position for the given component and position module is ultimately returned by the `getExternalPositionRealUnit` function.
+
+Summary:
+The `getExternalPositionRealUnit` function retrieves the real unit value of an external position for a specific component and position module by first obtaining the virtual unit value of the external position and then converting it to a real unit value.

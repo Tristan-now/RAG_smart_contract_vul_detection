@@ -1,0 +1,14 @@
+This code defines a private view function named `_checkpointsLookup` that looks up a specific checkpoint in a collection of `DelegateeCheckpoint` structs based on the provided `epochStart` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `ckpts`: An array of `DelegateeCheckpoint` structs that stores information about delegatee checkpoints.
+2. `epochStart`: A `uint256` value representing the epoch start time for which the checkpoint needs to be looked up.
+
+Return Value:
+The function returns a single `DelegateeCheckpoint` struct that corresponds to the checkpoint found based on the provided `epochStart` value.
+
+Code Breakdown:
+The function signature includes the parameters `ckpts` and `epochStart`. `_checkpointsLookup` is a private view function, meaning it can only be accessed internally and does not modify the state of the contract. The function accepts an array of `DelegateeCheckpoint` structs (`ckpts`) and a `uint256` value representing the `epochStart` time. It returns a single `DelegateeCheckpoint` struct that corresponds to the checkpoint found based on the provided `epochStart` value. The function initializes two variables, `high` and `low`, to represent the upper and lower bounds of the search range within the `ckpts` array. A `while` loop is used to perform a binary search on the `ckpts` array to find the checkpoint that matches the provided `epochStart` value. The loop continues as long as the `low` index is less than the `high` index. Within each iteration, the function calculates the `mid` index using the `AuraMath.average` function. If the `epochStart` value of the checkpoint at index `mid` is greater than the provided `epochStart` value, the `high` index is updated to `mid`. Otherwise, the `low` index is updated to `mid + 1`. Once the loop exits, the function checks if the `high` index is 0. If it is, it returns a default `DelegateeCheckpoint` struct with both values set to 0. Otherwise, it returns the `DelegateeCheckpoint` struct found at index `high - 1`.
+
+Summary:
+The `_checkpointsLookup` function performs a binary search on an array of `DelegateeCheckpoint` structs to find the checkpoint that matches the provided `epochStart` value. It returns the checkpoint found or a default checkpoint if no matching checkpoint is found.

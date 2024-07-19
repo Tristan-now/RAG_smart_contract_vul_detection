@@ -1,0 +1,13 @@
+This code snippet defines an external function named `whitelistWrapper` that allows a governor (presumably a privileged user or contract) to whitelist a wrapper address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_wrapper`: This is the address of the wrapper that the governor wants to whitelist.
+
+Functionality:
+- The function `whitelistWrapper` is an external function, meaning it can be called from outside the contract.
+- The function can only be called by a user or contract that has the `onlyGovernor` modifier, indicating that only authorized governors can whitelist wrappers.
+- When the function is called, it takes the `_wrapper` address as a parameter and sets the value of `whitelistedWrappers[_wrapper]` to `true`. This effectively whitelists the specified wrapper address.
+- After whitelisting the wrapper address, the function emits a `WrapperWhitelist` event, providing transparency and allowing external parties to track changes in the whitelist.
+
+Summary:
+In summary, the `whitelistWrapper` function provides a way for authorized governors to whitelist wrapper addresses, allowing them to interact with the contract or perform specific actions. This function enhances the security and control of the contract by restricting access to certain functionalities to only approved wrappers.

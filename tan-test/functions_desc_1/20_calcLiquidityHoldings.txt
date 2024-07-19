@@ -1,0 +1,15 @@
+This code defines an external view function named `calcLiquidityHoldings`, which calculates the share of liquidity holdings for a given number of units in a liquidity pool. The function accepts three parameters: `units` (uint), `token` (address), and `pool` (address). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `units`: A uint representing the number of units for which the liquidity holdings share needs to be calculated.
+2. `token`: An address representing the token for which the liquidity holdings share is being calculated.
+3. `pool`: An address representing the liquidity pool in which the liquidity holdings share is being calculated.
+
+Return Value:
+`share`: The function returns a `uint` value representing the share of liquidity holdings for the given number of units in the liquidity pool.
+
+Code Breakdown:
+The function signature includes the parameters `units`, `token`, and `pool`. `calcLiquidityHoldings` is an external view function, meaning it can be called from outside the contract and does not modify the state of the contract. Within the function, a variable `amount` is declared to store the amount of the base token or the token in the liquidity pool, depending on the value of the `token` parameter. If the `token` is equal to the `BASE` token, the `amount` is set to the base token amount in the pool obtained using the `iPOOL(pool).baseAmount()` function. Otherwise, the `amount` is set to the token amount in the pool obtained using the `iPOOL(pool).tokenAmount()` function. Next, the total supply of the liquidity pool is obtained using the `iBEP20(pool).totalSupply()` function and stored in the `totalSupply` variable. Finally, the function calculates the share of liquidity holdings by multiplying the `amount` by the `units` and dividing the result by the `totalSupply`. The calculated share is then returned as the output of the function.
+
+Summary:
+The `calcLiquidityHoldings` function calculates the share of liquidity holdings for a given number of units in a liquidity pool based on the amount of the base token or token in the pool and the total supply of the pool. The function returns the calculated share as a `uint` value.

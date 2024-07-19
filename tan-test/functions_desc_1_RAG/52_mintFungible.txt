@@ -1,0 +1,30 @@
+This code defines a function named `mintFungible` within a contract named `VaderPoolV2`. The function is designed to mint liquidity tokens for a pair of assets in an automated market maker (AMM) pool. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `foreignAsset`: The address of the foreign asset (token) to be deposited.
+2. `nativeDeposit`: The amount of the native asset to be deposited.
+3. `foreignDeposit`: The amount of the foreign asset to be deposited.
+4. `from`: The address from which the assets are transferred.
+5. `to`: The address to which the liquidity tokens are minted.
+
+Return Value:
+`liquidity`: The amount of liquidity tokens minted.
+
+Code Breakdown:
+1. The function first retrieves the liquidity pool token contract associated with the `foreignAsset` provided.
+2. It checks if the liquidity pool token contract is supported. If not, it reverts the transaction.
+3. It then fetches the reserves of the AMM pool for the `foreignAsset`.
+4. Transfers the `nativeDeposit` amount of native asset and `foreignDeposit` amount of foreign asset from the `from` address to the contract.
+5. Retrieves the pair information for the `foreignAsset` from storage.
+6. Calculates the total liquidity units based on the provided deposits and existing reserves using the `VaderMath.calculateLiquidityUnits` function.
+7. Ensures that the calculated liquidity is greater than zero.
+8. Updates the total supply of liquidity units for the pair.
+9. Updates the reserves of the AMM pool with the new deposit amounts.
+10. Mints the calculated liquidity tokens to the `to` address using the liquidity pool token contract.
+11. Emits an event `Mint` to log the minting activity.
+
+Vulnerability Prediction:
+This function may be vulnerable to front-running attacks if the order of operations allows for manipulation of prices or reserves before the liquidity calculation is finalized.
+
+Summary:
+The `mintFungible` function facilitates the minting of liquidity tokens for a pair of assets in an AMM pool. It ensures the proper transfer of assets, calculates the amount of liquidity to be minted based on provided deposits and existing reserves, updates the pool information, mints the liquidity tokens, and emits an event to track the minting activity.

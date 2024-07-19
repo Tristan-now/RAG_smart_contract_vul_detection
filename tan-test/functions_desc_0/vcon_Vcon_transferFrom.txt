@@ -1,0 +1,19 @@
+This code defines an external function named `transferFrom`, which allows a spender to transfer tokens from the source address (`src`) to the destination address (`dst`). The function accepts three parameters: the source address (`src`), the destination address (`dst`), and the raw amount of tokens to be transferred (`rawAmount`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `src`: The address from which tokens are being transferred.
+2. `dst`: The address to which tokens are being transferred.
+3. `rawAmount`: The raw amount of tokens to be transferred.
+
+Return Value:
+The function returns a boolean value indicating whether the transfer was successful (`true`).
+
+Code Breakdown:
+The function signature includes the parameters `src`, `dst`, and `rawAmount`. `transferFrom` is an external function, meaning it can be called from outside the contract. Within the function, the `msg.sender` is assigned to the `spender` variable, representing the address that initiates the transfer. The `allowances` mapping is used to check the allowance granted by the `src` address to the `spender`. The `safe96` function is used to convert the `rawAmount` to a `uint96` value, ensuring it does not exceed 96 bits.
+
+The function then checks if the `spender` is not equal to the `src` address and if the `spenderAllowance` is not equal to the maximum `uint96` value. If these conditions are met, the function calculates the new allowance after deducting the transferred amount and updates the allowance in the `allowances` mapping. An `Approval` event is emitted to reflect the updated allowance.
+
+Finally, the `_transferTokens` function is called to actually transfer the tokens from `src` to `dst` in the amount specified. The function then returns `true` to indicate a successful transfer.
+
+Summary:
+The `transferFrom` function allows a spender to transfer tokens from a specified source address to a destination address. It checks the allowance granted by the source address, deducts the transferred amount from the allowance if necessary, updates the allowance, emits an `Approval` event, transfers the tokens, and returns `true` upon successful completion of the transfer.

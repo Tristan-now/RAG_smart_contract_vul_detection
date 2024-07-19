@@ -1,0 +1,10 @@
+This code defines an external function named `setRewardsDuration`, which allows the owner of the contract to set the duration of the rewards period. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_rewardsDuration`: A `uint256` value representing the duration of the rewards period that the owner wants to set.
+
+Code Breakdown:
+The function signature includes the parameter `_rewardsDuration`. `setRewardsDuration` is an external function, meaning it can be called from outside the contract by the owner. The function first checks a `require` statement to ensure that the current block timestamp is greater than the `periodFinish` variable. This check ensures that the previous rewards period must be complete before changing the duration for the new period. If this condition is not met, the function will revert with an error message.
+If the condition is met, the function updates the `rewardsDuration` variable with the value of `_rewardsDuration` provided by the owner.
+After updating the rewards duration, the function emits an event `RewardsDurationUpdated` to notify external parties about the change in rewards duration. This event includes the new rewards duration as a parameter.
+Overall, this function allows the owner to set the duration of the rewards period, but only after ensuring that the previous rewards period has ended.

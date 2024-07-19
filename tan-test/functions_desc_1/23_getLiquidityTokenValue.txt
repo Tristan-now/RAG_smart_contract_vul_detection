@@ -1,0 +1,28 @@
+This code defines an internal view function named `getLiquidityTokenValue`, which calculates the value of a liquidity token within a portfolio. The function accepts several parameters and returns two int256 values representing the asset cash claim and present value of the liquidity token.
+
+Parameters:
+1. `index`: An unsigned integer representing the index of the liquidity token within the portfolio.
+2. `cashGroup`: A struct of type `CashGroupParameters` containing parameters related to the cash group.
+3. `market`: A struct of type `MarketParameters` containing parameters related to the market.
+4. `assets`: An array of `PortfolioAsset` structs representing the portfolio assets.
+5. `blockTime`: An unsigned integer representing the current block time.
+6. `riskAdjusted`: A boolean indicating whether the calculation should be risk-adjusted.
+
+Return Values:
+The function returns two int256 values representing the asset cash claim and present value of the liquidity token.
+
+Code Breakdown:
+The function begins by retrieving the liquidity token from the `assets` array based on the provided `index`. It then checks if the asset type of the liquidity token is indeed a liquidity token and if the notional value is non-negative.
+
+Next, the function calculates the market index and checks if the liquidity token is idiosyncratic, which is not allowed for liquidity tokens.
+
+The function then loads the market data using the `loadMarket` function from the `cashGroup` based on the calculated market index.
+
+Depending on the value of `riskAdjusted`, the function either calls `getHaircutCashClaims` or `getCashClaims` to calculate the asset cash claim and fCash claim.
+
+If a matching fCash asset is found in the portfolio, the function nets off the fCash claim with the previous asset and returns the asset cash claim along with 0.
+
+If no matching fCash asset is found, the function calculates the present value of the liquidity token either with or without risk adjustment using `getRiskAdjustedPresentValue` or `getPresentValue` functions, respectively.
+
+Summary:
+The `getLiquidityTokenValue` function calculates the value of a liquidity token within a portfolio by considering various parameters such as market data, asset claims, and present value calculations. The function ensures that the liquidity token is valid and handles risk-adjusted and non-risk-adjusted scenarios accordingly.

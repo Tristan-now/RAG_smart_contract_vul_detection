@@ -1,0 +1,18 @@
+This code snippet defines a function named `updateScalingPriceOracle` that allows the contract owner to update the scaling price oracle contract address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newScalingPriceOracle`: The new scaling price oracle contract address that the owner wants to set.
+
+Functionality:
+- The function is marked as `external`, meaning it can be called from outside the contract.
+- The function is part of a contract that implements an interface with a function named `onlyOwner`, which restricts access to the function to only the owner of the contract.
+- The function takes one parameter, `newScalingPriceOracle`, which is of type `IScalingPriceOracle`, representing the new scaling price oracle contract address.
+- Inside the function, the current scaling price oracle contract address is stored in a variable named `oldScalingPriceOracle`.
+- The `scalingPriceOracle` state variable is then updated with the new scaling price oracle contract address provided as the function parameter.
+- An event named `ScalingPriceOracleUpdate` is emitted, containing the old and new scaling price oracle contract addresses.
+
+Summary:
+The `updateScalingPriceOracle` function allows the contract owner to update the scaling price oracle contract address. It first stores the current scaling price oracle address, then updates it with the new address provided as a parameter. Finally, it emits an event to log the update.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are relevant to the provided code snippet.

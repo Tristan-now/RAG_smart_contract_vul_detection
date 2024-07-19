@@ -1,0 +1,17 @@
+This code defines a function named `getSpender` that is external and view, meaning it can be called from outside the contract and does not modify the state of the contract. The function simply returns the address of the `router`.
+
+Explanation:
+
+Parameters:
+- None
+
+Return Value:
+- `address`: The function returns the address of the `router`.
+
+Code Breakdown:
+- The function `getSpender` is defined as external, meaning it can be called from outside the contract.
+- It is also marked as view, indicating that it does not modify the state of the contract and only reads data.
+- The function consists of a single line that returns the address of the `router`.
+
+Summary:
+- The `getSpender` function provides a way to retrieve the address of the `router` from the contract without modifying any state. It is a simple getter function that allows external parties to access this information.

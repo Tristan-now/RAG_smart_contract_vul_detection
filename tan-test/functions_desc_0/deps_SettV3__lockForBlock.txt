@@ -1,0 +1,12 @@
+This code snippet defines an internal function named `_lockForBlock` that locks an account for the current block number. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `account`: An address representing the account that needs to be locked for the current block.
+
+Code Breakdown:
+The `_lockForBlock` function is an internal function, meaning it can only be called within the contract or its derived contracts. The function takes one parameter, `account`, which is the address of the account to be locked.
+
+Within the function, the `blockLock` mapping is updated with the `account` as the key and the current block number as the value. This effectively locks the account for the current block, as the block number is used as a reference point for the lock.
+
+Summary:
+The `_lockForBlock` function is used to lock an account for the current block by updating the `blockLock` mapping with the account address and the current block number. This can be useful for implementing time-sensitive operations or preventing certain actions from being performed multiple times within the same block.

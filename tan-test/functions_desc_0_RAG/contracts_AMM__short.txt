@@ -1,0 +1,25 @@
+This code defines an internal function named `_short`, which is used for shorting a base asset in a Virtual Automated Market Maker (VAMM) system. The function accepts two parameters: `baseAssetQuantity` of type `int256` and `min_dy` of type `uint`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `baseAssetQuantity`: An integer representing the quantity of the base asset to be shorted. It must be negative (`< 0`) to indicate a short position.
+2. `min_dy`: A `uint` value representing the minimum amount of the quote asset that the user is willing to accept in return for shorting the base asset.
+
+Return Value:
+`quoteAssetQuantity`: The function returns a `uint256` value representing the quantity of the quote asset received in the short trade.
+
+Code Breakdown:
+The function `_short` starts with a `require` statement to ensure that the `baseAssetQuantity` is negative, indicating a short position. If the condition is not met, the function will revert with an error message.
+
+Next, the function initializes a variable `_lastPrice` to store the last price obtained from the VAMM exchange. The `vamm.exchange` function is called with the following parameters:
+- `1`: Indicates selling the base asset.
+- `0`: Indicates receiving the quote asset.
+- `(-baseAssetQuantity).toUint256()`: Converts the negative `baseAssetQuantity` to a positive `uint256` value for the exchange function.
+- `min_dy`: Represents the minimum amount of the quote asset expected in return for the short trade.
+
+After the exchange, the function calls `_addReserveSnapshot` to record the last price obtained from the exchange in the reserve snapshot.
+
+The `posAccumulator` variable is then updated to reflect the change in the position due to the short trade. It subtracts the `baseAssetQuantity` multiplied by a scaling factor from the total supply of the VAMM system.
+
+Finally, an `emit` statement triggers the `Swap` event, providing details of the short trade including the base asset quantity, quote asset quantity, last price, and open interest notional value.
+
+In summary, the `_short` function facilitates shorting of a base asset in the VAMM system, updating relevant variables and emitting an event to track the trade details.

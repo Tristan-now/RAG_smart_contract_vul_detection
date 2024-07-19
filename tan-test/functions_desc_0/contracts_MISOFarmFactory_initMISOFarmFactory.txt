@@ -1,0 +1,21 @@
+This code defines an external function named `initMISOFarmFactory`, which initializes the MISO Farm Factory contract with specific parameters. The function takes four parameters: `_accessControls`, `_misoDiv`, `_minimumFee`, and `_integratorFeePct`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_accessControls`: An address representing the access control contract that manages permissions within the MISO Farm Factory.
+2. `_misoDiv`: A payable address where the MISO division fees will be sent.
+3. `_minimumFee`: A uint256 value representing the minimum fee required for using the MISO Farm Factory.
+4. `_integratorFeePct`: A uint256 value representing the percentage of fees that integrators will receive.
+
+Code Breakdown:
+The function begins with two `require` statements to ensure that the initialization process has not already been completed and that the `_misoDiv` address is not the zero address. If either of these conditions is not met, the function will revert.
+
+After the `require` statements, the `locked` state variable is set to `true`, indicating that the contract is now locked and initialized. The `initialised` state variable is also set to `true` to mark the initialization as complete.
+
+The function then assigns the values of `_misoDiv`, `_minimumFee`, and `_integratorFeePct` to their respective state variables in the contract.
+
+Next, the `accessControls` state variable is assigned the instance of the `MISOAccessControls` contract located at the `_accessControls` address.
+
+Finally, an event `MisoInitFarmFactory` is emitted to log the initialization of the MISO Farm Factory, with `msg.sender` indicating the address that called the function.
+
+Summary:
+The `initMISOFarmFactory` function initializes the MISO Farm Factory contract by setting various parameters such as the access controls, division fee address, minimum fee, and integrator fee percentage. It also updates state variables and emits an event to signify the completion of the initialization process.

@@ -1,0 +1,27 @@
+This code defines an external function named `resume` that is responsible for resuming the market operations after a payout period. The function performs various calculations and operations to handle debt repayment and credit distribution within the market. Here’s a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+1. The function starts with a `require` statement that checks if the `marketStatus` is set to `Payingout` and if the `pendingEnd` time has passed. If the conditions are not met, an error message is thrown.
+
+2. The function then retrieves the total debt (`_debt`) of the market from the `vault` contract and stores it in a variable. It also fetches the total credit (`_totalCredit`) available in the market.
+
+3. The `_deductionFromIndex` variable is calculated using a formula that involves the debt, total credit, and a scaling factor. This value represents the deduction that needs to be made from the indices in the market.
+
+4. A loop is initiated to iterate over the `indexList`, which contains addresses of different indices in the market. For each index, the function calculates the share of credit, redemption amount, and actual deduction based on the credit available.
+
+5. The function then calculates the deduction from the pool and the shortage amount based on the deductions made from the indices and the actual deductions.
+
+6. If there is a deduction from the pool, the function calls the `offsetDebt` function of the `vault` contract to adjust the debt amount.
+
+7. The function transfers the shortage amount to the `vault` contract to cover any remaining debt.
+
+8. Finally, the function updates the `marketStatus` to `Trading` and emits an event to notify the change in market status.
+
+Summary:
+The `resume` function handles the resumption of market operations after a payout period by calculating deductions from indices, adjusting debt amounts, and transferring funds to cover any remaining debt. It ensures that the market is ready for trading activities by updating the market status accordingly.

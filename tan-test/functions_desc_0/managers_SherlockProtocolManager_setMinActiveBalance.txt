@@ -1,0 +1,17 @@
+This code snippet defines an external function named `setMinActiveBalance` that allows the owner of the contract to set a new minimum active balance. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_minActiveBalance`: This is a `uint256` parameter representing the new minimum active balance that the owner wants to set.
+
+Code Breakdown:
+- The function `setMinActiveBalance` is defined as an external function, meaning it can be called from outside the contract.
+- The function is marked with the `override` modifier, indicating that it overrides a function from an inherited interface or contract.
+- The function includes a modifier `onlyOwner`, which ensures that only the owner of the contract can call this function.
+- Inside the function, there are two conditional checks:
+  1. The first check ensures that the new `_minActiveBalance` is different from the current `minActiveBalance`. If they are the same, it reverts the transaction with an `InvalidArgument` error.
+  2. The second check ensures that the new `_minActiveBalance` is not too high to be reasonable. If the new value is greater than or equal to `MIN_BALANCE_SANITY_CEILING`, it reverts the transaction with an `InvalidConditions` error.
+- If both checks pass, an event `MinBalance` is emitted with the current `minActiveBalance` and the new `_minActiveBalance`.
+- Finally, the `minActiveBalance` is updated to the new `_minActiveBalance`.
+
+Summary:
+The `setMinActiveBalance` function allows the owner to set a new minimum active balance for the contract. It performs checks to ensure that the new value is different from the current one and within reasonable limits. If the checks pass, the function updates the minimum active balance and emits an event to notify the change.

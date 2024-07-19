@@ -1,0 +1,11 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: Synthrealise function calculates baseValueLP and baseValueSynth based on AMM spot price, making it vulnerable to flash loan attacks.
+Execution process: An attacker can manipulate the AMM pool ratio by repeatedly calling the realise function, affecting the LP token value.
+Detailed characteristics: The vulnerable code is located in Synth.sol at lines 187-199, where the formula for calculating LP token value is considered dangerous.
+Vulnerable code:
+```
+function realise(address token_pool) public {
+    // vulnerable code for calculating LP token value
+    ...
+}
+```

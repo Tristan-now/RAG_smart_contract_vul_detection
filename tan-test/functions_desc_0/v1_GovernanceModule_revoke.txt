@@ -1,0 +1,20 @@
+This code defines an external function named `revoke` that allows a manager to revoke the registration of a SetToken with a specific governance adapter. The function takes two parameters: an `ISetToken` instance `_setToken` and a `string` `_governanceName` representing the name of the governance adapter.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the `ISetToken` interface representing the SetToken whose registration is being revoked.
+2. `_governanceName`: A string representing the name of the governance adapter to be used for revoking the registration.
+
+Modifiers:
+- `nonReentrant`: Ensures that the function is not reentrant, meaning it cannot be called recursively.
+- `onlyManagerAndValidSet`: Checks that the caller is a manager of the SetToken and that the SetToken is valid.
+
+Code Breakdown:
+1. The function first retrieves the governance adapter contract instance associated with the provided `_governanceName` by calling the `getAndValidateAdapter` function.
+2. The `getRevokeCalldata` function of the governance adapter is called to get the target exchange address, call value, and method data required for revoking the registration.
+3. The `_setToken` instance then invokes the target exchange with the provided call value and method data using the `invoke` function.
+4. An event `RegistrationRevoked` is emitted, indicating that the registration of the SetToken with the governance adapter has been successfully revoked.
+
+Summary:
+The `revoke` function allows a manager to revoke the registration of a SetToken with a specific governance adapter. It retrieves the necessary information from the governance adapter, invokes the target exchange with the provided data, and emits an event to notify the revocation of the registration.

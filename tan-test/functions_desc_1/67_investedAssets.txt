@@ -1,0 +1,23 @@
+This code defines an external view function named `investedAssets` that calculates the total value of invested assets in the strategy. The function returns a `uint256` value representing the total value of assets.
+
+Parameters:
+- None
+
+Return Value:
+- `uint256`: The function returns a `uint256` value representing the total value of invested assets.
+
+Code Breakdown:
+1. The function begins by declaring two local variables:
+   - `underlyingBalance`: Represents the balance of the underlying asset held by the strategy.
+   - `aUstBalance`: Represents the balance of aUST tokens (a token representing deposited assets) plus any pending redemption amounts.
+
+2. The function calculates the total value of UST assets by:
+   - Multiplying the exchange rate of aUST tokens to UST tokens obtained from the `exchangeRateFeeder` contract.
+   - Adding the pending redeems and pending deposits to the calculated value.
+
+3. The function then returns the sum of:
+   - `underlyingBalance`: The balance of the underlying asset.
+   - `curvePool.get_dy_underlying(ustI, underlyingI, ustAssets)`: The result of calling the `get_dy_underlying` function of the `curvePool` contract with parameters `ustI`, `underlyingI`, and `ustAssets`. This function calculates the amount of underlying assets received for a given amount of UST assets.
+
+Summary:
+The `investedAssets` function calculates the total value of invested assets in the strategy by considering the balance of the underlying asset, the balance of aUST tokens, pending redeems, pending deposits, and the exchange rate between aUST and UST tokens. The function then returns the sum of the underlying asset balance and the calculated value from the `curvePool` contract.

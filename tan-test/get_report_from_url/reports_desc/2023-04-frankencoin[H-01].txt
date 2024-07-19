@@ -1,0 +1,11 @@
+Type of vulnerability: Front-running vulnerability
+Cause of vulnerability: Challenges cannot be closed once created, allowing position owners to frontrun challengers by adjusting the price and causing challengers to lose their collateral in bidding.
+Execution process: 
+1. Position owner creates a challenge and frontruns it by adjusting the price to 0 with a repayment and adjustPrice call.
+2. Challenger puts up collateral for bids.
+3. Position owner backruns the challenger's call with a bid that triggers the avert, claiming the challenger's collateral.
+Detailed characteristics: The vulnerability allows position owners to manipulate the price and collateral checks in challenges, causing challengers to lose their collateral in bidding wars.
+Vulnerable code:
+```solidity
+if(_bidAmountZCHF*ONE_DEC18>=price*_collateralAmount)
+```

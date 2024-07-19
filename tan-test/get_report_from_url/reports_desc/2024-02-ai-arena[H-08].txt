@@ -1,0 +1,16 @@
+Type of vulnerability: Reentrancy
+Cause of vulnerability: The vulnerability allows a malicious user to mint additional fighter NFTs by leveraging reentrancy in the claimRewards() function.
+Execution process: 
+1. An in-session fight round gets finalized.
+2. Admin picks winners for the just finalized round.
+3. A winner, Alice, who is entitled to 2 fighter NFTs, decides to claim rewards for the rounds she participated in using a smart contract.
+4. Alice calls claimRewards with valid arguments, triggering the minting of 2 NFTs to her address.
+5. Alice's smart contract reenters the call to mint additional NFTs, resulting in Alice gaining more than 2 fighter NFTs.
+Detailed characteristics: The vulnerability allows for reentrancy in the claimRewards function based on the roundId, enabling a malicious user to mint more fighter NFTs than they are owed.
+Vulnerable code:
+```solidity
+function claimRewards(string[] calldata modelURIs, string[] calldata modelTypes, uint256[2][] calldata customAttributes) {
+    // Implementation of claimRewards function
+    // Vulnerability lies in the reentrancy possibility based on roundId
+}
+```

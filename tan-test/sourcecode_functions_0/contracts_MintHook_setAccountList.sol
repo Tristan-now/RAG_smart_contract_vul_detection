@@ -1,0 +1,1 @@
+function setAccountList(IAccountList accountList) public virtual override onlyOwner { super.setAccountList(accountList); }

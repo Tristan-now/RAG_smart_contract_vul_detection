@@ -1,0 +1,21 @@
+This code defines a public function named `checkRewardUnderflow` that is responsible for checking and handling reward underflow in the system. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+1. The function starts by retrieving the current epoch number using the `dao.epoch()` function and storing it in the `epoch` variable.
+2. The `_fillInEpochGaps(epoch)` function is called to ensure that the APR target is correct by filling in any missing data for previous epochs.
+3. The function then checks if the current epoch is greater than the `_activeEpoch` variable to determine if there are new epochs to process.
+4. If there are new epochs to process, the function enters a loop that iterates from the `_activeEpoch` to the current `epoch`.
+5. Within the loop, the `getTargets(i, smoothingPeriod)` function is called to retrieve the desired APR target for the current epoch `i`.
+6. The function then compares the actual APR for the current epoch (obtained using `epochAPR(i)`) with the desired APR target.
+7. If the actual APR is less than the desired APR target, the `_getRewardUnderflow(desiredAPR, i)` function is called to calculate the underflow amount needed to reach the desired APR.
+8. If the calculated underflow amount is greater than 0, the `overflowPool.requestCapital(underflow)` function is called to request additional capital to cover the underflow.
+9. The obtained balance from the overflow pool is then sent to the distributor contract using the `_sendToDistributor(balance, i)` function to distribute the rewards for the current epoch.
+
+Summary:
+The `checkRewardUnderflow` function is responsible for ensuring that the APR target is met for each epoch by checking for reward underflow. If the actual APR is lower than the desired APR target, the function requests additional capital from the overflow pool to cover the underflow and distributes the rewards accordingly.

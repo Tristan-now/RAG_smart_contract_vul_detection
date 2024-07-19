@@ -1,0 +1,12 @@
+This code snippet defines a private function named `_mintScaled` that is responsible for minting a specified amount of tokens to a given account. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: The address of the account to which the tokens will be minted.
+2. `_amount`: The amount of tokens to be minted to the `_account`.
+
+Code Breakdown:
+The `_mintScaled` function is marked as private, meaning it can only be accessed within the contract where it is defined. The function emits a `Transfer` event with the parameters `address(0)` (indicating tokens are minted from the zero address) and `_account` (the account receiving the tokens), along with the minted `_amount`. This event is typically used to track token transfers on the blockchain.
+After emitting the `Transfer` event, the function calls another internal function `_afterTokenTransfer` with the parameters `address(0)`, `_account`, and `_amount`. This function is likely responsible for performing additional actions or checks after a token transfer, such as updating balances or triggering other events.
+
+Summary:
+The `_mintScaled` function facilitates the minting of a specified amount of tokens to a designated account. It emits a `Transfer` event to log the minting action and then calls another internal function `_afterTokenTransfer` to handle any post-transfer operations.

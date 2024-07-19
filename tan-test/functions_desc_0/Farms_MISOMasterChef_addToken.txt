@@ -1,0 +1,16 @@
+This code defines a public function named `addToken` that allows an admin to add a new token to the pool. The function takes three parameters: `_allocPoint` (uint256), `_lpToken` (IERC20), and `_withUpdate` (bool). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_allocPoint`: A uint256 value representing the allocation point of the new token in the pool.
+2. `_lpToken`: An IERC20 interface representing the token to be added to the pool.
+3. `_withUpdate`: A boolean value indicating whether to update all pools before adding the new token.
+
+Code Breakdown:
+- The function first checks if the sender has the admin role by calling the `hasAdminRole` function. If the sender is not an admin, the function reverts with an error message.
+- If `_withUpdate` is true, the function calls `massUpdatePools` to update all pools before adding the new token.
+- The function then calculates the `lastRewardBlock` by taking the maximum value between the current block number and the `startBlock` defined elsewhere in the contract.
+- The total allocation points (`totalAllocPoint`) are increased by the `_allocPoint` of the new token.
+- A new `PoolInfo` struct is created and added to the `poolInfo` array. This struct contains information about the new token pool, including the LP token, allocation point, last reward block, and accumulated rewards per share.
+
+Summary:
+The `addToken` function allows an admin to add a new token to the pool by specifying the allocation point, LP token, and whether to update all pools before adding the new token. The function ensures that only admins can add tokens and updates the necessary information in the pool data structure.

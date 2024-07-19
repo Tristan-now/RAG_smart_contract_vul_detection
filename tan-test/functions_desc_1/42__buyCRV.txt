@@ -1,0 +1,21 @@
+This code defines an internal function named `_buyCRV` that is responsible for buying CRV tokens using the USDM token on Uniswap. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `usdm`: An instance of the `IUSDM` interface representing the USDM token.
+2. `path`: An array of addresses with a length of 2, where the first element is the address of the USDM token and the second element is the address of the CRV token.
+3. `veCRVShare`: The amount of veCRV tokens to be swapped for CRV tokens.
+4. `uniswapRouter`: The address of the Uniswap router contract.
+
+Code Breakdown:
+1. The function starts by obtaining the instance of the USDM token from the `engine` contract and storing it in the `usdm` variable.
+2. An array `path` of length 2 is created to define the token swap path. The first element of the array is set to the address of the USDM token (`usdm`) and the second element is set to the address of the CRV token (`crv`).
+3. The `usdm` token is approved to be spent by the Uniswap router contract (`uniswapRouter`) for the amount of `veCRVShare` tokens.
+4. The `uniswapRouter.swapExactTokensForTokens` function is called to swap `veCRVShare` amount of veCRV tokens for CRV tokens on Uniswap. The function parameters include:
+   - `veCRVShare`: The amount of veCRV tokens to be swapped.
+   - `1`: The minimum amount of CRV tokens to receive (slippage tolerance).
+   - `path`: The token swap path array.
+   - `address(this)`: The address where the CRV tokens will be sent after the swap is completed.
+   - `type(uint256).max`: The deadline for the swap transaction.
+
+Summary:
+The `_buyCRV` function facilitates the swapping of veCRV tokens for CRV tokens on Uniswap by approving the USDM token for spending, defining the token swap path, and executing the token swap transaction using the Uniswap router contract.

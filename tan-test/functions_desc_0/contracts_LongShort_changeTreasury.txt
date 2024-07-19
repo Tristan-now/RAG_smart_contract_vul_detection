@@ -1,0 +1,16 @@
+This code snippet defines an external function named `changeTreasury` that allows only the admin to change the treasury address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_treasury`: This is the new address that will be assigned to the `treasury` variable.
+
+Functionality:
+The `changeTreasury` function is an external function, meaning it can be called from outside the contract. The function takes one parameter `_treasury`, which represents the new address that will be assigned to the `treasury` variable.
+
+Access Restriction:
+The function includes a modifier `adminOnly`, which restricts access to only the admin of the contract. This ensures that only authorized users can change the treasury address.
+
+Updating Treasury Address:
+Within the function, the `_treasury` address provided as an argument is assigned to the `treasury` variable. This effectively updates the treasury address to the new value specified by the admin.
+
+Summary:
+The `changeTreasury` function provides a secure way for the admin to update the treasury address. By restricting access to only the admin, the function ensures that unauthorized users cannot modify this critical parameter.

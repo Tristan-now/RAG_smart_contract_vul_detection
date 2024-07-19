@@ -1,0 +1,18 @@
+This code defines an internal function named `_deposit`, which handles the deposit of a specified amount of a synthetic asset by a member. The function performs several operations to update various mappings and arrays related to the member's deposit. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_synth`: The address of the synthetic asset being deposited.
+2. `_member`: The address of the member making the deposit.
+3. `_amount`: The amount of the synthetic asset being deposited.
+
+Code Breakdown:
+1. The function first checks if the `_synth` asset is already marked as a staked synth by checking the `isStakedSynth` mapping. If it is not marked, it sets the `_synth` as a staked synth and adds it to the `stakedSynthAssets` array.
+2. It records the deposit time for the member and the specific synthetic asset in the `mapMemberSynth_lastTime` mapping and the deposit time for the member in the `mapMember_depositTime` mapping. The deposit time is set as the current block timestamp plus the `minimumDepositTime`.
+3. The function increments the deposit balance of the member for the specific synthetic asset in the `mapMemberSynth_deposit` mapping by the `_amount` deposited.
+4. It calculates the SPARTA weight of the deposit using the `calcSpotValueInBase` function from the `iUTILS` contract, passing the base asset of the synthetic asset (`iSYNTH(_synth).LayerONE()`) and the deposited amount `_amount`.
+5. The calculated weight `_weight` is added to the member's weight for the specific synthetic asset in the `mapMemberSynth_weight` mapping and to the member's total weight in the `mapMemberTotal_weight` mapping.
+6. The total weight of all deposits in the vault is also updated by adding the `_weight` to the `totalWeight` variable.
+7. The member is marked as a member of the synthetic asset in the `isSynthMember` mapping.
+8. An event `MemberDeposits` is emitted to log the details of the deposit, including the synthetic asset, member address, deposited amount, weight, and total weight.
+
+In summary, the `_deposit` function manages the deposit of a synthetic asset by a member, updating various mappings and arrays to track the member's deposit details and the total weight of deposits in the vault.

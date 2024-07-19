@@ -1,0 +1,17 @@
+This code snippet defines an external function named `liquidityGivenDebtETHCollateral`, which is part of a contract that implements an interface with the same function signature. The function accepts a single parameter of type `LiquidityGivenDebtETHCollateral` as calldata and is payable, meaning it can receive Ether along with the function call. The function returns four values: `assetIn`, `liquidityOut`, `id`, and `dueOut`, all of which are of type uint256 or a struct type `IPair.Due`.
+
+Parameters:
+- `params`: A calldata parameter of type `LiquidityGivenDebtETHCollateral`, which likely contains specific data related to providing liquidity given debt in ETH collateral.
+
+Return Values:
+- `assetIn`: A uint256 value representing the asset input.
+- `liquidityOut`: A uint256 value representing the liquidity output.
+- `id`: A uint256 value representing an identifier.
+- `dueOut`: A struct of type `IPair.Due` containing specific due information.
+
+Code Breakdown:
+- The function simply delegates the execution of the `liquidityGivenDebtETHCollateral` logic to an external contract or library named `natives`. It calls the `liquidityGivenDebtETHCollateral` function of the `natives` contract, passing in the current contract (`this`), the factory contract address, the WETH token address, and the `params` calldata.
+- The return values from the `natives` contract function are assigned to the variables `assetIn`, `liquidityOut`, `id`, and `dueOut`.
+- Finally, the function returns these values to the caller.
+
+Overall, this function acts as a proxy or wrapper that forwards the call to another contract or library to handle the logic of providing liquidity given debt in ETH collateral.

@@ -1,0 +1,10 @@
+This code defines an external function named `claimRewardTreasury`, which allows the YetiFinanceTreasury address to claim rewards. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `msg.sender`: The address of the account that is calling the function.
+
+Code Breakdown:
+The function `claimRewardTreasury` is an external function, meaning it can be called from outside the contract. The function does not accept any parameters. Inside the function, there is a `require` statement that checks if the `msg.sender` (the address of the account calling the function) is equal to the `YetiFinanceTreasury` address. If the condition is not met, the function will revert and the transaction will fail. This ensures that only the `YetiFinanceTreasury` address can successfully claim rewards using this function.
+
+Summary:
+The `claimRewardTreasury` function restricts the ability to claim rewards to only the `YetiFinanceTreasury` address. If any other address tries to call this function, the transaction will be reverted.

@@ -1,0 +1,16 @@
+This code defines an external view function named `getRewardSnapshotYUSD`, which retrieves the YUSD debt snapshot for a specific borrower and token. The function accepts two parameters: the address of the borrower (`_borrower`) and the address of the token (`_token`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_borrower`: The address of the borrower for whom the YUSD debt snapshot needs to be retrieved.
+2. `_token`: The address of the token for which the YUSD debt snapshot is requested.
+
+Return Value:
+The function returns a `uint` value representing the YUSD debt snapshot for the specified borrower and token.
+
+Code Breakdown:
+The function signature includes the parameters `_borrower` and `_token`. `getRewardSnapshotYUSD` is an external view function, meaning it can be called from outside the contract and does not modify the contract state.
+The function retrieves the YUSD debt snapshot for the specified borrower and token from the `rewardSnapshots` mapping. The mapping is structured as `rewardSnapshots[_borrower].YUSDDebts[_token]`, where `_borrower` is the key to access the borrower's snapshot and `YUSDDebts[_token]` retrieves the YUSD debt for the specific token.
+The function simply returns the YUSD debt snapshot value for the given borrower and token.
+
+Summary:
+The `getRewardSnapshotYUSD` function allows external callers to retrieve the YUSD debt snapshot for a specific borrower and token by accessing the corresponding entry in the `rewardSnapshots` mapping. The function provides transparency regarding the YUSD debt obligations of borrowers for different tokens.

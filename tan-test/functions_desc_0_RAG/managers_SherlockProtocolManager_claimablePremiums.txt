@@ -1,0 +1,16 @@
+This code defines a public view function named `claimablePremiums`, which calculates the total claimable premiums for stakers. The function does this by taking the last balance of claimable premiums for stakers and adding the product of the number of seconds since the last accounting update and the total premiums per second allocated to stakers. Here’s a detailed explanation of how this function works:
+
+Parameters:
+None
+
+Return Value:
+The function returns a `uint256` value representing the total claimable premiums for stakers.
+
+Code Breakdown:
+The `claimablePremiums` function is a public view function, meaning it can be called externally to view data without modifying the contract state. The function calculates the claimable premiums for stakers by adding the last balance of claimable premiums for stakers (`lastClaimablePremiumsForStakers`) to the product of the number of seconds since the last accounting update (`block.timestamp - lastAccountedGlobal`) and the total premiums per second allocated to stakers (`allPremiumsPerSecToStakers`).
+
+Vulnerability prediction:
+This function may be vulnerable to a front-running attack due to the use of `block.timestamp` for time-based calculations. Front-running attacks can occur when an attacker exploits the predictability of block timestamps to manipulate the outcome of transactions.
+
+Summary:
+The `claimablePremiums` function calculates the total claimable premiums for stakers by adding the last balance of claimable premiums for stakers to the product of the time elapsed since the last accounting update and the total premiums per second allocated to stakers. It provides stakers with information on the amount of premiums they can claim based on the time passed since the last update.

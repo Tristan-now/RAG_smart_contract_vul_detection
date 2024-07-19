@@ -1,0 +1,12 @@
+This code defines an internal function named `getRewardInternal`, which is responsible for transferring rewards to a specific account from a liquidity pool. The function accepts three parameters: a `LPoolInterface` instance `lpool`, an `address` `account`, and a `bool` `isBorrow`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `lpool`: An instance of the `LPoolInterface` contract representing the liquidity pool from which rewards are being distributed.
+2. `account`: The address of the account to which the rewards will be transferred.
+3. `isBorrow`: A boolean value indicating whether the account is borrowing from the liquidity pool.
+
+Code Breakdown:
+The function begins by retrieving the reward amount for the specified account from the `lPoolRewardByAccounts` mapping using the provided `lpool`, `isBorrow`, and `account` parameters. This reward amount is stored in the `reward` variable.
+If the `reward` amount is greater than 0, the function proceeds to transfer the reward to the `account` address by calling the `transferOut` function. The `transferOut` function is assumed to handle the transfer of tokens and returns a boolean value indicating whether the transfer was successful. This boolean value is stored in the `succeed` variable.
+If the transfer is successful (`succeed` is true), the function sets the reward amount for the account in the `lPoolRewardByAccounts` mapping to 0, effectively zeroing out the rewards for that account. Additionally, an event `PoolReward` is emitted, indicating that a reward has been successfully transferred to the account.
+Overall, the `getRewardInternal` function is responsible for transferring rewards from a liquidity pool to a specific account, updating the reward amount in the mapping, and emitting an event to notify external parties about the reward transfer.

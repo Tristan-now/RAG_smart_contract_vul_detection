@@ -1,0 +1,18 @@
+This code defines an external function named `getRate` that calculates the exchange rate between two tokens. The function accepts two parameters: `fromToken` and `toToken`, which are the addresses of the tokens to be exchanged. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `fromToken`: The address of the token from which the exchange rate is calculated.
+2. `toToken`: The address of the token to which the exchange rate is calculated.
+
+Return Value:
+The function returns a `uint256` value representing the exchange rate between the two tokens.
+
+Code Breakdown:
+The function signature includes the parameters `fromToken` and `toToken`. `getRate` is an external function, meaning it can be called from outside the contract. The function first checks if the `fromToken` is equal to `TRI_CRV` and the `toToken` is either `DAI`, `USDC`, or `USDT`. If this condition is not met, the function will revert with the error message "Token pair not swappable".
+
+If the condition is met, the function proceeds to calculate the exchange rate. If the `toToken` is `DAI`, it calls the `get_virtual_price` function from the `ICurveSwap` contract with the `CURVE_POOL` address and returns the result as the exchange rate.
+
+If the `toToken` is not `DAI`, it divides the result of `ICurveSwap(CURVE_POOL).get_virtual_price()` by `1e12` before returning it as the exchange rate. This division by `1e12` is likely done to adjust the precision of the exchange rate calculation.
+
+Summary:
+The `getRate` function calculates the exchange rate between two tokens by calling the `get_virtual_price` function from the `ICurveSwap` contract with the `CURVE_POOL` address. Depending on the `toToken`, the function may adjust the precision of the exchange rate calculation before returning the result.

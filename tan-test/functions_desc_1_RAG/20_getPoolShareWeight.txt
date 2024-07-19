@@ -1,0 +1,17 @@
+This code defines an external function named `getPoolShareWeight`, which calculates the weight of a user's share in a pool based on the provided token and units. The function accepts two parameters: an address of the token (`token`) and an unsigned integer representing the units (`units`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: An address representing the token for which the pool share weight is calculated.
+2. `units`: An unsigned integer indicating the number of units for which the pool share weight is calculated.
+
+Return Value:
+`weight`: The function returns a `uint` value representing the weight of the user's share in the pool.
+
+Code Breakdown:
+The function signature includes the parameters `token` and `units`. `getPoolShareWeight` is an external function, meaning it can be called from outside the contract. Within the function, the address of the pool corresponding to the provided token is obtained using the `getPool` function and stored in the variable `pool`. The `calcShare` function is then called to calculate the weight of the user's share in the pool. This function requires three parameters: the `units` being calculated, the total supply of the pool token obtained from `iBEP20(pool).totalSupply()`, and the base amount of the pool obtained from `iPOOL(pool).baseAmount()`. The result of this calculation is stored in the `weight` variable, which is then returned as the output of the function.
+
+Vulnerability prediction:
+This function may be vulnerable to a front-running attack due to the use of external calls to `getPool` and `calcShare`. Front-running attacks could occur if the values returned by these external calls are manipulated by malicious actors before the function execution.
+
+Summary:
+The `getPoolShareWeight` function calculates the weight of a user's share in a pool based on the provided token and units. It retrieves the pool address using the `getPool` function, calculates the share weight using the `calcShare` function, and returns the calculated weight as the output of the function.

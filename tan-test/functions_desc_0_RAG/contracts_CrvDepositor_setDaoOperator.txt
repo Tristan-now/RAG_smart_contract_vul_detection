@@ -1,0 +1,13 @@
+This code snippet defines an external function named `setDaoOperator` that allows changing the `daoOperator` address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_daoOperator`: The new address to set as the `daoOperator`.
+
+Functionality:
+- The function `setDaoOperator` is an external function, meaning it can be called from outside the contract.
+- It takes one parameter `_daoOperator`, which is the new address to set as the `daoOperator`.
+- The function includes a `require` statement to check if the `msg.sender` (the caller of the function) is equal to the current `daoOperator`. If not, the function will revert with the error message `!auth`.
+- If the `require` condition is met, the `daoOperator` address is updated to the new address `_daoOperator`.
+
+Summary:
+The `setDaoOperator` function allows only the current `daoOperator` to change the `daoOperator` address to a new address provided as a parameter. This function ensures that only authorized entities can modify the `daoOperator` address, adding a layer of security to the contract.

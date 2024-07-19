@@ -1,0 +1,19 @@
+This code defines an external view function named `getShareOfTotalBoostedBalance`, which calculates the share of a user's boosted balance relative to the total locked boosted balance. The function takes an address parameter `user` and returns a `uint256` value representing the user's share.
+
+Parameters:
+1. `user`: An address representing the user for whom the share of total boosted balance is calculated.
+
+Return Value:
+The function returns a `uint256` value representing the user's share of the total boosted balance.
+
+Code Breakdown:
+The function signature includes the parameter `user`, which is the address of the user for whom the share of total boosted balance is calculated. The function is defined as `external view`, meaning it can be called from outside the contract and does not modify the contract state.
+
+Within the function, the boosted balance of the user is calculated by multiplying the user's balance stored in the `balances` mapping with the corresponding boost factor stored in the `boostFactors` mapping. This multiplication is done using the `scaledMul` function, which handles scaling to prevent overflow or loss of precision.
+
+The result of the multiplication is then divided by the total locked boosted balance stored in the `totalLockedBoosted` variable. This division is performed using the `scaledDiv` function, which also handles scaling to maintain accuracy.
+
+The final result of this calculation represents the user's share of the total boosted balance, taking into account both the user's balance and the boost factor applied to it.
+
+Summary:
+The `getShareOfTotalBoostedBalance` function calculates the share of a user's boosted balance relative to the total locked boosted balance by multiplying the user's balance with the corresponding boost factor and dividing it by the total locked boosted balance. The function ensures accuracy by using scaling operations to handle large numbers and maintain precision.

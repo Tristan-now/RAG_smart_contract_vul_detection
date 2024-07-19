@@ -1,0 +1,17 @@
+This code defines an internal function named `_min`, which calculates the minimum value between two `uint256` numbers. The function accepts two parameters `a` and `b`, both of type `uint256`, and returns the minimum value among them.
+
+Parameters:
+1. `a`: A `uint256` value representing the first number.
+2. `b`: A `uint256` value representing the second number.
+
+Return Value:
+The function returns a `uint256` value representing the minimum value between `a` and `b`.
+
+Code Breakdown:
+The function `_min` is an internal function, meaning it can only be called within the contract or its derived contracts. It accepts two parameters `a` and `b`, both of type `uint256`. Inside the function, it checks if `a` is less than or equal to `b`. If this condition is true, the function returns `a` as the minimum value. Otherwise, if `b` is less than `a`, it returns `b` as the minimum value.
+
+Summary:
+The `_min` function calculates the minimum value between two `uint256` numbers and returns the result. It provides a simple utility for finding the minimum value among two numbers.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are applicable to this `_min` function as it is a basic utility function for calculating the minimum value between two numbers.

@@ -1,0 +1,15 @@
+This code defines an internal function named `allocateCVXForTransfer`, which is responsible for allocating CVX tokens for transfer. The function takes one parameter, `_amount`, which represents the amount of CVX tokens to be allocated.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: A `uint256` value representing the amount of CVX tokens to be allocated for transfer.
+
+Code Breakdown:
+The function `allocateCVXForTransfer` is an internal function, meaning it can only be called within the contract or its derived contracts. 
+Within the function, the first line retrieves the current balance of CVX tokens held by the contract by calling `stakingToken.balanceOf(address(this))` and storing it in the `balance` variable.
+Next, there is a conditional check to see if the `_amount` requested for transfer is greater than the available balance of CVX tokens in the contract. If this condition is true, it means that the contract does not have enough CVX tokens to fulfill the transfer request.
+In such a scenario, the contract needs to withdraw the required amount of CVX tokens from the staking proxy contract. This withdrawal is done by calling the `IStakingProxy(stakingProxy).withdraw(_amount.sub(balance))` function, where `_amount.sub(balance)` calculates the deficit amount that needs to be withdrawn to cover the transfer request.
+
+Summary:
+The `allocateCVXForTransfer` function checks if the contract has enough CVX tokens to fulfill a transfer request. If the requested amount exceeds the available balance, it triggers a withdrawal of the deficit amount from the staking proxy contract to cover the transfer.

@@ -1,0 +1,22 @@
+This code defines a function named `getCurrentPriceInPeg` that calculates the current price of a token in peg units. The function accepts three parameters: `token` (address of the token), `inAmount` (amount of the token), and `forceCurBlock` (a boolean flag). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: Address of the token for which the price needs to be calculated.
+2. `inAmount`: Amount of the token for which the price needs to be calculated.
+3. `forceCurBlock`: A boolean flag indicating whether to force the use of the current block for price calculation.
+
+Return Value:
+The function returns a `uint256` value representing the current price of the token in peg units.
+
+Code Breakdown:
+- The function first retrieves the `TokenPrice` struct associated with the token address from the `tokenPrices` mapping.
+- If `forceCurBlock` is true and the difference between the current block number and the last updated block number for the token price is greater than `priceUpdateWindow`, the function updates the cached price by calling `getPriceFromAMM` function.
+- If `forceCurBlock` is false and the `tokenPer1k` value in the `TokenPrice` struct is 0, the function calls `getPriceFromAMM` to get the current price from the Automated Market Maker (AMM).
+- If the difference between the current block number and the last updated block number for the token price is greater than `priceUpdateWindow`, the function updates the price by calling `getPriceFromAMM`.
+- Finally, the function calculates and returns the current price of the token in peg units by dividing the input amount by the `tokenPer1k` value stored in the `TokenPrice` struct.
+
+Vulnerability Prediction:
+This function may be vulnerable to a front-running attack if the price calculation logic is manipulated by an attacker to their advantage.
+
+Summary:
+The `getCurrentPriceInPeg` function calculates the current price of a token in peg units based on the input token amount and the stored token price information. It considers whether to force the use of the current block for price calculation and updates the price if necessary before returning the calculated price.

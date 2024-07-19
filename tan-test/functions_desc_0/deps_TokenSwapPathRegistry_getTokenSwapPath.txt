@@ -1,0 +1,14 @@
+This code defines a public view function named `getTokenSwapPath` that retrieves the swap path for swapping a token from `tokenIn` to `tokenOut`. The function accepts two parameters: `tokenIn` and `tokenOut`, which are the addresses of the input and output tokens, respectively. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `tokenIn`: The address of the input token for the swap path.
+2. `tokenOut`: The address of the output token for the swap path.
+
+Return Value:
+The function returns an array of addresses (`address[] memory`) representing the swap path from `tokenIn` to `tokenOut`.
+
+Code Breakdown:
+The function signature includes the parameters `tokenIn` and `tokenOut`. `getTokenSwapPath` is a public view function, meaning it can be called externally and does not modify the contract state. The function retrieves the swap path for swapping a token from `tokenIn` to `tokenOut` by accessing the `tokenSwapPaths` mapping. The mapping is structured as `tokenSwapPaths[tokenIn][tokenOut]`, where `tokenIn` is the key to the first mapping and `tokenOut` is the key to the nested mapping. By passing `tokenIn` and `tokenOut` as parameters to the function, it returns the swap path stored in the mapping for the specified input and output tokens.
+
+Summary:
+The `getTokenSwapPath` function allows external callers to retrieve the swap path for swapping a token from `tokenIn` to `tokenOut` by accessing the `tokenSwapPaths` mapping and returning the corresponding array of addresses representing the swap path.

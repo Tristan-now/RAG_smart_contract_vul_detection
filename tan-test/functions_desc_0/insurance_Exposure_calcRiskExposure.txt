@@ -1,0 +1,17 @@
+This code snippet defines an external view function named `calcRiskExposure` that overrides a function in the contract interface and returns an `ExposureState` struct. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `sysState`: A calldata parameter of type `SystemState` that contains the system state information needed to calculate risk exposure.
+
+Return Value:
+`expState`: An `ExposureState` struct that holds the calculated risk exposure information.
+
+Code Breakdown:
+The `calcRiskExposure` function first calls the internal function `_calcRiskExposure` with the `sysState` parameter and a boolean value `true`. This internal function calculates the risk exposure based on the system state provided and returns an `ExposureState` struct, which is assigned to the `expState` variable.
+
+Next, the function calls the `isExposed` function to determine if any stablecoin or protocol is overexposed based on the calculated risk exposure values. The `isExposed` function takes the `sysState.rebalanceThreshold`, `expState.stablecoinExposure`, `expState.protocolExposure`, and `expState.curveExposure` as parameters and returns a tuple containing boolean values indicating whether the stablecoin or protocol is overexposed.
+
+Finally, the function returns the `expState` struct, which now contains the calculated risk exposure information along with the overexposure status of stablecoins and protocols.
+
+Summary:
+The `calcRiskExposure` function calculates the risk exposure based on the provided system state, determines if any stablecoin or protocol is overexposed, and returns an `ExposureState` struct containing the calculated risk exposure information and overexposure status.

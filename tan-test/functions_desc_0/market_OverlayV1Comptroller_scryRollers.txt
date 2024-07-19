@@ -1,0 +1,23 @@
+This code defines an internal function named `scryRollers`, which is used to search for specific data points within an array of `Roller` structs. The function takes in three parameters: an array of `Roller` structs (`rollers`), an integer `_cycloid`, and an integer `_target`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `rollers`: An array of `Roller` structs that stores data points.
+2. `_cycloid`: An integer representing a specific index within the `rollers` array.
+3. `_target`: An integer representing the target value to search for within the `rollers` array.
+
+Return Values:
+- `beforeOrAt_`: A `Roller` struct that represents the data point before or at the target value.
+- `atOrAfter_`: A `Roller` struct that represents the data point at or after the target value.
+
+Code Breakdown:
+- The function initializes the `beforeOrAt_` variable with the `Roller` struct at the `_cycloid` index within the `rollers` array.
+- It then checks if the `time` value of `beforeOrAt_` is less than or equal to the `_target`. If true, it handles the case where the target is at or after the newest roller.
+- If the `time` value of `beforeOrAt_` is equal to the `_target`, it returns both `beforeOrAt_` and an empty `atOrAfter_` struct.
+- If the `time` value of `beforeOrAt_` is less than the `_target`, it sets the `atOrAfter_` struct with the current block timestamp, `ying`, and `yang` values from `beforeOrAt_`.
+- If the target is not at or after the newest roller, the function updates the `_cycloid` index to point to the next roller in the array.
+- It then retrieves the `Roller` struct at the updated `_cycloid` index and handles the case where the `time` value is less than or equal to 1.
+- If the `_target` is less than or equal to the `time` value of the new `beforeOrAt_`, it returns both `beforeOrAt_` and an empty `atOrAfter_` struct.
+- Otherwise, it calls the `binarySearch` function to perform a binary search within the `rollers` array to find the data points before and after the target value.
+
+Summary:
+The `scryRollers` function is used to search for specific data points within an array of `Roller` structs. It handles cases where the target value is at or after the newest roller, updates the index to the next roller if needed, and performs a binary search to find the data points before and after the target value.

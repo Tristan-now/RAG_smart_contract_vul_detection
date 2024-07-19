@@ -1,0 +1,10 @@
+Type of vulnerability: Unhandled return value in transfer function
+Cause of vulnerability: Failure to handle return value of transfer function which could be false on failure
+Execution process: The transferOut function in Pools.sol calls the transfer function on a user-supplied untrusted token address without checking the return value
+Detailed characteristics: Lack of handling return value of transfer function, potential for malicious token implementation
+Vulnerable code:
+```solidity
+function transferOut(address token, address to, uint256 amount) internal {
+    IERC20(token).transfer(to, amount); // This transfer call does not handle the return value
+}
+```

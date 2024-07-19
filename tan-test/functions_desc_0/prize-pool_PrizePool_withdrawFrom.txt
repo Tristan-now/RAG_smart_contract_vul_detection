@@ -1,0 +1,19 @@
+This code defines an external function named `withdrawFrom` that allows a user to withdraw a specified amount of tokens from a specific address. The function takes two parameters: `_from` (the address from which the tokens will be withdrawn) and `_amount` (the amount of tokens to be withdrawn). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_from`: The address from which the tokens will be withdrawn.
+2. `_amount`: The amount of tokens to be withdrawn.
+
+Return Value:
+The function returns a `uint256` value representing the amount of tokens redeemed.
+
+Code Breakdown:
+The function begins by obtaining a reference to the `ITicket` interface contract using the `ticket` variable.
+The function then calls the `controllerBurnFrom` function of the `_ticket` contract to burn the specified `_amount` of tickets from the `msg.sender` (the caller) on behalf of `_from`.
+After burning the tickets, the function calls the `_redeem` function to redeem the burned tickets and calculates the amount of tokens redeemed, storing it in the `_redeemed` variable.
+Next, the function transfers the redeemed tokens (`_redeemed`) to the `_from` address using the `_token().safeTransfer` function.
+An `emit` statement is used to trigger an event called `Withdrawal`, which logs the details of the withdrawal including the sender, the address from which tokens were withdrawn, the ticket contract, the amount of tickets burned, and the amount of tokens redeemed.
+Finally, the function returns the amount of tokens redeemed (`_redeemed`) to the caller.
+
+Summary:
+The `withdrawFrom` function allows a user to withdraw a specified amount of tokens from a specific address. It burns the corresponding tickets, redeems them for tokens, transfers the tokens to the specified address, emits an event to log the withdrawal details, and returns the amount of tokens redeemed.

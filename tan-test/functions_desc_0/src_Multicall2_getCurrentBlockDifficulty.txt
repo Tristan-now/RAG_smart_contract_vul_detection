@@ -1,0 +1,15 @@
+This code defines a public view function named `getCurrentBlockDifficulty` that retrieves the current block's difficulty level. The function returns a `uint256` value representing the difficulty of the current block.
+
+Explanation:
+
+- Function Signature:
+  - `getCurrentBlockDifficulty`: This is a public view function, meaning it can be called externally and does not modify the contract's state.
+  - Return Type: `uint256` - The function returns a single `uint256` value representing the block difficulty.
+
+- Code Breakdown:
+  - Inside the function body, the `difficulty` variable is declared and initialized to `block.difficulty`. The `block` object in Solidity provides information about the current block, and `block.difficulty` specifically returns the difficulty level of the current block.
+  - The difficulty of a block in Ethereum is a measure of how difficult it is to find a hash value that meets the network's target. A higher difficulty value indicates a more challenging cryptographic puzzle that miners need to solve to mine a block.
+  - By calling `block.difficulty`, the function retrieves and returns the current block's difficulty level when it is invoked.
+
+Summary:
+The `getCurrentBlockDifficulty` function retrieves the difficulty level of the current block by accessing the `block.difficulty` property and returning it as a `uint256` value. This function provides transparency regarding the computational effort required to mine the current block in the Ethereum network.

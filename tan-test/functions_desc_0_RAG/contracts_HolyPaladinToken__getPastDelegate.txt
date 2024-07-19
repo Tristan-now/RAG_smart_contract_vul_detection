@@ -1,0 +1,20 @@
+This code defines an internal function named `_getPastDelegate`, which is used to retrieve the delegate address for a specific account at a given block number. The function accepts two parameters: `account`, which is the address of the account for which the delegate address is being retrieved, and `blockNumber`, which specifies the block number at which the delegate address is requested.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `account`: The address of the account for which the delegate address is being retrieved.
+2. `blockNumber`: The block number at which the delegate address is requested.
+
+Return Value:
+The function returns the address of the delegate for the specified account at the given block number.
+
+Code Breakdown:
+1. The function starts with a `require` statement to ensure that the `blockNumber` provided is less than the current block number.
+2. It then checks if there are any checkpoints recorded for the specified `account`. If there are no checkpoints, it returns address(0) indicating that there is no delegate set for that account.
+3. If there are checkpoints, the function proceeds to check the last checkpoint to see if it is older than or equal to the specified `blockNumber`. If it is, the delegate address from that checkpoint is returned.
+4. If the last checkpoint is not old enough, the function performs a binary search on the checkpoints to find the delegate address corresponding to the specified `blockNumber`.
+5. The binary search algorithm works by dividing the range of checkpoints in half and comparing the `fromBlock` value of the midpoint checkpoint with the specified `blockNumber`. Based on this comparison, it narrows down the search range until it finds the delegate address for the given block number.
+6. If the delegate address is found, it is returned. If not, the function returns address(0) to indicate that there is no delegate set for the specified account at the given block number.
+
+This function efficiently retrieves the delegate address for a specific account at a particular block number by utilizing binary search on the stored checkpoints.

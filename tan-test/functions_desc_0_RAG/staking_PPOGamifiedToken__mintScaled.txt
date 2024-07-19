@@ -1,0 +1,12 @@
+This code snippet defines a private function named `_mintScaled` that is responsible for minting a specified amount of tokens to a given account. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: The address of the account to which the tokens will be minted.
+2. `_amount`: The amount of tokens to be minted.
+
+Code Breakdown:
+- The function emits a `Transfer` event indicating the minting of tokens from the zero address to the `_account` address with the specified `_amount`.
+- It then calls the `_afterTokenTransfer` function, passing the zero address, `_account`, and `_amount` as parameters. This function likely contains additional logic related to token transfers or minting operations.
+
+Summary:
+The `_mintScaled` function facilitates the minting of a specified amount of tokens to a designated account. It emits a transfer event to reflect the minting action and may perform further operations related to token transfers or minting.

@@ -1,0 +1,23 @@
+This code defines a function named `updateStreamParams` that updates the stream parameters with the provided `GovernableStreamParams` struct. Here's a detailed explanation of how this function works:
+
+Parameters:
+- `newParams`: A `GovernableStreamParams` struct that contains the new stream parameters to be updated.
+
+Function Modifiers:
+- `public`: This function can be called externally.
+- `governed`: This modifier ensures that only authorized governance entities can call this function.
+
+Return Value:
+- This function does not return any value.
+
+Code Breakdown:
+- The function signature includes the `updateStreamParams` function name and the `newParams` parameter of type `GovernableStreamParams`.
+- Inside the function, the current stream parameters are stored in a temporary `GovernableStreamParams` variable named `old`.
+- The function then updates the stream parameters with the provided `newParams`.
+- An event `StreamParametersUpdated` is emitted with the old and new stream parameters as arguments to notify external entities about the parameter update.
+
+Data Validation:
+- The code comments mention that there is no strict data validation for the stream parameters as misconfiguration is not considered a significant issue.
+- Therefore, the function does not perform any explicit data validation on the new stream parameters.
+
+Overall, this function allows authorized governance entities to update the stream parameters without strict data validation, as misconfiguration is not deemed critical.

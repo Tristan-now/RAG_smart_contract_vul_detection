@@ -1,0 +1,19 @@
+This code defines a public function named `recoverTokens` that allows the stream creator to recover excess tokens from the contract. The function takes two parameters: `token` (the address of the token to recover) and `recipient` (the address where the recovered tokens will be sent). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: The address of the token to be recovered.
+2. `recipient`: The address where the recovered tokens will be sent.
+
+Code Breakdown:
+The function first checks if the caller of the function is the stream creator by comparing `msg.sender` with `streamCreator`. If the caller is not the stream creator, the function reverts with the error message `!creator`.
+
+Next, the function checks if the `token` address is equal to the `depositToken` address. If it is, the function verifies that the current block timestamp is greater than `endDepositLock`. It then calculates the excess tokens in the contract by subtracting the total deposited tokens that have been redeemed from the total balance of the `depositToken`. The excess tokens are then transferred to the `recipient` address using the `safeTransfer` function of the `ERC20` token contract. An event `RecoveredTokens` is emitted with details of the token, recipient, and excess tokens transferred.
+
+If the `token` address is equal to the `rewardToken` address, the function follows a similar process. It checks if the current block timestamp is greater than `endRewardLock` and calculates the excess tokens in the contract by subtracting the total reward tokens and reward token fee amount from the total balance of the `rewardToken`. The excess tokens are then transferred to the `recipient` address, and an event is emitted.
+
+If the `token` address is an incentivized token (i.e., it has a positive value in the `incentives` mapping), the function checks if the current block timestamp is greater than or equal to `endStream`. It calculates the excess tokens in the contract by subtracting the incentivized amount from the total balance of the `token` and transfers the excess tokens to the `recipient` address.
+
+If none of the above conditions are met, the function assumes that the `token` is not the deposit token, reward token, or an incentivized token. In this case, it simply transfers the entire balance of the `token` in the contract to the `recipient` address.
+
+Summary:
+The `recoverTokens` function allows the stream creator to recover excess tokens from the contract based on specific conditions related to deposit tokens, reward tokens, incentivized tokens, or any other token. The function ensures that the recovery of tokens is done securely and transparently, with appropriate checks and transfers in place.

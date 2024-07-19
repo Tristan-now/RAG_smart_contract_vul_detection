@@ -1,0 +1,8 @@
+This code defines a function named `getRewardSnapshotYUSD` that is external and view, meaning it can be called from outside the contract and does not modify the state of the contract. The function takes two parameters: `_borrower`, which is an address representing the borrower, and `_token`, which is also an address representing a token.
+
+The function returns a `uint` value, which is the YUSD debt of the specified token for the given borrower stored in the `rewardSnapshots` mapping.
+
+In summary, this function allows external callers to retrieve the YUSD debt of a specific token for a particular borrower from the `rewardSnapshots` mapping.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are relevant to this specific code snippet.

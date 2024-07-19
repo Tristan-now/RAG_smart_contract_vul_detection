@@ -1,0 +1,21 @@
+This code defines a private view function named `_getMarketInfo` that retrieves information about a market based on the provided market address. The function returns a struct `MarketBaseInfo` containing various details about the market.
+
+Parameters:
+1. `_marketAddress`: The address of the market for which information is to be retrieved.
+
+Return Value:
+`marketInfo`: A struct of type `MarketBaseInfo` containing details such as market address, template ID, start time, end time, finalization status, and token information.
+
+Code Breakdown:
+The function `_getMarketInfo` begins by declaring a variable `templateId` of type `uint64` to store the template ID of the market obtained by calling the `getMarketTemplateId` function from the `market` contract using the provided `_marketAddress`.
+
+Next, the function declares variables `auctionToken`, `startTime`, `endTime`, and `finalized` to store the base information retrieved from the `IBaseAuction` interface implemented by the `_marketAddress` contract. The values are obtained by calling the `getBaseInformation` function.
+
+The function then calls the `getTokenInfo` function to retrieve detailed information about the `auctionToken` obtained from the market.
+
+Subsequently, the function populates the `marketInfo` struct with the gathered information, including the market address, template ID, start time, end time, finalization status, and token information.
+
+Finally, the function returns the `marketInfo` struct containing all the collected details about the market.
+
+Summary:
+The `_getMarketInfo` function fetches and compiles various pieces of information about a market based on the provided market address. It retrieves details such as template ID, auction token, start and end times, finalization status, and token information, and encapsulates them into a `MarketBaseInfo` struct, which is then returned as the output of the function.

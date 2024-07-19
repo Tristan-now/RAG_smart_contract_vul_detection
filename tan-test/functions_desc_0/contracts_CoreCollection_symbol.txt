@@ -1,0 +1,13 @@
+This code snippet defines a public view function named `symbol` that overrides a function from an inherited contract. The function returns a string representing the symbol of the token.
+
+Explanation:
+
+- The function is declared as `public`, meaning it can be called externally.
+- The function is declared as `view`, indicating that it does not modify the state of the contract.
+- The function is marked with `override`, indicating that it overrides a function from a parent contract.
+- The return type of the function is `string memory`, which means it returns a dynamically allocated string.
+- Inside the function, it simply returns the value of the `_symbol` variable.
+
+Summary:
+
+The `symbol` function provides a way to retrieve the symbol of the token by returning the value stored in the `_symbol` variable. This function is publicly accessible and does not modify the contract state.

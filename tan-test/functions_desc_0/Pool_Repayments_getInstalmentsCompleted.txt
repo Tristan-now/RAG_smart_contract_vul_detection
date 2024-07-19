@@ -1,0 +1,16 @@
+This code defines a public view function named `getInstalmentsCompleted` that calculates the number of instalments completed for a specific pool ID. The function takes the pool ID as a parameter and returns the number of instalments completed as a `uint256` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_poolID`: The address representing the pool ID for which the number of instalments completed needs to be calculated.
+
+Return Value:
+`_instalmentsCompleted`: The function returns a `uint256` value representing the number of instalments completed for the specified pool ID.
+
+Code Breakdown:
+The function begins by retrieving the repayment interval for the specified pool ID from the `repayConstants` mapping and storing it in the variable `_repaymentInterval`. It then fetches the loan duration covered for the same pool ID from the `repayVariables` mapping and stores it in the variable `_loanDurationCovered`.
+Next, the function calculates the number of instalments completed by dividing `_loanDurationCovered` by `_repaymentInterval`, then multiplying the result by a `SCALING_FACTOR`. The division operation (`div`) divides the two values and returns a whole number rounded down, ensuring that only completed instalments are counted.
+The calculated value representing the number of instalments completed is stored in the variable `_instalmentsCompleted`.
+Finally, the function returns the `_instalmentsCompleted` value, which indicates the total number of instalments completed for the specified pool ID.
+
+Summary:
+The `getInstalmentsCompleted` function calculates the number of instalments completed for a specific pool ID by dividing the loan duration covered by the repayment interval and multiplying the result by a scaling factor. The function then returns the total number of instalments completed as a `uint256` value.

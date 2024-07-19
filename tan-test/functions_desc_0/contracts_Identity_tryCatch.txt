@@ -1,0 +1,16 @@
+This code defines an external function named `tryCatch` that allows the contract itself to call another contract and handle any errors that may occur during the call. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `to`: The address of the contract to call.
+2. `value`: The amount of Ether to send along with the call.
+3. `data`: The calldata to include in the call.
+
+Functionality:
+The `tryCatch` function is designed to be called by the contract itself (as indicated by the `require` statement that checks if `msg.sender` is the contract address). This function is used for making calls to other contracts and handling any exceptions that may arise during the call.
+
+The function uses the `call` function to make an external call to the contract specified by the `to` parameter. It includes the specified `value` of Ether and the `data` calldata in the call. The `gasleft()` function is used to determine the amount of gas remaining at the time of the call, ensuring that there is enough gas to execute the call.
+
+The result of the call is stored in the `success` boolean variable and the `returnData` bytes variable. If the call is successful (`success` is true), the function proceeds as normal. However, if the call encounters an error (`success` is false), an event `LogErr` is emitted with the details of the failed call, including the target address (`to`), the value sent (`value`), the calldata (`data`), and the return data from the failed call.
+
+Summary:
+The `tryCatch` function provides a way for the contract to safely make external calls to other contracts by handling any errors that may occur during the call. It ensures that the contract can continue functioning even if a call to another contract fails, allowing for better error handling and recovery mechanisms.

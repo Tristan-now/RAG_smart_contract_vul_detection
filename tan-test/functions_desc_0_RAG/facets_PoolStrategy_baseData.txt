@@ -1,0 +1,25 @@
+This code defines an internal view function named `baseData` that returns a reference to a `PoolStorage.Base` struct. Here's a detailed explanation of how this function works:
+
+Parameters:
+None
+
+Return Value:
+`ps`: The function returns a reference to a `PoolStorage.Base` struct.
+
+Code Breakdown:
+The function signature includes the `internal` and `view` modifiers, indicating that it is an internal view function that does not modify the state of the contract. Within the function, a reference to a `PoolStorage.Base` struct named `ps` is declared and initialized by calling the `PoolStorage.ps` function with the parameter `bps()`. The `bps()` function is assumed to return a value that is used to retrieve the `PoolStorage.Base` struct.
+
+Next, a `require` statement is used to ensure that the `ps.govPool` address stored in the `PoolStorage.Base` struct is not equal to `address(0)`. If the condition is not met (i.e., `ps.govPool` is equal to `address(0)`), the function will revert with the error message 'INVALID_TOKEN'.
+
+Overall, the `baseData` function is responsible for retrieving and validating the `PoolStorage.Base` struct, ensuring that the `govPool` address is valid before proceeding with any further operations.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for this specific code snippet.
+
+[TASK CODE]
+```solidity
+function baseData() internal view returns (PoolStorage.Base storage ps) {
+    ps = PoolStorage.ps(bps());
+    require(ps.govPool != address(0), 'INVALID_TOKEN');
+}
+```

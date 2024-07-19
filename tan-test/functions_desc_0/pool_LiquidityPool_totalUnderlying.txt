@@ -1,0 +1,7 @@
+This code defines a public view function named `totalUnderlying` that calculates the total underlying value of a vault. The function first retrieves the vault contract using the `getVault` function. It then calculates the balance of underlying assets held by the current contract using the `_getBalanceUnderlying` function.
+
+If the vault address is not set (vault is not initialized), the function returns the balance of underlying assets as the total underlying value.
+
+If the vault address is set, the function retrieves the total underlying value of the assets invested in the vault by calling the `getTotalUnderlying` function on the vault contract. The function then returns the sum of the invested underlying assets and the balance of underlying assets held by the current contract as the total underlying value.
+
+In summary, the `totalUnderlying` function calculates the total underlying value of a vault by summing the invested underlying assets in the vault and the balance of underlying assets held by the current contract.

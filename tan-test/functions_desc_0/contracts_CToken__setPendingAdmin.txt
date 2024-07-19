@@ -1,0 +1,19 @@
+This code defines an external function `_setPendingAdmin` that allows the current admin to set a new pending admin address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newPendingAdmin`: The address of the new pending admin that the current admin wants to set.
+
+Return Value:
+The function returns a `uint` value representing the success or failure of the operation.
+
+Code Breakdown:
+The function signature includes the parameter `newPendingAdmin`, which is the address of the new pending admin. The function is marked as `external`, meaning it can be called from outside the contract. The function first checks if the caller of the function is the current admin. If the caller is not the admin, the function returns an error code indicating unauthorized access.
+
+If the caller is the admin, the function proceeds to save the current value of `pendingAdmin` in the variable `oldPendingAdmin` for inclusion in the log. Then, it updates the `pendingAdmin` variable with the new value provided in `newPendingAdmin`.
+
+After updating the `pendingAdmin` value, the function emits an event `NewPendingAdmin` with the old and new pending admin addresses as parameters.
+
+Finally, the function returns an error code `Error.NO_ERROR` to indicate that the operation was successful.
+
+Summary:
+The `_setPendingAdmin` function allows the current admin to set a new pending admin address. It performs a check to ensure that only the admin can call this function, updates the `pendingAdmin` variable with the new address, emits an event to log the change, and returns a success code upon completion.

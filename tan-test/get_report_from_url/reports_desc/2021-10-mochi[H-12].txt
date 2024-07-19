@@ -1,0 +1,10 @@
+Type of vulnerability: Sandwich attack
+Cause of vulnerability: Permissionless function `distributeMochi` in `FeePoolV0.sol` allows anyone to trigger it, enabling an attacker to launch a sandwich attack with a flash loan to steal funds.
+Execution process: An attacker can exploit the permissionless function to execute a flash loan sandwich attack, potentially stealing all funds in the pool.
+Detailed characteristics: Lack of permission control on the `distributeMochi` function allows for unauthorized access and manipulation of funds, making it vulnerable to sandwich attacks.
+Vulnerable code: 
+```solidity
+function distributeMochi() public {
+    // code logic for distributing Mochi tokens
+}
+```

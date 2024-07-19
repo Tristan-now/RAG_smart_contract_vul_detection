@@ -1,0 +1,14 @@
+This code defines an external function named `realise` that performs a specific operation on a given pool. The function calculates the SPARTA value of LP tokens and synths associated with the pool and then compares these values to determine if there is a premium. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `pool`: The address of the pool for which the operation is being performed.
+
+Code Breakdown:
+1. The function starts by calling the `calcLiquidityHoldings` function of the `iUTILS` contract to calculate the SPARTA value of the LP tokens held in the pool. This value is stored in the `baseValueLP` variable.
+2. Next, the function calls the `calcActualSynthUnits` function of the `iUTILS` contract to calculate the SPARTA value of the synths associated with the pool. This value is stored in the `baseValueSynth` variable.
+3. The function then checks if the `baseValueLP` is greater than `baseValueSynth`. If this condition is true, it means there is a premium between the two values.
+4. If the premium is greater than `10 ** 18` (1 SPARTA), the function calculates the LP value of the premium by calling the `calcLiquidityUnitsAsym` function of the `iUTILS` contract. This LP value is stored in the `premiumLP` variable.
+5. The function then subtracts the `premiumLP` from the LP balance of the pool (`mapSynth_LPBalance[pool]`) and burns the corresponding amount of LP tokens by calling the `burn` function of the `Pool` contract associated with the pool.
+
+Summary:
+The `realise` function calculates the SPARTA value of LP tokens and synths in a pool, compares these values to determine if there is a premium, and burns the premium amount of LP tokens if the premium exceeds a certain threshold.

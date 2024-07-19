@@ -1,0 +1,21 @@
+This code defines a function named `onERC721Received`, which is a standard ERC721 callback function that is triggered when an ERC721 token is received by a contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `to`: The address to which the ERC721 token is being transferred.
+2. `tokenId`: The unique identifier of the ERC721 token being received.
+3. `data`: Additional data that can be passed along with the token transfer.
+
+Return Value:
+The function returns a `bytes4` value, which is the selector of the `onERC721Received` function of the receiving contract.
+
+Code Breakdown:
+The function signature includes the parameters `to`, `tokenId`, and `data`. It is marked as `public` and `override`, indicating that it overrides the `onERC721Received` function defined in the ERC721Receiver interface.
+The function first checks if the sender of the ERC721 token is the expected ERC721 contract (`registrar`). If the sender is not the expected contract, it reverts the transaction with an error message.
+The function then decodes the `data` parameter using `abi.decode` to extract the label, owner, fuses, expiry, and resolver information from the data passed during the token transfer.
+It calculates the `labelhash` from the `tokenId` and compares it with the `labelhash` derived from the decoded label. If they do not match, it reverts the transaction with an error message.
+Next, it calls the `reclaim` function on the `registrar` contract to transfer the ENS record back to the receiving contract.
+Finally, it calls the `_wrapETH2LD` function to wrap the received ENS record with the provided information (label, owner, fuses, expiry, resolver).
+The function returns the selector of the `onERC721Received` function of the receiving contract to indicate a successful token transfer.
+
+Summary:
+The `onERC721Received` function is a callback function that handles the receipt of ERC721 tokens. It performs validation checks, decodes the data passed with the token, transfers the ENS record back to the receiving contract, and wraps the ENS record with additional information.

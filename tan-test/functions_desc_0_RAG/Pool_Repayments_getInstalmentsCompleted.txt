@@ -1,0 +1,19 @@
+This code defines a public view function named `getInstalmentsCompleted`, which calculates the number of instalments completed for a specific pool ID. The function takes the pool ID as an input parameter and returns the number of instalments completed as a `uint256` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_poolID`: The pool ID for which the number of instalments completed needs to be calculated.
+
+Return Value:
+`_instalmentsCompleted`: The function returns a `uint256` value representing the number of instalments completed for the specified pool ID.
+
+Code Breakdown:
+The function begins by retrieving the repayment interval for the given pool ID from the `repayConstants` mapping and storing it in the variable `_repaymentInterval`. It then fetches the loan duration covered for the same pool ID from the `repayVariables` mapping and assigns it to the variable `_loanDurationCovered`. 
+Next, the code calculates the number of instalments completed by dividing `_loanDurationCovered` by `_repaymentInterval`, multiplying the result by a `SCALING_FACTOR`, and storing the final value in the variable `_instalmentsCompleted`. The division operation here is done using the `div` function, which divides two numbers and returns the result rounded down to the nearest whole number.
+
+Finally, the function returns the calculated `_instalmentsCompleted` value, representing the number of instalments completed for the specified pool ID.
+
+Vulnerability Prediction:
+This function does not seem to have any specific vulnerabilities based on the provided code snippet. However, it's essential to ensure that the input `_poolID` is validated to prevent any potential security risks related to incorrect or malicious pool IDs.
+
+Summary:
+The `getInstalmentsCompleted` function calculates the number of instalments completed for a specific pool ID by dividing the loan duration covered by the repayment interval and multiplying the result by a scaling factor. The function then returns the calculated number of instalments completed as a `uint256` value.

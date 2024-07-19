@@ -1,0 +1,19 @@
+This code snippet defines an internal function `_burnToken` that is responsible for burning tokens based on the provided symbol and salt value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `symbol`: A string representing the symbol of the token to be burned.
+2. `salt`: A bytes32 value used for creating a new instance of `DepositHandler`.
+
+Code Breakdown:
+1. The function first retrieves the address of the token based on the provided symbol using the `tokenAddresses` function.
+2. If the token address is 0 (meaning the token does not exist), the function reverts with a custom error message `TokenDoesNotExist`.
+3. It then checks the type of the token using the `_getTokenType` function to determine if it is an external token or not.
+4. If the token is of type External, it proceeds to execute the burning process for external tokens:
+   - It checks the status of the token using the `_checkTokenStatus` function.
+   - It creates a new instance of `DepositHandler` contract using the provided salt value.
+   - It calls the `execute` function of the `DepositHandler` contract, attempting to transfer the token balance to the current contract.
+   - If the execution is successful and the return data indicates success, the token burning process is considered successful. Otherwise, it reverts with a `BurnFailed` error.
+   - Finally, it destroys the `DepositHandler` contract instance.
+5. If the token is not of type External, it calls the `burn` function of the `BurnableMintableCappedERC20` contract with the provided salt value to burn the tokens.
+
+In summary, the `_burnToken` function handles the burning of tokens based on the provided symbol and salt value. It distinguishes between external and internal tokens, executing the appropriate burning process for each type.

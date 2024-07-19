@@ -1,0 +1,21 @@
+This code defines a private function named `_computeNextTwab`, which calculates the next time-weighted average balance (TWAB) observation based on the current TWAB, current balance, and elapsed time. The function accepts three parameters: an `Observation` struct representing the current TWAB, a `uint224` value representing the current balance, and a `uint32` value representing the current time.
+
+Parameters:
+1. `_currentTwab`: An `Observation` struct containing the amount and timestamp of the current TWAB observation.
+2. `_currentBalance`: A `uint224` value representing the current balance.
+3. `_time`: A `uint32` value representing the current time.
+
+Return Value:
+The function returns an `Observation` struct representing the next TWAB observation.
+
+Code Breakdown:
+The function calculates the next TWAB observation by adding the product of the current balance and elapsed time to the amount of the current TWAB observation. The calculation is performed as follows:
+- `_currentBalance * (_time.checkedSub(_currentTwab.timestamp, _time))`: This calculates the change in balance by multiplying the current balance with the difference between the current time and the timestamp of the current TWAB observation.
+- `_currentTwab.amount + ...`: This adds the calculated change in balance to the amount of the current TWAB observation.
+- `timestamp: _time`: This sets the timestamp of the next TWAB observation to the current time.
+
+Vulnerability Prediction:
+This function does not appear to have any specific vulnerabilities based on the provided code snippet.
+
+Summary:
+The `_computeNextTwab` function calculates the next TWAB observation based on the current TWAB, current balance, and elapsed time. It updates the TWAB amount by adding the product of the current balance and elapsed time to the amount of the current TWAB observation, and sets the timestamp of the next observation to the current time.

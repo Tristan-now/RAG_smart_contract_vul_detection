@@ -1,0 +1,17 @@
+This code defines an internal function named `_computeNewStake`, which calculates the new stake value for a given token based on the collateral amount provided. The function accepts two parameters: the token address (`token`) and the collateral amount (`_coll`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: The address of the token for which the new stake value is being calculated.
+2. `_coll`: The collateral amount for the token.
+
+Return Value:
+The function returns a `uint` value representing the new stake value for the token.
+
+Code Breakdown:
+The function starts by declaring a local variable `stake` of type `uint` to store the calculated stake value. It then checks if the `totalCollateralSnapshot` for the given token is zero. If it is zero, the stake value is set to the provided collateral amount `_coll`. This condition handles the scenario where there are no existing collateral snapshots for the token.
+
+If the `totalCollateralSnapshot` is not zero, the function calculates the new stake value based on the existing collateral and stake snapshots. The calculation is performed using the formula `_coll * totalStakesSnapshot[token] / totalCollateralSnapshot[token]`. This formula determines the proportion of the provided collateral relative to the total collateral in the system and adjusts the stake accordingly.
+
+Additionally, the code includes an `assert` statement with a comment explaining its rationale. The `assert` statement ensures that the `totalStakesSnapshot` for the token is not zero, indicating that there is at least one trove in the system. The comment provides further context on why this condition is necessary for the calculation to be valid.
+
+Overall, the `_computeNewStake` function calculates the new stake value for a token based on the provided collateral amount and the existing collateral and stake snapshots in the system. It handles scenarios where there are no existing snapshots or when the system contains at least one trove to ensure accurate stake calculations.

@@ -1,0 +1,32 @@
+This code defines a private pure function named `_getStorageSlot` that calculates the storage slot for a given `StorageId`. The function takes a `StorageId` parameter and returns a `uint256` value representing the storage slot.
+
+Parameters:
+1. `StorageId`: A custom data type representing the storage identifier for which the storage slot needs to be calculated.
+
+Return Value:
+`slot`: The function returns a `uint256` value representing the calculated storage slot.
+
+Code Breakdown:
+The `_getStorageSlot` function is marked as private, meaning it can only be accessed within the current contract. It is also marked as pure, indicating that it does not read from or modify the contract's state.
+
+Within the function, the storage slot calculation is performed by adding the numeric value of the `StorageId` to a predefined base slot value (`STORAGE_SLOT_BASE`). The result is then returned as a `uint256` value representing the storage slot.
+
+The comment in the code mentions that overflow is not expected to occur when calculating the storage slot, as Solidity performs a range check on the `storageId` during the cast operation to `uint256`.
+
+Overall, this function serves the purpose of determining the storage slot for a given `StorageId` in the contract's storage layout.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are referenced in this code snippet.
+
+[TASK CODE]
+```solidity
+function _getStorageSlot(StorageId storageId)
+        private
+        pure
+        returns (uint256 slot)
+    {
+        // This should never overflow with a reasonable `STORAGE_SLOT_EXP`
+        // because Solidity will do a range check on `storageId` during the cast.
+        return uint256(storageId) + STORAGE_SLOT_BASE;
+    }
+```

@@ -1,0 +1,18 @@
+This code defines a public view function named `totalUnderlying`, which calculates the total amount of underlying assets in a vault. The function first retrieves the vault contract using the `getVault` function. It then calculates the balance of underlying assets held directly by the contract using the `_getBalanceUnderlying` function.
+
+If the vault address is not set (equals to address(0)), the function returns the balance of underlying assets directly held by the contract (`balanceUnderlying`). Otherwise, if the vault address is set, the function retrieves the total amount of underlying assets invested in the vault using the `getTotalUnderlying` function of the vault contract. The function then returns the sum of the invested underlying assets and the balance of underlying assets held directly by the contract.
+
+Parameters:
+None
+
+Return Value:
+`uint256`: The function returns a `uint256` value representing the total amount of underlying assets in the vault.
+
+Code Breakdown:
+The function first obtains the vault contract using the `getVault` function. It then calculates the balance of underlying assets held directly by the contract and stores it in the `balanceUnderlying` variable. If the vault address is not set (vault is not initialized), the function returns the `balanceUnderlying`. Otherwise, it retrieves the total amount of underlying assets invested in the vault and stores it in the `investedUnderlying` variable. The function then returns the sum of `investedUnderlying` and `balanceUnderlying`, representing the total amount of underlying assets in the vault.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the underlying assets are not handled securely within the contract.
+
+Summary:
+The `totalUnderlying` function calculates the total amount of underlying assets in a vault by summing the balance of underlying assets held directly by the contract and the total amount of underlying assets invested in the vault. If the vault address is not set, it returns the balance of underlying assets directly held by the contract.

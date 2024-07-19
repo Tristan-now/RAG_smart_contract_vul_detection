@@ -1,0 +1,31 @@
+This code defines a function named `claimYeti` that allows a multisig address to claim YETI tokens based on a vesting schedule. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: The amount of YETI tokens to be claimed.
+
+Modifiers:
+- `onlyMultisig`: Ensures that only the multisig address can call this function.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function `claimYeti` is an external function, meaning it can be called from outside the contract. It takes one parameter `_amount`, representing the number of YETI tokens to be claimed, and is restricted to be called only by the multisig address.
+
+The function first checks two conditions using `require` statements:
+1. It verifies that the current block timestamp is greater than the `vestingStart` timestamp, indicating that the vesting period has started.
+2. It ensures that the total claimed YETI tokens are less than the total vested YETI tokens, meaning there are still tokens available for claiming.
+
+Next, it calculates the time that has passed since the vesting period started by subtracting `vestingStart` from the current block timestamp.
+
+The variable `available` is calculated based on the vesting formula, limiting the claimable tokens to the vested amount at the current time.
+
+If the available tokens are sufficient to cover the claimed amount plus the new `_amount`, the function proceeds to claim the tokens:
+- The total claimed YETI tokens are updated by adding the `_amount`.
+- A `require` statement ensures that the transfer of YETI tokens to the multisig address (`multisig`) using the `YETI.transfer` function is successful.
+
+Vulnerability Prediction:
+This function may be vulnerable to a front-running attack if the token transfer is not handled securely. Malicious actors could potentially manipulate the order of transactions to their advantage.
+
+Summary:
+The `claimYeti` function allows the multisig address to claim YETI tokens based on a vesting schedule. It checks the vesting period status, calculates the available claimable tokens, and transfers the specified amount of YETI tokens to the multisig address if the conditions are met.

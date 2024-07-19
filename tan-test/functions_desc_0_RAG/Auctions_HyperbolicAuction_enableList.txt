@@ -1,0 +1,16 @@
+This code snippet defines an external function named `enableList` that allows an admin to enable or disable the use of a point list in the market status. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_status`: A boolean parameter that indicates whether to enable (`true`) or disable (`false`) the use of the point list in the market status.
+
+Functionality:
+- The function `enableList` is an external function, meaning it can be called from outside the contract by external accounts.
+- The function requires the caller to have the admin role, which is verified using the `hasAdminRole` modifier.
+- Upon successful verification of the admin role, the function updates the `usePointList` variable in the `marketStatus` struct with the value of the `_status` parameter.
+- If `_status` is `true`, it enables the use of the point list in the market status. If `_status` is `false`, it disables the use of the point list.
+
+Vulnerability Prediction:
+This function may be vulnerable to unauthorized access if the `hasAdminRole` modifier is not properly implemented or if there are other vulnerabilities in the contract that could allow unauthorized users to call this function.
+
+Summary:
+The `enableList` function provides a way for an admin to control the use of the point list in the market status. By setting the `_status` parameter to `true` or `false`, the admin can enable or disable the point list functionality as needed.

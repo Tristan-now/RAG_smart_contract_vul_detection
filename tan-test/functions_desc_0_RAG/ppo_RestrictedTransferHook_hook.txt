@@ -1,0 +1,18 @@
+This code defines a function named `hook` that overrides two interfaces: `BlocklistTransferHook` and `ITransferHook`. The function accepts three parameters: `_from` (address from which the transfer is initiated), `_to` (address to which the transfer is made), and `_amount` (the amount of tokens being transferred).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_from`: The address from which the transfer is initiated.
+2. `_to`: The address to which the transfer is made.
+3. `_amount`: The amount of tokens being transferred.
+
+Code Breakdown:
+The `hook` function first calls the `hook` function of the parent contract using `super.hook(_from, _to, _amount)`. This ensures that any logic defined in the parent contract's `hook` function is executed before the additional logic in this function.
+
+Next, the function checks if the `_from` address is included in the `sourceAllowlist`. If it is included, the function returns without further execution, allowing the transfer to proceed.
+
+If the `_from` address is not included in the `sourceAllowlist`, the function proceeds to the next step. It checks if the `_to` address is included in the `destinationAllowlist`. If the `_to` address is not included in the `destinationAllowlist`, the function reverts with an error message stating "Destination not allowed", preventing the transfer from occurring.
+
+Summary:
+The `hook` function overrides two interfaces and adds additional logic to restrict transfers based on the inclusion of addresses in the `sourceAllowlist` and `destinationAllowlist`. Transfers from addresses not included in the `sourceAllowlist` are only allowed if the destination address is included in the `destinationAllowlist`.

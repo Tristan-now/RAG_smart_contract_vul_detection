@@ -1,0 +1,19 @@
+This code defines an internal view function named `_computeNewStake`, which calculates the new stake value for a given token based on the collateral amount provided. The function accepts two parameters: the token address (`token`) and the collateral amount (`_coll`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: The address of the token for which the new stake value is being calculated.
+2. `_coll`: The collateral amount provided for the token.
+
+Return Value:
+The function returns a `uint` value representing the new stake value calculated based on the collateral amount.
+
+Code Breakdown:
+The function signature includes the parameters `token` and `_coll`. `_computeNewStake` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+The function initializes a local variable `stake` of type `uint`.
+The function checks if the `totalCollateralSnapshot` for the given token is 0. If it is 0, the stake value is set to the provided collateral amount `_coll`.
+If the `totalCollateralSnapshot` for the token is not 0, the function calculates the new stake value based on the formula `_coll * totalStakesSnapshot[token] / totalCollateralSnapshot[token]`. This formula calculates the stake proportionally based on the total stakes and total collateral for the token.
+The function includes an `assert()` statement with a `require` condition to ensure that the `totalStakesSnapshot` for the token is not 0. This condition is necessary to prevent division by zero and to ensure that the stake value is greater than 0.
+The calculated stake value is stored in the `stake` variable and returned as the result of the function.
+
+Summary:
+The `_computeNewStake` function calculates the new stake value for a given token based on the collateral amount provided. It considers the total stakes and total collateral snapshots for the token to determine the stake proportionally. The function ensures that the stake value is greater than 0 and returns the calculated stake value.

@@ -1,0 +1,15 @@
+This code snippet defines an internal view function named `requireMarketExistsModifierLogic` that serves as a modifier logic to check if a market exists based on the provided `marketIndex`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `marketIndex`: A uint32 value representing the index of the market to be checked for existence.
+
+Functionality:
+- The function checks if the market exists based on the `marketIndex` provided.
+- It uses the `require` statement to validate if the market exists. If the market does not exist (marketExists[marketIndex] is false), it will revert the transaction with the error message "market doesn't exist".
+
+Modifiers:
+- This function is marked as `internal`, meaning it can only be accessed within the contract or its derived contracts.
+- The function is marked as `view`, indicating that it does not modify the state of the contract and only reads data from it.
+
+Summary:
+The `requireMarketExistsModifierLogic` function acts as a modifier logic to ensure that a specific market exists based on the provided `marketIndex`. If the market does not exist, it will revert the transaction with an error message. This function helps in enforcing the existence of markets before executing certain operations within the contract.

@@ -1,0 +1,14 @@
+This code defines an internal view function named `getRoundData`, which retrieves historical price data for a specific round from an AggregatorV3Interface contract. The function accepts two parameters: an instance of AggregatorV3Interface `_aggregator` and a uint80 `_round` representing the round number for which data is requested. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_aggregator`: An instance of AggregatorV3Interface contract that provides price data.
+2. `_round`: A uint80 value representing the round number for which historical price data is requested.
+
+Return Value:
+The function returns a tuple containing three values: the round number, the latest price as a uint256, and the timestamp of the latest price update.
+
+Code Breakdown:
+The function signature includes the parameters `_aggregator` and `_round`. `getRoundData` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function destructures the return values from the `_aggregator.getRoundData(_round)` function call into variables `round`, `latestPrice`, `latestTimestamp`. The `getRoundData` function of the `_aggregator` contract returns multiple values, including the round number, the latest price, and the timestamp of the latest price update. The function then enters a while loop that checks if the `latestPrice` is less than 0. If the `latestPrice` is negative, it indicates an invalid price, and the function requires enough historical data by calling the `requireEnoughHistory` function. The `round` is decremented by 1 to retrieve the data for the previous round. The function then makes another call to `_aggregator.getRoundData(round)` to get the data for the updated round. This process continues until a valid price (latestPrice >= 0) is obtained. Once a valid price is found, the function returns a tuple containing the round number, the latest price converted to a uint256 value, and the timestamp of the latest price update.
+
+Summary:
+The `getRoundData` function retrieves historical price data for a specific round from an AggregatorV3Interface contract. It iterates through previous rounds if the latest price is negative until a valid price is found. The function then returns the round number, the latest price as a uint256 value, and the timestamp of the latest price update.

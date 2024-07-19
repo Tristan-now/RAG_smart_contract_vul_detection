@@ -1,0 +1,15 @@
+This code defines a private pure function named `endDateTime`, which converts a given timestamp representing the end date and time into a formatted string in UTC. The function accepts a single parameter `endDateSeconds`, which is a `uint256` value representing the end date and time in seconds since the Unix epoch.
+
+Parameters:
+1. `endDateSeconds`: A `uint256` value representing the end date and time in seconds since the Unix epoch.
+
+Return Value:
+The function returns a formatted string representing the end date and time in UTC.
+
+Code Breakdown:
+The function signature includes the parameter `endDateSeconds`, which is the timestamp for the end date and time.
+The function uses the `BokkyPooBahsDateTimeLibrary.timestampToDateTime` function to convert the timestamp into individual date and time components: year, month, day, hour, minute, and second.
+The function then constructs a formatted string by concatenating these individual components using the `string.concat` function provided by the `Strings` library. Each component is converted to a string using the `Strings.toString` function and separated by dashes for date components and colons for time components. The final string includes the year, month, day, hour, minute, and second components in the format "YYYY-MM-DD HH:MM:SS UTC".
+
+Summary:
+The `endDateTime` function takes a timestamp representing the end date and time, converts it into individual date and time components, and constructs a formatted string representing the end date and time in UTC. The function then returns this formatted string.

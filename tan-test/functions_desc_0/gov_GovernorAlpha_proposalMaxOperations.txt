@@ -1,0 +1,13 @@
+This code defines a public pure function named `proposalMaxOperations` that returns a `uint` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+This function does not accept any parameters.
+
+Return Value:
+The function returns a `uint` value representing the maximum number of operations allowed in a proposal.
+
+Code Breakdown:
+The function `proposalMaxOperations` is a public pure function, meaning it can be called from outside the contract and does not read or modify the contract's state. The function does not have any parameters. It simply returns the constant value `10`, indicating the maximum number of operations allowed in a proposal.
+
+Summary:
+The `proposalMaxOperations` function is a simple getter function that returns a constant value of `10`, representing the maximum number of operations allowed in a proposal.

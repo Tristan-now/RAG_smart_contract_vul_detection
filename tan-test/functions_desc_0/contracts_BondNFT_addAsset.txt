@@ -1,0 +1,14 @@
+This code defines an external function named `addAsset`, which allows the contract owner to add a new asset to the list of assets. The function accepts one parameter: the address of the asset to be added (`_asset`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_asset`: An address representing the asset to be added to the list of assets.
+
+Code Breakdown:
+The function signature includes the parameter `_asset`. `addAsset` is an external function, meaning it can be called from outside the contract by the contract owner. The function first checks if the `assets` array is empty or if the asset being added is not already in the `assets` array. This check ensures that duplicate assets are not added to the list. If the asset is already in the list, the function reverts with an error message "Already added".
+
+If the asset is not a duplicate, the function proceeds to add the asset to the `assets` array. The line `assetsIndex[_asset] = assets.length;` stores the index of the newly added asset in the `assetsIndex` mapping. The line `assets.push(_asset);` adds the new asset address to the `assets` array.
+
+Additionally, the line `allowedAsset[_asset] = true;` sets the `allowedAsset` mapping value for the new asset to `true`, indicating that this asset is allowed. The line `epoch[_asset] = block.timestamp/DAY;` calculates the epoch for the new asset based on the current block timestamp divided by the number of seconds in a day.
+
+Summary:
+The `addAsset` function allows the contract owner to add a new asset to the list of assets. It performs checks to prevent duplicate assets from being added and updates various mappings and arrays to include the new asset.

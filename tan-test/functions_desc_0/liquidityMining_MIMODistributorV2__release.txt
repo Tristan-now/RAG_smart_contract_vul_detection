@@ -1,0 +1,17 @@
+This code snippet defines an internal function named `_release`, which is an override function. The function is responsible for releasing payments to a payee based on the total new tokens received and the payee's share of the total shares.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_totalnewTokensReceived`: A `uint256` value representing the total new tokens received.
+2. `_payee`: An `address` representing the address of the payee to whom the payment will be released.
+
+Code Breakdown:
+The function `_release` is marked as `internal` and `override`, indicating that it can only be called within the contract or its derived contracts and it overrides a function from a parent contract.
+
+Inside the function, a new `uint256` variable named `payment` is calculated by multiplying `_totalnewTokensReceived` by the payee's share (retrieved from the `shares` mapping using `_payee` as the key) and then dividing the result by the total shares.
+
+Finally, the `mint` function is called on the `a.mimo()` contract instance. This function is used to mint new tokens to the `_payee` address, with the `payment` amount as the value to be minted.
+
+Summary:
+The `_release` function calculates the payment amount based on the total new tokens received and the payee's share of the total shares. It then mints the calculated payment amount to the payee's address using the `mint` function from the `a.mimo()` contract instance.

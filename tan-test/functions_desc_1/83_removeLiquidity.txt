@@ -1,0 +1,15 @@
+This code defines an external function named `removeLiquidity`, which is only accessible by a specific role (in this case, `onlyGuardian`). The function takes two parameters: `_steps` and `_burningLPs`, both of type `uint256`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_steps`: A `uint256` value representing the number of steps to be taken for removing liquidity.
+2. `_burningLPs`: A `uint256` value representing the number of LP tokens to be burned.
+
+Functionality:
+1. The function calculates the total amount of liquidity to be removed by multiplying `_steps` with a variable `step` (which is assumed to be defined elsewhere in the contract).
+2. It then creates a fixed-size memory array `amounts` of length 2, where both elements are set to the calculated `removingLiquidity` value.
+3. Finally, the function calls the `remove_liquidity` function of the `usdm3crv` contract (assuming `usdm3crv` is an instance of a contract) with the parameters `_burningLPs` and `amounts`.
+
+Summary:
+The `removeLiquidity` function is used to remove liquidity from a pool by burning LP tokens. It calculates the amount of liquidity to be removed based on the `_steps` parameter, creates an array with this amount, and then calls the `remove_liquidity` function of the `usdm3crv` contract to execute the removal process.

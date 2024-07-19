@@ -1,0 +1,19 @@
+This code defines a public view function named `getValidatorsDetails` that returns two arrays of `uint128` values: `commissionRates` and `delegated`. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Values:
+- `commissionRates`: An array of `uint128` values representing the commission rates of validators.
+- `delegated`: An array of `uint128` values representing the delegated amounts of validators.
+
+Code Breakdown:
+- The function initializes two arrays, `commissionRates` and `delegated`, both of length `validatorsN`, which is presumably a global variable representing the number of validators.
+- A `for` loop is used to iterate over the range of `validatorsN`, starting from 0 and incrementing by 1 each iteration.
+- Within each iteration, a `Validator` struct named `v` is created and assigned the value of the validator at index `i` in the `validators` array.
+- The `commissionRate` of the current validator `v` is stored in the `commissionRates` array at index `i`.
+- The `delegated` amount of the current validator `v` is calculated by subtracting the staked amount from the total delegated amount, and then stored in the `delegated` array at index `i`.
+- Once all validators have been processed, the function returns a tuple containing the `commissionRates` and `delegated` arrays.
+
+Summary:
+The `getValidatorsDetails` function retrieves the commission rates and delegated amounts of all validators stored in the `validators` array. It populates two arrays with this information and returns them as the output of the function.

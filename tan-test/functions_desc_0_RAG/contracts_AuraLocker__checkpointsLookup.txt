@@ -1,0 +1,23 @@
+This code defines a private view function named `_checkpointsLookup`, which is used to look up a specific checkpoint in a collection of `DelegateeCheckpoint` structs based on the provided `epochStart` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `ckpts`: A storage array of `DelegateeCheckpoint` structs that stores checkpoint information.
+2. `epochStart`: A `uint256` value representing the epoch start time for which the checkpoint needs to be looked up.
+
+Return Value:
+The function returns a single `DelegateeCheckpoint` struct that corresponds to the checkpoint found based on the provided `epochStart` value.
+
+Code Breakdown:
+The function signature includes the parameters `ckpts` and `epochStart`. `_checkpointsLookup` is a private view function, meaning it can only be accessed internally and does not modify the state of the contract. The function uses a binary search algorithm to efficiently find the checkpoint that matches the provided `epochStart` value within the `ckpts` array. 
+- The variables `high` and `low` are initialized to the length of the `ckpts` array and 0, respectively.
+- A `while` loop is used to perform the binary search. It continues as long as `low` is less than `high`.
+- Within each iteration, the function calculates the middle index `mid` using the `AuraMath.average` function.
+- If the epoch start time of the checkpoint at index `mid` is greater than the provided `epochStart`, the `high` index is updated to `mid` to search in the lower half of the array.
+- Otherwise, the `low` index is updated to `mid + 1` to search in the upper half of the array.
+- Once the loop exits, the function returns the checkpoint found at index `high - 1` if `high` is not 0. If `high` is 0, a default `DelegateeCheckpoint(0, 0)` struct is returned.
+
+Vulnerability Prediction:
+This function may be vulnerable to an out-of-bounds array access if the binary search algorithm is not implemented correctly. If the array indices are not properly handled, it could lead to unexpected behavior or errors.
+
+Summary:
+The `_checkpointsLookup` function efficiently searches for a specific checkpoint in the `ckpts` array based on the provided `epochStart` value using a binary search algorithm. It returns the checkpoint that matches the epoch start time or a default checkpoint if no match is found.

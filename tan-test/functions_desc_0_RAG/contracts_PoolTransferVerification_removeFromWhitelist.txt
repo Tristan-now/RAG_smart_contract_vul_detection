@@ -1,0 +1,16 @@
+This code defines a public function named `removeFromWhitelist` that allows an admin to remove an address from the whitelist. The function checks if the provided address is currently whitelisted and if so, sets the whitelist status to false for that address.
+
+Parameters:
+1. `_address`: The address that the admin wants to remove from the whitelist.
+
+Modifiers:
+- `onlyRole(ADMIN_ROLE, "Must have admin role")`: This modifier ensures that only accounts with the admin role can call this function.
+
+Code Breakdown:
+The function first checks if the provided `_address` is not already whitelisted. If the address is not in the whitelist, the function simply returns without making any changes. If the address is currently whitelisted, the function sets the whitelist status to false for that address by updating the `whitelist[_address]` mapping entry. Finally, the function emits a `RemoveFromWhitelist` event to notify observers that the address has been removed from the whitelist.
+
+Vulnerability Prediction:
+This function may be vulnerable to a front-running attack if the whitelist status is changed by an unauthorized party before the admin can execute the removal. To mitigate this vulnerability, additional checks or mechanisms can be implemented to prevent unauthorized changes to the whitelist.
+
+Summary:
+The `removeFromWhitelist` function allows an admin to remove an address from the whitelist by setting the whitelist status to false. The function includes a modifier to ensure that only accounts with the admin role can call it, providing a level of access control.

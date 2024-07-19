@@ -1,0 +1,13 @@
+This code defines a public view function named `getNextTranscoderInPool` that retrieves the next transcoder in a pool. The function takes an address `_transcoder` as a parameter and returns the address of the next transcoder in the pool.
+
+Parameters:
+1. `_transcoder`: An address representing the current transcoder for which we want to find the next transcoder in the pool.
+
+Return Value:
+The function returns an address representing the next transcoder in the pool.
+
+Code Breakdown:
+The function `getNextTranscoderInPool` is a public view function, meaning it can be called externally and does not modify the state of the contract. It takes one parameter `_transcoder`, which is the address of the current transcoder for which we want to find the next transcoder in the pool. Inside the function, it calls a function `getNext` on the `transcoderPoolV2` contract instance, passing the `_transcoder` address as an argument. This `getNext` function is assumed to be defined in the `transcoderPoolV2` contract and is responsible for returning the next transcoder in the pool after the given `_transcoder`. The address returned by the `getNext` function is then returned by the `getNextTranscoderInPool` function.
+
+Summary:
+The `getNextTranscoderInPool` function provides a way to retrieve the next transcoder in a pool based on the current transcoder provided as input. It delegates the task of finding the next transcoder to the `getNext` function in the `transcoderPoolV2` contract and returns the result to the caller.

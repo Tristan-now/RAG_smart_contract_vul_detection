@@ -1,0 +1,10 @@
+Type of vulnerability: Flash loan price manipulation
+Cause of vulnerability: The vulnerability arises from the use of a single point in time pool balance calculation in the purchasePyroFlan() function, which can be manipulated with flash loans to skew the numbers and impact the exchange rate.
+Execution process: An attacker can exploit the vulnerability by using flash loans to temporarily tilt the Uniswap pool price, causing a large price impact in the LP when transferring tokens in a 2-to-1 ratio, leading to manipulation of the LP and obtaining large amounts of flan and pyroflan.
+Detailed characteristics: The vulnerability allows for a flashloan sandwich attack to occur within the limits set by the acceptableHighestPrice variable, potentially leading to price manipulation despite attempted limitations.
+Vulnerable code:
+```solidity
+uint256 priceBefore = (balanceOfFlanBefore * getMagnitude(stablecoin)) / balanceOfStableBefore;
+uint256 growth = ((priceBefore - tiltedPrice) * 100) / priceBefore;
+uint256 premium = (flanToMint * (growth / 2)) / 100;
+```

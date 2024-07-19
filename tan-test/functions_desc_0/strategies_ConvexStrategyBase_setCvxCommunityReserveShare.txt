@@ -1,0 +1,18 @@
+This code defines an external function named `setCvxCommunityReserveShare` that allows only the governance address to set the `cvxCommunityReserveShare` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `cvxCommunityReserveShare_`: This is a `uint256` parameter representing the new value for the `cvxCommunityReserveShare`.
+
+Return Value:
+The function returns a boolean value indicating whether the operation was successful.
+
+Code Breakdown:
+The function is marked as `external`, meaning it can be called from outside the contract. It is also restricted to be called only by the governance address using the `onlyGovernance` modifier.
+The function first checks if the `cvxCommunityReserveShare_` value is less than or equal to a constant `ScaledMath.ONE` to ensure it is within a valid range. If not, it reverts with the error message "INVALID_AMOUNT".
+It then checks if the `communityReserve` address is set, ensuring that the community reserve address is initialized before setting the `cvxCommunityReserveShare` value. If not, it reverts with the message "Community reserve must be set".
+If both requirements are met, the `cvxCommunityReserveShare` value is updated with the new value provided.
+An event `SetCvxCommunityReserveShare` is emitted to log the change in the `cvxCommunityReserveShare` value.
+Finally, the function returns `true` to indicate that the operation was successful.
+
+Summary:
+The `setCvxCommunityReserveShare` function allows the governance address to set the `cvxCommunityReserveShare` value within a specified range. It performs validation checks on the input parameters and emits an event to log the changes made.

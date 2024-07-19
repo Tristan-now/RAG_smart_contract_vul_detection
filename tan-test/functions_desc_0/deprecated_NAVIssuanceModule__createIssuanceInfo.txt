@@ -1,0 +1,33 @@
+This code defines an internal view function named `_createIssuanceInfo`, which is responsible for creating and returning an `ActionInfo` struct that contains various information related to issuing new tokens. The function accepts three parameters: an `ISetToken` `_setToken`, an `address` `_reserveAsset`, and a `uint256` `_reserveAssetQuantity`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An interface representing a SetToken contract.
+2. `_reserveAsset`: The address of the reserve asset used for issuing new tokens.
+3. `_reserveAssetQuantity`: The quantity of the reserve asset to be used for issuing new tokens.
+
+Return Value:
+The function returns an `ActionInfo` struct that contains information related to the issuance process.
+
+Code Breakdown:
+The function signature includes the parameters `_setToken`, `_reserveAsset`, and `_reserveAssetQuantity`. It is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+
+Inside the function, an `ActionInfo` struct named `issueInfo` is declared to store various information related to the issuance process.
+
+1. `issueInfo.previousSetTokenSupply`: This field stores the total supply of the `_setToken` before the issuance process.
+
+2. `issueInfo.preFeeReserveQuantity`: This field stores the quantity of the reserve asset before any fees are deducted.
+
+3. The function `_getFees` is called to calculate and retrieve the protocol fees, manager fee, and net flow quantity after deducting fees from the reserve asset quantity.
+
+4. The function `_getSetTokenMintQuantity` is called to calculate the quantity of new SetTokens to be minted based on the net flow quantity, previous SetToken supply, and reserve asset.
+
+5. The function `_getIssuePositionMultiplier` is called to calculate the new SetToken supply and position multiplier after issuing new tokens.
+
+6. The function `_getIssuePositionUnit` is called to calculate the new reserve position unit after issuing new tokens.
+
+7. The `issueInfo` struct is populated with the calculated values and returned as the output of the function.
+
+Summary:
+The `_createIssuanceInfo` function is responsible for calculating various parameters and information related to the issuance of new tokens by a SetToken contract. It calculates fees, new token quantities, position multipliers, and reserve position units, and returns this information in an `ActionInfo` struct.

@@ -1,0 +1,19 @@
+This code snippet defines an internal function `_addCompMarketInternal` that is responsible for adding a Compound market to the protocol. Let's break down the working process of this function:
+
+1. The function takes an address parameter `cToken`, which represents the Compound token address to be added as a market.
+
+2. It accesses the `Market` struct associated with the provided `cToken` address from the `markets` mapping.
+
+3. Two require statements are used to ensure that the market is listed (`isListed == true`) and has not already been added as a Compound market (`isComped == false`). If these conditions are not met, the function will revert with an error message.
+
+4. If the market meets the requirements, the `isComped` flag in the `Market` struct is set to true, indicating that the market has been added as a Compound market.
+
+5. An event `MarketComped` is emitted to notify external listeners about the addition of the Compound market.
+
+6. Next, the function checks if the `compSupplyState` for the provided `cToken` address has not been initialized yet (index and block are 0). If it is uninitialized, a new `CompMarketState` struct is created and assigned to `compSupplyState[cToken]`. This struct contains an initial index value (`compInitialIndex`) and the current block number.
+
+7. Similarly, the function checks and initializes the `compBorrowState` for the provided `cToken` address if it has not been initialized before.
+
+8. The `safe32` function is used to ensure that the block number does not exceed 32 bits before assigning it to the `block` field in the `CompMarketState` struct.
+
+In summary, this function adds a Compound market by updating the market state flags, initializing the supply and borrow states if necessary, and emitting an event to notify external entities about the market addition.

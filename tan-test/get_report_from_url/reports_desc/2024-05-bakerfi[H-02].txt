@@ -1,0 +1,23 @@
+Type of vulnerability: First depositor inflation attack
+Cause of vulnerability: The Vault's shares and assets are not initialized/seeded when the Vault is created, and the totalAssets is dependent on the total aCollateralTokens the associated Strategy to the Vault is holding on its balance.
+Execution process: 
+1. The first depositor (Alice) deposits a small amount of ETH and receives shares based on the initial state of the Vault.
+2. Alice sends a large amount of aCollateralToken directly to the Strategy associated with the Vault, inflating the totalAssets.
+3. Subsequent depositors (like Bob) deposit ETH based on the inflated totalAssets, resulting in a discrepancy between the shares they receive and the actual value of their deposit.
+4. The attacker (Alice) can then profit by withdrawing the initial shares, all the aCollateralTokens transferred, and a portion of the deposited value from real depositors.
+Detailed characteristics: The vulnerability stems from the lack of initialization/seeding of shares and assets in the Vault, allowing for manipulation of the share-assets rate by inflating the totalAssets through direct transfer of aCollateralTokens to the Strategy.
+Vulnerable code: 
+```solidity
+function deposit(address receiver)...
+{
+...
+Rebase memory total = Rebase(_totalAssets(maxPriceAge), totalSupply());
+...
+bytes memory result = (address(_strategy)).functionCallWithValue(abi.encodeWithSignature("deploy()"),msg.value);
+uint256 amount = abi.decode(result, (uint256));
+...
+shares = total.toBase(amount, false);
+_mint(receiver, shares);
+emit Deposit(msg.sender, receiver, msg.value, shares);
+}
+```

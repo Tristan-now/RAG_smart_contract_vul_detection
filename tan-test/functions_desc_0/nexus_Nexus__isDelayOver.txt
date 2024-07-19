@@ -1,0 +1,15 @@
+This code defines a private view function named `_isDelayOver`, which checks if a certain timestamp delay has passed. The function takes a single parameter `_timestamp` of type `uint256` and returns a boolean value.
+
+Parameters:
+1. `_timestamp`: A `uint256` value representing a specific timestamp that needs to be checked for delay.
+
+Return Value:
+The function returns a boolean value indicating whether the delay has passed (`true`) or not (`false`).
+
+Code Breakdown:
+The `_isDelayOver` function is marked as private, meaning it can only be accessed within the current contract. It is also marked as view, indicating that it does not modify the state of the contract.
+
+Within the function, it first checks if the input `_timestamp` is greater than 0 and if the current block timestamp (`block.timestamp`) is greater than or equal to the sum of `_timestamp` and a constant `UPGRADE_DELAY`. If this condition is met, the function returns `true`, indicating that the delay is over. Otherwise, it returns `false`.
+
+Summary:
+The `_isDelayOver` function is used to determine whether a specified delay period has passed based on a given timestamp. It compares the current block timestamp with the input timestamp plus a predefined delay constant (`UPGRADE_DELAY`) and returns `true` if the delay is over, and `false` otherwise.

@@ -1,0 +1,22 @@
+This code defines a private view function named `_isGracePenaltyApplicable`, which determines whether a grace penalty is applicable for a given pool ID and next instalment deadline. The function takes two parameters: `_poolID`, which is the identifier of the pool, and `_nextInstalmentDeadline`, which is the timestamp of the next instalment deadline.
+
+Parameters:
+1. `_poolID`: An address representing the identifier of the pool for which the grace penalty applicability is being checked.
+2. `_nextInstalmentDeadline`: A uint256 value representing the timestamp of the next instalment deadline.
+
+Return Value:
+The function returns a boolean value indicating whether the grace penalty is applicable (`true`) or not (`false`).
+
+Code Breakdown:
+The function first retrieves the repayment interval and grace period fraction specific to the given pool ID from the `repayConstants` mapping.
+- `_repaymentInterval`: Represents the repayment interval for the pool.
+- `_gracePeriodFraction`: Represents the fraction of the repayment interval that defines the grace period.
+Next, the current time is calculated by multiplying the current block timestamp by a scaling factor.
+- `_currentTime`: Represents the current time in scaled units.
+The grace period deadline is calculated by adding the grace period fraction of the repayment interval to the next instalment deadline.
+- `_gracePeriodDeadline`: Represents the deadline by which the grace period ends.
+A `require` statement is used to ensure that the current time is not greater than the grace period deadline. If this condition is not met, the function reverts with the error message 'R:IGPA1'.
+The function then checks if the current time is less than or equal to the next instalment deadline. If this condition is met, the function returns `false`, indicating that the grace penalty is not applicable. Otherwise, it returns `true`, indicating that the grace penalty is applicable.
+
+Summary:
+The `_isGracePenaltyApplicable` function calculates the grace period deadline based on the next instalment deadline, repayment interval, and grace period fraction for a specific pool ID. It then checks if the current time falls within the grace period and returns a boolean value indicating whether the grace penalty is applicable or not.

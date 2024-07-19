@@ -1,0 +1,21 @@
+This code defines an internal function named `_addLiquidity721WETH`, which is responsible for adding liquidity to a specific NFTX vault using ERC721 tokens and WETH (Wrapped Ether). The function takes several parameters and performs a series of actions to facilitate the liquidity addition process. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `vaultId`: An unsigned integer representing the ID of the NFTX vault where liquidity will be added.
+2. `ids`: An array of unsigned integers containing the IDs of the ERC721 tokens to be used for liquidity addition.
+3. `minWethIn`: An unsigned integer specifying the minimum amount of WETH to be provided for liquidity addition.
+4. `wethIn`: An unsigned integer representing the actual amount of WETH provided for liquidity addition.
+5. `to`: The address where the liquidity tokens will be sent after the addition process.
+
+Return Values:
+The function returns three unsigned integers representing the total liquidity tokens minted, the total WETH received, and the total liquidity tokens locked.
+
+Code Breakdown:
+1. The function first retrieves the address of the NFTX vault corresponding to the provided `vaultId` and ensures that the vault exists.
+2. It then iterates over the array of `ids` representing the ERC721 tokens to be used for liquidity addition. For each token ID, it transfers the token to the contract using the `transferFromERC721` function and approves the vault to manage the token using the `approveERC721` function.
+3. After transferring and approving all ERC721 tokens, the function mints new liquidity tokens in the NFTX vault by calling the `mint` function of the vault contract. It creates an array of empty IDs to represent the absence of any specific tokens to burn during the minting process.
+4. The function calculates the expected balance of the contract after minting the liquidity tokens and ensures that the actual balance matches the expected balance to verify the successful minting process.
+5. Finally, the function calls the `_addLiquidityAndLock` function to add liquidity and lock the provided assets in the NFTX vault. It passes the necessary parameters and returns the results of the liquidity addition process.
+
+Summary:
+The `_addLiquidity721WETH` function facilitates the addition of liquidity to an NFTX vault using ERC721 tokens and WETH. It transfers and approves the ERC721 tokens, mints new liquidity tokens in the vault, verifies the minting process, and adds liquidity while locking the assets in the vault.

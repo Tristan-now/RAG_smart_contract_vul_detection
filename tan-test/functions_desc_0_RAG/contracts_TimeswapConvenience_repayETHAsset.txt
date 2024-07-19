@@ -1,0 +1,15 @@
+This code snippet defines an external function named `repayETHAsset` that allows users to repay an ETH-backed asset. The function takes a `RepayETHAsset` struct as a parameter, which contains the necessary information for the repayment process. The function is marked as `payable`, meaning it can receive Ether along with the function call.
+
+Parameters:
+- `params`: A `RepayETHAsset` struct that holds the parameters required for the repayment process.
+
+Return Values:
+- `assetIn`: A `uint128` value representing the amount of the asset being repaid.
+- `collateralOut`: A `uint128` value representing the amount of collateral received in exchange for the asset repayment.
+
+Code Breakdown:
+- The `repayETHAsset` function delegates the repayment process to a separate contract or library named `natives` by calling the `payETHAsset` function with the provided `params`.
+- The `payETHAsset` function is responsible for handling the actual repayment logic, including calculating the amount of asset to be repaid and the collateral to be received in return.
+- The function returns the values of `assetIn` and `collateralOut` obtained from the `payETHAsset` function.
+
+Overall, this function acts as a gateway for users to repay ETH-backed assets, with the actual repayment logic being executed by the `payETHAsset` function from the `natives` contract or library.

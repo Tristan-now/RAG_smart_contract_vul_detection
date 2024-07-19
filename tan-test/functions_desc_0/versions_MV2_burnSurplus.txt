@@ -1,0 +1,19 @@
+This code defines an external function named `burnSurplus`, which is used to burn any surplus tokens held by the contract. The function calculates the surplus amount by comparing the current supply of the token with the computed price based on the bAsset data and configuration. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `burnAmount`: The function returns a `uint256` value representing the amount of tokens burned as surplus.
+
+Code Breakdown:
+1. The function begins by declaring a variable `config` of type `InvariantConfig` and assigns it the value returned by the `_getConfig()` function. This function retrieves the current configuration settings.
+2. The function then calls the `computePrice` function from `MassetLogic` contract, passing in the bAsset data and the configuration. It destructures the returned tuple to ignore the first value and assigns the second value to `k`. This `k` value represents the computed price.
+3. A `require` statement checks if the current supply of the token is greater than the computed price `k`. If not, it reverts the transaction with the message "No surplus".
+4. The surplus amount is calculated as `burnAmount = config.supply - k`, representing the excess tokens that need to be burned.
+5. The function then transfers the `burnAmount` tokens from the `msg.sender` to the contract address (`address(this)`). This transfer ensures that the necessary approval has been given for the tokens to be burned.
+6. The `_burn` function is called to burn the `burnAmount` tokens from the contract address.
+7. An `emit` statement triggers the `SurplusBurned` event, indicating that the surplus tokens have been burned.
+
+Summary:
+The `burnSurplus` function calculates and burns any surplus tokens held by the contract. It compares the current supply with the computed price, calculates the surplus amount, transfers the surplus tokens to the contract, burns them, and emits an event to notify the burning of surplus tokens.

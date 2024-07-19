@@ -1,0 +1,20 @@
+This code defines a public function named `addLiquidity721To` that adds liquidity for ERC721 tokens to a vault by providing WETH (Wrapped Ether) as the paired token. The function accepts five parameters: `vaultId`, an array of token IDs (`ids`), a minimum amount of WETH to be provided (`minWethIn`), the actual amount of WETH provided (`wethIn`), and the address to which the liquidity tokens should be transferred (`to`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `vaultId`: A uint256 value representing the ID of the vault where liquidity is being added.
+2. `ids`: An array of uint256 values representing the IDs of the ERC721 tokens being added to the liquidity pool.
+3. `minWethIn`: A uint256 value indicating the minimum amount of WETH that should be provided to add liquidity.
+4. `wethIn`: A uint256 value representing the actual amount of WETH being provided to add liquidity.
+5. `to`: The address to which the liquidity tokens should be transferred.
+
+Return Value:
+The function returns a uint256 value representing the amount of liquidity tokens minted.
+
+Code Breakdown:
+- The function starts by transferring `wethIn` amount of WETH from the caller of the function (`msg.sender`) to the contract address (`address(this)`) using the `transferFrom` function of the `pairedToken` contract.
+- The function then calls the internal function `_addLiquidity721WETH` with the provided parameters to add liquidity for the ERC721 tokens with the paired WETH. The function returns three values: an empty value (ignored), the amount of ETH used, and the amount of liquidity tokens minted.
+- If the actual amount of ETH used (`amountEth`) is less than the provided `wethIn`, the excess amount is transferred back to the `to` address using the `transfer` function of the `pairedToken` contract.
+- Finally, the function returns the amount of liquidity tokens minted (`liquidity`).
+
+Summary:
+The `addLiquidity721To` function facilitates the addition of liquidity for ERC721 tokens to a vault by providing WETH as the paired token. It transfers the provided WETH to the contract, adds liquidity for the ERC721 tokens, returns any excess WETH to the caller, and returns the amount of liquidity tokens minted.

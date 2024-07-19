@@ -1,0 +1,15 @@
+This code defines an external function named `swap` that allows users to swap a specified amount of YUSD tokens for YETI tokens. The function takes three parameters: `_YUSDAmount` (the amount of YUSD tokens to swap), `_minYETIOut` (the minimum amount of YETI tokens to receive), and `_to` (the address to send the swapped YETI tokens to). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_YUSDAmount`: A `uint256` value representing the amount of YUSD tokens to swap.
+2. `_minYETIOut`: A `uint256` value representing the minimum amount of YETI tokens to receive in the swap.
+3. `_to`: An `address` representing the recipient address to send the swapped YETI tokens to.
+
+Return Value:
+`amounts`: An array of `uint256` values representing the amounts of tokens received in the swap.
+
+Code Breakdown:
+The function signature includes the parameters `_YUSDAmount`, `_minYETIOut`, and `_to`. The function is marked as `external`, meaning it can be called from outside the contract. The function overrides a function from an interface, indicating that it implements the specified function from the interface. Within the function, the `JOERouterAddress` and `yusdToken` are cached for efficiency. The function first ensures that the YUSD token is not approved for spending by setting the approval amount to 0. It then increases the allowance for the JOE router contract to spend the specified `_YUSDAmount` of YUSD tokens. The `swapExactTokensForTokens` function is called on the `JOERouter` contract to execute the token swap. This function requires parameters such as the `_YUSDAmount`, `_minYETIOut`, `path` (presumably the token swap path), `_to` (recipient address), and `block.timestamp` (current block timestamp). The function returns the amounts of tokens received in the swap.
+
+Summary:
+The `swap` function allows users to swap a specified amount of YUSD tokens for YETI tokens using the JOE router contract. It ensures the necessary token approvals are in place, executes the token swap, and returns the amounts of tokens received in the swap.

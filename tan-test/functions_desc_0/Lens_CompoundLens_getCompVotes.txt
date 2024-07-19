@@ -1,0 +1,15 @@
+This code defines an external function named `getCompVotes` that retrieves the number of votes a specific account has for a given block number in a Comp contract. The function accepts three parameters: a Comp contract instance (`comp`), an account address (`account`), and an array of block numbers (`blockNumbers`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `comp`: A Comp contract instance that provides the `getPriorVotes` function to retrieve the number of votes for a specific account at a given block number.
+2. `account`: An address representing the account for which the number of votes is being queried.
+3. `blockNumbers`: An array of uint32 block numbers for which the number of votes is requested.
+
+Return Value:
+The function returns an array of `CompVotes` structures, where each structure contains the block number and the corresponding number of votes for the specified account.
+
+Code Breakdown:
+The function signature includes the parameters `comp`, `account`, and `blockNumbers`. `getCompVotes` is an external function, meaning it can be called from outside the contract. The function returns an array of `CompVotes` structures, initialized with the length of the `blockNumbers` array. A `for` loop is used to iterate over the `blockNumbers` array. The loop starts with `i` initialized to 0 and runs until `i` is less than the length of `blockNumbers`, incrementing `i` by 1 each iteration. In each iteration, a new `CompVotes` structure is created with two fields: `blockNumber` (converted from uint32 to uint256) and `votes`. The `blockNumber` field is set to the current block number from the `blockNumbers` array, and the `votes` field is set by calling the `getPriorVotes` function of the `comp` contract with the specified `account` and block number. The resulting `CompVotes` structure is stored in the `res` array. After all iterations are completed, the function returns the array `res` containing the `CompVotes` structures for each block number.
+
+Summary:
+The `getCompVotes` function retrieves the number of votes for a specific account at multiple block numbers by iterating over the provided array of block numbers, calling the `getPriorVotes` function of the Comp contract for each block number, and storing the results in an array of `CompVotes` structures, which is then returned.

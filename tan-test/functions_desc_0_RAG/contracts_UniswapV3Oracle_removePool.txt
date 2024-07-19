@@ -1,0 +1,15 @@
+This code defines an external function named `removePool` that allows the contract owner to remove a pool associated with a specific token. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_token`: The address of the token for which the pool needs to be removed.
+
+Functionality:
+The `removePool` function takes the `_token` address as a parameter and updates the `pools` mapping for that token to set the pool address to `address(0)` and the pool balance to 0. This effectively removes the pool associated with the specified token from the contract's state.
+
+Access Control:
+The function is restricted to be called only by the contract owner (`onlyOwner` modifier), ensuring that only the owner can remove pools.
+
+Event Emission:
+After removing the pool, the function emits a `PoolRemoved` event with the `_token` address to notify external entities about the removal of the pool.
+
+Overall, the `removePool` function provides a way for the contract owner to remove pools associated with specific tokens, maintaining the integrity and management of pools within the contract.

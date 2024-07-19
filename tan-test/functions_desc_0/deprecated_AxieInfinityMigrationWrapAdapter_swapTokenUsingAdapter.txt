@@ -1,0 +1,21 @@
+This code defines an external function named `swapTokenUsingAdapter`, which facilitates the swapping of tokens using an adapter contract. The function takes one parameter, `_amount`, which represents the amount of tokens to be swapped.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: A `uint256` value representing the amount of tokens to be swapped.
+
+Code Breakdown:
+The function signature includes the `external` visibility specifier, indicating that the function can be called from outside the contract. The function body consists of three main steps:
+
+1. `IERC20(oldToken).safeTransferFrom(msg.sender, address(this), _amount);`
+   - This line transfers `_amount` tokens from the caller's address (`msg.sender`) to the contract's address (`address(this)`) using the `safeTransferFrom` function of the ERC20 token contract associated with `oldToken`. This step ensures that the contract receives the tokens to be swapped.
+
+2. `ITokenSwap(tokenSwap).swapToken();`
+   - This line calls the `swapToken` function of the `tokenSwap` contract. The `tokenSwap` contract is expected to handle the actual swapping logic, which may involve interacting with external protocols or decentralized exchanges to exchange the tokens. This step delegates the token swapping process to the `tokenSwap` contract.
+
+3. `IERC20(newToken).safeTransfer(msg.sender, _amount);`
+   - After the token swapping process is completed, this line transfers the swapped tokens back to the caller (`msg.sender`) using the `safeTransfer` function of the ERC20 token contract associated with `newToken`. The caller receives the swapped tokens as per the specified `_amount`.
+
+Summary:
+The `swapTokenUsingAdapter` function allows users to swap a specified amount of tokens by transferring the tokens to the contract, invoking a token swapping function in an external contract (`tokenSwap`), and then transferring the swapped tokens back to the user. This function facilitates token swapping functionality through an adapter contract, enabling seamless token exchange operations for users interacting with the contract.

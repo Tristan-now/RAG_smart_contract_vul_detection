@@ -1,0 +1,8 @@
+Type of vulnerability: Unvalidated input data leading to token theft
+Cause of vulnerability: Lack of validation in the exerciseOption function allows for unauthorized transfer of ERC20 tokens.
+Execution process: Attacker exploits unvalidated input data in the exerciseOption function to transfer all underlying ERC20 tokens to themselves.
+Detailed characteristics: Attacker can bypass validations and transfer ERC20 tokens by passing specific data in the exerciseInternal function.
+Vulnerable code: 
+```solidity
+IERC20(tapSendData.tapOftAddress).safeTransfer(from, tapAmount);
+```

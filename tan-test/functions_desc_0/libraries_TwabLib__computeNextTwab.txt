@@ -1,0 +1,20 @@
+This code defines a private pure function named `_computeNextTwab` that calculates the next Time-Weighted Average Balance (TWAB) observation based on the current TWAB observation, the current balance, and the current time. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_currentTwab`: A memory struct of type `ObservationLib.Observation` representing the current TWAB observation, which includes the amount and timestamp.
+2. `_currentBalance`: A `uint224` variable representing the current balance.
+3. `_time`: A `uint32` variable representing the current time.
+
+Return Value:
+The function returns a new `ObservationLib.Observation` struct representing the next TWAB observation, which includes the updated amount and timestamp.
+
+Code Breakdown:
+The function `_computeNextTwab` calculates the new TWAB amount based on the current TWAB amount, the current balance, and the elapsed time since the last observation. The formula used to calculate the new TWAB amount is:
+New TWAB amount = last TWAB amount + (current balance * elapsed seconds)
+
+Inside the function, a new `ObservationLib.Observation` struct is created and returned. The `amount` field of the new observation is calculated by adding the current TWAB amount (`_currentTwab.amount`) to the product of the current balance (`_currentBalance`) and the elapsed time in seconds (calculated as `_time.checkedSub(_currentTwab.timestamp, _time)`). This calculation updates the TWAB amount based on the current balance and the time elapsed since the last observation.
+
+The `timestamp` field of the new observation is set to the current time `_time`, indicating when this new TWAB observation was calculated.
+
+Summary:
+The `_computeNextTwab` function calculates the next TWAB observation by updating the TWAB amount based on the current balance and the elapsed time since the last observation. The function returns a new observation struct with the updated amount and timestamp, representing the next TWAB observation in the time series.

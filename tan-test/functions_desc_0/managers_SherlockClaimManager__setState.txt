@@ -1,0 +1,18 @@
+This code defines an internal function named `_setState` that updates the state of a claim identified by `_claimIdentifier`. The function accepts two parameters: a bytes32 `_claimIdentifier` and a State `_state`, and it returns the previous state of the claim.
+
+Parameters:
+1. `_claimIdentifier`: A bytes32 value that serves as the unique identifier for the claim.
+2. `_state`: A State enum value representing the new state to set for the claim.
+
+Return Value:
+`_oldState`: The function returns a State enum value representing the previous state of the claim before the update.
+
+Code Breakdown:
+The function first retrieves the `Claim` object associated with the `_claimIdentifier` from the `claims_` mapping and stores it in a local variable `claim`. It then retrieves the current state of the claim and assigns it to the `_oldState` variable.
+
+Next, the function emits a `ClaimStatusChanged` event, indicating the change in the claim's status from the old state to the new state.
+
+If the new state `_state` is `NonExistent`, the function calls `_cleanUpClaim(_claimIdentifier)` to delete the claim effectively. Otherwise, it updates the state of the claim to the new state `_state` and records the timestamp of the update in the `updated` field of the claim.
+
+Summary:
+The `_setState` function is responsible for updating the state of a claim identified by `_claimIdentifier`. It handles the transition between different states of the claim, including cleaning up the claim if the new state is `NonExistent`, and updating the state and timestamp otherwise. The function provides the flexibility to manage the lifecycle of claims within the contract.

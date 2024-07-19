@@ -1,0 +1,20 @@
+This code defines a public view function named `bidExists` that checks whether a bid exists for a given user, market, and card. The function accepts three parameters: `_user` (address of the user), `_market` (address of the market), and `_card` (uint256 representing the card).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_user`: Address of the user for whom the bid existence needs to be checked.
+2. `_market`: Address of the market where the bid exists.
+3. `_card`: Uint256 representing the card for which the bid exists.
+
+Return Value:
+The function returns a boolean value indicating whether the bid exists for the given user, market, and card.
+
+Code Breakdown:
+The function first checks if the length of the `user[_user]` array is not equal to 0, which indicates that some bids exist for the user.
+If bids exist for the user, it further checks if the bid exists for the specific `_market` and `_card` combination by looking up the index in the `index[_user][_market][_card]` mapping. If the index is not 0, it means the bid exists, and the function returns `true`.
+If the index is 0, the function checks if the first bid in the `user[_user]` array matches the provided `_market` and `_card`. If it matches, it returns `true`.
+If none of the above conditions are met, the function returns `false`, indicating that the bid does not exist for the given user, market, and card.
+
+Summary:
+The `bidExists` function checks whether a bid exists for a specific user, market, and card combination by looking up the user's bids and checking the index mapping. It returns `true` if the bid exists and `false` if it does not exist.

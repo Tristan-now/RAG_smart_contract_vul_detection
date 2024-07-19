@@ -1,0 +1,1 @@
+function afterRedeemHook(uint256[] calldata tokenIds) external override virtual {}

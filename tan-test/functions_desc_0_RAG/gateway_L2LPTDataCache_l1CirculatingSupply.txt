@@ -1,0 +1,20 @@
+This code defines a public view function named `l1CirculatingSupply`, which calculates the circulating supply of a token on Layer 1 (L1). The function checks if the total supply on L1 (`l1TotalSupply`) is greater than or equal to the supply transferred from Layer 2 (L2) to L1 (`l2SupplyFromL1`). If this condition is met, the function returns the difference between `l1TotalSupply` and `l2SupplyFromL1`, representing the circulating supply on L1. If the condition is not met (which should not happen under normal circumstances), the function returns 0 as a defensive measure to prevent reverting in case the invariant is violated.
+
+Parameters:
+- None
+
+Return Value:
+- `uint256`: The function returns a `uint256` value representing the circulating supply of the token on Layer 1.
+
+Code Breakdown:
+- The function `l1CirculatingSupply` is a public view function, meaning it can be called externally and does not modify the state of the contract.
+- The function calculates the circulating supply on Layer 1 by subtracting the supply transferred from Layer 2 to Layer 1 from the total supply on Layer 1.
+- The conditional statement `l1TotalSupply >= l2SupplyFromL1` checks if the total supply on Layer 1 is greater than or equal to the supply from Layer 2 to Layer 1.
+- If the condition is true, the function returns the difference between the total supply on Layer 1 and the supply from Layer 2 to Layer 1.
+- If the condition is false (which should not happen), the function returns 0 as a defensive measure to handle any unexpected scenarios.
+
+Vulnerability Prediction:
+This function is not vulnerable to common vulnerabilities based on the provided code snippet.
+
+Summary:
+The `l1CirculatingSupply` function calculates the circulating supply of a token on Layer 1 by subtracting the supply transferred from Layer 2 to Layer 1 from the total supply on Layer 1. It includes a defensive check to prevent reverting in case the invariant is violated, ensuring the function's robustness.

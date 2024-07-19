@@ -1,0 +1,17 @@
+This code defines an external function named `sendToSYETI`, which allows transferring a specified amount of tokens to the sYETI address. The function accepts two parameters: the address of the sender (`_sender`) and the amount of tokens to transfer (`_amount`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_sender`: The address of the sender who initiates the token transfer.
+2. `_amount`: The amount of tokens to be transferred to the sYETI address.
+
+Functionality:
+1. `_requireCallerIsSYETI()`: This function modifier ensures that the caller of the `sendToSYETI` function is the sYETI contract.
+2. `_isFirstYear()`: This function checks if it is the first year of operation. If it is the first year, the next condition is checked.
+3. `_requireSenderIsNotMultisig(_sender)`: This condition checks if the sender is not a multisig address. This is done to prevent the multisig address from staking YETI tokens.
+4. `_transfer(_sender, sYETIAddress, _amount)`: This internal function is called to transfer the specified `_amount` of tokens from the `_sender` address to the sYETI address.
+
+Summary:
+The `sendToSYETI` function allows the sYETI contract to receive tokens from a specified sender. It enforces that the caller is the sYETI contract and checks if the sender is not a multisig address during the first year of operation to prevent certain actions. Finally, it transfers the specified amount of tokens to the sYETI address.
+
+[REFERENCE VULNERABILITY REPORTS]
+No specific vulnerability reports are referenced in this code snippet.

@@ -1,0 +1,17 @@
+This code defines an external function named `setSourceAllowlist` that allows the contract owner to update the source allowlist by providing a new instance of the `IAccountList` interface. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_newSourceAllowlist`: This parameter is of type `IAccountList` and represents the new source allowlist that the owner wants to set.
+
+Function Modifier:
+- `onlyOwner`: This modifier restricts the execution of the function to only the contract owner, ensuring that only the owner can update the source allowlist.
+
+Function Execution:
+- The function `setSourceAllowlist` is an external function, meaning it can be called from outside the contract.
+- The function accepts one parameter `_newSourceAllowlist`, which is the new source allowlist that the owner wants to set.
+- The function is restricted to only the contract owner using the `onlyOwner` modifier.
+- Within the function, the `sourceAllowlist` state variable is updated with the new `_newSourceAllowlist` provided by the owner.
+- An event `SourceAllowlistChange` is emitted to log the change in the source allowlist, providing the new `_newSourceAllowlist` as the event data.
+
+Summary:
+The `setSourceAllowlist` function allows the contract owner to update the source allowlist by providing a new instance of the `IAccountList` interface. The function ensures that only the owner can make this change by using the `onlyOwner` modifier. After updating the source allowlist, an event is emitted to record the change for transparency and tracking purposes.

@@ -1,0 +1,31 @@
+This `deploy` function is responsible for setting up and initializing various contracts and their relationships within the system. Let's break down the code step by step:
+
+1. **TimelockController and MultiRolesAuthority Initialization**:
+   - A `TimelockController` contract named `turboTimelock` is created with a specified timelock delay and empty arrays for proposers and executors.
+   - A `MultiRolesAuthority` contract named `turboAuthority` is created with the current contract address as the admin and no parent authority.
+   - Roles and capabilities are set for `turboAuthority` using the `setRoleCapability` function for `GIBBER_ROLE`, `TURBO_POD_ROLE`, allowing specific functions from `TurboSafe` contract.
+
+2. **TurboMaster Initialization**:
+   - A `TurboMaster` contract named `master` is created with parameters including `pool`, `fei`, current contract address, and `turboAuthority`.
+   - A `TurboClerk` contract named `clerk` is created with the current contract address and no parent authority.
+   - Default fee percentage and owner are set for `clerk`.
+   - `clerk` is set as the clerk for `master`.
+   - A `TurboBooster` contract named `booster` is created with `feiDAOTimelock` and no parent authority.
+   - `booster` is set as the booster for `master`.
+
+3. **TurboGibber and TurboSavior Initialization**:
+   - A `TurboGibber` contract named `gibber` is created with `master`, `turboTimelock`, and no parent authority.
+   - `gibber` is assigned the `GIBBER_ROLE` in `turboAuthority`.
+   - A `TurboSavior` contract named `savior` is created with `master`, current contract address, and no parent authority.
+   - Minimum debt percentage for saving is set for `savior`.
+
+4. **TurboRouter Initialization**:
+   - A `TurboRouter` contract named `router` is created with `master`, an empty string, and `weth`.
+   - `master` default safe authority is configured with `turboTimelock`, `router`, and `savior` addresses.
+   - `savior` authority is set to the default safe authority.
+   - `savior` owner is set to `feiDAOTimelock`.
+
+5. **Finalization**:
+   - The owner of `master` is set to the address of `turboTimelock`.
+
+In summary, the `deploy` function sets up a complex system of contracts including timelocks, authorities, masters, clerks, boosters, gibbers, saviors, routers, and their relationships within the system. Each contract is initialized with specific parameters and roles/capabilities are assigned accordingly. The function ensures that the system is properly configured and ready for operation.

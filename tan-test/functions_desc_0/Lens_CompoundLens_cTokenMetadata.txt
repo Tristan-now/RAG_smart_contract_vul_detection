@@ -1,0 +1,31 @@
+This code defines a function named `cTokenMetadata` that returns a struct of type `CTokenMetadata`. The function takes a `CToken` as a parameter and retrieves various metadata information related to the `CToken`. Here's a detailed explanation of how this function works:
+
+Parameters:
+- `CToken cToken`: The input parameter is an instance of the `CToken` contract.
+
+Return Value:
+- `CTokenMetadata`: The function returns a struct of type `CTokenMetadata` containing various metadata information related to the `CToken`.
+
+Code Breakdown:
+1. The function starts by getting the current exchange rate of the `cToken` using the `exchangeRateCurrent` function.
+2. It then interacts with the `ComptrollerLensInterface` contract to check if the `cToken` is listed and retrieve the collateral factor mantissa.
+3. It initializes variables `underlyingAssetAddress` and `underlyingDecimals` to store information about the underlying asset address and its decimals.
+4. If the symbol of the `cToken` is "bETH", it sets the `underlyingAssetAddress` to address(0) and `underlyingDecimals` to 18. Otherwise, it casts the `cToken` to `CErc20` and retrieves the underlying asset address and decimals.
+5. The function then constructs and returns a `CTokenMetadata` struct containing the following information:
+   - `cToken`: Address of the `cToken`.
+   - `exchangeRateCurrent`: Current exchange rate of the `cToken`.
+   - `supplyRatePerBlock`: Supply rate per block of the `cToken`.
+   - `borrowRatePerBlock`: Borrow rate per block of the `cToken`.
+   - `reserveFactorMantissa`: Reserve factor mantissa of the `cToken`.
+   - `totalBorrows`: Total borrows of the `cToken`.
+   - `totalReserves`: Total reserves of the `cToken`.
+   - `totalSupply`: Total supply of the `cToken`.
+   - `totalCash`: Total cash of the `cToken`.
+   - `isListed`: Boolean indicating if the `cToken` is listed.
+   - `collateralFactorMantissa`: Collateral factor mantissa of the `cToken`.
+   - `underlyingAssetAddress`: Address of the underlying asset.
+   - `cTokenDecimals`: Decimals of the `cToken`.
+   - `underlyingDecimals`: Decimals of the underlying asset.
+
+Summary:
+The `cTokenMetadata` function retrieves various metadata information related to a given `CToken` contract, including exchange rates, supply and borrow rates, total borrows and reserves, collateral factors, and underlying asset details. It constructs and returns a `CTokenMetadata` struct containing all this information.

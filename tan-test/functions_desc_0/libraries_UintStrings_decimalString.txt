@@ -1,0 +1,21 @@
+This code defines an internal function named `decimalString`, which converts a given number into a string representation with a specified number of decimal places. The function accepts three parameters: a `uint256` number, a `uint8` decimals indicating the number of decimal places, and a `bool` isPercent flag to determine if the number represents a percentage. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `number`: A `uint256` representing the number to be converted into a string.
+2. `decimals`: A `uint8` indicating the number of decimal places in the output string.
+3. `isPercent`: A `bool` flag that specifies whether the number represents a percentage.
+
+Return Value:
+The function returns a `string` representing the input number converted into a string with the specified number of decimal places.
+
+Code Breakdown:
+The function signature includes the parameters `number`, `decimals`, and `isPercent`. `decimalString` is an internal function, meaning it can only be called within the contract or its derived contracts. The function first checks if the input number is zero and returns "0%" if `isPercent` is true or "0" if `isPercent` is false.
+
+The function then initializes variables to handle the conversion process. It calculates the number of significant figures in the input number and determines the appropriate formatting based on whether the number has decimals or not. 
+
+If the number has no decimals, it preserves all trailing zeros and sets the necessary parameters for formatting the output string. If the number has decimals, it handles cases where the number is less than one and adjusts the formatting accordingly.
+
+Finally, the function calls the `generateDecimalString` function with the calculated parameters to generate the final decimal string representation of the input number.
+
+Summary:
+The `decimalString` function converts a given number into a string representation with a specified number of decimal places, considering whether the number represents a percentage or not. It handles different formatting scenarios based on the input number and returns the formatted string representation.

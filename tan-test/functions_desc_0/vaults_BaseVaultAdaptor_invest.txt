@@ -1,0 +1,21 @@
+This code defines an external function named `invest` that implements the `onlyWhitelist` modifier. The function is part of a contract that manages investments in various strategies. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `vaultHold`: A `uint256` variable that calculates the amount of assets held in the vault based on the total assets and the vault reserve percentage.
+2. `_investThreshold`: A `uint256` variable that represents the invest threshold multiplied by 10 to the power of the `decimals` value.
+3. `balance`: A `uint256` variable that stores the current balance of the contract's token.
+4. `targetRatios`: An array of `uint256` values representing the target debt ratios for different strategies.
+5. `currentRatios`: An array of `uint256` values representing the current debt ratios of the strategies.
+6. `update`: A boolean variable used to determine if the debt ratios need to be updated.
+
+Code Breakdown:
+The `invest` function starts by calculating the `vaultHold` amount based on the total assets and the vault reserve percentage. It then calculates the `_investThreshold` by multiplying the `investThreshold` with 10 raised to the power of `decimals`. The function retrieves the current balance of the contract's token using `IERC20(token).balanceOf(address(this))`.
+
+Next, the function checks if the current balance is less than or equal to the `vaultHold`. If this condition is met, the function returns without taking any further action. If the balance exceeds the `vaultHold`, the function proceeds to check if the excess balance (balance minus `vaultHold`) is greater than the `_investThreshold`. If it is, the function calls the `depositToUnderlyingVault` function to deposit the excess balance into the underlying vault.
+
+After handling the excess balance, the function checks and updates the debt ratios of the strategies if there are more than one strategy present. It retrieves the target debt ratios and the current debt ratios of the strategies. It then iterates over the strategies and compares the current ratios with the target ratios. If the difference between a current ratio and a target ratio exceeds the `strategyRatioBuffer`, the `update` flag is set to true, indicating that the debt ratios need to be updated.
+
+If the `update` flag is true, the function calls `updateStrategiesDebtRatio` to update the debt ratios of the strategies based on the target ratios.
+
+Summary:
+The `invest` function manages the investment process by depositing excess balances into the underlying vault, and updating the debt ratios of the strategies if necessary. It ensures that the assets are allocated efficiently according to the predefined thresholds and target ratios.

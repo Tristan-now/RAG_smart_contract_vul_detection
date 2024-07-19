@@ -1,0 +1,20 @@
+This code defines an external function named `resume` that is used to resume market operations after a payout period. Here's a detailed explanation of how this function works:
+
+Parameters:
+- No external parameters are passed to the function.
+
+Code Breakdown:
+1. The function starts with a `require` statement to ensure that the market status is set to `Payingout` and the pending end time has passed before resuming. If the conditions are not met, an error message is thrown.
+
+2. The function then retrieves the total debt of the contract from the `vault` and stores it in the variable `_debt`. It also fetches the total credit and calculates the deduction from the index based on the debt, total credit, and total liquidity using a magic scale factor `MAGIC_SCALE_1E6`.
+
+3. A loop iterates over the `indexList` array, which contains addresses of indices. For each index, it calculates the share of credit, redeems the deduction from the index, and adds the actual deduction by calling the `compensate` function of the `IIndexTemplate` contract.
+
+4. After calculating the deduction from the index, the function computes the deduction from the pool, shortage amount, and performs the necessary debt offset and transfer operations.
+
+5. If there is a deduction from the pool, it offsets the debt in the `vault` contract using the `offsetDebt` function.
+
+6. Finally, the function transfers the shortage amount from the market to the `vault`, updates the market status to `Trading`, and emits an event indicating the change in market status.
+
+Summary:
+The `resume` function is responsible for resuming market operations after a payout period. It calculates deductions from indices, offsets debt in the vault, transfers any shortage amount, and updates the market status to `Trading`.

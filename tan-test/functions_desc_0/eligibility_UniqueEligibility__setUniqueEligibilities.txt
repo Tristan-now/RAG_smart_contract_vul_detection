@@ -1,0 +1,16 @@
+This code defines an internal function named `_setUniqueEligibilities`, which is responsible for setting the eligibility status of multiple tokens in a bitmap. The function takes two parameters: an array of token IDs (`tokenIds`) and a boolean value indicating whether the tokens should be marked as eligible or not (`_isEligible`). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `tokenIds`: An array of `uint256` values representing the IDs of multiple tokens.
+2. `_isEligible`: A boolean value indicating whether the tokens should be marked as eligible (`true`) or not (`false`).
+
+Code Breakdown:
+The function starts by initializing a `cachedWord` variable with the value stored at index 0 in the `eligibleBitMap` array. It also initializes a `cachedIndex` variable to 0.
+Next, a `for` loop is used to iterate over the `tokenIds` array. Inside the loop, the current token ID is retrieved and stored in the `tokenId` variable.
+The function calculates the index of the eligibility word where the token ID should be stored by dividing the `tokenId` by 256. If the calculated `eligibilityWordIndex` is different from the `cachedIndex`, the function saves the current `cachedWord` at the `cachedIndex` in the `eligibleBitMap` array and updates the `cachedWord` with the value stored at the new `eligibilityWordIndex`.
+The function then calls the `_setBit` function to modify the `cachedWord` by setting or clearing the bit corresponding to the `tokenId` based on the value of `_isEligible`.
+After processing all token IDs, the function assigns the final `cachedWord` to the `eligibleBitMap` at the last `cachedIndex` since the loop is completed.
+Finally, the function emits an event `UniqueEligibilitiesSet` to notify external listeners about the updated eligibility status of the tokens.
+
+Summary:
+The `_setUniqueEligibilities` function efficiently updates the eligibility status of multiple tokens by manipulating a bitmap stored in the `eligibleBitMap` array. It optimizes the process by caching and updating eligibility words based on the token IDs provided in the `tokenIds` array.

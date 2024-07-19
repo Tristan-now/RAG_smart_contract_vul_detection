@@ -1,0 +1,10 @@
+This code defines an external function named `withdrawFrom`, which allows a user to withdraw a specified amount of tokens from a specific address. The function performs the following steps:
+
+1. It retrieves the `ITicket` interface instance from the `ticket` variable.
+2. It calls the `controllerBurnFrom` function of the `_ticket` instance to burn the specified amount of tickets from the user's address (`msg.sender`) on behalf of the `_from` address.
+3. It then calls the `_redeem` function to redeem the burned tickets and stores the redeemed amount in the `_redeemed` variable.
+4. The function transfers the redeemed tokens to the `_from` address using the `_token().safeTransfer` function.
+5. Finally, it emits a `Withdrawal` event containing information about the withdrawal, including the addresses involved, the ticket instance, the amount burned, and the amount redeemed.
+6. The function returns the amount of tokens redeemed (`_redeemed`) to the caller.
+
+Overall, this function allows users to withdraw tokens from a specific address by burning tickets and redeeming the corresponding tokens.

@@ -1,0 +1,22 @@
+This code defines an external function named `deployEligibility`, which is responsible for deploying a new instance of an NFTX eligibility contract based on a specified module index and configuration data. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `moduleIndex`: An unsigned integer that represents the index of the module within the `modules` array.
+2. `configData`: A dynamic array of bytes that contains configuration data for initializing the eligibility contract.
+
+Return Value:
+The function returns the address of the newly deployed eligibility contract.
+
+Code Breakdown:
+The function signature includes the parameters `moduleIndex` and `configData`. `deployEligibility` is an external function, meaning it can be called from outside the contract. The function first checks if the `moduleIndex` is within the bounds of the `modules` array to prevent out-of-bounds access.
+
+Next, it retrieves the implementation address of the eligibility module specified by `moduleIndex` from the `modules` array and stores it in the `eligImpl` variable.
+
+Then, it creates a new instance of the eligibility contract by using the `ClonesUpgradeable.clone` function, passing the `eligImpl` address as the implementation. This creates a clone of the specified eligibility contract and returns the address of the clone, which is stored in the `eligibilityClone` variable.
+
+The function then initializes the newly created eligibility contract by calling the `__NFTXEligibility_init_bytes` function of the `INFTXEligibility` interface, passing the `configData` as the initialization data.
+
+Finally, the function returns the address of the deployed eligibility contract (`eligibilityClone`).
+
+Summary:
+The `deployEligibility` function deploys a new instance of an NFTX eligibility contract based on a specified module index and configuration data. It ensures that the module index is within bounds, clones the specified eligibility contract, initializes the clone with the provided configuration data, and returns the address of the deployed contract.

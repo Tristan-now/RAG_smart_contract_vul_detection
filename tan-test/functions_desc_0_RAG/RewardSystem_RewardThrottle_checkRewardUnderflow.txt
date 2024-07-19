@@ -1,0 +1,23 @@
+This code defines a public function named `checkRewardUnderflow`, which is responsible for checking and handling reward underflows in the system. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+1. The function starts by retrieving the current epoch number using `dao.epoch()` and storing it in the `epoch` variable.
+2. It then calls the `_fillInEpochGaps` function to ensure that the APR target is correct by filling in any missing epoch data.
+3. The function checks if the current epoch is greater than the `_activeEpoch` to determine if there are new epochs to process.
+4. If there are new epochs to process, the function enters a loop that iterates from the `_activeEpoch` to the current `epoch`.
+5. Within the loop, it calls the `getTargets` function to retrieve the desired APR and smoothing period for each epoch.
+6. It then compares the actual APR of the epoch with the desired APR. If the actual APR is less than the desired APR, it calculates the underflow amount using the `_getRewardUnderflow` function.
+7. If the underflow amount is greater than 0, it requests capital from the `overflowPool` contract to cover the underflow.
+8. The function then sends the retrieved balance to the distributor contract using the `_sendToDistributor` function.
+
+Vulnerability Prediction:
+This function may be vulnerable to a potential underflow attack if the calculations for underflow are not handled correctly. An attacker could exploit this vulnerability to drain funds from the system.
+
+Summary:
+The `checkRewardUnderflow` function is responsible for checking and handling reward underflows in the system. It iterates over epochs, compares the actual APR with the desired APR, calculates underflow amounts, requests capital to cover underflows, and sends the balance to the distributor contract. Proper handling of underflow calculations is crucial to prevent potential attacks on the system.

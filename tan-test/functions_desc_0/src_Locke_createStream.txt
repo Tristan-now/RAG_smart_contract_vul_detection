@@ -1,0 +1,27 @@
+This code defines a public function named `createStream` that creates a new stream object. The function accepts several parameters including `rewardToken`, `depositToken`, `startTime`, `streamDuration`, `depositLockDuration`, `rewardLockDuration`, and `isSale`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `rewardToken`: Address of the token used as a reward in the stream.
+2. `depositToken`: Address of the token used for deposit in the stream.
+3. `startTime`: Start time of the stream in Unix timestamp format.
+4. `streamDuration`: Duration of the stream in seconds.
+5. `depositLockDuration`: Duration for which the deposit is locked in seconds.
+6. `rewardLockDuration`: Duration for which the reward is locked in seconds.
+7. `isSale`: Boolean flag indicating if the stream is a sale.
+
+Return Value:
+The function returns a `Stream` object representing the newly created stream.
+
+Code Breakdown:
+The function first performs several checks using `require` statements to ensure the validity of the input parameters. It checks if the `startTime` is in the future, if the `streamDuration` is within specified limits, and if the `depositLockDuration` and `rewardLockDuration` are within their respective limits.
+
+Next, the function generates a unique salt value based on the current `currStreamId` and increments `currStreamId` to ensure uniqueness for each stream. The salt is converted to a `bytes32` type.
+
+A new `Stream` object is then created using the `new` keyword with the specified salt value. The `Stream` contract is instantiated with various parameters including the stream ID, sender address, sale flag, token addresses, durations, fee percentage, and fee enablement status.
+
+An event `StreamCreated` is emitted with the stream ID and the address of the newly created stream contract.
+
+Finally, the function returns the created `Stream` object.
+
+Summary:
+The `createStream` function creates a new stream object with specified parameters, performs necessary checks, generates a unique salt value, instantiates a new `Stream` contract, emits an event, and returns the created stream object.

@@ -1,0 +1,8 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: The deposit function increases the member's weight based on the swap output amount when trading the deposited underlying synth amount, allowing for manipulation.
+Execution process: Attacker creates custom tokens, adds liquidity to create an expensive price for the token, deposits fake synth with high weight, then calls harvest with a valuable "real" synth to earn almost all vault rewards.
+Detailed characteristics: Rewards are distributed based on member weight, which can be inflated with valueless custom tokens. The calcReward function disregards the synth parameter, making it easy for attackers to manipulate rewards.
+Vulnerable code:
+```solidity
+_weight = iUTILS(UTILS()).calcValueInBase(iSYNTH(_synth).TOKEN(), _amount);
+```

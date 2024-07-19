@@ -1,0 +1,26 @@
+This code defines an external function named `setAddresses` that allows the contract owner to set various addresses related to the protocol. The function takes in eight address parameters representing different contract addresses:
+
+1. `_borrowerOperationsAddress`: Address of the Borrower Operations contract.
+2. `_troveManagerAddress`: Address of the Trove Manager contract.
+3. `_activePoolAddress`: Address of the Active Pool contract.
+4. `_yusdTokenAddress`: Address of the YUSD Token contract.
+5. `_sortedTrovesAddress`: Address of the Sorted Troves contract.
+6. `_communityIssuanceAddress`: Address of the Community Issuance contract.
+7. `_whitelistAddress`: Address of the Whitelist contract.
+8. `_troveManagerLiquidationsAddress`: Address of the Trove Manager Liquidations contract.
+
+The function first checks that each address provided is a valid contract address by calling the `checkContract` function for each address.
+
+Next, the function assigns the provided addresses to the corresponding contract variables within the contract. For example, `_borrowerOperationsAddress` is assigned to the `borrowerOperations` variable of type `IBorrowerOperations`.
+
+After setting all the addresses, the function emits events to notify that the addresses have been changed. These events include:
+- `BorrowerOperationsAddressChanged`
+- `TroveManagerAddressChanged`
+- `ActivePoolAddressChanged`
+- `YUSDTokenAddressChanged`
+- `SortedTrovesAddressChanged`
+- `CommunityIssuanceAddressChanged`
+
+Finally, the function renounces ownership by calling `_renounceOwnership()`, effectively removing the contract owner's privileges.
+
+In summary, the `setAddresses` function allows the contract owner to update various contract addresses and ensures that the provided addresses are valid before updating the contract state.

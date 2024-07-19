@@ -1,0 +1,22 @@
+This code snippet defines an external function named `unbond`, which takes a single parameter `_amount` of type `uint256`. The function calls another internal function `unbondWithHint` with the provided `_amount` parameter and two additional parameters set to the zero address.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: A `uint256` value representing the amount to unbond.
+
+Function Call:
+The `unbond` function is an external function, meaning it can be called from outside the contract. When `unbond` is called with a specific `_amount` value, it internally calls the `unbondWithHint` function with the same `_amount` value and two additional parameters set to the zero address.
+
+Summary:
+The `unbond` function simplifies the unbonding process by providing a straightforward interface for users to unbond a specific amount of tokens. It delegates the actual unbonding logic to the `unbondWithHint` function, passing the `_amount` parameter along with default values for two additional parameters.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are referenced in this context.
+
+[TASK CODE]
+```solidity
+function unbond(uint256 _amount) external {
+    unbondWithHint(_amount, address(0), address(0));
+}
+```

@@ -1,0 +1,16 @@
+This code defines an internal function named `_claimAndDistributeYieldThenRebalanceMarket`, which is responsible for claiming and distributing yield, as well as rebalancing the market based on price movements. The function takes three parameters: `marketIndex`, `newAssetPrice`, and `oldAssetPrice`, and returns two `uint256` values: `longValue` and `shortValue`.
+
+Here's a detailed explanation of how this function works:
+
+1. Claiming and Distributing Yield:
+   - The function retrieves the values of the long and short sides in the payment token for a specific market using `marketSideValueInPaymentToken[marketIndex][true]` and `marketSideValueInPaymentToken[marketIndex][false]`.
+   - It calculates the total value locked in the market by summing up the long and short values.
+   - It then calls the `_getYieldSplit` function to determine if the long side is underbalanced and to get the treasury yield percentage.
+   - The function calls the `distributeYieldForTreasuryAndReturnMarketAllocation` function from the `IYieldManager` contract to distribute the yield for the treasury and returns the market allocation amount.
+
+2. Adjusting Value Based on Price Movement:
+   - The function calculates the value of the underbalanced side by taking the minimum value between `longValue` and `shortValue`.
+   - It calculates the value change based on the difference between the new and old asset prices, multiplied by the underbalanced side value and divided by the old asset price.
+   - If the value change is positive, it adjusts the `longValue` and `shortValue` accordingly. If it is negative, it adjusts them in the opposite direction.
+
+Overall, this function handles the claiming and distribution of yield, as well as the rebalancing of the market based on price movements to ensure that the long and short sides are adjusted appropriately to maintain balance and exposure to price changes.

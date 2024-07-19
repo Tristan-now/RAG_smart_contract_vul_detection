@@ -1,0 +1,17 @@
+This code defines a function named `withdraw` that allows users to withdraw liquidity from a pool. The function takes a parameter of type `Liquidity` named `_withdrawal`, which contains the amounts of two tokens: `usdm` and `pool3`.
+
+Parameters:
+1. `_withdrawal`: A struct containing the amounts of `usdm` and `pool3` tokens that the user wants to withdraw.
+
+Code Breakdown:
+The function first initializes two `Liquidity` memory variables: `total` and `user`, which store the total liquidity and the user's liquidity, respectively. It then checks if the user wants to withdraw any `usdm` tokens. If the withdrawal amount is greater than 0 and the `unlockable` flag is not set, the function reverts with the message "!unlock usdm". Otherwise, it transfers the specified amount of `usdm` tokens to the user, deducts the withdrawn amount from both the total liquidity and the user's liquidity, and updates the corresponding values.
+
+Next, the function checks if the user wants to withdraw any `pool3` tokens. If the withdrawal amount is greater than 0, it transfers the specified amount of `pool3` tokens to the user, updates the total liquidity and user's liquidity accordingly.
+
+Finally, the function updates the `totalLiquidity` and `userLiquidity` mappings with the new values and emits a `Withdraw` event to notify external listeners about the withdrawal.
+
+Vulnerability Prediction:
+This function may be vulnerable to a reentrancy attack if the token transfer operations are not handled properly. Malicious users could potentially exploit this vulnerability to withdraw funds multiple times before the state is updated, leading to a loss of funds.
+
+Summary:
+The `withdraw` function allows users to withdraw liquidity from a pool by transferring the specified amounts of `usdm` and `pool3` tokens to the user. It updates the total liquidity and user's liquidity accordingly and emits a `Withdraw` event to notify external parties about the withdrawal.

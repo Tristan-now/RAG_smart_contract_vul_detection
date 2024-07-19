@@ -1,0 +1,10 @@
+Type of vulnerability: Price Oracle Manipulation
+Cause of vulnerability: Chainlink price feeds have acceptable deviations that can be exploited for arbitrage opportunities.
+Execution process: By manipulating the price oracles for different assets, users can deposit the minimally-priced asset and withdraw more value from the deposit pool.
+Detailed characteristics: The vulnerability arises from the significant deviations in the Chainlink price feeds, allowing for profitable arbitrage opportunities to be exploited.
+Vulnerable code: 
+```
+LRTOracleMock(rETHPriceOracle).submitNewAssetPrice(rETHNewPrice);
+LRTOracleMock(stETHPriceOracle).submitNewAssetPrice(stETHNewPrice);
+LRTOracleMock(cbETHPriceOracle).submitNewAssetPrice(cbETHNewPrice);
+```

@@ -1,0 +1,21 @@
+This code defines an internal function named `_addCommitment`, which is responsible for adding a commitment (amount of funds) from a specific address to the Dutch auction contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_addr`: The address of the user making the commitment.
+2. `_commitment`: The amount of funds (commitment) being added by the user.
+
+Code Breakdown:
+The function starts with a `require` statement that checks if the current block timestamp is within the auction hours specified by the `marketInfo.startTime` and `marketInfo.endTime`. If the timestamp is outside these hours, the function will revert with the error message "DutchAuction: outside auction hours".
+
+Next, the function accesses the `MarketStatus` struct stored in the `marketStatus` variable. This struct contains information about the current status of the auction.
+
+The function calculates the new commitment amount by adding the `_commitment` parameter to the existing commitment amount stored for the given address `_addr`. This new commitment amount is stored in the `commitments` mapping.
+
+If the `status.usePointList` flag is set to true, the function checks if the user has enough points in the `pointList` contract to support the new commitment amount. This check is done by calling the `hasPoints` function of the `pointList` contract.
+
+After the commitment is successfully added, the total commitments for the auction (`status.commitmentsTotal`) are updated by adding the `_commitment` amount. The total commitments are converted to a `int128` type using `BoringMath.to128` to prevent overflow issues.
+
+Finally, the function emits an `AddedCommitment` event, indicating that a new commitment has been added for the specified address with the given amount.
+
+Summary:
+The `_addCommitment` function adds a commitment from a user to the Dutch auction contract. It performs checks to ensure that the commitment is made within the auction hours and, if applicable, verifies that the user has enough points to support the commitment. The function then updates the commitments mapping, the total commitments for the auction, and emits an event to notify external parties about the new commitment.

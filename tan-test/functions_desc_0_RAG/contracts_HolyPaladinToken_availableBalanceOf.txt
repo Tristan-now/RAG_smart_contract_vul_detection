@@ -1,0 +1,22 @@
+This code snippet defines an external function named `availableBalanceOf` that takes an address parameter `user` and returns a `uint256` value representing the available balance of that user. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `user`: An address parameter representing the user for whom the available balance needs to be retrieved.
+
+Return Value:
+The function returns a `uint256` value representing the available balance of the specified user.
+
+Code Breakdown:
+The `availableBalanceOf` function is an external function, meaning it can be called from outside the contract. It takes an `address` parameter `user` representing the user for whom the available balance needs to be retrieved. The function internally calls another function `_availableBalanceOf(user)` to calculate the available balance of the user. This separation of concerns allows for better code organization and reusability.
+
+Overall, the `availableBalanceOf` function provides a convenient way to query the available balance of a specific user externally.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are relevant to the provided code snippet.
+
+[TASK CODE]
+```solidity
+function availableBalanceOf(address user) external view returns(uint256) {
+    return _availableBalanceOf(user);
+}
+```

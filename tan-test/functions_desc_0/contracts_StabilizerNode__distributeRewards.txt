@@ -1,0 +1,26 @@
+This code defines an internal function named `_distributeRewards` that handles the distribution of rewards among various recipients. The function takes a parameter `rewarded`, which represents the total amount of rewards to be distributed. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `rewarded`: A `uint256` value representing the total amount of rewards to be distributed.
+
+Code Breakdown:
+The function first checks if the `rewarded` amount is zero. If it is zero, the function returns early without performing any further actions.
+
+Next, the function approves the `rewardToken` contract to spend the `rewarded` amount on behalf of the `auction` contract. This approval allows the `auction` contract to transfer the rewards on behalf of the caller.
+
+The function then calls the `allocateArbRewards` function of the `auction` contract, passing the `rewarded` amount as a parameter. The return value of this function call is stored back in the `rewarded` variable.
+
+If the updated `rewarded` amount is zero after the allocation, the function returns without proceeding further.
+
+The function then calculates the cuts for different recipients based on predefined percentage values (`callerRewardCut`, `lpRewardCut`, `daoRewardCut`, `auctionPoolRewardCut`, `swingTraderRewardCut`). These cuts are calculated as a percentage of the `rewarded` amount and stored in separate variables.
+
+The remaining amount after deducting all the cuts is assigned to the `treasuryCut` variable. An assertion is used to ensure that the `treasuryCut` amount does not exceed the total `rewarded` amount.
+
+The function then transfers the calculated cuts to the respective recipients using the `safeTransfer` function of the `rewardToken` contract. Recipients include the caller, auction pool, swing trader, treasury multisig, DAO, and reward throttle contracts.
+
+If there is a cut allocated for the LP (liquidity provider), it is transferred to the `rewardThrottle` contract, and the `handleReward` function of the `rewardThrottle` contract is called.
+
+Finally, the function emits a `RewardDistribution` event to signal the completion of the reward distribution process.
+
+Summary:
+The `_distributeRewards` function handles the distribution of rewards among various recipients based on predefined percentage cuts. It ensures that the rewards are allocated correctly to each recipient and emits an event to notify external parties about the reward distribution process.

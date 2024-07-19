@@ -1,0 +1,22 @@
+This code defines an external view function named `getPoolDetails` that retrieves various details of multiple pools in a decentralized finance (DeFi) system. The function takes three parameters: an `IOpenLev` interface instance `openLev`, an array of `uint16` market IDs `marketIds`, and an array of `LPoolInterface` instances `pools`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `openLev`: An instance of the `IOpenLev` interface that provides access to market-related data.
+2. `marketIds`: An array of `uint16` market IDs that correspond to the markets associated with the pools.
+3. `pools`: An array of `LPoolInterface` instances representing the pools for which details need to be retrieved.
+
+Return Value:
+The function returns an array of `PoolVars` structures containing various details of each pool.
+
+Code Breakdown:
+The function initializes an array named `results` of type `PoolVars` with a length equal to the number of pools provided in the `pools` parameter.
+A `for` loop is used to iterate over each pool in the `pools` array. Within each iteration:
+- The current pool instance is obtained from the `pools` array and stored in the `pool` variable.
+- The market details corresponding to the current market ID (retrieved from `marketIds`) are fetched from the `openLev` contract and stored in the `market` variable.
+- A new `PoolVars` structure named `item` is created to store the details of the current pool.
+- Various details of the pool are retrieved and stored in the `item` structure, including insurance, cash, total borrows, total reserves, available for borrow, supply rate per block, borrow rate per block, reserve factor mantissa, exchange rate, base rate per block, multiplier per block, jump multiplier per block, and kink.
+- The `item` structure containing the pool details is assigned to the corresponding index in the `results` array.
+Once all pools have been processed, the function returns the `results` array containing the details of each pool.
+
+Summary:
+The `getPoolDetails` function iterates over a collection of pools, retrieves various details of each pool from the `openLev` contract and the pool instances, and stores these details in a structured format. The function then returns an array containing the details of all the pools processed.

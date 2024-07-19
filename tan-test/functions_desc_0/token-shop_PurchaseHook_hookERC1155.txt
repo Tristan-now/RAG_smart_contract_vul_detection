@@ -1,0 +1,18 @@
+This code defines an external function named `hookERC1155` that implements the `IERC1155Hook` interface. The purpose of this function is to handle the purchase of ERC1155 tokens by a user. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_user`: The address of the user who is purchasing the ERC1155 tokens.
+2. `_tokenContract`: The address of the ERC1155 token contract from which the tokens are being purchased.
+3. `_tokenId`: The unique identifier of the specific token being purchased.
+4. `_amount`: The quantity of tokens being purchased.
+
+Functionality:
+1. The function first retrieves the `ITokenShop` interface instance stored in the `tokenShop` variable.
+2. It then checks if the `tokenShop` interface instance is set and not equal to the zero address. If it is not set, it reverts with an error message stating that the token shop is not set in the hook.
+3. Next, the function retrieves the maximum purchase amount allowed per user for the given `_tokenContract` and `_tokenId` combination from the `erc1155ToIdToMaxPurchasesPerUser` mapping.
+4. If the maximum purchase amount is not set to 0 (indicating that there is a limit on the number of tokens that can be purchased), the function proceeds to the next step.
+5. It then checks if the sum of the current purchase count of ERC1155 tokens for the user, the `_tokenContract`, and the `_tokenId`, along with the `_amount` being purchased, does not exceed the maximum purchase amount allowed.
+6. If the purchase limit is reached or exceeded, the function reverts with an error message stating that the ERC1155 purchase limit has been reached.
+
+Summary:
+The `hookERC1155` function ensures that the purchase of ERC1155 tokens by a user does not exceed the specified purchase limit set for the token contract and token ID combination. It checks the current purchase count against the maximum purchase amount and reverts the transaction if the limit is reached.

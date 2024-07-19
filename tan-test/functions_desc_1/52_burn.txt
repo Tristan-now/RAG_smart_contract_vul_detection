@@ -1,0 +1,22 @@
+This code defines an external function named `burn`, which is part of a contract that implements an interface with a `onlyRouter` modifier. The function is responsible for burning a specific position identified by its `id` and transferring the corresponding amounts to a specified address `to`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `id`: A `uint256` value representing the unique identifier of the position to be burned.
+2. `to`: An `address` where the remaining amounts after burning will be transferred.
+
+Return Values:
+- `amountNative`: A `uint256` value representing the amount of native tokens burned.
+- `amountForeign`: A `uint256` value representing the amount of foreign tokens burned.
+- `coveredLoss`: A `uint256` value representing the covered loss calculated during the burning process.
+
+Code Breakdown:
+- The function signature includes the parameters `id` and `to`, and it is marked as `external` to allow external contracts to call it. The function also overrides a function from an interface and has a `onlyRouter` modifier, ensuring that only authorized routers can execute this function.
+- The function first calls a private function `_burn(id, to)` to retrieve the amounts of native and foreign tokens burned, storing them in the variables `amountNative` and `amountForeign`.
+- It then accesses the `Position` struct associated with the given `id` from the `positions` mapping and retrieves relevant information such as `creation`, `originalNative`, and `originalForeign` values.
+- The `Position` entry for the given `id` is deleted from the `positions` mapping to finalize the burning process.
+- The function calculates the loss incurred during the burning process using the `VaderMath.calculateLoss` function, which takes into account the original amounts of native and foreign tokens as well as the amounts burned.
+- The `coveredLoss` is calculated based on the loss amount and the time elapsed since the creation of the position. The calculation is adjusted to be proportional to a year's worth of time, capped at a maximum of one year.
+- The `coveredLoss` value is returned as part of the function's return values.
+
+Summary:
+The `burn` function burns a specific position by calculating the loss incurred during the burning process and determining the covered loss based on the time elapsed since the position's creation. It transfers the remaining token amounts to the specified address and returns the amounts burned along with the covered loss.

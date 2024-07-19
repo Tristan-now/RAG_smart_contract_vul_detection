@@ -1,0 +1,15 @@
+This code defines an internal function named `mintInternal` that is responsible for minting a certain amount of tokens. The function accepts one parameter `mintAmount`, which represents the amount of tokens to be minted. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `mintAmount`: A `uint` value representing the amount of tokens to be minted.
+
+Return Value:
+The function returns a tuple containing two `uint` values. The first value represents an error code, and the second value represents the amount of tokens minted.
+
+Code Breakdown:
+The function signature includes the parameters `mintAmount`. `mintInternal` is an internal function, meaning it can only be called within the contract or its derived contracts. The function first calls the `accrueInterest` function to update the interest rates. If the `accrueInterest` function returns an error code other than `Error.NO_ERROR`, the function logs the failure and returns an error along with a zero value for the amount of tokens minted.
+
+If the interest accrual is successful, the function proceeds to call the `mintFresh` function with the sender's address (`msg.sender`) and the `mintAmount`. The `mintFresh` function is responsible for actually minting the tokens. If the minting is successful, the `mintFresh` function emits the `Mint` event, and the function returns the success along with the amount of tokens minted.
+
+Summary:
+The `mintInternal` function first accrues interest by calling the `accrueInterest` function. If the interest accrual is successful, it proceeds to mint the specified amount of tokens by calling the `mintFresh` function. The function returns an error code and the amount of tokens minted as a tuple.

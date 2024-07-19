@@ -1,0 +1,16 @@
+This code defines an internal function named `_executeSwaps`, which is responsible for executing a series of swaps based on the provided swap data. The function accepts two parameters: a `LiFiData` struct and an array of `SwapData` structs. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `LiFiData`: A struct that contains data related to the LiFi (Liquidity Finance) transaction.
+2. `SwapData[]`: An array of structs that contain data required for each swap operation.
+
+Code Breakdown:
+The function iterates over the array of `SwapData` structs provided as `_swapData`. Inside the loop, it performs the following actions:
+1. It checks whether the `approveTo` address and the `callTo` address of the current `SwapData` struct are whitelisted in the `ls.dexWhitelist` mapping. If either of these addresses is not whitelisted, the function reverts with an error message stating "Contract call not allowed!"
+2. If both addresses are whitelisted, the function calls the `LibSwap.swap` function, passing the `transactionId` from the `LiFiData` struct and the current `SwapData` struct as arguments. This function is responsible for executing the swap operation based on the provided data.
+
+Vulnerability Prediction:
+This function may be vulnerable to a permissionless contract call attack if the `dexWhitelist` mapping is not properly managed or if unauthorized addresses are added to the whitelist. This could potentially allow unauthorized contracts to execute swaps, leading to unexpected behavior or loss of funds.
+
+Summary:
+The `_executeSwaps` function iterates over an array of `SwapData` structs and checks if the addresses involved in the swap operations are whitelisted in the `dexWhitelist` mapping. If the addresses are whitelisted, the function calls the `LibSwap.swap` function to execute the swap operation. Proper management of the whitelist is crucial to prevent unauthorized contract calls and ensure the security of the swap process.

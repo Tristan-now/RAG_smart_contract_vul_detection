@@ -1,0 +1,22 @@
+This code defines an external function named `burnSynth` that allows users to burn a specified amount of a synthetic asset and receive the equivalent amount of the native asset in return. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `foreignAsset`: The address of the foreign asset (synthetic asset) that the user wants to burn.
+2. `synthAmount`: The amount of the synthetic asset that the user wants to burn.
+3. `to`: The address where the user wants to receive the equivalent amount of the native asset.
+
+Return Value:
+`amountNative`: The function returns a `uint256` value representing the amount of the native asset that the user receives after burning the synthetic asset.
+
+Code Breakdown:
+1. The function starts by retrieving the corresponding `ISynth` contract instance for the provided `foreignAsset` using the `synthFactory.synths(foreignAsset)` function call.
+2. It then checks if the retrieved `ISynth` contract instance is not equal to the zero address to ensure that the synth exists.
+3. Another check is performed to ensure that the `synthAmount` provided by the user is greater than 0.
+4. The function then transfers the `synthAmount` of the synthetic asset from the user to the contract address using `IERC20(synth).safeTransferFrom(msg.sender, address(this), synthAmount)`.
+5. The `burn` function of the `ISynth` contract is called to burn the specified `synthAmount`.
+6. The reserves of the native and foreign assets are obtained using the `getReserves` function to calculate the equivalent amount of the native asset that the user will receive in return for burning the synthetic asset.
+7. The `calculateSwap` function from `VaderMath` is used to determine the amount of the native asset based on the provided `synthAmount` and the reserves of the foreign and native assets.
+8. The `_update` function is called to update the reserves of the assets after the swap operation. The exact purpose of this update is marked as a TODO in the code and needs clarification.
+9. Finally, the calculated `amountNative` of the native asset is transferred to the specified `to` address using `nativeAsset.safeTransfer(to, amountNative)`.
+
+This function essentially allows users to burn a synthetic asset, swap it for the equivalent amount of the native asset, and receive the native asset in return.

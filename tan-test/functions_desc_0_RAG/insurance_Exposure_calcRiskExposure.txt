@@ -1,0 +1,17 @@
+This code defines an external view function named `calcRiskExposure`, which calculates the risk exposure of a system based on the provided `SystemState`. The function returns an `ExposureState` struct containing information about the exposure levels of stablecoins and the protocol.
+
+Parameters:
+1. `sysState`: A calldata parameter of type `SystemState` that represents the current state of the system.
+
+Return Value:
+`expState`: An `ExposureState` struct that holds information about the risk exposure of the system.
+
+Code Breakdown:
+The `calcRiskExposure` function first calls the internal function `_calcRiskExposure` with the provided `sysState` and a boolean value `true`. The result of this calculation is stored in the `expState` variable.
+
+Next, the function determines if any stablecoin or protocol is overexposed by calling the `isExposed` function. This function takes the `rebalanceThreshold`, `stablecoinExposure`, `protocolExposure`, and `curveExposure` from the `expState` struct as parameters. The result of this check is assigned to `expState.stablecoinExposed` and `expState.protocolExposed`.
+
+Overall, the `calcRiskExposure` function calculates the risk exposure of the system based on the provided `SystemState` and determines if any stablecoin or protocol is overexposed. The resulting exposure state is returned in the form of an `ExposureState` struct.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for the given task code.

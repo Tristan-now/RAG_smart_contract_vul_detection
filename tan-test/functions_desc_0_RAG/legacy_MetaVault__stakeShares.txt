@@ -1,0 +1,10 @@
+This code defines an internal function named `_stakeShares`, which is responsible for staking a certain number of shares for a user. The function performs the following steps:
+
+1. It retrieves the `UserInfo` struct for the current user using `userInfo[msg.sender]` and stores it in the `user` variable.
+2. It calls the `updateReward` function to update the reward state.
+3. It calls the `_getReward` function to retrieve any pending rewards for the user.
+4. It adds the `_shares` parameter to the user's `amount` field using `user.amount.add(_shares)`.
+5. It calculates the user's `yaxRewardDebt` by multiplying the user's `amount` by the accumulated YAX reward per share and dividing by 1e12.
+6. It emits a `Deposit` event to notify that the user has deposited `_shares`.
+
+In summary, the `_stakeShares` function allows a user to stake a certain number of shares, updates the reward state, calculates the user's reward debt, and emits an event to log the deposit action.

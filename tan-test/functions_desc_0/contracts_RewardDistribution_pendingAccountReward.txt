@@ -1,0 +1,19 @@
+This code defines an external view function named `pendingAccountReward`, which calculates the total pending reward for a specific account in a lending pair contract. The function takes two parameters: `_account`, which is the address of the account for which the pending reward is being calculated, and `_pair`, which is the address of the lending pair contract.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: The address of the account for which the pending reward is being calculated.
+2. `_pair`: The address of the lending pair contract.
+
+Return Value:
+The function returns a `uint` value representing the total pending reward for the specified account in the lending pair contract.
+
+Code Breakdown:
+The function signature includes the parameters `_account` and `_pair`. `pendingAccountReward` is an external view function, meaning it can be called from outside the contract and does not modify the contract state.
+Inside the function, the address `_pair` is converted to an `ILendingPair` interface using `ILendingPair pair = ILendingPair(_pair)`. This allows interaction with the lending pair contract using the interface functions.
+The function then calculates the total pending reward for the account by summing the pending rewards for both tokens in the lending pair. This is done by calling the `pendingTokenReward` function twice, once for `pair.tokenA()` and once for `pair.tokenB()`. The `pendingTokenReward` function calculates the pending reward for a specific token in the lending pair.
+The return value of the function is the sum of the pending rewards for both tokens, which represents the total pending reward for the specified account in the lending pair contract.
+
+Summary:
+The `pendingAccountReward` function calculates the total pending reward for a specific account in a lending pair contract by summing the pending rewards for both tokens in the pair. It interacts with the lending pair contract through the `ILendingPair` interface and returns the total pending reward as a `uint` value.

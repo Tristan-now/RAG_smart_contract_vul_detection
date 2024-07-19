@@ -1,0 +1,22 @@
+This code defines an internal view function named `_balance` that retrieves the balance of two tokens (token0 and token1) held by the contract. The function uses the `staticcall` function to interact with the `bento` contract and retrieve the token balances.
+
+Explanation of the code:
+
+1. The function signature includes the `internal` and `view` modifiers, indicating that it is an internal function that does not modify the state of the contract and can be called externally to read data.
+
+2. The function returns two `uint256` values: `balance0` and `balance1`, representing the balances of token0 and token1, respectively.
+
+3. Inside the function, two `staticcall` functions are used to retrieve the balances of token0 and token1 from the `bento` contract.
+
+4. For token0:
+   - The `abi.encodeWithSelector` function is used to encode the function selector `0xf7888aec` (which likely corresponds to the `balanceOf` function) along with the token0 address and the contract address.
+   - The `staticcall` function is then called on the `bento` contract with the encoded data, and the result is stored in the tuple `(, bytes memory _balance0)`.
+   - The result is decoded using `abi.decode` to extract the `uint256` balance of token0, which is stored in the `balance0` variable.
+
+5. For token1:
+   - The same process is repeated for token1, where the balance of token1 is retrieved using a similar `staticcall` function and decoding the result into the `balance1` variable.
+
+6. Finally, the function returns the balances of token0 and token1 as `balance0` and `balance1`, respectively.
+
+Summary:
+The `_balance` function retrieves the balances of two tokens (token0 and token1) held by the contract by making `staticcall` requests to the `bento` contract. It then decodes the results to obtain the balances and returns them as `uint256` values.

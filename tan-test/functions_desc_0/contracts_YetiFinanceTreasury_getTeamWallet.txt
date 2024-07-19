@@ -1,0 +1,14 @@
+This code defines an external function named `getTeamWallet` that allows external callers to view the address of the team wallet. Here’s a detailed explanation of how this function works:
+
+Parameters:
+This function does not accept any parameters.
+
+Return Value:
+The function returns an `address` value representing the team wallet address.
+
+Code Breakdown:
+The function signature includes the keyword `external`, indicating that this function can be called from outside the contract. The function name is `getTeamWallet`, and it returns an `address` value.
+Within the function body, it simply returns the value of the `teamWallet` variable.
+
+Summary:
+The `getTeamWallet` function is an external view function that provides external callers with the ability to retrieve the address of the team wallet stored in the `teamWallet` variable. This function does not modify the state of the contract and only allows for viewing the team wallet address.

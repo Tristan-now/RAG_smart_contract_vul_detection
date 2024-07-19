@@ -1,0 +1,20 @@
+This code defines an external function named `withdraw`, which allows users to withdraw their funds from a contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+- The function first checks the current state of the contract by calling the internal function `_checkState` with the parameter `States.WITHDRAW`.
+- It then checks if the user has already withdrawn funds by verifying the value stored in the `userAlreadyWithdrawn` mapping for the `msg.sender` address. If the user has already withdrawn, the function reverts with the error message "Already withdrawn."
+- If the user has not already withdrawn, the function proceeds to check if there are funds held for the winning outcome (`totalTimeHeld[winningOutcome] > 0`).
+- If there are funds held for the winning outcome, the function calls the internal function `_payoutWinnings` to distribute the winnings to the user.
+- If there are no funds held for the winning outcome, the function calls the internal function `_returnRent` to return the user's initial deposit or rent.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the internal functions `_payoutWinnings` or `_returnRent` interact with external contracts that are not properly secured against reentrancy.
+
+Summary:
+The `withdraw` function allows users to withdraw their funds from the contract. It checks the current state, ensures that the user has not already withdrawn, and then either pays out winnings or returns the initial deposit/rent based on the outcome of the contract.

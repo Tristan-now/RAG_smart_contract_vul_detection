@@ -1,0 +1,14 @@
+This code snippet defines an internal function named `_transfer` that handles the transfer of tokens between two addresses. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `sender`: The address initiating the token transfer.
+2. `recipient`: The address receiving the transferred tokens.
+3. `amount`: The amount of tokens to be transferred.
+
+Code Breakdown:
+- The function starts with two `require` statements to ensure that neither the sender nor the recipient address is the zero address.
+- The `_balances` mapping is used to keep track of the token balances for each address. The function deducts the `amount` of tokens from the sender's balance using the `sub` function to prevent underflow. If the sender does not have enough tokens, the function will revert with the error message "ERC20: transfer amount > balance".
+- The deducted `amount` of tokens is then added to the recipient's balance using the `add` function.
+- Finally, the function emits a `Transfer` event to log the token transfer from the sender to the recipient.
+
+This function ensures that token transfers are executed securely by checking for valid sender and recipient addresses, handling balance adjustments correctly, and emitting an event to provide transparency on token movements.

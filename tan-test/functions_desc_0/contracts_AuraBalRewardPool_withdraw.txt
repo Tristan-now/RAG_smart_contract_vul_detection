@@ -1,0 +1,24 @@
+This code defines a public function named `withdraw` that allows a user to withdraw a specified amount of tokens from a reward pool. The function accepts three parameters: `amount` (the amount of tokens to withdraw), `claim` (a boolean indicating whether to claim rewards after withdrawal), and `lock` (a boolean indicating whether to lock the rewards).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `amount`: An unsigned integer (`uint256`) representing the amount of tokens to withdraw.
+2. `claim`: A boolean value that determines whether to claim rewards after withdrawal.
+3. `lock`: A boolean value that indicates whether to lock the rewards.
+
+Return Value:
+The function returns a boolean value (`true`) to indicate a successful withdrawal.
+
+Code Breakdown:
+- The function signature includes the parameters `amount`, `claim`, and `lock`. It is a public function, meaning it can be called externally.
+- The `require` statement checks if the `amount` to withdraw is greater than 0. If the condition is not met, it will revert the transaction with an error message.
+- The `_totalSupply` variable is updated by subtracting the `amount` withdrawn, reducing the total supply of tokens in the reward pool.
+- The balance of the user (`msg.sender`) is updated by subtracting the `amount` withdrawn from their balance.
+- The `stakingToken.safeTransfer` function is called to transfer the withdrawn tokens (`amount`) to the user (`msg.sender`).
+- An `emit` statement triggers the `Withdrawn` event, indicating that the user has successfully withdrawn tokens.
+- If the `claim` parameter is set to `true`, the `getReward` function is called with the `lock` parameter passed to it. This allows the user to claim rewards after withdrawing tokens.
+- The function returns `true` to indicate a successful withdrawal operation.
+
+Summary:
+The `withdraw` function allows users to withdraw a specified amount of tokens from a reward pool. It updates the total supply and user balances, transfers the tokens to the user, and optionally allows the user to claim rewards after withdrawal.

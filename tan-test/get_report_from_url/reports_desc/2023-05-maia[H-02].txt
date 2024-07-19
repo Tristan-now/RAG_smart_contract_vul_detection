@@ -1,0 +1,12 @@
+Type of vulnerability: Price oracle manipulation
+Cause of vulnerability: Usage of slot0 to get sqrtPriceX96 from Uniswap which can be easily manipulated
+Execution process: Attacker manipulates sqrtPriceX96 and calls Uniswap.swap function to buy tokens at a higher price and then sells them for gains
+Detailed characteristics: Vulnerable code in RootBrigdeAgent.sol uses UniswapV3Pool.slot0 to get sqrtPriceX96 which can be manipulated by MEV bots and flash loans for sandwich attacks
+Vulnerable code:
+```solidity
+(uint160 sqrtPriceX96, , , , , , ) = IUniswapV3Pool(poolAddress).slot0();
+uint160 exactSqrtPriceImpact = (sqrtPriceX96 * (priceImpactPercentage / 2)) / GLOBAL_DIVISIONER;
+uint160 sqrtPriceLimitX96 = zeroForOneOnInflow ? sqrtPriceX96 - exactSqrtPriceImpact : sqrtPriceX96 + exactSqrtPriceImpact;
+try
+    IUniswapV3Pool(poolAddress).swap(address(this), zeroForOneOnInflow, int256(_amount), sqrtPriceLimitX96, abi.encode(SwapCallbackData({ tokenIn: gasTokenGlobalAddress }))
+```

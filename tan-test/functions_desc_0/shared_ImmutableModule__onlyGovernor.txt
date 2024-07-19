@@ -1,0 +1,15 @@
+This code snippet defines an internal function named `_onlyGovernor` that enforces a restriction on who can execute certain functions within the smart contract. Here's a detailed explanation of how this function works:
+
+1. Function Signature:
+   - The function `_onlyGovernor` is defined as an internal function, meaning it can only be called within the contract or its derived contracts.
+   - The function does not take any parameters.
+   - The function is declared with a `view` visibility specifier, indicating that it does not modify the state of the contract.
+
+2. Function Logic:
+   - Within the function, there is a `require` statement that checks whether the `msg.sender` (the address of the account sending the transaction) is equal to the `_governor()` address.
+   - The `_governor()` function is assumed to be a separate function that returns the address of the governor or the privileged account that has special permissions within the contract.
+   - If the `msg.sender` is not equal to the `_governor()` address, the `require` statement will throw an exception with the error message "Only governor can execute", reverting any changes made and consuming all gas.
+
+3. Summary:
+   - The `_onlyGovernor` function serves as a modifier that restricts access to certain functions or operations within the contract to only the designated governor address.
+   - By calling this function within other functions, the contract ensures that only the governor can execute those functions, adding an additional layer of security and access control to the contract's operations.

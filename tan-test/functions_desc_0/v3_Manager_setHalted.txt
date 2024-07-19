@@ -1,0 +1,15 @@
+This code defines an external function named `setHalted` that is used to set a boolean variable `halted` to true. The function has the following characteristics:
+
+Parameters:
+- None
+
+Modifiers:
+- `notHalted`: This modifier ensures that the function can only be called when the `halted` variable is false.
+- `onlyStrategist`: This modifier restricts the access to the function to only the strategist.
+
+Functionality:
+- The function sets the `halted` variable to true, indicating that a halt condition has been triggered.
+- After setting the `halted` variable, the function emits an event `Halted()` to notify external entities about the change in the contract state.
+
+Summary:
+The `setHalted` function is an external function that can only be called by the strategist when the contract is not already halted. It sets the `halted` variable to true and emits an event to inform external parties about the halt condition.

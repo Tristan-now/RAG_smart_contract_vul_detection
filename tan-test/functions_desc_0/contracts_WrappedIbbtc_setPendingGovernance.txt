@@ -1,0 +1,14 @@
+This code defines an external function named `setPendingGovernance`, which allows the current governance address to set a new pending governance address. The function accepts one parameter: `_pendingGovernance`, which is the address of the new pending governance. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_pendingGovernance`: An address parameter that represents the new pending governance address that the current governance wants to set.
+
+Access Restriction:
+The function is marked as `external`, meaning it can be called from outside the contract. Additionally, there is a modifier `onlyGovernance` that restricts access to this function to only the current governance address.
+
+Functionality:
+When the `setPendingGovernance` function is called, it first assigns the value of the `_pendingGovernance` parameter to the `pendingGovernance` state variable. This effectively updates the pending governance address to the new value provided. 
+Next, the function emits an event `SetPendingGovernance` to log the change in the pending governance address. This event can be used to track and monitor changes in the pending governance address.
+
+Summary:
+The `setPendingGovernance` function allows the current governance address to set a new pending governance address. It updates the `pendingGovernance` state variable with the new address and emits an event to notify observers of the change.

@@ -1,0 +1,17 @@
+This code defines an external function named `updateScalingPriceOracle` that allows the contract owner to update the scaling price oracle contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newScalingPriceOracle`: This parameter is of type `IScalingPriceOracle` and represents the new scaling price oracle contract address that the owner wants to set.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function `updateScalingPriceOracle` is an external function, meaning it can be called from outside the contract. It is marked with the `override` modifier, indicating that it overrides a function from the parent contract. The function can only be called by the contract owner, as it includes the `onlyOwner` modifier.
+
+Within the function, the current scaling price oracle contract address is stored in the `oldScalingPriceOracle` variable. Then, the `scalingPriceOracle` variable is updated with the new scaling price oracle contract address provided as the `newScalingPriceOracle` parameter.
+
+After updating the scaling price oracle contract address, an event `ScalingPriceOracleUpdate` is emitted. This event includes the old scaling price oracle address (`oldScalingPriceOracle`) and the new scaling price oracle address (`newScalingPriceOracle`).
+
+Summary:
+The `updateScalingPriceOracle` function allows the contract owner to update the scaling price oracle contract address. It first stores the old scaling price oracle address, updates the contract with the new address, and emits an event to notify observers of the change.

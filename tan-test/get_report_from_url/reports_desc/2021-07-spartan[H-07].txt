@@ -1,0 +1,5 @@
+Type of vulnerability: Missing slippage checks
+Cause of vulnerability: Lack of minimum amounts out or checks to mitigate frontrunning/slippage
+Execution process: Anyone with enough capital can force arbitrarily large slippage by sandwiching transactions, close to 100%
+Detailed characteristics: Vulnerable code allows for sandwich attacks leading to significant slippage without proper checks
+Vulnerable code: The code lacks minimum amount out parameters or checks to mitigate frontrunning/slippage.

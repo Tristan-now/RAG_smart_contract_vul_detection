@@ -1,0 +1,20 @@
+This code defines an internal view function named `_getY`, which calculates the value of `y` based on the input parameters `x` and `D`. The function uses an iterative approximation method to compute the value of `y`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `x`: A `uint256` value representing a parameter used in the calculation of `y`.
+2. `D`: A `uint256` value representing another parameter used in the calculation of `y`.
+
+Return Value:
+`y`: The function returns a `uint256` value representing the calculated value of `y`.
+
+Code Breakdown:
+The function signature includes the parameters `x` and `D`. It is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+Inside the function, a variable `c` is calculated as `(D * D) / (x * 2)`. Then, `c` is further adjusted by multiplying it with `D` and dividing by `(N_A * 2) / A_PRECISION`.
+Another variable `b` is calculated as `x + ((D * A_PRECISION) / N_A)`.
+The variable `yPrev` is declared to store the previous value of `y`, and `y` is initialized to `D`.
+The function then enters a loop that iterates up to a predefined `MAX_LOOP_LIMIT`. In each iteration, the previous value of `y` is stored in `yPrev`, and a new value of `y` is calculated using the iterative approximation formula `(y * y + c) / (y * 2 + b - D)`.
+The loop continues until the new value of `y` is within a certain threshold of the previous value `yPrev`, at which point the loop breaks.
+The final calculated value of `y` is returned by the function.
+
+Summary:
+The `_getY` function uses an iterative approximation method to calculate the value of `y` based on the input parameters `x` and `D`. It performs a series of calculations and iterations to converge on a value of `y` that meets the specified criteria, and then returns this calculated value.

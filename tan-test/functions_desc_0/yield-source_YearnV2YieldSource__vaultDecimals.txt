@@ -1,0 +1,16 @@
+This code defines an internal view function named `_vaultDecimals` that retrieves the number of decimals used by the vault contract. The function simply calls the `decimals` function of the `vault` contract and returns the result as a `uint256` value.
+
+Explanation:
+
+1. Function Signature:
+   - The function `_vaultDecimals` is defined as an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+
+2. Return Value:
+   - The function returns a `uint256` value representing the number of decimals used by the vault contract.
+
+3. Code Breakdown:
+   - Within the function body, a single line of code is present which calls the `decimals` function of the `vault` contract.
+   - The result of this function call is immediately returned by the `_vaultDecimals` function.
+
+4. Summary:
+   - The `_vaultDecimals` function serves as a simple wrapper around the `decimals` function of the `vault` contract, providing a convenient way to retrieve the number of decimals used by the vault contract within the current contract.

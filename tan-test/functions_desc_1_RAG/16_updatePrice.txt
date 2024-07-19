@@ -1,0 +1,18 @@
+This code defines an internal function named `updatePrice` that is responsible for updating price records for market and oracle prices. The function takes three parameters: `marketPrice` (uint256), `oraclePrice` (uint256), and `newRecord` (bool). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `marketPrice`: The current market price that needs to be updated.
+2. `oraclePrice`: The current oracle price that needs to be updated.
+3. `newRecord`: A boolean flag indicating whether a new record entry needs to be created.
+
+Code Breakdown:
+- The function `updatePrice` is an internal function, meaning it can only be called within the contract or its derived contracts.
+- If `newRecord` is true, a new hourly record is created for both market and oracle prices. The `PriceInstant` struct is used to store the price and the number of trades for each hour.
+- If `newRecord` is false, the function updates the existing hourly record by adding the current market price to the cumulative price and incrementing the number of trades for that hour.
+- Similarly, the function updates the hourly record for the oracle price by adding the current oracle price to the cumulative price and incrementing the number of trades for that hour.
+
+Vulnerability Prediction:
+This function may be vulnerable to price manipulation attacks if the `marketPrice` and `oraclePrice` are not properly validated or if there are vulnerabilities in the data storage and calculation logic.
+
+Summary:
+The `updatePrice` function is responsible for updating hourly price records for market and oracle prices. It creates new records if `newRecord` is true or updates existing records if `newRecord` is false. The function maintains cumulative prices and the number of trades for each hour for both market and oracle prices.

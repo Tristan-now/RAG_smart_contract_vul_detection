@@ -1,0 +1,16 @@
+This code snippet defines an external function named `uncap` that overrides a function from an interface and can only be called by the governance address. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `bool`: The function returns a boolean value indicating whether the operation of uncapping was successful.
+
+Code Breakdown:
+- The function modifier `onlyGovernance` restricts the access to this function to only the governance address. This ensures that only authorized users can uncap the deposit cap.
+- The function begins with a `require` statement that checks if the contract is currently capped using the `isCapped()` function. If the contract is not capped, it will revert the transaction with the error message `Error.NOT_CAPPED`.
+- If the contract is capped, the function proceeds to set the `depositCap` variable to 0, effectively uncapping the deposit limit.
+- Finally, the function returns `true` to indicate that the uncapping operation was successful.
+
+Summary:
+The `uncap` function is used to remove the deposit cap on the contract. It first checks if the contract is currently capped, then sets the deposit cap to 0 if it is capped. The function can only be called by the governance address, ensuring that only authorized users can perform this operation.

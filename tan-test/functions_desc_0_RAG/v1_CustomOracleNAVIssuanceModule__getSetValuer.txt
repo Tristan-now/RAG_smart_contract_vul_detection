@@ -1,0 +1,16 @@
+This code defines an internal function named `_getSetValuer`, which is used to retrieve the set valuer for a given SetToken. The function accepts a parameter `_setToken` of type `ISetToken` and returns an `ISetValuer` interface.
+
+Parameters:
+1. `_setToken`: An interface representing a SetToken for which the set valuer needs to be retrieved.
+
+Return Value:
+The function returns an `ISetValuer` interface representing the set valuer for the given SetToken.
+
+Code Breakdown:
+The function `_getSetValuer` is an internal function, meaning it can only be accessed within the contract or its derived contracts. It takes an `ISetToken` parameter `_setToken` as input. Inside the function, it attempts to retrieve a custom set valuer for the `_setToken` from the `navIssuanceSettings` mapping. If a custom set valuer is found, it is stored in the `customValuer` variable. If the address of the `customValuer` is equal to 0 (indicating that no custom set valuer is set), the function retrieves the default set valuer from the `controller` contract using the `getSetValuer` function. Otherwise, it returns the custom set valuer.
+
+Vulnerability Prediction:
+This function does not seem to have any specific vulnerabilities based on the provided code snippet. However, it is important to ensure that the `navIssuanceSettings` mapping is properly initialized and updated to avoid any potential vulnerabilities related to incorrect set valuer assignments.
+
+Summary:
+The `_getSetValuer` function is used to fetch the set valuer for a given SetToken. It first checks if a custom set valuer is set for the token in the `navIssuanceSettings` mapping. If not, it falls back to the default set valuer obtained from the `controller` contract. This function helps in retrieving the appropriate set valuer for a specific SetToken.

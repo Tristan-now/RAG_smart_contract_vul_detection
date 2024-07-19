@@ -1,0 +1,15 @@
+This code defines a smart contract named `BridgeMinter` that acts as a bridge between two different blockchains for token migration. The contract includes functions to set addresses, migrate tokens to a new minter, withdraw ETH and tokens, mint tokens, and handle deposits.
+
+Key Components:
+1. `BridgeMinter` contract inherits from the `Manager` contract.
+2. State variables include `tokenAddr`, `l1MigratorAddr`, and `l1LPTGatewayAddr` to store addresses.
+3. Modifiers `onlyL1Migrator` and `onlyL1LPTGateway` restrict access to specific functions.
+4. Constructor initializes the contract with addresses.
+5. Functions like `setToken`, `setL1Migrator`, and `setL1LPTGateway` update addresses.
+6. `migrateToNewMinter` transfers ownership and balances to a new minter.
+7. `withdrawETHToL1Migrator` and `withdrawLPTToL1Migrator` transfer ETH and tokens to the L1Migrator.
+8. `bridgeMint` mints tokens to a specified address.
+9. `depositETH` allows depositing ETH.
+10. `getController` returns the Controller address.
+
+Overall, the `BridgeMinter` contract facilitates token migration between blockchains by managing token ownership, balances, and transfers. It ensures secure and controlled migration processes through access control modifiers and trusted interactions with other contracts.

@@ -1,0 +1,12 @@
+This code snippet defines a public function named `initPointList` that overrides a function from an inherited contract. The function takes one parameter, `_admin`, which is an address representing the administrator of the contract.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_admin`: An address representing the administrator of the contract.
+
+Code Breakdown:
+The `initPointList` function is a public function that initializes the access controls of the contract by calling the `initAccessControls` function with the `_admin` address as an argument. The `initAccessControls` function is assumed to be defined in the inherited contract and is responsible for setting up the access controls within the contract.
+
+Summary:
+The `initPointList` function serves as an entry point for setting up the access controls of the contract by passing the administrator address to the `initAccessControls` function. This function is crucial for initializing the necessary permissions and roles within the contract.

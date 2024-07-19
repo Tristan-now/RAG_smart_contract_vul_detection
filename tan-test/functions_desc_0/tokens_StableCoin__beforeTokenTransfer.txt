@@ -1,0 +1,15 @@
+This code snippet defines an internal function named `_beforeTokenTransfer` that overrides the same function from two parent contracts, `ERC20` and `ERC20Pausable`. The function is triggered before a token transfer occurs and performs certain actions. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `from`: The address from which the tokens are being transferred.
+2. `to`: The address to which the tokens are being transferred.
+3. `amount`: The amount of tokens being transferred.
+
+Code Breakdown:
+The `_beforeTokenTransfer` function is an internal virtual function, meaning it can only be accessed within the contract or its derived contracts, and it can be overridden by child contracts.
+Within the function, `super._beforeTokenTransfer(from, to, amount);` is called to invoke the same function from the parent contracts `ERC20` and `ERC20Pausable`. This ensures that any logic implemented in the parent contracts related to token transfers is executed before the custom logic in this contract.
+By calling `super._beforeTokenTransfer(from, to, amount);`, the function ensures that the token transfer is paused or any other checks defined in the parent contracts are enforced before proceeding with the transfer.
+The function does not contain any additional custom logic beyond calling the parent contract's `_beforeTokenTransfer` function.
+
+Summary:
+The `_beforeTokenTransfer` function in this contract serves as a hook that is triggered before a token transfer takes place. By calling the same function from the parent contracts `ERC20` and `ERC20Pausable`, it ensures that any necessary checks or actions defined in those contracts are carried out before the token transfer is completed.

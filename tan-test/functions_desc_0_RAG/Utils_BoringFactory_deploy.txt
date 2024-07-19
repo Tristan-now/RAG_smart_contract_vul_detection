@@ -1,0 +1,22 @@
+This code defines a function named `deploy` that is used to deploy a clone contract based on a master contract. The function accepts three parameters: `masterContract`, `data`, and `useCreate2`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `masterContract`: The address of the master contract from which the clone will be created.
+2. `data`: The initialization data for the clone contract.
+3. `useCreate2`: A boolean flag indicating whether to use the `CREATE2` opcode for creating the clone contract.
+
+Return Value:
+`cloneAddress`: The address of the deployed clone contract.
+
+Code Breakdown:
+The function first checks if the `masterContract` address is not zero. It then extracts the first 20 bytes of the `masterContract` address and stores it in `targetBytes`.
+
+If `useCreate2` is true, the function calculates a `salt` value based on the `data` provided. It then creates a clone contract using the `CREATE2` opcode. The assembly code dynamically creates a clone contract based on the master contract and the provided data.
+
+If `useCreate2` is false, the function creates a clone contract using the `CREATE` opcode. Similar to the previous case, the assembly code dynamically creates a clone contract based on the master contract and the provided data.
+
+After creating the clone contract, the function records the relationship between the clone contract and its master contract in the `masterContractOf` mapping. It then initializes the clone contract by calling the `init` function of the `IMasterContract` interface, passing the initialization `data` and transferring any attached value.
+
+Finally, the function emits a `LogDeploy` event with information about the master contract, data, and the address of the deployed clone contract.
+
+In summary, the `deploy` function allows for the deployment of clone contracts based on a master contract, with the option to use `CREATE2` for deterministic deployment.

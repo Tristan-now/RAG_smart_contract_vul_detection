@@ -1,0 +1,15 @@
+This code snippet defines an external function named `setMintFee` that allows for setting a new minting fee in basis points. The function requires the caller to have either the `GOVERNOR` or `PARAMETER_ADMIN` role. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newMintFeeBasisPoints`: A `uint256` parameter representing the new minting fee to be set in basis points.
+
+Function Modifier:
+- `hasAnyOfTwoRoles(TribeRoles.GOVERNOR, TribeRoles.PARAMETER_ADMIN)`: This modifier ensures that the caller of the `setMintFee` function has either the `GOVERNOR` or `PARAMETER_ADMIN` role.
+
+Function Implementation:
+- The `setMintFee` function is defined as `external`, meaning it can be called from outside the contract.
+- The function overrides a function from an interface or a parent contract, indicating that it implements the required functionality.
+- Within the function body, the `_setMintFee` function is called with the `newMintFeeBasisPoints` parameter. This function is presumably defined elsewhere in the contract and is responsible for setting the new minting fee.
+
+Summary:
+The `setMintFee` function provides a way to set a new minting fee in basis points. It enforces role-based access control by requiring the caller to have either the `GOVERNOR` or `PARAMETER_ADMIN` role. Upon successful execution, the function delegates the actual setting of the minting fee to the `_setMintFee` function.

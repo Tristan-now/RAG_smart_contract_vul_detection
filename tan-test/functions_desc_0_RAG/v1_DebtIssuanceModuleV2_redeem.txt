@@ -1,0 +1,21 @@
+This code defines an `redeem` function that allows users to redeem a specified quantity of a SetToken. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the SetToken contract that the user wants to redeem.
+2. `_quantity`: The quantity of SetToken units that the user wants to redeem.
+3. `_to`: The address to which the redeemed SetTokens will be transferred.
+
+Functionality:
+1. The function first checks if the `_quantity` to be redeemed is greater than 0.
+2. It then calls a function `_callModulePreRedeemHooks` to execute any pre-redeem hooks defined in the SetToken module.
+3. The initial total supply of the SetToken is stored in `initialSetSupply`.
+4. The function then burns `_quantity` tokens from the caller's address using the `burn` function of the SetToken contract.
+5. It calculates the total fees associated with the redemption, including `quantityNetFees`, `managerFee`, and `protocolFee`.
+6. To prevent a stack too deep error, the function calculates the required component issuance units for the redemption.
+7. It then calculates the final total supply of the SetToken after the redemption.
+8. The function resolves any debt positions by calling `_resolveDebtPositions` and passing the necessary parameters.
+9. It resolves equity positions by calling `_resolveEquityPositions` and passing the required parameters.
+10. It resolves the fees by calling `_resolveFees` and passing the `managerFee` and `protocolFee`.
+11. Finally, it emits a `SetTokenRedeemed` event with details of the redemption, including the SetToken, sender, recipient, quantity redeemed, manager fee, and protocol fee.
+
+Overall, the `redeem` function allows users to redeem a specified quantity of SetTokens, handles the burning of tokens, calculates and resolves fees, and emits an event to track the redemption process.

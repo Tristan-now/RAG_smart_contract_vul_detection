@@ -1,0 +1,17 @@
+This code snippet defines an interface named `IRewardsDistributor` and another interface named `IExtraRewardsDistributor`.
+
+1. `IRewardsDistributor` Interface:
+   - `function lock(address _account, uint256 _amount) external;`: This function locks a specified `_amount` of tokens for the `_account`.
+   - `function checkpointEpoch() external;`: This function checkpoints the current epoch.
+   - `function epochCount() external view returns (uint256);`: This function returns the total number of epochs.
+   - `function balanceAtEpochOf(uint256 _epoch, address _user) external view returns (uint256 amount);`: This function returns the balance of `_user` at a specific `_epoch`.
+   - `function totalSupplyAtEpoch(uint256 _epoch) external view returns (uint256 supply);`: This function returns the total supply at a specific `_epoch`.
+   - `function queueNewRewards(uint256 _rewards) external;`: This function queues new rewards to be distributed.
+   - `function notifyRewardAmount(address _rewardsToken, uint256 reward) external;`: This function notifies the contract about the reward amount to be distributed.
+   - `function getReward(address _account, bool _stake) external;`: This function allows `_account` to claim rewards, with an additional parameter `_stake` indicating whether the rewards are for staking.
+   - `function getReward(address _account) external;`: This function allows `_account` to claim rewards without specifying whether they are for staking.
+
+2. `IExtraRewardsDistributor` Interface:
+   - `function addReward(address _token, uint256 _amount) external;`: This function adds additional rewards of a specified `_amount` for a specific `_token`.
+
+These interfaces define the required functions that a contract must implement to distribute rewards, lock tokens, checkpoint epochs, query balances at specific epochs, and handle reward distribution mechanisms. The `IRewardsDistributor` interface provides functions related to reward distribution and management, while the `IExtraRewardsDistributor` interface allows for adding extra rewards for specific tokens. Implementing contracts must adhere to these interfaces to ensure compatibility and interoperability within the ecosystem.

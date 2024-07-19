@@ -1,0 +1,38 @@
+This code defines a private pure function named `endDateTime`, which converts a given timestamp representing the end date and time into a human-readable string format. The function accepts a parameter `endDateSeconds` of type `uint256`, which is the timestamp in seconds.
+
+Parameters:
+1. `endDateSeconds`: The timestamp in seconds representing the end date and time.
+
+Return Value:
+The function returns a `string` value representing the formatted end date and time in UTC.
+
+Code Breakdown:
+The function uses the `BokkyPooBahsDateTimeLibrary.timestampToDateTime` function to convert the timestamp into individual date and time components: year, month, day, hour, minute, and second. These components are then concatenated into a formatted string using the `string.concat` function provided by the `Strings` library. Each component is converted to a string using the `Strings.toString` function and separated by dashes for date components and colons for time components. The resulting string represents the end date and time in the format "YYYY-MM-DD HH:MM:SS UTC".
+
+Overall, the `endDateTime` function takes a timestamp as input, converts it into a human-readable date and time format, and returns the formatted string representing the end date and time in UTC.
+
+[REFERENCE VULNERABILITY REPORTS]
+- No vulnerability reports are relevant to the provided code.
+
+[TASK CODE]
+```solidity
+function endDateTime(uint256 endDateSeconds) private pure returns (string memory) {
+    (uint year, uint month, 
+    uint day, uint hour, 
+    uint minute, uint second) = BokkyPooBahsDateTimeLibrary.timestampToDateTime(endDateSeconds);
+    return string.concat(
+            Strings.toString(year),
+            '-',
+            Strings.toString(month),
+            '-',
+            Strings.toString(day),
+            ' ',
+            Strings.toString(hour),
+            ':',
+            Strings.toString(minute),
+            ':',
+            Strings.toString(second),
+            ' UTC'
+    );
+}
+```

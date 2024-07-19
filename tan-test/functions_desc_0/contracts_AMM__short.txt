@@ -1,0 +1,26 @@
+This code defines an internal function named `_short`, which is used to execute a short position in a Virtual Automated Market Maker (VAMM) contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `baseAssetQuantity`: An `int256` value representing the quantity of the base asset to be shorted. It must be negative to indicate a short position.
+2. `min_dy`: A `uint` value representing the minimum acceptable amount of the quote asset to receive in the short trade.
+
+Return Value:
+`quoteAssetQuantity`: The function returns a `uint256` value representing the quantity of the quote asset received in the short trade.
+
+Code Breakdown:
+The function `_short` starts with a `require` statement to ensure that the `baseAssetQuantity` is negative, indicating a short position. If the `baseAssetQuantity` is not negative, the function will revert with an error message.
+
+Inside the function, a variable `_lastPrice` is declared to store the last price obtained from the VAMM exchange function. The `vamm.exchange` function is then called with the following parameters:
+- `1`: Indicates selling the base asset.
+- `0`: Indicates receiving the quote asset.
+- `(-baseAssetQuantity).toUint256()`: Converts the negative `baseAssetQuantity` to a `uint256` value for the exchange function.
+- `min_dy`: Represents the minimum amount of the quote asset to receive in the trade.
+
+The result of the exchange function call is stored in `quoteAssetQuantity` and `_lastPrice`. After the trade, a reserve snapshot is added using the `_addReserveSnapshot` function.
+
+The `posAccumulator` variable is then updated to reflect the change in the position due to the short trade. It calculates the new position accumulator based on the negative `baseAssetQuantity` and the total supply of the VAMM contract.
+
+Finally, an `emit` statement triggers an event called `Swap`, providing details of the short trade, including the base asset quantity, quote asset quantity, last price, and open interest notional.
+
+Summary:
+The `_short` function allows for executing a short position in the VAMM contract by selling the base asset and receiving the quote asset. It ensures that the base asset quantity is negative, updates the position accumulator, and emits an event to track the trade details.

@@ -1,0 +1,13 @@
+This code snippet defines an external function named `setYetiAddress` that allows the contract owner (presumably the team) to set the address of a specific ERC20 token (referred to as `_YETI`) to be used within the contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_YETI`: This parameter is of type `IERC20` and represents the address of the ERC20 token that the contract will interact with.
+
+Modifiers:
+- `onlyTeam`: This modifier restricts the execution of the `setYetiAddress` function to only the team members or the contract owner.
+
+Functionality:
+- The `setYetiAddress` function sets the value of the contract's `YETI` variable to the provided `_YETI` address.
+- It also sets the `yetiSet` boolean variable to `true`, indicating that the `_YETI` address has been successfully set.
+
+Overall, this function allows the contract owner to specify the ERC20 token address that the contract will work with, ensuring that the contract can interact with the specified token.

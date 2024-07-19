@@ -1,0 +1,19 @@
+This code defines an internal view function named `getAndValidateAdapter` that retrieves and validates an adapter address based on the integration name provided as a parameter. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_integrationName`: A string parameter representing the integration name for which the adapter address needs to be retrieved and validated.
+
+Return Value:
+The function returns an `address` representing the validated adapter address.
+
+Code Breakdown:
+The function signature includes the parameter `_integrationName`, which is a string representing the integration name for which the adapter address needs to be retrieved and validated. The function is marked as `internal view`, indicating that it can only be called internally and does not modify the contract state.
+
+Within the function, a `bytes32` variable named `integrationHash` is declared and initialized with the hash of the integration name using the `getNameHash` function. This hash is used to uniquely identify the integration name.
+
+The function then calls another internal function named `getAndValidateAdapterWithHash` and passes the `integrationHash` as a parameter to retrieve and validate the adapter address associated with the integration name.
+
+Finally, the validated adapter address is returned as the output of the function.
+
+Summary:
+The `getAndValidateAdapter` function takes an integration name as input, calculates the hash of the integration name, and then calls another internal function to retrieve and validate the adapter address based on the integration name. The validated adapter address is then returned as the result of the function.

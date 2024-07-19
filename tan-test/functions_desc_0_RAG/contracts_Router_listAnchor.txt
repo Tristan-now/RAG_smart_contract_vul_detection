@@ -1,0 +1,19 @@
+This code defines an external function named `listAnchor`, which adds a token to an array of anchors and performs some additional operations. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: An address representing the token to be added as an anchor.
+
+Code Breakdown:
+The function signature includes the parameter `token`. `listAnchor` is an external function, meaning it can be called from outside the contract. The function first checks two conditions using `require` statements:
+1. It checks if the length of the `arrayAnchors` is less than `anchorLimit`, ensuring that the limit of anchors has not been reached.
+2. It verifies if the token passed as a parameter is an anchor by calling the `isAnchor` function from the `POOLS` contract through the `iPOOLS(POOLS)` interface.
+
+If both conditions are met, the function proceeds to add the token to the `arrayAnchors` array using `arrayAnchors.push(token)`. It also calculates the value of the token in the base currency by calling `calcValueInBase` function from the `UTILS` contract through the `iUTILS(UTILS())` interface and pushes this value to the `arrayPrices` array.
+
+Additionally, the function sets the `_isCurated[token]` flag to `true`, indicating that the token is curated. Finally, it calls the `updateAnchorPrice` function to update the price of the newly added anchor token.
+
+Vulnerability prediction:
+This function may be vulnerable to a permissionless token listing vulnerability due to the lack of proper access control and weak token verification. Malicious actors could potentially list anchors without proper verification, leading to price manipulation and reward removal from curated pools.
+
+Summary:
+The `listAnchor` function adds a token to an array of anchors, calculates its value in the base currency, marks it as curated, and updates its price. However, it lacks proper access control and strong token verification, making it susceptible to permissionless token listing vulnerabilities.

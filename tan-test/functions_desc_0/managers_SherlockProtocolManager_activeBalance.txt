@@ -1,0 +1,18 @@
+This code snippet defines an external view function named `activeBalance` that is part of a contract implementing an interface. The function takes a single parameter `_protocol` of type `bytes32`, which represents the protocol for which the active balance needs to be retrieved. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_protocol`: A bytes32 variable representing the protocol for which the active balance is to be retrieved.
+
+Modifiers:
+- `protocolExists(_protocol)`: This modifier ensures that the specified protocol exists before allowing the function to proceed. It validates whether the protocol is valid and known within the system.
+
+Return Value:
+The function returns a `uint256` value representing the active balance of the specified protocol.
+
+Code Breakdown:
+The `activeBalance` function is an external view function, meaning it can be called from outside the contract and does not modify the state of the contract. The function overrides a function from an interface, indicating that the contract implements the specified interface.
+
+Within the function body, it simply calls another internal function `_activeBalance(_protocol)` to retrieve the active balance of the specified protocol. This internal function is not shown in the provided code snippet but is assumed to exist within the contract and handle the logic for calculating the active balance based on the given protocol.
+
+Summary:
+The `activeBalance` function serves as a public interface for retrieving the active balance of a specific protocol. It ensures that the protocol exists by using a modifier and delegates the actual balance calculation to an internal function `_activeBalance`. This design separates concerns and allows for better code organization and readability.

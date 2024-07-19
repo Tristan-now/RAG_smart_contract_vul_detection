@@ -1,0 +1,18 @@
+This code defines a public view function named `addQuote` that calculates the amount of LP (Liquidity Provider) tokens to be added based on the provided base token amount and fractional token amount. The function takes two parameters: `baseTokenAmount` representing the amount of base token to be added and `fractionalTokenAmount` representing the amount of fractional token to be added. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `baseTokenAmount`: A uint256 value representing the amount of base token to be added.
+2. `fractionalTokenAmount`: A uint256 value representing the amount of fractional token to be added.
+
+Return Value:
+The function returns a uint256 value representing the amount of LP tokens to be added.
+
+Code Breakdown:
+The function first retrieves the total supply of LP tokens by calling the `totalSupply` function on the `lpToken` contract instance. If the LP token supply is greater than 0, the function calculates the amount of LP tokens to be minted based on the existing reserves of base and fractional tokens. 
+- `baseTokenShare` is calculated by multiplying the `baseTokenAmount` with the total supply of LP tokens and dividing by the base token reserves.
+- `fractionalTokenShare` is calculated in a similar manner using the `fractionalTokenAmount`.
+- The function then returns the minimum value between `baseTokenShare` and `fractionalTokenShare`.
+If there is no liquidity (LP token supply is 0), the function calculates the initial amount of LP tokens to be minted using the square root of the product of `baseTokenAmount` and `fractionalTokenAmount`.
+
+Summary:
+The `addQuote` function calculates the amount of LP tokens to be minted based on the provided base token amount and fractional token amount. It considers the existing reserves of base and fractional tokens to determine the LP token share. If there is no existing liquidity, it calculates the initial LP token amount using the square root of the product of base and fractional token amounts.

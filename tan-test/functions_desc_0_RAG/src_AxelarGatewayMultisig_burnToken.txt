@@ -1,0 +1,26 @@
+This code snippet defines an external function named `burnToken` that takes in two parameters: `params` of type `bytes calldata` and `bytes32`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `params`: A dynamic array of bytes that contains encoded data.
+2. `bytes32`: A fixed-size byte array of 32 bytes.
+
+Code Breakdown:
+- The `burnToken` function is marked as `external`, meaning it can be called from outside the contract.
+- The function accepts two parameters: `params` and `bytes32`.
+- Inside the function, the `abi.decode` function is used to decode the `params` array into a tuple containing a `string` variable named `symbol` and a `bytes32` variable named `salt`.
+- The `_burnToken` function is then called with the decoded `symbol` and `salt` as arguments.
+
+Summary:
+The `burnToken` function decodes the input `params` array to extract a `symbol` and `salt`, which are then passed to the `_burnToken` function for further processing.
+
+[REFERENCE VULNERABILITY REPORTS]
+- No specific vulnerability reports are referenced in this case.
+
+[TASK CODE]
+```solidity
+function burnToken(bytes calldata params, bytes32) external onlySelf {
+    (string memory symbol, bytes32 salt) = abi.decode(params, (string, bytes32));
+
+    _burnToken(symbol, salt);
+}
+```

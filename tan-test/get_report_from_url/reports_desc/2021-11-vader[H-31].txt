@@ -1,0 +1,9 @@
+Type of vulnerability: Unused slippage params
+Cause of vulnerability: Function addLiquidity in VaderRouter (both V1 and V2) does not use slippage parameters.
+Execution process: The lack of slippage parameters in the addLiquidity function makes the contract vulnerable to sandwich attacks and MEV.
+Detailed characteristics: Lack of consideration for slippage parameters in the function addLiquidity increases the risk of manipulation attacks from mempool snipers.
+Vulnerable code:
+```
+uint256,// amountAMin = unused
+uint256,// amountBMin = unused
+```

@@ -1,0 +1,14 @@
+This code defines an internal function named `_min`, which calculates the minimum value between two input parameters. The function accepts two `uint256` parameters `a` and `b` and returns the minimum value among them.
+
+Parameters:
+1. `a`: A `uint256` value representing the first input parameter.
+2. `b`: A `uint256` value representing the second input parameter.
+
+Return Value:
+The function returns a `uint256` value representing the minimum value between `a` and `b`.
+
+Code Breakdown:
+The function signature includes the parameters `a` and `b`. `_min` is an internal function, meaning it can only be called within the contract or its derived contracts. The function accepts two `uint256` parameters `a` and `b`. The function returns a `uint256` variable representing the minimum value, initialized to 0. The function compares the values of `a` and `b` using an `if` statement. If `a` is less than or equal to `b`, the function returns `a` as the minimum value. Otherwise, if `b` is less than `a`, the function returns `b` as the minimum value.
+
+Summary:
+The `_min` function calculates the minimum value between two input parameters `a` and `b` and returns the smaller of the two values.

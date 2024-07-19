@@ -1,0 +1,17 @@
+This code defines an internal function named `_getMinOut`, which calculates the minimum output amount based on the input amount and a minimum output basis points (minOutBps). The function accepts two parameters: `amount` (the input amount) and `minOutBps` (the minimum output basis points). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `amount`: A `uint256` value representing the input amount for which the minimum output is calculated.
+2. `minOutBps`: A `uint256` value representing the minimum output basis points, which is used to calculate the minimum output amount.
+
+Return Value:
+The function returns a `uint256` value representing the minimum output amount based on the input amount and the minimum output basis points.
+
+Code Breakdown:
+The function signature includes the parameters `amount` and `minOutBps`. `_getMinOut` is an internal function, meaning it can only be called within the contract or its derived contracts. The function accepts two parameters: `amount` (the input amount) and `minOutBps` (the minimum output basis points). The function returns a `uint256` variable named `minOut`, which will store the calculated minimum output amount. 
+Inside the function, the `_getBptPrice` function is called to get the Balancer time-weighted average price denominated in BAL. This price is stored in the `bptOraclePrice` variable.
+The minimum output amount `minOut` is calculated using the formula: `(((amount * 1e18) / bptOraclePrice) * minOutBps) / 10000`. This formula calculates the minimum output amount based on the input amount, the Balancer time-weighted average price denominated in BAL, and the minimum output basis points.
+The calculated minimum output amount `minOut` is then returned by the function.
+
+Summary:
+The `_getMinOut` function calculates the minimum output amount based on the input amount and the minimum output basis points. It first retrieves the Balancer time-weighted average price denominated in BAL using the `_getBptPrice` function, then calculates the minimum output amount using the provided formula, and finally returns the calculated minimum output amount.

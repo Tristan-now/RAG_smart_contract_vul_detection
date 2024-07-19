@@ -1,0 +1,16 @@
+This code defines a public function named `getMonthString` that takes a `uint256` parameter `_month` and returns a `string` representing the month abbreviation corresponding to the input month number. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_month`: A `uint256` value representing the month number (1-12).
+
+Return Value:
+The function returns a `string` representing the abbreviation of the month corresponding to the input `_month`.
+
+Code Breakdown:
+The function signature includes the parameter `_month`, which is the month number for which we want to retrieve the abbreviation.
+Inside the function, an array of strings named `months` is defined with a length of 12, containing abbreviations for each month.
+The function then returns the element at the index `_month` from the `months` array. Since arrays in Solidity are zero-indexed, the month abbreviation at index `_month` corresponds to the input month number.
+For example, if `_month` is 1, the function will return 'Jan', if `_month` is 2, it will return 'Feb', and so on.
+The function is marked as `pure`, indicating that it does not read from or modify the contract's state, making it a read-only function.
+Summary:
+The `getMonthString` function takes a month number as input and returns the corresponding month abbreviation. It uses a predefined array of month abbreviations to map the input month number to the corresponding abbreviation.

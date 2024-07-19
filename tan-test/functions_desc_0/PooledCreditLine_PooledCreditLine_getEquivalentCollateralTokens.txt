@@ -1,0 +1,20 @@
+This code defines an external view function named `getEquivalentCollateralTokens` that calculates the equivalent amount of collateral tokens needed for a given borrow token amount in a specific credit line. The function accepts two parameters: `_id`, which is the identifier of the pooled credit line, and `_borrowTokenAmount`, which is the amount of borrow tokens.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: An unsigned integer representing the identifier of the pooled credit line for which the equivalent collateral tokens need to be calculated.
+2. `_borrowTokenAmount`: An unsigned integer representing the amount of borrow tokens for which the equivalent collateral tokens need to be determined.
+
+Return Value:
+The function returns a `uint256` value representing the equivalent amount of collateral tokens required for the specified borrow token amount.
+
+Code Breakdown:
+The function signature includes the parameters `_id` and `_borrowTokenAmount`. `getEquivalentCollateralTokens` is an external view function, meaning it can be called from outside the contract and does not modify the contract state.
+The function first retrieves the address of the collateral asset associated with the specified credit line `_id` from the `pooledCreditLineConstants` mapping and stores it in the variable `_collateralAsset`. It then checks if the `_collateralAsset` address is not equal to `address(0)` to ensure that a valid collateral asset is set for the credit line. If the collateral asset is not set, the function reverts with the error message 'PCL:CTTL1'.
+Next, the function retrieves the address of the borrow asset associated with the specified credit line `_id` and stores it in the variable `_borrowAsset`.
+The function then calls the `_equivalentCollateral` internal function with the parameters `_collateralAsset`, `_borrowAsset`, and `_borrowTokenAmount` to calculate the equivalent amount of collateral tokens required for the specified borrow token amount.
+Finally, the calculated equivalent collateral tokens amount is returned as the result of the function.
+
+Summary:
+The `getEquivalentCollateralTokens` function retrieves the collateral and borrow assets associated with a specific credit line, then calls an internal function `_equivalentCollateral` to calculate the equivalent amount of collateral tokens needed for a given borrow token amount. The function ensures that valid assets are set for the credit line and returns the calculated equivalent collateral tokens amount.

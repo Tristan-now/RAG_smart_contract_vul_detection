@@ -1,0 +1,20 @@
+This code defines an external function named `setUniswapFeedAddress`, which allows the contract owner to set the address of a Uniswap pool for a pair of tokens. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token1`: The address of the first token in the Uniswap pair.
+2. `token2`: The address of the second token in the Uniswap pair.
+3. `pool`: The address of the Uniswap pool contract.
+
+Functionality:
+The `setUniswapFeedAddress` function is an external function, meaning it can be called from outside the contract. The function can only be called by the contract owner, as indicated by the `onlyOwner` modifier (not shown in the provided code snippet). The function takes three parameters: `token1`, `token2`, and `pool`, representing the two tokens and the Uniswap pool contract address, respectively.
+
+The function first checks if `token1` is not equal to `token2` using the `require` statement. This check ensures that the two tokens in the pair are different, preventing setting the Uniswap pool for the same token.
+
+Next, the function generates a unique identifier for the Uniswap pool tokens pair using the `getUniswapPoolTokenId` function (not shown in the provided code snippet) and stores it in the variable `_poolTokensId`.
+
+The Uniswap pool address (`pool`) is then assigned to the `uniswapPools` mapping using the `_poolTokensId` as the key. This mapping stores the Uniswap pool addresses for different token pairs.
+
+Finally, the function emits an `UniswapFeedUpdated` event, providing information about the updated Uniswap feed, including the two tokens, the pool token ID, and the pool address.
+
+Summary:
+The `setUniswapFeedAddress` function allows the contract owner to set the Uniswap pool address for a pair of tokens. It performs validation to ensure that the tokens are different and then updates the mapping with the new pool address. An event is emitted to notify external parties about the update.

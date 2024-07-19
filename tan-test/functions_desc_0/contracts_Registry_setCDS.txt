@@ -1,0 +1,23 @@
+This code defines an external function named `setCDS`, which allows the contract owner to set a CDS (Credit Default Swap) address for a specific address. The function accepts two parameters: `_address` and `_cds`, both of type `address`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_address`: The address for which the CDS address is being set.
+2. `_cds`: The CDS address that will be set for the specified `_address`.
+
+Modifiers:
+- `onlyOwner`: This modifier restricts the execution of the function to only the contract owner.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function signature includes the parameters `_address` and `_cds`, both of type `address`. The function is marked as `external`, meaning it can be called from outside the contract. It also overrides a function from an inherited interface or contract.
+
+The function starts with a `require` statement to ensure that the `_cds` address is not the zero address. If `_cds` is the zero address, the function will revert with an error message.
+
+If the `_cds` address is valid, the function proceeds to set the CDS address for the specified `_address`. This is done by assigning the `_cds` address to the `cds` mapping with the key `_address`.
+
+After setting the CDS address, the function emits an event `CDSSet` to log the `_address` and `_cds` that have been set.
+
+Summary:
+The `setCDS` function allows the contract owner to set a CDS address for a specific address. It performs input validation to ensure that the CDS address is not the zero address and then sets the CDS address in the `cds` mapping. Finally, it emits an event to log the address and CDS pair that has been set.

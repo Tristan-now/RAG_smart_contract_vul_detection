@@ -1,0 +1,51 @@
+This code defines an external function named `lendGivenPercentETHCollateral`, which facilitates lending a specified percentage of ETH collateral. The function accepts several parameters and internally calls another function `_lendGivenPercent` to handle the lending process. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `natives`: A nested mapping structure that stores information related to native assets.
+2. `convenience`: An instance of the `IConvenience` interface.
+3. `factory`: An instance of the `IFactory` interface.
+4. `weth`: An instance of the `IWETH` interface.
+5. `params`: A struct containing various parameters required for the lending operation, such as the asset, maturity, addresses for bond and insurance, asset in, percentage, minimum bond, minimum insurance, and deadline.
+
+Return Values:
+1. `assetIn`: A `uint256` value representing the amount of asset provided as collateral.
+2. `claimsOut`: An instance of the `IPair.Claims` struct containing information about the claims generated during the lending process.
+
+Code Breakdown:
+The `lendGivenPercentETHCollateral` function is an external function, meaning it can be called from outside the contract. It accepts the parameters `natives`, `convenience`, `factory`, and `params` of type `ILend.LendGivenPercentETHCollateral`. Inside the function, it calls the `_lendGivenPercent` function, passing it the necessary parameters to handle the lending operation. The `_lendGivenPercent` function is responsible for executing the lending process based on the provided parameters. The function then returns the `assetIn` value representing the collateral amount provided and the `claimsOut` struct containing information about the claims generated during the lending process.
+
+Overall, the `lendGivenPercentETHCollateral` function serves as a wrapper that orchestrates the lending process by delegating the actual lending logic to the `_lendGivenPercent` function.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for this specific code snippet.
+
+[TASK CODE]
+```solidity
+function lendGivenPercentETHCollateral(
+        mapping(IERC20 => mapping(IERC20 => mapping(uint256 => IConvenience.Native))) storage natives,
+        IConvenience convenience,
+        IFactory factory,
+        IWETH weth,
+        ILend.LendGivenPercentETHCollateral calldata params
+    ) external returns (uint256 assetIn, IPair.Claims memory claimsOut) {
+        (assetIn, claimsOut) = _lendGivenPercent(
+            natives,
+            ILend._LendGivenPercent(
+                convenience,
+                factory,
+                params.asset,
+                weth,
+                params.maturity,
+                msg.sender,
+                params.bondTo,
+                params.insuranceTo,
+                params.assetIn,
+                params.percent,
+                params.minBond,
+                params.minInsurance,
+                params.deadline
+            )
+        );
+    }
+```
+```

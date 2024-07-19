@@ -1,0 +1,17 @@
+This code defines an external function named `setPendingVaultGovernancesAdd`, which allows an admin to set pending addresses for vault governance addition. The function accepts an array of addresses (`addresses`) as a parameter and is restricted to be called only by an admin.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `addresses`: An array of addresses that represent the pending addresses for vault governance addition.
+
+Functionality:
+- The function first checks if the caller of the function is an admin by calling the `isAdmin` function with `msg.sender` as the parameter. If the caller is not an admin, it will revert with the error message "ADMIN".
+- If the caller is an admin, the function sets the `_pendingVaultGovernancesAdd` variable to the provided `addresses` array.
+- It also sets the `pendingVaultGovernancesAddTimestamp` variable to the current block timestamp plus the governance delay specified in the `params` variable.
+
+Summary:
+The `setPendingVaultGovernancesAdd` function allows an admin to set pending addresses for vault governance addition. It ensures that only admins can call this function and updates the pending addresses and timestamp accordingly.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for this specific code snippet.

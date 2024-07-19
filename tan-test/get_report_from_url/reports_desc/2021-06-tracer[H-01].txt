@@ -1,0 +1,10 @@
+Type of vulnerability: Wrong trading pricing calculations
+Cause of vulnerability: Agent spamming a high amount of trades at an arbitrary price
+Execution process: Agent creates a high amount of orders with near-zero amounts at an arbitrary price, pairs orders with another account, calls Trader.executeTrade which calls Pricing.recordTrade using the arbitrary price set by the agent, skewing the average price calculation
+Detailed characteristics: Vulnerability allows manipulation of trading prices by spamming trades at arbitrary prices, skewing average price calculation used for funding rates and fair price
+Vulnerable code:
+```solidity
+function recordTrade(uint256 fillAmount) public {
+    // Record trade with fillAmount
+}
+```

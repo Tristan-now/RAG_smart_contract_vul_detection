@@ -1,0 +1,21 @@
+This code defines an internal function named `_executeTrade`, which is responsible for executing a trade between two tokens using a specified exchange adapter. The function accepts an `ActionInfo` struct containing information about the trade, including the SetToken involved, the tokens to be traded, and trade parameters. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_actionInfo`: An `ActionInfo` struct containing information about the trade, including the SetToken, send token, receive token, trade data, and trade quantities.
+2. `_sendToken`: An ERC20 token to be sent in the trade.
+3. `_receiveToken`: An ERC20 token to be received in the trade.
+4. `_data`: Additional data required for the trade execution.
+
+Return Value:
+The function returns a `uint256` value representing the quantity of receive tokens obtained after the trade.
+
+Code Breakdown:
+1. The function starts by extracting the necessary information from the `_actionInfo` struct, including the SetToken, notional send quantity, and exchange adapter.
+2. It then invokes the `invokeApprove` function on the SetToken to approve the exchange adapter to spend the specified notional send quantity of the send token.
+3. Next, it calls the `getTradeCalldata` function on the exchange adapter to retrieve the target exchange, call value, and method data required for the trade.
+4. The function then invokes the target exchange with the specified call value and method data using the SetToken.
+5. After the trade execution, it calculates the quantity of receive tokens obtained by subtracting the pre-trade receive token balance from the current receive token balance.
+6. It checks if the receive token quantity meets the minimum notional receive quantity specified in the `_actionInfo` struct. If the slippage is too high, it reverts the transaction.
+7. Finally, the function returns the receive token quantity obtained after the trade.
+
+This function ensures that trades are executed securely and that the receive token quantity meets the specified minimum notional receive quantity to prevent excessive slippage.

@@ -1,0 +1,15 @@
+This code defines an internal view function named `_leftSubColls` that calculates the difference in amounts between two collections of tokens. The function takes three parameters: a struct `_coll1` containing information about the first collection, an array of addresses `_subTokens` representing the tokens to subtract, and an array of uintegers `_subAmounts` representing the amounts to subtract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_coll1`: A struct containing information about the first collection, including an array of addresses `tokens` and an array of uintegers `amounts`.
+2. `_subTokens`: An array of addresses representing the tokens to subtract from the first collection.
+3. `_subAmounts`: An array of uintegers representing the amounts to subtract for each corresponding token in `_subTokens`.
+
+Return Value:
+The function returns an array of uintegers `diffAmounts` representing the updated amounts after subtracting the specified amounts for the tokens in `_subTokens`.
+
+Code Breakdown:
+The function signature includes the parameters `_coll1`, `_subTokens`, and `_subAmounts`. `_leftSubColls` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function initializes a new array `diffAmounts` by making a copy of the `amounts` array from `_coll1` using the `_getArrayCopy` function. This ensures that the original `amounts` array is not modified directly. The function then iterates over the `_subTokens` array to find the corresponding index of each token in the whitelist using the `getIndex` function and subtracts the specified amount `_subAmounts[i]` from the `diffAmounts` array at that index. This operation effectively subtracts the specified amounts for each token in `_subTokens` from the original amounts in `_coll1`. Finally, the updated `diffAmounts` array is returned as the result.
+
+Summary:
+The `_leftSubColls` function calculates the difference in amounts between two collections of tokens by subtracting the specified amounts for the tokens in `_subTokens` from the original amounts in `_coll1`. The function returns the updated amounts in the form of an array of uintegers.

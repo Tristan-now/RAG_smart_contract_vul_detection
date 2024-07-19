@@ -1,0 +1,16 @@
+This code snippet defines an external function named `updateNonStakersAddress` that allows the owner of the contract to update the address of non-stakers. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_nonStakers`: This is the new address that the owner wants to set for non-stakers.
+
+Functionality:
+The function `updateNonStakersAddress` is marked as `external`, meaning it can be called from outside the contract. The function takes one parameter `_nonStakers`, which is the new address that the owner wants to set for non-stakers.
+
+Access Restriction:
+The function has a modifier `onlyOwner`, which restricts the execution of this function to only the owner of the contract. This ensures that only the owner can update the non-stakers address.
+
+Updating Non-Stakers Address:
+Inside the function, the non-stakers address variable `nonStakersAddress` is updated with the new address `_nonStakers` provided as a parameter to the function. This effectively changes the address that is considered as the non-stakers address in the contract.
+
+Summary:
+The `updateNonStakersAddress` function provides a way for the contract owner to update the address of non-stakers. By calling this function with a new address as a parameter, the owner can modify the non-stakers address stored in the contract. The function is restricted to only the owner for security purposes.

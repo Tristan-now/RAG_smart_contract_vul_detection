@@ -1,0 +1,27 @@
+This code defines an internal function named `_mintInternal` that is responsible for minting new tokens in a liquidity pool. The function takes four parameters: `to` (address to mint tokens to), `calculateFromBase` (a boolean flag indicating whether to calculate from base tokens), `fyTokenToBuy` (the amount of fyTokens to buy), and `minTokensMinted` (the minimum number of tokens to mint).
+
+Here's a detailed explanation of how this function works:
+
+1. **Gather Data**: The function first gathers data including the total token supply, cached base and fyToken amounts, and calculates the real fyToken cached amount.
+
+2. **Calculate Trade**: The function then calculates the trade based on the current state of the liquidity pool. It determines the number of tokens to mint, base tokens to use, base tokens to return, and fyTokens to use in the minting process.
+
+3. **Initialize Pool**: If the supply is 0, it initializes the pool by using all available base tokens and setting the number of tokens minted equal to the base tokens used.
+
+4. **Virtual Trade**: If there is a virtual trade before minting, it calculates the base tokens to sell based on the amount of fyTokens to buy.
+
+5. **Minting Process**: Depending on the `calculateFromBase` flag, the function either uses all available base tokens or all available fyTokens (plus a virtual trade if applicable) to mint new tokens. It ensures that there are enough tokens in the pool to cover the minting process.
+
+6. **Slippage Check**: It checks if the number of tokens minted meets the minimum required tokens to mint, ensuring slippage is within acceptable limits.
+
+7. **Update TWAR**: It updates the TWAR (Token Weighted Average Ratio) based on the new token and base token amounts after minting.
+
+8. **Execute Mint**: It mints the calculated number of tokens to the specified address.
+
+9. **Return Base Tokens**: If a trade was involved in the minting process, it returns any unused base tokens to the user.
+
+10. **Event Emission**: It emits a `Liquidity` event to track the liquidity change in the pool.
+
+11. **Return Values**: The function returns the amounts of base tokens used, fyTokens used, and tokens minted as a tuple.
+
+In summary, the `_mintInternal` function handles the minting process in a liquidity pool, ensuring proper token and base token usage, slippage control, and TWAR updates.

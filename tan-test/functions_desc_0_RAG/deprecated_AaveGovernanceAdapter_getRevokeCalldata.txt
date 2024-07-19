@@ -1,0 +1,8 @@
+This code snippet defines a function named `getRevokeCalldata` that is marked as `external` and `pure`, meaning it can be called externally and does not read or modify state variables. The function is intended to return a tuple consisting of an address, a uint256 value, and a bytes array, but instead, it reverts with the message "No revoke available in AAVE governance".
+
+Explanation:
+- Function Signature: The `getRevokeCalldata` function is defined with the `external` visibility modifier, indicating it can be called from outside the contract, and `pure` state modifier, indicating it does not read or modify state variables.
+- Return Type: The function is expected to return a tuple containing an address, a uint256 value, and a bytes array.
+- Revert Statement: Instead of returning the expected tuple, the function immediately reverts execution with the error message "No revoke available in AAVE governance".
+
+In summary, the `getRevokeCalldata` function is a placeholder that simply reverts with a message indicating that no revoke operation is available in AAVE governance.

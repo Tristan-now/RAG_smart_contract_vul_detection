@@ -1,0 +1,23 @@
+This code defines an internal view function named `_calculateAdjustedComponentIssuanceUnits`, which calculates the adjusted issuance units for equity and debt components of a SetToken based on the provided quantity and adjustment values. The function accepts several parameters and returns three arrays containing the adjusted issuance units for each component.
+
+Parameters:
+1. `_setToken`: An instance of the SetToken contract for which the adjusted issuance units are calculated.
+2. `_quantity`: The quantity of SetToken units being issued or redeemed.
+3. `_isIssue`: A boolean flag indicating whether the operation is an issuance or redemption.
+4. `_equityAdjustments`: An array of int256 values representing the equity adjustments for each component.
+5. `_debtAdjustments`: An array of int256 values representing the debt adjustments for each component.
+
+Return Values:
+The function returns three arrays:
+1. `components`: An array of addresses representing the components of the SetToken.
+2. `totalEquityUnits`: An array of uint256 values representing the adjusted equity issuance units for each component.
+3. `totalDebtUnits`: An array of uint256 values representing the adjusted debt issuance units for each component.
+
+Code Breakdown:
+The function first calls the `_getTotalIssuanceUnits` internal function to retrieve the total equity and debt issuance units for each component of the SetToken. It then initializes arrays to store the total adjusted equity and debt units for each component. A loop iterates over each component to calculate the adjusted units based on the provided quantity and adjustment values. The adjusted equity units are calculated by adding the equity adjustment to the existing equity units and multiplying by the quantity, rounding up for issuances and rounding down for redemptions. Similarly, the adjusted debt units are calculated by subtracting the debt adjustment from the existing debt units and multiplying by the quantity, rounding down for issuances and rounding up for redemptions.
+
+Vulnerability Prediction:
+This function may be vulnerable to stack too deep errors if the `components.length` is stored in a local variable due to excessive stack usage. However, since this function is intended for off-chain queries, this issue is deemed acceptable.
+
+Summary:
+The `_calculateAdjustedComponentIssuanceUnits` function calculates the adjusted issuance units for equity and debt components of a SetToken based on the provided quantity and adjustment values. It ensures proper adjustment of units for issuances and redemptions to maintain the desired collateralization ratio.

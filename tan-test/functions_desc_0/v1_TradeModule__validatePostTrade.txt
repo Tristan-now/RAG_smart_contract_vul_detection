@@ -1,0 +1,16 @@
+This code defines an internal function named `_validatePostTrade`, which is responsible for validating a trade after it has been executed. The function takes a single parameter of type `TradeInfo` stored in memory and returns a `uint256` value representing the exchanged quantity of tokens.
+
+Parameters:
+1. `_tradeInfo`: A struct containing information about the trade, including the receiving token address, the SetToken address, the pre-trade receive token balance, and the total minimum receive quantity.
+
+Return Value:
+`exchangedQuantity`: The function returns a `uint256` value representing the quantity of tokens exchanged in the trade.
+
+Code Breakdown:
+The function signature includes the parameter `_tradeInfo` of type `TradeInfo` stored in memory and specifies that the function is `view`, meaning it does not modify the state of the contract.
+Within the function, the `exchangedQuantity` variable is calculated by subtracting the pre-trade receive token balance from the current balance of the receiving token held by the SetToken. This calculation determines the quantity of tokens that have been exchanged in the trade.
+A `require` statement is used to ensure that the `exchangedQuantity` is greater than or equal to the total minimum receive quantity specified in the `_tradeInfo` struct. If this condition is not met, the function will revert with an error message indicating that the slippage is greater than allowed.
+Finally, the function returns the `exchangedQuantity` value, which represents the quantity of tokens exchanged in the trade.
+
+Summary:
+The `_validatePostTrade` function calculates the quantity of tokens exchanged in a trade by subtracting the pre-trade receive token balance from the current balance of the receiving token held by the SetToken. It then validates that the exchanged quantity meets the minimum receive quantity requirement specified in the trade information. If the validation passes, the function returns the exchanged quantity; otherwise, it reverts with an error message.

@@ -1,0 +1,23 @@
+This code defines an external function named `purchasePyroFlan`, which facilitates the purchase of a token called PyroFlan using a stablecoin. The function accepts two parameters: the address of the stablecoin (`stablecoin`) and the amount of the stablecoin (`amount`) to be used for the purchase. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `stablecoin`: The address of the stablecoin that will be used for the purchase.
+2. `amount`: The amount of the stablecoin that will be used for the purchase.
+
+Code Breakdown:
+The function begins by normalizing the amount of the stablecoin using the `normalize` function. It then retrieves the addresses of two liquidity pools (`flanLP` and `pyroFlanLP`) from the `config` storage. These liquidity pools are essential for the token swap and liquidity provision process.
+
+Next, the function checks if both liquidity pools are configured properly by ensuring that they are not equal to the zero address. If they are not properly configured, an error message is thrown.
+
+The function then calculates the price ratio between the Flan token and the stablecoin before the purchase. This ratio is used to determine the initial price of the tokens before any transactions take place.
+
+The function then proceeds to execute a series of transactions to facilitate the purchase of PyroFlan tokens. This includes minting Flan tokens, transferring tokens between addresses, minting liquidity in Uniswap-like pairs, and minting PyroFlan tokens.
+
+After completing the transactions, the function calculates the new price ratio between Flan and the stablecoin. This new ratio is compared against a predefined acceptable highest price for the stablecoin to prevent potential price manipulation.
+
+Based on the growth in price ratio, the function calculates the amount of Flan tokens to mint and provides a premium to the user to incentivize minting. The premium is calculated based on the growth percentage and the amount of Flan tokens minted.
+
+Finally, the function mints the calculated amount of Flan tokens along with the premium and transfers them to the user. The function also updates the redeem rate for PyroFlan tokens.
+
+Summary:
+The `purchasePyroFlan` function facilitates the purchase of PyroFlan tokens using a stablecoin. It involves multiple steps such as token swaps, liquidity provision, price calculations, and premium distribution to incentivize users. The function ensures that the price ratios are within acceptable limits to prevent price manipulation and provides users with a return based on the growth in price ratios.

@@ -1,0 +1,19 @@
+Type of vulnerability: Token-Transfer
+Cause of vulnerability: Lack of check in the ArbitraryCallsProposal contract to prevent calling the AddPartyCardsAuthority contract, allowing the 51% majority to hijack all precious tokens of the party.
+Execution process: 
+1. Create an ArbitraryCallsProposal to mint a governance NFT token for an arbitrary user with astronomical voting power.
+2. The arbitrary user creates an ArbitraryCallsProposal to transfer all party precious tokens to themselves.
+3. The arbitrary user votes on the proposal they created.
+4. The proposal passes as a unanimously voted proposal, bypassing safeguards.
+Detailed characteristics: The vulnerability allows the 51% majority to bypass safeguards and hijack precious tokens by exploiting the lack of a check in the ArbitraryCallsProposal contract.
+Vulnerable code: 
+```solidity
+function createArbitraryCall(address arbitraryCallTarget, bytes memory targetData) private pure returns (ArbitraryCallsProposal.ArbitraryCall memory) {
+    return ArbitraryCallsProposal.ArbitraryCall({
+        target: payable(address(arbitraryCallTarget)),
+        value: 0,
+        data: targetData,
+        expectedResultHash: bytes32(0)
+    });
+}
+```

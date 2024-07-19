@@ -1,0 +1,25 @@
+This code defines a public function named `finalize` in a DutchAuction contract. The function is non-reentrant, meaning it cannot be called recursively. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+1. The function starts with a `require` statement that checks if the sender of the transaction has the admin role, smart contract role, is the wallet address, or if the finalize time has expired. If none of these conditions are met, the function reverts with the error message "DutchAuction: sender must be an admin".
+
+2. The function accesses the `marketStatus` storage variable and stores it in a local variable named `status`.
+
+3. Another `require` statement checks if the auction has not already been finalized. If the auction has already been finalized, the function reverts with the error message "DutchAuction: auction already finalized".
+
+4. If the auction is successful (determined by the `auctionSuccessful` function), the contributed tokens are transferred to the wallet address using the `_safeTokenPayment` function. The payment is made in the `paymentCurrency` token and the amount is equal to `status.commitmentsTotal`.
+
+5. If the auction is unsuccessful, the function checks if the current block timestamp is greater than the end time of the auction. If the auction has not finished yet, the function reverts with the error message "DutchAuction: auction has not finished yet". The auction tokens are then returned to the wallet address using the `_safeTokenPayment` function. The payment is made in the `auctionToken` token and the amount is equal to `marketInfo.totalTokens`.
+
+6. The `finalized` flag in the `status` variable is set to true to mark the auction as finalized.
+
+7. An event `AuctionFinalized` is emitted to notify external listeners that the auction has been finalized.
+
+Summary:
+The `finalize` function in the DutchAuction contract allows authorized users (admins, smart contracts, or the wallet address) to finalize the auction. If the auction is successful, the contributed tokens are transferred to the wallet. If the auction is unsuccessful, the auction tokens are returned to the wallet. The function also updates the `finalized` status and emits an event to indicate that the auction has been finalized.

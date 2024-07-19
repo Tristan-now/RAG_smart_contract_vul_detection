@@ -1,0 +1,14 @@
+This code defines an external function named `permitEIP2612AndDepositErc20`, which allows a user to permit a smart contract to spend ERC20 tokens on their behalf using the EIP-2612 permit function and then deposit those tokens to another chain. The function accepts the following parameters:
+
+1. `tokenAddress`: The address of the ERC20 token.
+2. `receiver`: The address where the tokens will be deposited.
+3. `amount`: The amount of tokens to be deposited.
+4. `toChainId`: The chain ID of the destination chain.
+5. `permitOptions`: A struct containing the permit options required for EIP-2612 permit function.
+6. `tag`: A string tag for identifying the deposit.
+
+The function first calls the `permit` function of the ERC20 token contract using the `IERC20Permit` interface. This function allows the user to permit the smart contract (`address(this)`) to spend a specified amount of tokens on their behalf. The parameters for the permit function include the user (`_msgSender()`), the smart contract address, the amount, expiry, v, r, and s values from the permitOptions struct.
+
+After successfully permitting the smart contract, the function then calls the `depositErc20` function to deposit the specified amount of tokens to the specified receiver address on the destination chain identified by `toChainId`. The `tag` parameter is used to provide additional information or context for the deposit.
+
+Overall, this function combines the permissioning process using EIP-2612 permit with the token deposit functionality to facilitate cross-chain token transfers with proper authorization.

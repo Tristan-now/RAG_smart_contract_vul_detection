@@ -1,0 +1,25 @@
+This code defines an external function named `getRedeemOutput`, which calculates the output amount of a specific bAsset when redeeming a certain quantity of mAsset. The function accepts two parameters: the address of the output bAsset (`_output`) and the quantity of mAsset to redeem (`_mAssetQuantity`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_output`: The address of the output bAsset for which the output amount needs to be calculated.
+2. `_mAssetQuantity`: The quantity of mAsset to be redeemed for the output bAsset.
+
+Return Value:
+`bAssetOutput`: The function returns a `uint256` value representing the output amount of the specified bAsset.
+
+Code Breakdown:
+The function signature includes the parameters `_output` and `_mAssetQuantity`. `getRedeemOutput` is an external function, meaning it can be called from outside the contract. The function first checks if the `_mAssetQuantity` is greater than 0 using a `require` statement to ensure a valid input quantity.
+
+Inside the function, the `_getAsset` function is called to retrieve information about the output bAsset specified by the `_output` address. The retrieved information is stored in the `output` variable of type `Asset`.
+
+The `computeRedeem` function from the `MassetLogic` contract is then called with the following parameters:
+- `data.bAssetData`: Data related to the bAssets in the mAsset pool.
+- `output.idx`: The index of the output bAsset in the mAsset pool.
+- `_mAssetQuantity`: The quantity of mAsset to be redeemed.
+- `_getConfig()`: Function call to retrieve configuration data.
+- `data.swapFee`: The swap fee associated with the mAsset pool.
+
+The `computeRedeem` function calculates the output amount of the specified bAsset based on the input parameters and returns the output amount in the `bAssetOutput` variable.
+
+Summary:
+The `getRedeemOutput` function calculates the output amount of a specified bAsset when redeeming a certain quantity of mAsset. It retrieves information about the output bAsset, calls the `computeRedeem` function to perform the calculation, and returns the output amount.

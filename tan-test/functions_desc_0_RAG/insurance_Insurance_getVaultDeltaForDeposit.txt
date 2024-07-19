@@ -1,0 +1,17 @@
+This code defines a function named `getVaultDeltaForDeposit` that calculates the distribution of a deposit across multiple vaults based on certain conditions. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `amount`: The amount of the deposit being made.
+
+Return Value:
+The function returns three values:
+- `investDelta`: An array of size `N_COINS` representing the distribution of the deposit across different vaults.
+- `vaultIndexes`: An array of size `N_COINS` storing the indexes of the vaults where the deposit will be made.
+- `uint256`: A single value indicating the number of vaults the deposit will be distributed to.
+
+Code Breakdown:
+The function first initializes two arrays, `investDelta` and `vaultIndexes`, both of size `N_COINS`. It then calls the `getUnifiedAssets` function from the `exposure` contract to retrieve the total assets and assets per vault. 
+If the deposited amount is less than a certain percentage of the total assets (determined by `maxPercentForDeposit`), the deposit is considered a "tuna deposit" and will be directed to a single vault. In this case, the function sorts the vaults based on their delta values and assigns the entire deposit to the vault with the lowest delta value. The `investDelta` array is updated accordingly, and the `vaultIndexes` array is populated with the index of the selected vault and the next two vaults in line. The function then returns these values along with the number 1 to indicate that the deposit will be made to a single vault.
+If the deposited amount exceeds the threshold for a tuna deposit, it is considered a "whale deposit" and will be spread across all vaults based on their allocation targets. In this case, the function returns the `investDelta` and `vaultIndexes` arrays as they are, along with the total number of vaults (`N_COINS`).
+
+In summary, the `getVaultDeltaForDeposit` function determines the distribution strategy for a deposit based on the deposited amount relative to the total assets in the system. It either directs the deposit to a single vault or spreads it across multiple vaults based on predefined conditions.

@@ -1,0 +1,15 @@
+This code snippet defines a function named `acceptRoleAdmin` that is a part of a smart contract. Here is a detailed explanation of how this function works:
+
+Parameters:
+1. `_role`: This is a bytes32 type parameter representing the role for which the admin nomination is being accepted.
+
+Functionality:
+1. The function `acceptRoleAdmin` is a public virtual function that overrides a function from an inherited contract.
+2. The function accepts a single parameter `_role`, which is the role for which the admin nomination is being accepted.
+3. The function first checks if the caller has the required role to perform this action by using the `onlyRole` modifier with the role `_roleToRoleAdminNominee[_role]`. This ensures that only the nominee for the specified role can accept the admin role.
+4. If the caller has the required role, the function then calls two internal functions:
+   - `_setRoleAdmin(_role, _roleToRoleAdminNominee[_role])`: This function sets the admin role for the specified `_role` to the nominee address stored in the mapping `_roleToRoleAdminNominee[_role]`.
+   - `_setRoleAdminNominee(_role, 0x00)`: This function sets the nominee address for the specified `_role` to `0x00`, effectively removing the nominee for that role.
+5. By executing these two internal functions, the function successfully accepts the admin role for the specified `_role` and removes the nominee for that role.
+
+In summary, the `acceptRoleAdmin` function allows the nominee for a specific role to accept the admin role associated with that role. It performs this action by setting the admin role to the nominee address and removing the nominee for that role.

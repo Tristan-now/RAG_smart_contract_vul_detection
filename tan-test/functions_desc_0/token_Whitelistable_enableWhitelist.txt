@@ -1,0 +1,10 @@
+This code defines an external function named `enableWhitelist` that allows the contract owner to enable a whitelist feature. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `onlyOwner`: This is a modifier that restricts the execution of the function to only the owner of the contract.
+
+Functionality:
+The `enableWhitelist` function is an external function, meaning it can be called from outside the contract. When called, it sets the `whitelistEnabled` state variable to `true`, indicating that the whitelist feature is now enabled. Additionally, the function emits a `WhitelistEnabled` event to notify external parties that the whitelist has been enabled.
+
+Summary:
+The `enableWhitelist` function provides a way for the contract owner to enable the whitelist feature, which can be used to restrict access or provide special privileges to certain addresses. By setting `whitelistEnabled` to `true`, the contract owner activates this feature, and the `WhitelistEnabled` event is emitted to signal this change to external observers.

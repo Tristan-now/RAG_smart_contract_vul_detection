@@ -1,0 +1,16 @@
+This code defines an external function named `setTraderStatus`, which allows a manager to update the trading status of multiple traders for a specific SetToken. The function takes three parameters: an `ISetToken` instance `_setToken`, an array of trader addresses `_traders`, and an array of boolean values `_statuses`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the `ISetToken` interface representing the SetToken for which the trader statuses are being updated.
+2. `_traders`: An array of addresses that stores the addresses of multiple traders whose status is being updated.
+3. `_statuses`: An array of boolean values that correspond to the trading status of each trader in `_traders`.
+
+Modifiers:
+- `onlyManagerAndValidSet(_setToken)`: This modifier ensures that only the manager of the SetToken contract and a valid SetToken address can call this function.
+
+Code Breakdown:
+The function signature includes the parameters `_setToken`, `_traders`, and `_statuses`. The function is marked as `external`, meaning it can be called from outside the contract. The function first calls the `validatePairsWithArray` function on the `_traders` array to ensure that the length of the `_traders` array matches the length of the `_statuses` array. This validation function helps prevent errors due to mismatched array lengths.
+Next, a `for` loop is used to iterate over the `_traders` array. Within each iteration, the function `_updateTradersHistory` is called to update the trading history of the trader for the specified `_setToken`. The trader's trading status is then updated in the `tradeAllowList` mapping under the `permissionInfo` mapping for the `_setToken`. Finally, an event `TraderStatusUpdated` is emitted to log the update of the trader's status for the `_setToken`.
+
+Summary:
+The `setTraderStatus` function allows a manager to update the trading status of multiple traders for a specific SetToken. It iterates over the provided array of trader addresses and corresponding status values, updating the trading history and status mapping for each trader. The function ensures that only authorized users can update trader statuses and emits an event for each status update.

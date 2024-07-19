@@ -1,0 +1,13 @@
+This code defines an external function named `veCRVlock`, which is used to lock CRV tokens in a contract. The function performs the following steps:
+
+1. It first checks if the `lockCrv` variable is set to `false` using the `require` statement. If `lockCrv` is `false`, the function will revert with the error message "!lock", indicating that the locking of CRV tokens is not allowed at the moment.
+
+2. It then calls the `updateFee` function, which updates the fee associated with the transaction.
+
+3. Next, it calls the `_buyCRV` function, which is responsible for purchasing CRV tokens.
+
+4. After buying CRV tokens, the function calls the `_lockCRV` function to lock the purchased CRV tokens in the contract.
+
+5. Finally, the function sets the `veCRVShare` variable to 0, indicating that the user's share of veCRV tokens is now 0.
+
+In summary, the `veCRVlock` function is used to lock CRV tokens in the contract after updating fees, buying CRV tokens, and locking them.

@@ -1,0 +1,18 @@
+This code snippet defines an external function named `repayETHAsset` that is part of a contract implementing an interface with an `override` keyword. The function takes a single parameter of type `RepayETHAsset` and is payable, meaning it can receive Ether along with the function call. The function returns two `uint128` values: `assetIn` and `collateralOut`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `params`: This parameter is of type `RepayETHAsset` and is passed by value. It contains the necessary information for repaying an ETH asset.
+
+Return Values:
+1. `assetIn`: This variable of type `uint128` represents the amount of the asset being repaid.
+2. `collateralOut`: This variable of type `uint128` represents the amount of collateral received in exchange for repaying the asset.
+
+Code Breakdown:
+The `repayETHAsset` function is an external function, meaning it can be called from outside the contract. It overrides a function defined in an interface, indicating that the contract implements the interface and provides its own implementation for this function.
+
+Inside the function, a tuple `(assetIn, collateralOut)` is assigned the return values of a function call to `natives.payETHAsset(factory, weth, params)`. This function call likely delegates the repayment logic to another contract or library (`natives`) and returns the resulting `assetIn` and `collateralOut` values.
+
+Summary:
+The `repayETHAsset` function serves as an entry point for repaying an ETH asset, providing the necessary parameters and returning the resulting asset and collateral amounts. The actual repayment logic is likely implemented in another contract or library, as indicated by the function call within the function.

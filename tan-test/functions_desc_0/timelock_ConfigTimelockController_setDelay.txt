@@ -1,0 +1,17 @@
+This code defines an external function named `setDelay` that allows the executor role to set a delay for a specific protocol value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_protocolValue`: A bytes32 value representing the protocol value for which the delay is being set.
+2. `_newDelay`: A uint256 value representing the new delay to be set for the specified protocol value.
+
+Function Modifier:
+- `onlyRole(EXECUTOR_ROLE)`: This modifier restricts the execution of the `setDelay` function to only those addresses that have the EXECUTOR_ROLE role assigned.
+
+Code Breakdown:
+- The `setDelay` function is an external function, meaning it can be called from outside the contract.
+- The function takes two parameters: `_protocolValue` and `_newDelay`.
+- Within the function, the delay for the specified `_protocolValue` is updated in the `delays` mapping. The new delay value `_newDelay` is assigned to the delays mapping for the `_protocolValue` key, but only if `_newDelay` is greater than or equal to the minimum delay `minDelay`. If `_newDelay` is less than `minDelay`, then the minimum delay is set as the delay for the specified `_protocolValue`.
+- This logic ensures that delays set for protocol values are always greater than or equal to the minimum delay specified in the contract.
+
+Summary:
+The `setDelay` function allows addresses with the EXECUTOR_ROLE role to set delays for specific protocol values. It ensures that the delays set are always greater than or equal to the minimum delay specified in the contract.

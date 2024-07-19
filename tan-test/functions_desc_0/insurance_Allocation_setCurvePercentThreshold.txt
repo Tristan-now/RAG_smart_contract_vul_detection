@@ -1,0 +1,13 @@
+This code snippet defines an external function named `setCurvePercentThreshold` that allows the owner of the contract to set a new value for the `curvePercentThreshold` variable. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_curvePercentThreshold`: This is a `uint256` parameter representing the new curve percent threshold value that the owner wants to set.
+
+Functionality:
+- The function `setCurvePercentThreshold` is marked as `external`, meaning it can be called from outside the contract.
+- The function can only be executed by the owner of the contract, as indicated by the `onlyOwner` modifier.
+- When called, the function takes the input parameter `_curvePercentThreshold` and assigns its value to the `curvePercentThreshold` variable.
+- After updating the `curvePercentThreshold` variable, the function emits a `LogNewCurveThreshold` event, providing the new value of the curve percent threshold as an argument.
+
+Summary:
+In summary, the `setCurvePercentThreshold` function allows the contract owner to update the curve percent threshold value. The function ensures that only the owner can modify this value, and it emits an event to log the new threshold value after it has been successfully updated.

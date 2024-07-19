@@ -1,0 +1,14 @@
+This code defines an internal virtual function named `_distributeFees`, which is responsible for distributing fees to a fee receiver and triggering the distribution process. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `amount`: A `uint256` value representing the amount of fees to be distributed.
+
+Code Breakdown:
+The function `_distributeFees` is marked as internal and virtual, meaning it can only be accessed within the contract or its derived contracts, and it can be overridden by functions in derived contracts.
+Within the function, there is a conditional check to ensure that the `amount` to be distributed is greater than 0. If the `amount` is greater than 0, the function proceeds with the fee distribution process.
+The address of the fee receiver is obtained by calling the `feeReceiver` function from the `vaultFactory` contract and storing it in the `feeReceiver` variable.
+Next, the `_mint` function is called to mint the specified `amount` of tokens to the `feeReceiver`. This effectively transfers the fees to the fee receiver's address.
+After minting the fees, the function calls the `distribute` function on the `INFTXFeeDistributor` contract, passing the `vaultId` as a parameter. This triggers the distribution process, where the fees are distributed according to the logic implemented in the `INFTXFeeDistributor` contract.
+
+Summary:
+The `_distributeFees` function is responsible for minting fees to the fee receiver's address and triggering the distribution process by calling the `distribute` function on the `INFTXFeeDistributor` contract. This function ensures that fees are distributed correctly and efficiently within the system.

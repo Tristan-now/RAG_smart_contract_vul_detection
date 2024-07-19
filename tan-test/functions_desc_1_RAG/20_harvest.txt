@@ -1,0 +1,60 @@
+This code defines a `harvest` function that is a part of a smart contract. The function is designed to interact with external protocols to claim rewards, swap tokens, and deposit assets into a strategy. Here's a detailed explanation of how this function works:
+
+Parameters:
+- No external parameters are passed to the `harvest` function.
+
+Code Breakdown:
+1. The function starts by decoding the strategy configuration to get the address of the router and the asset being used.
+2. It then retrieves an array of reward tokens associated with the contract.
+3. The `claim` function is called from the `IWithRewards` interface to accrue or pull in rewards if necessary.
+4. A trade path array is initialized with a length of 2, where the second element is set to the asset being used.
+5. The function iterates over the reward tokens array and checks the balance of each token held by the contract.
+6. If the balance of a token is greater than 0, a trade path is constructed with the token as the first element.
+7. The `swapExactTokensForTokens` function is called from the Uniswap router to swap the token for the asset.
+8. After processing all reward tokens, the function calls the `strategyDeposit` function from the adapter interface to deposit the remaining asset balance into the strategy.
+
+Summary:
+The `harvest` function retrieves rewards, swaps them for the asset using a Uniswap router, and then deposits the resulting asset balance into a strategy. This function facilitates the process of claiming and utilizing rewards within the contract.
+
+[REFERENCE VULNERABILITY REPORTS]
+- No specific vulnerability reports are referenced in the provided information.
+
+[TASK CODE]
+```solidity
+function harvest() public override {
+    address router = abi.decode(
+        IAdapter(address(this)).strategyConfig(),
+        (address)
+    );
+    address asset = IAdapter(address(this)).asset();
+    address[] memory rewardTokens = IWithRewards(address(this)).rewardTokens();
+
+    IWithRewards(address(this)).claim(); // hook to accrue/pull in rewards, if needed
+
+    address[] memory tradePath = new address[](2);
+    tradePath[1] = asset;
+
+    uint256 len = rewardTokens.length;
+    // send all tokens to destination
+    for (uint256 i = 0; i < len; i++) {
+        uint256 amount = ERC20(rewardTokens[i]).balanceOf(address(this));
+
+        if (amount > 0) {
+            tradePath[0] = rewardTokens[i];
+
+            IUniswapRouterV2(router).swapExactTokensForTokens(
+                amount,
+                0,
+                tradePath,
+                address(this),
+                block.timestamp
+            );
+        }
+    }
+    IAdapter(address(this)).strategyDeposit(
+        ERC20(asset).balanceOf(address(this)),
+        0
+    );
+}
+```
+```

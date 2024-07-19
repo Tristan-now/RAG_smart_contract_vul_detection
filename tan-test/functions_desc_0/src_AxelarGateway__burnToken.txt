@@ -1,0 +1,17 @@
+This code defines an internal function named `_burnToken` that is responsible for burning tokens. The function takes two parameters: a string `symbol` representing the token symbol and a bytes32 `salt` value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `symbol`: A string representing the symbol of the token to be burned.
+2. `salt`: A bytes32 value used for additional security or uniqueness in the burning process.
+
+Code Breakdown:
+1. The function first retrieves the address of the token based on the provided symbol using the `tokenAddresses` function. If the token address is 0 (meaning the token does not exist), it reverts with a `TokenDoesNotExist` error.
+2. It then checks the type of the token using the `_getTokenType` function. If the token is of type `External`, it proceeds with the external burning process. If it's not an external token, it directly burns the token using the `BurnableMintableCappedERC20` contract.
+3. For external tokens, the function creates a new `DepositHandler` contract instance with a specified `salt` value. This `DepositHandler` contract is used to facilitate the burning process for external tokens.
+4. The function then calls the `execute` function of the `DepositHandler` contract, passing the token address and the encoded data for transferring the token balance to the contract.
+5. If the execution is successful and there are no errors in the return data, the burning process continues. Otherwise, it reverts with a `BurnFailed` error.
+6. After successfully burning the external token, the `DepositHandler` contract is destroyed to clean up the resources.
+7. If the token is not of type `External`, the function directly calls the `burn` function of the `BurnableMintableCappedERC20` contract to burn the token with the specified `salt`.
+
+Summary:
+The `_burnToken` function handles the burning process for tokens based on the provided symbol and `salt`. It distinguishes between external and non-external tokens, utilizing a `DepositHandler` contract for external token burning and directly interacting with the token contract for non-external tokens. The function ensures the secure and successful burning of tokens based on their type and executes the necessary steps accordingly.

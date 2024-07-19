@@ -1,0 +1,12 @@
+This code defines a private function named `batchMint`, which is responsible for minting a specified amount of tokens to a given address. The function takes three parameters: the recipient address `_to`, the number of tokens to mint `_amount`, and a boolean flag `_isClaim`.
+
+Parameters:
+1. `_to`: The address to which the minted tokens will be sent.
+2. `_amount`: The number of tokens to mint and send to the `_to` address.
+3. `_isClaim`: A boolean flag that determines whether to emit a `NewClaim` event after minting each token.
+
+Code Breakdown:
+The function `batchMint` starts by initializing a `for` loop that iterates from 0 to `_amount - 1`. In each iteration, the function calls the `mint` function to mint a token and assigns the returned `tokenId` to a variable. If the `_isClaim` flag is set to `true`, the function emits a `NewClaim` event, indicating that a new token has been minted and claimed by the `_to` address.
+
+Summary:
+The `batchMint` function automates the minting process by minting a specified number of tokens to a given address `_to`. If the `_isClaim` flag is set to `true`, the function emits a `NewClaim` event for each minted token.

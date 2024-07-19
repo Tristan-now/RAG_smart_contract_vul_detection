@@ -1,0 +1,14 @@
+This code defines an internal function named `_addPool`, which is responsible for adding a new pool to the system. The function accepts two parameters: `_gauge`, which is the address of the gauge associated with the pool, and `_stashVersion`, which is a version identifier for the stash associated with the pool. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_gauge`: The address of the gauge contract associated with the pool.
+2. `_stashVersion`: A version identifier for the stash contract associated with the pool.
+
+Code Breakdown:
+The function first checks if the `protectAddPool` flag is enabled. If it is, the function requires that the caller of the function must be the `operator` address. This is a security measure to restrict who can add pools to the system.
+Next, the function retrieves the LP token address associated with the gauge contract `_gauge` by calling the `lp_token()` function of the `ICurveGauge` interface. This LP token address will be used to identify the pool in the system.
+After obtaining the LP token address, the function calls the `addPool` function of the `IPools` contract, passing the LP token address `lptoken`, the gauge address `_gauge`, and the stash version `_stashVersion` as parameters. This function call adds a new pool to the system with the specified parameters.
+If the `protectAddPool` flag is not enabled, any address can call this function to add a new pool. However, if the flag is enabled, only the `operator` address is allowed to add pools for additional security.
+
+Summary:
+The `_addPool` function adds a new pool to the system by retrieving the LP token address from the gauge contract, then calling the `addPool` function of the `IPools` contract to register the new pool with the system. The function includes a security check to ensure that only authorized users can add pools when the `protectAddPool` flag is enabled.

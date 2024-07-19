@@ -1,0 +1,10 @@
+This code defines a public function named `setFarmingPool` that allows the contract owner to set the address of the farming pool. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_farm`: The address of the farming pool that the owner wants to set.
+
+Code Breakdown:
+The function signature includes the parameter `_farm`, which is the address of the farming pool to be set. The function is marked as `public`, meaning it can be called externally.
+The function first checks if the provided `_farm` address is not equal to the zero address using the `require` statement. If the `_farm` address is the zero address, the function will revert with the error message "INVALID_FARMING_POOL".
+If the `_farm` address is valid (not equal to zero address), the function updates the `farm` variable with the new `_farm` address provided by the owner.
+Overall, this function allows the contract owner to update the farming pool address by providing a new valid address, ensuring that the address is not the zero address.

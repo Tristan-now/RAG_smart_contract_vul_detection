@@ -1,0 +1,18 @@
+This code defines a private function named `_redeemToBacking` that is responsible for redeeming assets from a Tempus Pool to its backing assets. The function takes five parameters: `targetPool` (an instance of the Tempus Pool contract), `sender` (the address of the sender initiating the redemption), `principals` (the amount of principal assets to redeem), `yields` (the amount of yield assets to redeem), and `recipient` (the address where the redeemed assets will be sent).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `targetPool`: An instance of the Tempus Pool contract where the redemption will take place.
+2. `sender`: The address of the sender initiating the redemption.
+3. `principals`: The amount of principal assets to redeem.
+4. `yields`: The amount of yield assets to redeem.
+5. `recipient`: The address where the redeemed assets will be sent.
+
+Code Breakdown:
+- The function starts with a `require` statement to ensure that either `principals` or `yields` (or both) are greater than 0. This check prevents both amounts from being 0, as it would not make sense to redeem 0 assets.
+- The function then calls the `redeemToBacking` function on the `targetPool` instance, passing in the `sender`, `principals`, `yields`, and `recipient` as parameters. This function returns four values: `redeemedYBT` (the amount of YBT tokens redeemed), `redeemedBT` (the amount of BT tokens redeemed), `fee` (the fee charged for the redemption), and `rate` (the exchange rate used for the redemption).
+- The function determines whether the redemption is an early redemption by checking if the `targetPool` has matured.
+- Finally, the function emits a `Redeemed` event containing information about the redemption, including the addresses involved, the amounts redeemed, the fee charged, the exchange rate, and whether it was an early redemption.
+
+In summary, the `_redeemToBacking` function facilitates the redemption of assets from a Tempus Pool to its backing assets, ensuring that at least one of the asset amounts to redeem is greater than 0. It then interacts with the Tempus Pool contract to perform the redemption and emits an event to log the redemption details.

@@ -1,0 +1,9 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: The liquidity token value depends on the current market reserves, which can be manipulated by an attacker via flash loans.
+Execution process: An attacker trading large amounts in the market can manipulate the value of an LP token by either increasing or decreasing it, leading to potential liquidations or under-collateralized borrows.
+Detailed characteristics: The value of an LP token is computed based on assetCashClaim and fCashClaim, which are dependent on the current market reserves that can be manipulated.
+Vulnerable code:
+```
+assetCash = market.totalAssetCash.mul(token.notional).div(market.totalLiquidity);
+fCash = market.totalfCash.mul(token.notional).div(market.totalLiquidity);
+```

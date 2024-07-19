@@ -1,0 +1,14 @@
+This code defines a public function named `depositForMember`, which allows a member to deposit a specified amount of a synthetic asset (synth). The function takes three parameters: the address of the synthetic asset (`synth`), the address of the member (`member`), and the amount to deposit (`amount`). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `synth`: The address of the synthetic asset that the member wants to deposit.
+2. `member`: The address of the member who is making the deposit.
+3. `amount`: The amount of the synthetic asset that the member wants to deposit.
+
+Code Breakdown:
+The function first checks if the provided `synth` address is a valid synthetic asset by calling the `isSynth` function of the `iFACTORY` contract with the `FACTORY` address. If the provided `synth` address is not a synthetic asset, the function will revert with the error message "Not Synth".
+Next, the function calls the `getFunds` function with the `synth` address and the specified `amount`. This function is assumed to handle the transfer of funds from the member to the contract or perform any necessary actions to obtain the funds.
+After ensuring that the member has the required funds, the function calls the internal `_deposit` function with the `synth` address, the `member` address, and the `amount` to complete the deposit process. The `_deposit` function is assumed to handle the actual deposit of the specified amount of the synthetic asset for the member.
+
+Summary:
+The `depositForMember` function allows a member to deposit a specified amount of a synthetic asset. It first verifies that the provided synthetic asset is valid, obtains the necessary funds, and then completes the deposit process by calling an internal function to handle the deposit operation.

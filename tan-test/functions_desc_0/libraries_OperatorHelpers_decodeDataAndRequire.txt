@@ -1,0 +1,17 @@
+This code defines an internal function named `decodeDataAndRequire`, which decodes input data and performs validation checks on the decoded values. The function accepts three parameters: a byte array `_data`, an address `_inputToken`, and an address `_outputToken`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_data`: A byte array that contains encoded data representing an array of uint256 amounts and an array of token addresses.
+2. `_inputToken`: An address representing the input token address that is expected in the decoded data.
+3. `_outputToken`: An address representing the output token address that is expected in the decoded data.
+
+Return Value:
+The function returns two arrays: `amounts` (an array of uint256 values) and `tokens` (an array of address values).
+
+Code Breakdown:
+The function signature includes the parameters `_data`, `_inputToken`, and `_outputToken`. `decodeDataAndRequire` is an internal function, meaning it can only be called within the contract or its derived contracts. The function decodes the input byte array `_data` using the `abi.decode` function, expecting it to contain an array of uint256 amounts and an array of token addresses. The decoded values are assigned to the `amounts` and `tokens` arrays. Two `require` statements are used to validate the decoded data:
+1. The first `require` statement checks if the first token address in the `tokens` array matches the `_outputToken` parameter. If it doesn't match, the function reverts with an error message indicating that the output token is incorrect.
+2. The second `require` statement checks if the second token address in the `tokens` array matches the `_inputToken` parameter. If it doesn't match, the function reverts with an error message indicating that the input token is incorrect.
+
+Summary:
+The `decodeDataAndRequire` function decodes the input byte array `_data` to extract arrays of amounts and token addresses. It then performs validation checks to ensure that the decoded output token address matches the expected `_outputToken` and the decoded input token address matches the expected `_inputToken`. If any of the validation checks fail, the function reverts with an appropriate error message.

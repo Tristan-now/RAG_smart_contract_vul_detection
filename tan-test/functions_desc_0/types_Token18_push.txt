@@ -1,0 +1,15 @@
+This code defines an internal function named `push` that is responsible for transferring tokens from the contract to a specified recipient. The function takes three parameters: a `Token18` struct (`self`), the address of the recipient, and a `UFixed18` amount to be transferred.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `self`: A `Token18` struct that represents the token being transferred.
+2. `recipient`: The address of the recipient who will receive the tokens.
+3. `amount`: A `UFixed18` value representing the amount of tokens to be transferred.
+
+Code Breakdown:
+The function first checks if the token being transferred is Ether or not by calling the `isEther` function with the `self` parameter. If the token is Ether, it uses the `Address.sendValue` function to send the specified amount of Ether to the recipient. The `toTokenAmount` function is called to convert the `UFixed18` amount to the appropriate token amount for transfer.
+If the token is not Ether, the function unwraps the `Token18` struct to get the underlying ERC20 token address using `Token18.unwrap(self)`. It then uses the `IERC20` interface to safely transfer the token amount to the recipient address. The `toTokenAmount` function is again called to convert the `UFixed18` amount to the appropriate token amount for transfer.
+
+Summary:
+The `push` function facilitates the transfer of tokens from the contract to a recipient. It handles both Ether and ERC20 tokens by checking the token type and using the appropriate transfer function accordingly. The function ensures the safe transfer of tokens to the recipient address.

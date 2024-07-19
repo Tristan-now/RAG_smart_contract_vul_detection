@@ -1,0 +1,18 @@
+This code defines an external function named `totalSupply`, which allows external callers to view the total supply of a token. The function does not modify any state variables and is marked as `view`, indicating that it only reads from the contract state and does not make any changes.
+
+Explanation:
+
+- Function Signature:
+  - `totalSupply()`: This function takes no parameters and returns a `uint256` value representing the total supply of the token.
+  - `external`: This visibility specifier indicates that the function can be called from outside the contract.
+  - `view`: This state mutability specifier indicates that the function does not modify the contract state.
+
+- Return Value:
+  - The function returns the `_totalSupply` variable, which is of type `uint256`. This variable holds the total supply of the token.
+
+- Code Execution:
+  - When the `totalSupply` function is called, it simply returns the current value of the `_totalSupply` variable without performing any calculations or modifications.
+  - External callers can use this function to retrieve the total supply of the token without needing to access the `_totalSupply` variable directly.
+
+Summary:
+The `totalSupply` function provides external visibility to the total supply of the token by returning the value of the `_totalSupply` variable. It is a read-only function that allows external parties to query the total supply without altering the contract state.

@@ -1,0 +1,20 @@
+This code defines an external function named `distribute`, which allows the operator to distribute a specified amount of a token to multiple stashes associated with different pool IDs. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_token`: The address of the token that will be distributed to the stashes.
+2. `_toPids`: An array of pool IDs representing the stashes to which the token will be distributed.
+3. `_amounts`: An array of uint256 values representing the amounts of the token to be distributed to each corresponding stash.
+
+Functionality:
+The `distribute` function can only be called by the `operator` address. It iterates over the `_toPids` array to distribute the specified amounts of the token to the corresponding stashes associated with each pool ID.
+
+Code Breakdown:
+1. The function starts with a `require` statement to ensure that only the `operator` address can call this function.
+2. It then enters a `for` loop that iterates over the `_toPids` array. In each iteration:
+   a. It calls the `poolInfo` function of the `IDeposit` contract, passing the current pool ID `_toPids[i]` as an argument. This function returns information about the pool, including the address of the stash associated with the pool.
+   b. It retrieves the `stashAddress` and `shutdown` status from the returned pool information.
+   c. It checks if the pool is not in a shutdown state by requiring `shutdown` to be `false`. If the pool is closed, the distribution cannot proceed to prevent the tokens from getting trapped.
+   d. It transfers the specified amount of the token `_amounts[i]` to the `stashAddress` using the `safeTransfer` function of the ERC20 token contract associated with `_token`.
+
+Summary:
+The `distribute` function allows the operator to distribute specified amounts of a token to multiple stashes associated with different pool IDs. It ensures that the distribution is only carried out if the pools are not in a shutdown state to prevent potential token loss.

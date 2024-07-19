@@ -1,0 +1,24 @@
+This code defines a public view function named `getDelegatorDetails` that retrieves information about a delegator's delegated tokens, available rewards, and commission rewards for each validator. The function accepts an address parameter `delegator` and returns three arrays of `uint128` values: `delegated`, `rewardsAvailable`, and `commissionRewards`.
+
+Parameters:
+1. `delegator`: The address of the delegator for whom the details are being fetched.
+
+Return Values:
+- `delegated`: An array containing the amount of tokens delegated by the delegator to each validator.
+- `rewardsAvailable`: An array containing the available rewards for the delegator from each validator.
+- `commissionRewards`: An array containing the commission rewards available for the delegator from each validator.
+
+Code Breakdown:
+- Three arrays `delegated`, `rewardsAvailable`, and `commissionRewards` are initialized with a length equal to `validatorsN`, which is a variable representing the number of validators.
+- The function calculates the `currentEpoch` based on the current block number and the `endEpoch` value.
+- It calculates a new global exchange rate `newGlobalExchangeRate` based on the allocated tokens per epoch, total global shares, current epoch, last update epoch, and global exchange rate.
+- It then iterates over each validator using a for loop and retrieves the staking information for the delegator within that validator.
+- For each validator, it calculates the new tokens given, commission paid, rate increase, rewards available, and commission rewards based on various factors such as global shares, exchange rates, commission rates, and staked amounts.
+- The function populates the `delegated`, `rewardsAvailable`, and `commissionRewards` arrays with the calculated values for each validator.
+- Finally, it returns these arrays as a tuple `(delegated, rewardsAvailable, commissionRewards)`.
+
+Vulnerability Prediction:
+This function may be vulnerable to potential issues related to incorrect calculations of rewards or commission rewards due to discrepancies in exchange rates, commission rates, or staked amounts.
+
+Summary:
+The `getDelegatorDetails` function provides detailed information about a delegator's delegated tokens, available rewards, and commission rewards for each validator. It calculates these values based on various factors and returns them in three separate arrays for further analysis or processing.

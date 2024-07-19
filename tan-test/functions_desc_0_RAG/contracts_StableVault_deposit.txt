@@ -1,0 +1,15 @@
+This code defines a public function named `deposit`, which allows users to deposit a specified amount of a token into the contract. The function performs the following steps:
+
+Parameters:
+1. `_token`: The address of the token that the user wants to deposit.
+2. `_amount`: The amount of the token that the user wants to deposit.
+
+Code Breakdown:
+1. The function starts with a `require` statement to check if the `_token` being deposited is allowed or listed in the contract. If the token is not listed, the function will revert with the error message "Token not listed".
+2. If the token is allowed, the function transfers `_amount` tokens from the caller (`_msgSender()`) to the contract address using the `transferFrom` function of the ERC20 token contract at the `_token` address.
+3. The function then calculates the equivalent amount of stablecoin tokens to mint for the user. It calls the `mintFor` function of the `stable` token contract (assuming `stable` is a variable storing the address of the stablecoin token contract) to mint stablecoin tokens for the user. The amount to mint is calculated as `_amount` multiplied by 10 raised to the power of (18 minus the decimals of the deposited token). This calculation ensures that the correct amount of stablecoin tokens is minted based on the decimal precision of the deposited token.
+
+Overall, the `deposit` function allows users to deposit tokens into the contract, converts the deposited tokens into an equivalent amount of stablecoin tokens, and mints the stablecoin tokens for the user.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for the given code snippet.

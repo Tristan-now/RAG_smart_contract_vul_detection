@@ -1,0 +1,19 @@
+This code defines a private pure function named `_getStorageSlot` that calculates the storage slot for a given `StorageId`. The function takes a `StorageId` parameter and returns a `uint256` value representing the storage slot.
+
+Explanation:
+
+1. Parameters:
+   - `StorageId`: The function takes a `StorageId` parameter, which is a user-defined enum type used to identify different storage slots.
+
+2. Return Value:
+   - `slot`: The function returns a `uint256` value representing the calculated storage slot.
+
+3. Code Breakdown:
+   - The function `_getStorageSlot` is defined as private, meaning it can only be accessed within the current contract.
+   - The function is marked as pure, indicating that it does not read from or modify the contract's state.
+   - Inside the function, the storage slot calculation is performed by adding the numeric value of the `StorageId` enum to a base value defined as `STORAGE_SLOT_BASE`.
+   - The `uint256(storageId)` cast converts the `StorageId` enum value to a `uint256` integer for arithmetic operations.
+   - The result of adding the converted `storageId` value to `STORAGE_SLOT_BASE` is returned as the calculated storage slot.
+
+4. Summary:
+   - The `_getStorageSlot` function is a utility function that calculates the storage slot for a given `StorageId` enum value by adding it to a base value. This function is used to determine the storage location for specific data within the contract's storage layout.

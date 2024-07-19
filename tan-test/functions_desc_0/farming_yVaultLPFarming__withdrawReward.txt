@@ -1,0 +1,21 @@
+This code defines an internal function named `_withdrawReward`, which calculates the pending rewards for a specific account. The function accepts one parameter: the address of the account for which the rewards are being calculated. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `account`: The address of the account for which the pending rewards are being calculated.
+
+Return Value:
+The function returns a `uint256` value representing the pending rewards for the specified account.
+
+Code Breakdown:
+The function signature includes the parameter `account`. `_withdrawReward` is an internal function, meaning it can only be called within the contract or its derived contracts. The function calculates the pending rewards for the specified account based on the difference between the accumulated reward per share and the last recorded reward per share for that account.
+
+The variable `pending` is calculated by multiplying the balance of the account by the difference between `accRewardPerShare` and `userLastAccRewardPerShare[account]`, and then dividing by 1e36. This calculation determines the pending rewards that have accumulated for the account since the last time rewards were withdrawn.
+
+If the calculated `pending` value is greater than 0, it is added to the `userPendingRewards` mapping for the specified account. This mapping keeps track of the total pending rewards for each account.
+
+The `userLastAccRewardPerShare[account]` is then updated to match the current `accRewardPerShare`, ensuring that the next time rewards are calculated, the correct starting point is used.
+
+Finally, the function returns the calculated `pending` value, representing the pending rewards for the specified account.
+
+Summary:
+The `_withdrawReward` function calculates the pending rewards for a specific account by considering the difference in accumulated reward per share and the last recorded reward per share for that account. It updates the necessary mappings to track pending rewards and returns the calculated pending rewards value.

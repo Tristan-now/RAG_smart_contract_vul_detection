@@ -1,0 +1,6 @@
+Type of vulnerability: Non-AMM price oracle manipulation
+Cause of vulnerability: VaderReserve only allows a single router to claim IL protection on behalf of users, resulting in locked funds for liquidity providers.
+Execution process: Only one router (either VaderRouter or VaderRouterV2) can claim IL protection on VaderReserve, causing liquidity deployed to VaderPool or VaderPoolV2 to be permanently locked.
+Detailed characteristics: The vulnerability prevents LPs from removing liquidity as the call to the reserve will revert, and Vader governance cannot update the allowed router on VaderReserve.
+Vulnerable code: 
+https://github.com/code-423n4/2021-11-vader/blob/3a43059e33d549f03b021d6b417b7eeba66cf62e/contracts/reserve/VaderReserve.sol#L80-L83

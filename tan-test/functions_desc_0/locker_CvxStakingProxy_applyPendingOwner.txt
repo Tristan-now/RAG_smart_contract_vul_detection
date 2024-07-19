@@ -1,0 +1,14 @@
+This code defines an external function named `applyPendingOwner`, which allows the current owner of the contract to transfer ownership to a pending owner. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `msg.sender`: The address of the account that is calling the function.
+2. `owner`: The current owner of the contract.
+3. `pendingOwner`: The address of the pending owner who is set to take ownership.
+
+Code Breakdown:
+The function starts with two `require` statements to ensure that the caller of the function is the current owner and that there is a valid pending owner address set. If either of these conditions is not met, the function will revert with an error message.
+If both requirements are met, the function proceeds to update the `owner` variable with the address stored in `pendingOwner`, effectively transferring ownership to the pending owner.
+After transferring ownership, the `pendingOwner` variable is reset to `address(0)` to clear the pending owner address and prevent any further ownership changes until a new pending owner is set.
+
+Summary:
+The `applyPendingOwner` function allows the current owner of the contract to transfer ownership to a pending owner by updating the `owner` variable with the pending owner's address and clearing the pending owner variable. This function provides a secure way to manage ownership changes within the contract.

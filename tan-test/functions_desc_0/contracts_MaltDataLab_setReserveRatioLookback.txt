@@ -1,0 +1,15 @@
+This code defines an external function named `setReserveRatioLookback` that allows the admin role to set the lookback period for the reserve ratio. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_lookback`: A `uint256` value representing the number of blocks to look back for calculating the reserve ratio.
+
+Modifiers:
+- `onlyRole(ADMIN_ROLE, "Must have admin role")`: This modifier ensures that only accounts with the admin role can call this function.
+
+Code Breakdown:
+The function `setReserveRatioLookback` is an external function, meaning it can be called from outside the contract. The function takes one parameter `_lookback`, which represents the number of blocks to look back for calculating the reserve ratio. 
+The function starts with a `require` statement to ensure that the `_lookback` value is greater than 0. This check prevents setting a lookback period of 0, which would not make sense in this context.
+If the `_lookback` value passes the requirement check, the function updates the `reserveRatioLookback` variable with the new `_lookback` value provided.
+
+Summary:
+The `setReserveRatioLookback` function allows the admin role to set the lookback period for calculating the reserve ratio. It enforces a requirement that the lookback period must be greater than 0 to ensure the validity of the input.

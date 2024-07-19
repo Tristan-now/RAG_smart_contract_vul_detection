@@ -1,0 +1,48 @@
+This code defines an external view function named `getCollateralToken`, which is part of a contract that handles collateral tokens for options trading. The function takes in several parameters related to option details and returns the ID of the collateral token associated with a specific qToken used as collateral.
+
+Parameters:
+1. `_underlyingAsset`: The address of the underlying asset for the option.
+2. `_oracle`: The address of the oracle contract used for price feeds.
+3. `_qTokenAsCollateral`: The address of the qToken used as collateral.
+4. `_strikePrice`: The strike price of the option.
+5. `_expiryTime`: The expiry time of the option.
+6. `_isCall`: A boolean indicating whether the option is a call option.
+
+Return Value:
+The function returns a `uint256` value representing the ID of the collateral token associated with the provided qToken. If no collateral token is found, it returns 0.
+
+Code Breakdown:
+1. The function first calls the internal function `getQToken` to retrieve the qToken associated with the provided option details.
+2. It then calls the `getCollateralTokenId` function of the `collateralToken` contract to get the ID of the collateral token corresponding to the qToken used as collateral.
+3. The function then retrieves the stored qToken and checks if it is not equal to the zero address. If a valid qToken is found, it returns the ID of the collateral token; otherwise, it returns 0.
+
+Overall, this function is responsible for determining the collateral token ID based on the provided option parameters and the qToken used as collateral.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for this specific code snippet.
+
+[TASK CODE]
+function getCollateralToken(
+        address _underlyingAsset,
+        address _oracle,
+        address _qTokenAsCollateral,
+        uint256 _strikePrice,
+        uint256 _expiryTime,
+        bool _isCall
+    ) external view override returns (uint256) {
+        address qToken = getQToken(
+            _underlyingAsset,
+            _oracle,
+            _strikePrice,
+            _expiryTime,
+            _isCall
+        );
+
+        uint256 id = collateralToken.getCollateralTokenId(
+            qToken,
+            _qTokenAsCollateral
+        );
+
+        (address storedQToken, ) = collateralToken.idToInfo(id);
+        return storedQToken != address(0) ? id : 0;
+    }

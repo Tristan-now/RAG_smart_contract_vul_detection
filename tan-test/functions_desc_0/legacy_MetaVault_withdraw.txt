@@ -1,0 +1,17 @@
+This code defines a function named `withdraw` that allows a user to withdraw a certain amount of shares from a contract. The function takes two parameters: `_shares`, which represents the number of shares to be withdrawn, and `_output`, which is the address of the token where the withdrawn funds will be transferred.
+
+Here's a detailed explanation of how this function works:
+
+1. The function first retrieves the balance of shares held by the user (`_userBal`) calling the function.
+
+2. It then checks if the requested number of shares to be withdrawn (`_shares`) is greater than the user's balance. If it is, the function calculates the additional amount needed to cover the withdrawal and checks if the user has enough staked tokens to cover this additional amount. If not, it calls the `unstake` function to unstake the required amount.
+
+3. Next, the function calculates the amount of tokens to be withdrawn (`r`) based on the proportion of the user's shares to the total supply of shares. It then burns the specified number of shares from the user's balance.
+
+4. If a `vaultManager` contract is set, the function checks if there is a withdrawal protection fee configured. If so, it calculates the withdrawal protection amount based on the withdrawal fee percentage and deducts it from the total withdrawal amount.
+
+5. The function then checks the balance of the token (`token3CRV`) held by the contract. If the balance is less than the calculated withdrawal amount (`r`), it calculates the additional amount needed to cover the withdrawal and calls the `withdraw` function of the `controller` contract to withdraw the required tokens.
+
+6. After ensuring that the contract has enough tokens to cover the withdrawal, the function transfers the withdrawn tokens to the user. If the output token is not the same as `token3CRV`, it uses a `converter` contract to convert the tokens to the desired output token before transferring them to the user.
+
+In summary, the `withdraw` function allows users to withdraw a specified number of shares from the contract, handles withdrawal protection fees, ensures the contract has enough tokens to cover the withdrawal, and transfers the withdrawn tokens to the user in either the original token or a converted output token.

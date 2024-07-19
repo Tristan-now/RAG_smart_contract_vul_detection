@@ -1,0 +1,21 @@
+This code defines an external function named `withdrawTokens` that allows a user to withdraw a specified amount of tokens from a locked item. The function takes four parameters: `_tokenAddress` (the address of the token to be withdrawn), `_index` (the index of the locked item in the user's list of locked items), `_id` (the unique identifier of the locked item), and `_amount` (the amount of tokens to be withdrawn).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_tokenAddress`: The address of the token from which the user wants to withdraw tokens.
+2. `_index`: The index of the locked item in the user's list of locked items.
+3. `_id`: The unique identifier of the locked item that the user wants to withdraw tokens from.
+4. `_amount`: The amount of tokens that the user wants to withdraw.
+
+Code Breakdown:
+- The function starts with a `require` statement to ensure that the `_amount` to be withdrawn is greater than 0.
+- It then retrieves the unique identifier of the locked item associated with the user's address and index from the `users` mapping and checks if it matches the provided `_id`. It also verifies that the owner of the locked item is the message sender.
+- Another `require` statement checks if the `unlockTime` of the locked item is less than the current block timestamp, indicating that the item can be unlocked.
+- The function then subtracts the `_amount` to be withdrawn from the `userItem.amount` of the locked item.
+- If the `userItem.amount` becomes 0 after the withdrawal, the function updates the user's list of locked items by replacing the item at the specified index with the last item in the list and then removing the last item.
+- The `_safeTransfer` function is called to transfer the specified `_amount` of tokens to the message sender's address.
+- Finally, an `onUnlock` event is emitted to notify that tokens have been successfully withdrawn.
+
+Summary:
+The `withdrawTokens` function allows a user to withdraw a specified amount of tokens from a locked item. It performs various checks to ensure the validity of the withdrawal request, updates the user's list of locked items if necessary, transfers the tokens to the user, and emits an event to notify the successful withdrawal.

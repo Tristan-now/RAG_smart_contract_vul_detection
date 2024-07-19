@@ -1,0 +1,14 @@
+This code snippet defines an external view function named `delegates` that takes an `address` parameter `delegator` and returns another `address`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `delegator`: An address parameter representing the delegator for whom we want to retrieve the delegate address.
+
+Return Value:
+The function returns an `address` representing the delegate address associated with the provided `delegator`.
+
+Code Breakdown:
+The `delegates` function is defined as an external view function, meaning it can be called from outside the contract and does not modify the contract state.
+The function takes an `address` parameter named `delegator`, which is the address of the delegator for whom we want to retrieve the delegate address.
+Inside the function, it simply returns the value stored in the `_delegates` mapping at the key `delegator`. This mapping is assumed to be defined elsewhere in the contract and stores the delegate address for each delegator.
+When the function is called with a specific `delegator` address, it retrieves the corresponding delegate address from the `_delegates` mapping and returns it to the caller.
+Overall, the `delegates` function provides a way to query and retrieve the delegate address associated with a given delegator address without modifying the contract state.

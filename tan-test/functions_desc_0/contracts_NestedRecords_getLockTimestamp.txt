@@ -1,0 +1,13 @@
+This code defines an external function named `getLockTimestamp` that retrieves the lock timestamp associated with a specific NFT ID. The function accepts one parameter, `_nftId`, which is used to look up the corresponding lock timestamp in the `records` mapping. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_nftId`: A `uint256` value representing the unique identifier of the NFT for which the lock timestamp needs to be retrieved.
+
+Return Value:
+The function returns a `uint256` value representing the lock timestamp associated with the provided NFT ID.
+
+Code Breakdown:
+The function signature includes the parameter `_nftId`, which is used to identify the specific NFT for which the lock timestamp is requested. The function is defined as `external`, meaning it can be called from outside the contract. Within the function, the lock timestamp associated with the provided `_nftId` is retrieved from the `records` mapping using `records[_nftId].lockTimestamp`. This value is then returned to the caller.
+
+Summary:
+The `getLockTimestamp` function allows external callers to retrieve the lock timestamp associated with a specific NFT ID by looking up the information in the `records` mapping and returning the corresponding timestamp.

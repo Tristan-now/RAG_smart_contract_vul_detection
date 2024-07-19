@@ -1,0 +1,13 @@
+This code defines an external function named `getRevokeCalldata` that returns a revert statement indicating that no revoke action is available in AAVE governance. Here’s a detailed explanation of how this function works:
+
+Parameters:
+This function does not accept any parameters.
+
+Return Value:
+The function does not return any meaningful data as it immediately reverts with an error message.
+
+Code Breakdown:
+The function signature includes the `external` visibility specifier, indicating that it can be called from outside the contract. The function is marked as `pure`, meaning it does not read from or modify the contract's state. The function returns three values: an `address`, a `uint256`, and a `bytes` memory. However, in this case, the function does not actually return any meaningful data. Instead, it immediately reverts execution with the error message "No revoke available in AAVE governance".
+
+Summary:
+The `getRevokeCalldata` function is a placeholder function that simply reverts with an error message indicating that no revoke action is available in AAVE governance. It does not perform any calculations or return any data.

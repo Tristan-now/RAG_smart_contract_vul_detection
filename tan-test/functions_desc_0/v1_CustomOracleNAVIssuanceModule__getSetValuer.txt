@@ -1,0 +1,17 @@
+This code defines an internal function named `_getSetValuer` that is used to retrieve the set valuer for a given SetToken. The function accepts a parameter `_setToken` of type `ISetToken` and returns an `ISetValuer` interface.
+
+Parameters:
+1. `_setToken`: An interface representing a SetToken for which the set valuer needs to be retrieved.
+
+Return Value:
+The function returns an `ISetValuer` interface representing the set valuer for the given SetToken.
+
+Code Breakdown:
+The `_getSetValuer` function is an internal function, meaning it can only be accessed within the contract or its derived contracts. The function takes an `ISetToken` parameter `_setToken` as input, which represents the SetToken for which the set valuer is to be retrieved.
+
+Within the function, a local variable `customValuer` of type `ISetValuer` is declared and assigned the value of `navIssuanceSettings[_setToken].setValuer`. This retrieves the custom set valuer set specifically for the given `_setToken`.
+
+The function then checks if the address of the `customValuer` is equal to `address(0)`, which indicates that no custom set valuer is set for the `_setToken`. If this condition is true, the function calls `controller.getSetValuer()` to retrieve the default set valuer from the controller contract. Otherwise, it returns the custom set valuer that was set for the `_setToken`.
+
+Summary:
+The `_getSetValuer` function is used to retrieve the set valuer for a given SetToken. It first checks if a custom set valuer is set for the `_setToken` and returns it if available. If no custom set valuer is set, it retrieves the default set valuer from the controller contract and returns it.

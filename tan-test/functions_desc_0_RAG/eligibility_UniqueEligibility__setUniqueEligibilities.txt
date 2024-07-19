@@ -1,0 +1,14 @@
+This code defines an internal function named `_setUniqueEligibilities`, which is responsible for setting the eligibility status for a collection of token IDs. The function accepts two parameters: an array of token IDs (`tokenIds`) and a boolean value indicating the eligibility status (`_isEligible`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `tokenIds`: An array of `uint256` values representing the token IDs for which the eligibility status needs to be set.
+2. `_isEligible`: A boolean value indicating whether the tokens should be marked as eligible or not.
+
+Code Breakdown:
+The function starts by initializing a `cachedWord` variable with the value stored at index 0 of the `eligibleBitMap` array. It also initializes a `cachedIndex` variable to 0 to keep track of the current word index being processed.
+Next, the function iterates over the `tokenIds` array using a `for` loop. For each token ID in the array, it calculates the `eligibilityWordIndex` by dividing the token ID by 256. If the `eligibilityWordIndex` is different from the `cachedIndex`, it means a new word needs to be processed. In this case, the function saves the current `cachedWord` to the `eligibleBitMap` array at the `cachedIndex` and updates the `cachedWord` with the value at the new `eligibilityWordIndex`. The `cachedIndex` is then updated to the new `eligibilityWordIndex`.
+After processing the word index, the function modifies the `cachedWord` by setting or clearing the bit corresponding to the current token ID based on the `_isEligible` parameter.
+Once all token IDs have been processed, the function assigns the last modified `cachedWord` back to the `eligibleBitMap` array at the final `cachedIndex`.
+Finally, the function emits an event `UniqueEligibilitiesSet` to notify external entities about the successful setting of eligibility for the provided token IDs.
+
+In summary, the `_setUniqueEligibilities` function efficiently updates the eligibility status for a batch of token IDs by manipulating the bits in the `eligibleBitMap` array and emits an event to signal the completion of the operation.

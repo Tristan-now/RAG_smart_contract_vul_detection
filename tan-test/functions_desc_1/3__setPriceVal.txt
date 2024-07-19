@@ -1,0 +1,19 @@
+This code defines an internal function named `_setPriceVal`, which is responsible for updating the price value of a token based on the input and output amounts, as well as a weight factor. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `tokenPrice`: A struct that stores the price information of a token, including the token price per 1k units.
+2. `inAmount`: A uint256 value representing the input amount.
+3. `outAmount`: A uint256 value representing the output amount.
+4. `weightPerMil`: A uint256 value representing the weight factor per mil (per thousand).
+
+Code Breakdown:
+The function `_setPriceVal` takes in the `TokenPrice` struct `tokenPrice`, input amount `inAmount`, output amount `outAmount`, and weight factor `weightPerMil`. Inside the function, a variable `updatePer1k` is calculated by dividing `1000 ether * inAmount` by `(outAmount + 1)`. This calculation determines the update per 1k units based on the input and output amounts.
+The token price per 1k units is then updated using the formula:
+```
+tokenPrice.tokenPer1k = 
+    (tokenPrice.tokenPer1k * (1000 - weightPerMil) + updatePer1k * weightPerMil) / 1000;
+```
+This formula updates the token price per 1k units by taking a weighted average of the current token price and the calculated update per 1k units based on the weight factor. The weight factor determines how much influence the update has on the token price relative to the current price.
+
+Summary:
+The `_setPriceVal` function calculates and updates the token price per 1k units based on the input and output amounts, as well as a weight factor. It uses a weighted average formula to adjust the token price, taking into account the weight factor provided.

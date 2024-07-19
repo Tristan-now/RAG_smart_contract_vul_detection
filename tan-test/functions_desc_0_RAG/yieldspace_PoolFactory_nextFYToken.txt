@@ -1,0 +1,18 @@
+This code snippet defines an external view function named `nextFYToken` that returns the address of the next FY token. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `address`: The function returns an `address` value representing the address of the next FY token.
+
+Code Breakdown:
+- The function `nextFYToken` is an external view function, meaning it can be called from outside the contract and does not modify the contract's state.
+- The function simply returns the value of the `_nextFYToken` variable, which presumably stores the address of the next FY token.
+- The return type of the function is `address`, indicating that it will return an Ethereum address.
+
+Vulnerability Prediction:
+- Since this function is a simple view function that only returns a stored value, there are no apparent vulnerabilities associated with it.
+
+Summary:
+- The `nextFYToken` function is an external view function that returns the address of the next FY token stored in the `_nextFYToken` variable. It does not modify the contract's state and is used for querying the address of the next FY token.

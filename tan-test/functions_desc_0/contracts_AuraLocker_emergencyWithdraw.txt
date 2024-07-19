@@ -1,0 +1,19 @@
+This code defines an external function named `emergencyWithdraw` that allows a user to withdraw their locked tokens in case of an emergency. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+1. The function starts with a `require` statement that checks if the contract is in a shutdown state (`isShutdown` must be true). This ensures that the emergency withdrawal can only be performed when the contract is in a shutdown state.
+2. The function then declares a memory array `locks` of type `LockedBalance` to store the user's locked balances and a storage variable `userBalance` of type `Balances` to store the user's balance information.
+3. The function retrieves the total locked amount (`amt`) from the user's balance. If the locked amount is 0, the function reverts with an error message "Nothing locked".
+4. The function sets the user's locked balance to 0 and updates the `nextUnlockIndex` to the length of the `locks` array, indicating that all locks have been withdrawn.
+5. The function subtracts the withdrawn amount (`amt`) from the total locked supply (`lockedSupply`).
+6. The function emits a `Withdrawn` event with the user's address, the withdrawn amount, and a flag indicating that the withdrawal was not forced.
+7. Finally, the function transfers the withdrawn tokens (`amt`) to the user's address using the `safeTransfer` function of the `stakingToken`.
+
+Summary:
+The `emergencyWithdraw` function allows a user to withdraw their locked tokens in case of an emergency. It checks if the contract is in a shutdown state, retrieves the user's locked balance, updates the user's balance information, subtracts the withdrawn amount from the total locked supply, emits an event, and transfers the tokens to the user's address.

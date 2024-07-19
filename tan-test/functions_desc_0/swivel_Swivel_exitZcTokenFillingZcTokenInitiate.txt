@@ -1,0 +1,18 @@
+This code defines an internal function named `exitZcTokenFillingZcTokenInitiate`, which handles the process of exiting a ZcToken position by filling a ZcToken order. The function takes three parameters: an `Order` struct `o`, a `uint256` amount `a`, and a `Components` struct `c`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `o`: An `Order` struct that contains information about the ZcToken order, including the premium, principal, underlying asset, maker address, and other relevant details.
+2. `a`: A `uint256` amount representing the quantity of ZcTokens to be filled in the order.
+3. `c`: A `Components` struct that includes signature components required for order validation.
+
+Code Breakdown:
+1. The function first calculates the hash of the order using the `validOrderHash` function and stores it in the `hash` variable.
+2. It then checks if the amount `a` to be filled is less than or equal to the available volume (premium - filled) for the order. If not, it raises an error indicating that the taker amount is greater than the available volume.
+3. The function updates the filled volume for the order by adding the amount `a` to the existing filled volume for the order.
+4. It calculates the `principalFilled` amount by multiplying the taker amount `a` by the principal amount of the order and dividing by the premium. It then calculates the `fee` amount based on the `principalFilled` and a fee denominator value.
+5. It interacts with an ERC20 token contract (`uToken`) representing the underlying asset of the order. It transfers the principalFilled amount minus the taker amount `a` and the fee from the maker address to the exiting party (msg.sender). It also transfers the fee amount to the contract address.
+6. The function then initiates a ZcToken exchange by calling the `p2pZcTokenExchange` function of the `MarketPlace` contract, transferring the `principalFilled` amount of ZcTokens from the exiting party to the maker of the order.
+7. Finally, the function emits an `Exit` event containing relevant information about the exit transaction.
+
+Summary:
+The `exitZcTokenFillingZcTokenInitiate` function facilitates the process of exiting a ZcToken position by filling a ZcToken order. It involves updating the filled volume, calculating the principal and fee amounts, transferring underlying assets and fees, exchanging ZcTokens, and emitting an event to track the exit transaction.

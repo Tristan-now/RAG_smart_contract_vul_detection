@@ -1,0 +1,22 @@
+This code defines an external function named `burnSurplus`, which is used to burn any surplus tokens held by the contract. The function calculates the surplus amount to be burned based on the current configuration and then transfers the surplus tokens to the contract address before burning them.
+
+Parameters:
+- None
+
+Return Value:
+- `burnAmount`: The function returns a `uint256` value representing the amount of surplus tokens that have been burned.
+
+Code Breakdown:
+- The function first initializes a variable `config` of type `InvariantConfig` by calling the `_getConfig` function to retrieve the current configuration settings.
+- It then calls the `computePrice` function from `MassetLogic` contract to calculate the price based on the `bAssetData` and `config` parameters. The function returns a tuple, but only the second value `k` is assigned to a variable.
+- A `require` statement checks if the current supply is greater than the calculated price `k`. If not, it reverts the transaction with the message "No surplus".
+- The surplus amount to be burned is calculated as the difference between the current supply and the calculated price (`config.supply - k`) and stored in the `burnAmount` variable.
+- The function then transfers the `burnAmount` of tokens from the `msg.sender` to the contract address (`address(this)`) to ensure that approval has been given for the transfer.
+- The `_burn` function is called to burn the `burnAmount` of tokens from the contract address.
+- Finally, an event `SurplusBurned` is emitted to log the address of the sender and the amount of tokens burned.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the token transfer and burning logic is not properly handled. Additionally, if the `computePrice` function or the `_burn` function have vulnerabilities, they could be exploited to manipulate the burning process.
+
+Summary:
+The `burnSurplus` function calculates and burns any surplus tokens held by the contract. It ensures that the surplus amount is greater than the calculated price before proceeding with the burning process. The function transfers the surplus tokens to the contract address and then burns them, emitting an event to log the burning activity.

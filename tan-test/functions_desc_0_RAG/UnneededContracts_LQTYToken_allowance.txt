@@ -1,0 +1,20 @@
+This code snippet defines a function named `allowance` that is part of a smart contract. The function is declared as `external`, meaning it can be called from outside the contract, and it implements the `view` and `override` modifiers, indicating that it is a read-only function that overrides a function from an inherited interface.
+
+Explanation of the code:
+- The function `allowance` takes two parameters: `owner` and `spender`, both of type `address`. These parameters represent the owner of the tokens and the address that is allowed to spend the tokens on behalf of the owner.
+- The function returns a `uint256` value, which represents the allowance that the `spender` is allowed to spend on behalf of the `owner`.
+- Inside the function, it accesses the `_allowances` mapping using the `owner` and `spender` addresses as keys to retrieve the allowance value.
+- The function then returns this allowance value to the caller.
+
+Summary:
+The `allowance` function provides a way to query the allowance that a specific `spender` has to spend tokens on behalf of a particular `owner`. It retrieves this information from the `_allowances` mapping and returns the allowance amount as a `uint256` value.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for this specific code snippet.
+
+[TASK CODE]
+```solidity
+function allowance(address owner, address spender) external view override returns (uint256) {
+    return _allowances[owner][spender];
+}
+```

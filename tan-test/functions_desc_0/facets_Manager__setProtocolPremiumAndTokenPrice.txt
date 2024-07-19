@@ -1,0 +1,23 @@
+This code defines a private function named `_setProtocolPremiumAndTokenPrice` that sets the premium and token price for a specific protocol and token. The function takes in several parameters and returns two `uint256` values.
+
+Parameters:
+1. `_protocol`: A bytes32 value representing the protocol for which the premium and token price are being set.
+2. `_token`: An `IERC20` interface representing the token for which the premium and token price are being set.
+3. `_premium`: A `uint256` value representing the premium to be set for the protocol.
+4. `_newUsd`: A `uint256` value representing the new USD price for the token.
+5. `usdPerBlock`: A `uint256` value representing the USD per block.
+6. `usdPool`: A `uint256` value representing the USD pool.
+
+Return Values:
+The function returns two `uint256` values: `usdPerBlock` and `usdPool`.
+
+Code Breakdown:
+1. The function starts by accessing the `PoolStorage.Base` struct for the given token `_token` using `PoolStorage.ps(_token)`.
+2. It then calls the `onlyValidToken` function to ensure that the token is valid within the pool storage.
+3. The function then sets the old USD price for the token by calling the `_setTokenPrice` function with the new USD price `_newUsd`.
+4. It sets the old and new premium values for the protocol by calling the `_setProtocolPremium` function with the protocol, premium, and pool storage.
+5. The function then updates the data by calling the `_updateData` function with various parameters including the pool storage, USD per block, USD pool, old and new premium values, old and new USD prices.
+6. Finally, the function returns the updated `usdPerBlock` and `usdPool` values.
+
+Summary:
+The `_setProtocolPremiumAndTokenPrice` function is responsible for setting the premium and token price for a specific protocol and token. It interacts with the pool storage, updates the data, and returns the updated USD per block and USD pool values.

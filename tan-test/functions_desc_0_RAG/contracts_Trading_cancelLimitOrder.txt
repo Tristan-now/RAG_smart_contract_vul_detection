@@ -1,0 +1,18 @@
+This code defines an external function named `cancelLimitOrder`, which allows a trader to cancel a specific limit order. The function takes two parameters: `_id`, which represents the ID of the order to be canceled, and `_trader`, which is the address of the trader initiating the cancellation.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: A uint256 value representing the ID of the limit order to be canceled.
+2. `_trader`: The address of the trader who is canceling the limit order.
+
+Code Breakdown:
+1. `_validateProxy(_trader)`: This function is called to validate the proxy of the trader. It ensures that the trader has the necessary permissions to cancel the order.
+2. `_checkOwner(_id, _trader)`: This function is called to check if the trader is the owner of the order with the given ID. If the trader is not the owner, the function will revert.
+3. `_trade`: This variable of type `IPosition.Trade` stores the trade information associated with the given order ID.
+4. `if (_trade.orderType == 0) revert();`: This condition checks if the order type is not equal to 0 (indicating it is a limit order). If it is not a limit order, the function reverts.
+5. `IStable(_trade.tigAsset).mintFor(_trader, _trade.margin)`: This line mints a stable asset (TIG) for the trader, with the amount equal to the margin of the canceled order. This is likely a refund mechanism for the trader.
+6. `position.burn(_id)`: This function call burns the canceled order, removing it from the system.
+7. `emit LimitCancelled(_id, _trader)`: This line emits an event `LimitCancelled` to notify that the limit order with the given ID has been successfully canceled by the trader.
+
+In summary, the `cancelLimitOrder` function allows a trader to cancel a specific limit order by validating the trader's permissions, checking ownership of the order, handling refunds, and removing the order from the system.

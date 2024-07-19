@@ -1,0 +1,16 @@
+This code snippet defines an external function named `lock` that allows users to lock a specified amount of tokens in the smart contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: The address of the account that is locking the tokens.
+2. `_amount`: The amount of tokens to be locked by the `_account`.
+
+Functionality:
+1. `nonReentrant`: This modifier ensures that the function is not re-entered while it is still executing, preventing potential re-entrancy attacks.
+2. `updateReward(_account)`: This function modifier updates the reward for the `_account` before executing the main logic of the `lock` function.
+
+Code Breakdown:
+1. `stakingToken.safeTransferFrom(msg.sender, address(this), _amount)`: This line transfers `_amount` tokens from the `msg.sender` (the caller of the function) to the smart contract address (`address(this)`). The `safeTransferFrom` function is used to transfer tokens safely, ensuring that the transfer is successful and that the receiving contract can handle the tokens.
+2. `_lock(_account, _amount)`: This line calls the internal `_lock` function with the `_account` and `_amount` as parameters. The `_lock` function is responsible for actually locking the tokens for the specified account.
+
+Summary:
+The `lock` function allows users to lock a specified amount of tokens in the smart contract. It first transfers the tokens from the caller to the contract address and then calls the internal `_lock` function to handle the locking process. This function ensures that the tokens are securely locked and that the user's rewards are updated accordingly.

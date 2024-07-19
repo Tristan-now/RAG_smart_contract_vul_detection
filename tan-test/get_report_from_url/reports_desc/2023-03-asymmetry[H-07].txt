@@ -1,0 +1,17 @@
+Type of vulnerability: Reliance on Excess Balance for Withdrawals
+Cause of vulnerability: The RocketTokenRETH.burn function only allows withdrawals based on excess balance, leading to unreliable withdrawals.
+Execution process: The withdrawal process relies on the excess balance in the RocketDepositPool to allow withdrawals. If there is insufficient excess balance, withdrawals become impossible, affecting protocol functionality.
+Detailed characteristics: The vulnerability arises from the exclusive reliance on excess balance for withdrawals in the RocketTokenRETH contract, limiting withdrawal options and potentially bricking the protocol.
+Vulnerable code:
+```
+function withdraw(uint256 amount) external onlyOwner {
+    if (rocketDepositPool excess balance is sufficient) {
+        RocketTokenRETHInterface(rethAddress()).burn(amount);
+        // solhint-disable-next-line
+        (bool sent, ) = address(msg.sender).call{value: address(this).balance}("");
+        require(sent, "Failed to send Ether");
+    } else {
+        // swap rETH for ETH via Uniswap pool
+    }
+}
+```

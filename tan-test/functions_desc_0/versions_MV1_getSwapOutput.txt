@@ -1,0 +1,19 @@
+This code defines an external function named `getSwapOutput`, which calculates the output amount of a swap between two assets. The function accepts three parameters: the input asset address (`_input`), the output asset address (`_output`), and the quantity of the input asset (`_inputQuantity`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_input`: The address of the input asset for the swap.
+2. `_output`: The address of the output asset for the swap.
+3. `_inputQuantity`: The quantity of the input asset to be swapped.
+
+Return Value:
+`swapOutput`: The function returns a `uint256` value representing the output amount of the swap.
+
+Code Breakdown:
+The function signature includes the parameters `_input`, `_output`, and `_inputQuantity`. `getSwapOutput` is an external function, meaning it can be called from outside the contract. The function first checks if the input and output assets are different and if the input quantity is greater than 0 using `require` statements.
+
+Next, the function loads the asset information for the input and output assets from storage using the `_getAsset` function and stores them in `Asset` structs named `input` and `output`.
+
+Then, if the swap involves bAssets (basket assets), the function calls the `computeSwap` function from `MassetLogic` to calculate the validity, output amount, and fee for the swap. This function takes the bAsset data, input asset index, output asset index, input quantity, swap fee, and configuration as parameters. The output amount of the swap is stored in the `swapOutput` variable.
+
+Summary:
+The `getSwapOutput` function checks the validity of the input parameters, loads asset information from storage, and calculates the output amount of a swap between two assets. If the swap involves bAssets, additional calculations are performed to determine the output amount and fee.

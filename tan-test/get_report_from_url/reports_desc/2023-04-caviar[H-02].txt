@@ -1,0 +1,23 @@
+Type of vulnerability: Arbitrary execution
+Cause of vulnerability: The execute function in the PrivatePool contract allows the owner to craft a payload to steal ERC20 tokens and NFTs from user wallets after they have given approval to the PrivatePool contract.
+Execution process: The owner of the PrivatePool carefully crafts a payload to steal funds via arbitrary execution by calling the execute function with the target set as an ERC20 token address or an NFT address, and using the call data as the payload for functions like transferFrom.
+Detailed characteristics: The vulnerability arises from the ability of the owner of the PrivatePool to execute transactions that can transfer ERC20 tokens and NFTs from user wallets without their consent, leading to potential fund theft.
+Vulnerable code:
+```solidity
+function execute(address target, bytes memory data) public payable onlyOwner returns (bytes memory) {
+    (bool success, bytes memory returnData) = target.call{value: msg.value}(data);
+    
+    if (success) {
+        return returnData;
+    }
+    
+    if (returnData.length > 0) {
+        assembly {
+            let returnData_size := mload(returnData)
+            revert(add(32, returnData), returnData_size)
+        }
+    } else {
+        revert();
+    }
+}
+```

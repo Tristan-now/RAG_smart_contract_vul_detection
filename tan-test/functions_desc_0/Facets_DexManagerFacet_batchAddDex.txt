@@ -1,0 +1,15 @@
+This code defines an external function named `batchAddDex`, which allows the contract owner to add multiple DEX (Decentralized Exchange) addresses to a whitelist. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_dexs`: An array of addresses that stores the addresses of multiple DEXs that the contract owner wants to add to the whitelist.
+
+Functionality:
+1. The function signature includes the parameter `_dexs`, which is an array of DEX addresses that the contract owner wants to add to the whitelist.
+2. The function starts by calling `LibDiamond.enforceIsContractOwner()` to ensure that only the contract owner can execute this function.
+3. A `for` loop is used to iterate over the `_dexs` array. The loop starts with `i` initialized to 0 and runs until `i` is less than the length of `_dexs`, incrementing `i` by 1 each iteration.
+4. Within each iteration, the function checks if the DEX address at index `i` in the `_dexs` array is already in the whitelist. If it is, the loop continues to the next iteration using the `continue` keyword.
+5. If the DEX address is not in the whitelist, the function sets the value of `s.dexWhitelist[_dexs[i]]` to `true`, indicating that the DEX address is now whitelisted.
+6. Additionally, the DEX address is added to the `s.dexs` array, which stores all whitelisted DEX addresses.
+
+Summary:
+The `batchAddDex` function allows the contract owner to efficiently add multiple DEX addresses to a whitelist. It enforces that only the contract owner can perform this operation and ensures that duplicate DEX addresses are not added to the whitelist.

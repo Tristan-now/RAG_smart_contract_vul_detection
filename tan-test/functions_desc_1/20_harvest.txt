@@ -1,0 +1,18 @@
+This code defines a public function named `harvest` that is part of a smart contract. The function is designed to harvest rewards from a strategy and swap them for the underlying asset using Uniswap. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `router`: The address of the Uniswap router contract used for swapping tokens.
+2. `asset`: The address of the underlying asset managed by the strategy.
+3. `rewardTokens`: An array of addresses representing the reward tokens received from the strategy.
+
+Code Breakdown:
+The `harvest` function starts by decoding the strategy configuration to obtain the Uniswap router address and the asset address. It also retrieves the array of reward tokens associated with the contract.
+The function then calls the `claim` function of the contract to accrue or pull in any pending rewards.
+A trade path array is initialized with a length of 2, where the second element is set to the asset address.
+A loop is used to iterate over the reward tokens array. For each token, the function checks the balance of that token held by the contract.
+If the balance of the token is greater than 0, a trade path is constructed with the reward token as the first element.
+The contract then calls the `swapExactTokensForTokens` function of the Uniswap router to swap the reward token for the underlying asset.
+After processing all reward tokens, the function calls the `strategyDeposit` function of the contract to deposit the remaining balance of the underlying asset back into the strategy.
+
+Summary:
+The `harvest` function of the contract harvests rewards from the strategy, swaps them for the underlying asset using Uniswap, and deposits the remaining balance back into the strategy. This process helps optimize the management of rewards and assets within the contract.

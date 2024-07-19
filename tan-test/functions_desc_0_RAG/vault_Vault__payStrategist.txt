@@ -1,0 +1,21 @@
+This code snippet contains a series of internal virtual functions that are meant to be overridden by derived contracts. These functions are used for various internal operations within a smart contract system. Here's a breakdown of each function:
+
+1. `_payStrategist(uint256 amount, address strategist) internal virtual;`
+   - This function is responsible for transferring a specified amount of tokens to a strategist's address. It takes two parameters: the amount to transfer and the address of the strategist.
+
+2. `_transfer(address to, uint256 amount) internal virtual;`
+   - This function is used to transfer a specified amount of tokens to a given address. It takes two parameters: the recipient's address and the amount to transfer.
+
+3. `_depositToReserve(uint256 amount) internal virtual;`
+   - This function is used to deposit a specified amount of tokens into a reserve. It takes one parameter: the amount to deposit.
+
+4. `_depositToTreasury(uint256 amount) internal virtual;`
+   - This function is responsible for depositing a specified amount of tokens into a treasury. It takes one parameter: the amount to deposit.
+
+5. `_availableUnderlying() internal view virtual returns (uint256);`
+   - This function is a view function that returns the amount of underlying tokens available in the contract.
+
+6. `_computeNewAllocated(uint256 allocated, uint256 withdrawn) internal pure returns (uint256)`
+   - This function is a pure function that calculates the new allocated amount after a withdrawal. It takes two parameters: the previously allocated amount and the amount withdrawn. If the allocated amount is greater than the withdrawn amount, it returns the difference; otherwise, it returns 0.
+
+These functions provide the basic functionality for handling token transfers, deposits, and calculations within the smart contract system. They are designed to be flexible and customizable by allowing derived contracts to override their implementations as needed.

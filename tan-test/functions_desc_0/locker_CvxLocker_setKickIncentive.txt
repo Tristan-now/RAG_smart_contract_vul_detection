@@ -1,0 +1,17 @@
+This code defines an external function named `setKickIncentive` that allows the contract owner to set the kick incentive parameters. The function takes two parameters: `_rate` and `_delay`, both of type `uint256`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_rate`: A `uint256` value representing the kick incentive rate. It should be less than or equal to 500, indicating a maximum of 5% per epoch.
+2. `_delay`: A `uint256` value representing the delay in epochs before the kick incentive is applied. It should be greater than or equal to 2, indicating a minimum of 2 epochs of grace.
+
+Functionality:
+1. The function is marked as `external`, meaning it can be called from outside the contract.
+2. The function is restricted to be called only by the contract owner (`onlyOwner` modifier).
+3. The function first checks if the `_rate` is less than or equal to 500, ensuring that the kick incentive rate does not exceed the maximum allowed rate.
+4. It then checks if the `_delay` is greater than or equal to 2, ensuring that there is a minimum delay of 2 epochs before applying the kick incentive.
+5. If both requirements are met, the function updates the `kickRewardPerEpoch` variable with the new kick incentive rate `_rate` and the `kickRewardEpochDelay` variable with the new delay `_delay`.
+
+Summary:
+The `setKickIncentive` function allows the contract owner to set the kick incentive rate and delay parameters within specified limits. It provides flexibility for adjusting the kick incentive mechanism while ensuring that the rate and delay are within acceptable ranges.

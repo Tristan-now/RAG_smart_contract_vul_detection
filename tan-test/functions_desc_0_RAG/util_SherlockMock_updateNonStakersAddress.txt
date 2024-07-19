@@ -1,0 +1,20 @@
+This code snippet defines a function named `updateNonStakersAddress` that allows the contract owner to update the address of non-stakers. Here is a detailed explanation of how this function works:
+
+Parameters:
+1. `_nonStakers`: This is the new address that will be set as the non-stakers address.
+
+Functionality:
+The function `updateNonStakersAddress` is an external function that can be called by anyone. It takes one parameter `_nonStakers`, which is the new address that will be assigned as the non-stakers address. The function is marked with the `override` modifier, indicating that it overrides a function from an inherited interface.
+
+Code Breakdown:
+When the function is called, it updates the `nonStakersAddress` variable in the contract with the provided `_nonStakers` address. This allows the contract owner to dynamically change the address that represents non-stakers in the contract.
+
+Overall, this function provides flexibility to the contract owner to update the non-stakers address as needed.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are relevant to this specific code snippet.
+
+[TASK CODE]
+function updateNonStakersAddress(address _nonStakers) external override onlyOwner {
+    nonStakersAddress = _nonStakers;
+}

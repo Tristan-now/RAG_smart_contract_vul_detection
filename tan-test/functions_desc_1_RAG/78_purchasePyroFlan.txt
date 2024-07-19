@@ -1,0 +1,30 @@
+This function `purchasePyroFlan` is an external function that allows users to purchase PyroFlan tokens using a stablecoin. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `stablecoin`: The address of the stablecoin that the user wants to use for the purchase.
+2. `amount`: The amount of stablecoin the user wants to use for the purchase.
+
+Code Breakdown:
+1. The function first normalizes the amount of the stablecoin using the `normalize` function.
+2. It retrieves the addresses of the Flan LP and PyroFlan LP tokens from the `config` contract and ensures that they are not zero addresses.
+3. It calculates the price before the purchase by dividing the balance of Flan tokens in the Flan LP by the balance of the stablecoin in the Flan LP.
+4. The function then performs the following steps:
+   - Mints half of the normalized amount of Flan tokens to the contract address.
+   - Transfers a quarter of the normalized amount of Flan tokens to the Flan LP.
+   - Transfers half of the amount of stablecoin from the user to the Flan LP.
+   - Mints LP tokens for the Flan LP.
+   - Mints PyroFlan tokens to the PyroFlan LP using the normalized amount.
+   - Transfers half of the amount of stablecoin from the user to the PyroFlan LP.
+   - Mints LP tokens for the PyroFlan LP.
+5. It calculates the tilted price after the purchase by dividing the new balance of Flan tokens in the Flan LP by the new balance of the stablecoin in the Flan LP.
+6. It checks if the tilted price is below the acceptable highest price for the stablecoin to prevent potential price manipulation.
+7. It calculates the growth percentage based on the difference between the price before and after the purchase.
+8. It calculates the amount of Flan tokens to mint for the user based on the tilted price and the normalized amount.
+9. It calculates a premium amount to share with the user based on the growth percentage.
+10. It mints the total amount of Flan tokens (including the premium) to the user.
+
+Vulnerability Prediction:
+This function may be vulnerable to price manipulation attacks if the tilted price exceeds the acceptable highest price set in the configuration. Attackers could potentially exploit this vulnerability to manipulate prices and gain an unfair advantage.
+
+Summary:
+The `purchasePyroFlan` function facilitates the purchase of PyroFlan tokens using a stablecoin. It involves minting Flan and PyroFlan tokens, transferring stablecoin amounts, calculating prices, and incentivizing users with premium tokens based on price growth. The function includes checks to prevent potential price manipulation and ensure fair token minting for users.

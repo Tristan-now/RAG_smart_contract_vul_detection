@@ -1,0 +1,20 @@
+This code defines an internal function named `_leftSubColls`, which calculates the difference in amounts between two collections of tokens. The function accepts three parameters: a struct `_coll1` containing arrays of tokens and amounts, an array of addresses `_subTokens`, and an array of amounts `_subAmounts`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_coll1`: A struct containing arrays of tokens and amounts representing the first collection.
+2. `_subTokens`: An array of addresses that stores the addresses of tokens to be subtracted from the first collection.
+3. `_subAmounts`: An array of amounts corresponding to the tokens in `_subTokens` to be subtracted.
+
+Return Value:
+The function returns an array of `uint` values representing the difference in amounts between the two collections.
+
+Code Breakdown:
+The function signature includes the parameters `_coll1`, `_subTokens`, and `_subAmounts`. `_leftSubColls` is an internal function, meaning it can only be called within the contract or its derived contracts. The function accepts three parameters: `_coll1` (a struct containing token and amount arrays), `_subTokens` (an array of token addresses to subtract), and `_subAmounts` (an array of amounts to subtract). The function returns an array of `uint` values named `diffAmounts`, initialized by copying the amounts from `_coll1`. The function assumes that the tokens in `_coll1` are whitelist tokens and keeps all of `_coll1`'s tokens while subtracting the amounts specified in `_subAmounts` for the tokens in `_subTokens`. 
+
+The variable `subTokensLen` stores the length of the `_subTokens` array, which is used to control the number of iterations in the loop. A `for` loop is used to iterate over the `_subTokens` array. The loop starts with `i` initialized to 0 and runs until `i` is less than `subTokensLen`, incrementing `i` by 1 each iteration. In each iteration, the index of the token in the whitelist is obtained using `whitelist.getIndex(_subTokens[i])` and stored in the variable `tokenIndex`. The amount corresponding to the token in `_coll1` is then subtracted by the amount specified in `_subAmounts` for that token. The updated amount is stored in the `diffAmounts` array.
+
+Vulnerability prediction:
+This function may be vulnerable to a potential underflow attack if the subtraction operation results in a negative value due to insufficient validation of input amounts.
+
+Summary:
+The `_leftSubColls` function calculates the difference in amounts between two collections of tokens. It keeps all tokens from the first collection while subtracting the specified amounts for tokens in the second collection. The function returns an array of `uint` values representing the updated amounts after subtraction.

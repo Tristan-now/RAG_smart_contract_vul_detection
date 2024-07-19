@@ -1,0 +1,14 @@
+This code snippet defines an internal function named `_setDestination` that is responsible for setting the destination address. The function takes one parameter, `_destination`, which is the address that will be set as the destination.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_destination`: This parameter is of type `address` and represents the address that will be set as the destination.
+
+Code Breakdown:
+The function `_setDestination` is marked as internal, meaning it can only be called within the contract or its derived contracts. 
+The function starts with a `require` statement that checks if the `_destination` address is not equal to the zero address. If the `_destination` address is the zero address (0x0000000000000000000000000000000000000000), the function will revert with the error message "Flush/destination-not-zero-address".
+If the `_destination` address is not the zero address, the function will proceed to set the `destination` variable to the `_destination` address.
+
+Summary:
+The `_setDestination` function is a simple internal function that sets the destination address to the provided `_destination` address, as long as the `_destination` address is not the zero address. If the `_destination` address is the zero address, the function will revert with an error message.

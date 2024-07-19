@@ -1,0 +1,14 @@
+This code defines an internal view function named `_getPoints`, which calculates the points based on the amount and duration provided as input parameters. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `amount_`: A `uint256` value representing the amount for which points need to be calculated.
+2. `duration_`: A `uint256` value representing the duration for which the points are calculated.
+
+Return Value:
+`points_`: The function returns a `uint256` value representing the calculated points based on the input amount and duration.
+
+Code Breakdown:
+The function signature includes the parameters `amount_` and `duration_`. `_getPoints` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function accepts two parameters: `amount_` (the amount for which points need to be calculated) and `duration_` (the duration for which the points are calculated). The function returns a `uint256` variable named `points_`. Inside the function, the calculation for points is performed by multiplying the `amount_` with the sum of `duration_` and `_zeroDurationPointBase`. The result of this calculation is stored in the `points_` variable. Finally, the calculated points are returned as the output of the function.
+
+Summary:
+The `_getPoints` function calculates points based on the input amount and duration by multiplying the amount with the sum of the duration and a predefined base value `_zeroDurationPointBase`. The function returns the calculated points as a `uint256` value.

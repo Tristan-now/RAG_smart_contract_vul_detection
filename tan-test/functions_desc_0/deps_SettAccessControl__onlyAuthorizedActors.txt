@@ -1,0 +1,18 @@
+This code defines an internal function named `_onlyAuthorizedActors`, which is used to restrict access to certain actions within the smart contract. The function checks if the caller of the function (`msg.sender`) is either the `keeper` or the `governance` address. If the caller is not one of these addresses, the function will revert with an error message.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+- The function `_onlyAuthorizedActors` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+- The function does not take any parameters.
+- Inside the function, there is a `require` statement that checks if the `msg.sender` (the address of the caller) is equal to either the `keeper` or the `governance` address. If the condition is not met, the function will revert with the error message "onlyAuthorizedActors".
+- This function serves as a modifier to restrict access to specific functions or actions within the contract to only the `keeper` and `governance` addresses.
+
+Summary:
+The `_onlyAuthorizedActors` function is a security measure that ensures only authorized actors (the `keeper` and `governance` addresses) can perform certain actions within the smart contract. If any other address tries to access these restricted actions, the function will revert with an error message.

@@ -1,0 +1,14 @@
+This code snippet defines an internal function named `_doTransferIn`, which is intended to handle token transfers into the contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `from`: The address from which the tokens are being transferred.
+2. `amount`: The amount of tokens being transferred.
+
+Code Breakdown:
+- The function `_doTransferIn` is marked as `internal override`, indicating that it is an internal function that overrides a function from a parent contract.
+- The function expects two parameters: `from`, which represents the sender of the tokens, and `amount`, which specifies the quantity of tokens being transferred.
+- The first `require` statement checks if the `msg.sender` (the caller of the function) is the same as the `from` address. If they are not the same, it will trigger an error with the message "INVALID_SENDER".
+- The second `require` statement verifies if the `msg.value` (the amount of Ether sent with the transaction) is equal to the `amount` parameter. If they are not equal, it will trigger an error with the message "INVALID_AMOUNT".
+
+Summary:
+The `_doTransferIn` function is designed to ensure that token transfers into the contract are performed correctly by validating the sender's address and the amount of Ether sent with the transaction. It enforces that the sender matches the specified `from` address and that the correct amount of Ether is sent along with the transfer.

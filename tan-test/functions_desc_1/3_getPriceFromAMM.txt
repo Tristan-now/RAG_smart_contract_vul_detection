@@ -1,0 +1,20 @@
+This code defines an internal virtual function named `getPriceFromAMM`, which is used to retrieve the price of a token from an Automated Market Maker (AMM) such as Uniswap. The function accepts two parameters: the address of the token (`token`) and the amount of the token (`inAmount`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: The address of the token for which the price needs to be retrieved.
+2. `inAmount`: The amount of the token for which the price needs to be calculated.
+
+Return Value:
+The function returns a `uint256` value representing the price of the token.
+
+Code Breakdown:
+The function signature includes the parameters `token` and `inAmount`. `getPriceFromAMM` is an internal virtual function, meaning it can only be called within the contract or its derived contracts, and it can be overridden by derived contracts. 
+The function first checks if the `token` address is equal to the `peg` address. If they are the same, it returns the `inAmount` as the price since the token is pegged to itself.
+If the `token` is not equal to the `peg` address, the function retrieves the `TokenPrice` struct associated with the token from the `tokenPrices` mapping. 
+It then calculates the path amounts using the `UniswapStyleLib.getAmountsOut` function, which calculates the output amount based on the input amount, liquidation pairs, and liquidation tokens of the token.
+The function retrieves the final output amount from the `pathAmounts` array.
+If the output amount is within a certain range defined by `UPDATE_MIN_PEG_AMOUNT` and `UPDATE_MAX_PEG_AMOUNT`, it calls the `setPriceVal` function to update the price value for the token.
+Finally, the function returns the calculated output amount as the price of the token.
+
+Summary:
+The `getPriceFromAMM` function retrieves the price of a token from an AMM by calculating the output amount based on the input amount and the token's liquidity information. If the output amount falls within a specified range, it updates the price value for the token.

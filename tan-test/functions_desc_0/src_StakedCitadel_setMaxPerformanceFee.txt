@@ -1,0 +1,16 @@
+This code defines an external function named `setMaxPerformanceFee`, which allows only the governance address to set the maximum performance fee that can be charged. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_fees`: A `uint256` value representing the maximum performance fee that can be set.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function signature includes the parameter `_fees`, which is the new maximum performance fee to be set. The function modifier `_onlyGovernance()` ensures that only the governance address can call this function. 
+The `require` statement checks if the `_fees` value is less than or equal to the `PERFORMANCE_FEE_HARD_CAP`. If it is not, the function will revert with the error message "performanceFeeStrategist too high".
+If the `_fees` value is within the acceptable range, the `maxPerformanceFee` variable is updated with the new value `_fees`.
+An event `SetMaxPerformanceFee` is emitted to log the successful update of the maximum performance fee.
+
+Summary:
+The `setMaxPerformanceFee` function allows the governance address to set the maximum performance fee that can be charged, ensuring that it does not exceed the predefined hard cap. This function provides a way to adjust the fee structure within the smart contract while maintaining proper governance control.

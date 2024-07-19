@@ -1,0 +1,17 @@
+This code defines a public function named `setVotingDelay` that allows the governance entity to update the voting delay parameter. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newVotingDelay`: A `uint256` value representing the new voting delay that the governance entity wants to set.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function signature includes the parameter `newVotingDelay`, which is the new value for the voting delay parameter. The function is marked as `public`, meaning it can be called from outside the contract. Additionally, the function includes the `onlyGovernance` modifier, which restricts the access to only the governance entity.
+
+Within the function, the current value of the `_votingDelay` parameter is stored in the `oldVotingDelay` variable. Then, the `_votingDelay` parameter is updated with the new value provided as `newVotingDelay`.
+
+After updating the `_votingDelay` parameter, the function emits a `VotingDelayUpdated` event, passing the old and new voting delay values as parameters. This event can be used to track changes in the voting delay parameter.
+
+Summary:
+The `setVotingDelay` function allows the governance entity to update the voting delay parameter in the contract. It first stores the current value, updates the parameter with the new value, and emits an event to notify observers about the change.

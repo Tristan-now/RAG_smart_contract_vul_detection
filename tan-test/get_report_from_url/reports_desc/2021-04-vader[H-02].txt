@@ -1,0 +1,18 @@
+Type of vulnerability: Flash attack vulnerability
+Cause of vulnerability: Failure to initialize the blockDelay state variable
+Execution process: The blockDelay state variable is not initialized, allowing the current executing context to be the same as the previous one, enabling flash attacks.
+Detailed characteristics: The blockDelay state variable needs to be initialized to at least 1 to prevent flash attacks, but it is not set to any value by default.
+Vulnerable code: 
+
+```solidity
+uint blockDelay;
+
+modifier flashProof() {
+    require(lastBlock[tx.origin] + blockDelay <= block.number, "Flash attack detected");
+    _;
+}
+
+function isMature() internal flashProof {
+    // Function implementation
+}
+```

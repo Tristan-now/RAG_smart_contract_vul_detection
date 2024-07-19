@@ -1,0 +1,19 @@
+This code defines an internal function named `_unlock` that is responsible for unlocking a locked position NFT and withdrawing the corresponding XDEFI tokens. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `account_`: The address of the account that owns the position NFT.
+2. `tokenId_`: The unique identifier of the position NFT to be unlocked.
+
+Return Value:
+`amountUnlocked_`: The amount of XDEFI tokens unlocked and withdrawn from the position.
+
+Code Breakdown:
+1. The function starts with a `require` statement to ensure that the `account_` is the owner of the position NFT with the specified `tokenId_`. If the condition is not met, the function will revert with the error message "NOT_OWNER".
+2. It then fetches the details of the position associated with the `tokenId_` from the `positionOf` mapping and stores them in local variables `units`, `depositedXDEFI`, and `expiry`.
+3. The function checks if the position has an expiry date set (not equal to 0) and if the current block timestamp is greater than or equal to the expiry timestamp. If the position is not locked or it's not yet time to unlock, the function will revert with the corresponding error messages "NO_LOCKED_POSITION" or "CANNOT_UNLOCK".
+4. It calculates the withdrawable amount of XDEFI tokens for the position using the `_withdrawableGiven` function, passing in the `units`, `depositedXDEFI`, and `pointsCorrection` from the position.
+5. The total deposited XDEFI amount is updated by subtracting the `depositedXDEFI` amount of the unlocked position.
+6. The total units of the FDT Position are reduced by the `units` of the unlocked position, and the position details are deleted from the `positionOf` mapping.
+7. An event `LockPositionWithdrawn` is emitted to log the successful withdrawal of XDEFI tokens from the unlocked position, including the `tokenId_`, `account_`, and `amountUnlocked_`.
+
+In summary, the `_unlock` function verifies ownership, checks if the position is locked and ready for unlocking, calculates the withdrawable XDEFI amount, updates the total deposited XDEFI and FDT Position units, deletes the position details, and emits an event to record the withdrawal.

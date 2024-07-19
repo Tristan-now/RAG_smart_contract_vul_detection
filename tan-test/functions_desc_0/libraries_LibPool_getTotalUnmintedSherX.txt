@@ -1,0 +1,21 @@
+This code defines a public view function named `getTotalUnmintedSherX` that calculates the total amount of SherX tokens that have not been minted yet. The function takes an `IERC20` token interface `_token` as a parameter and returns a `uint256` value representing the total unminted SherX tokens.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_token`: An interface representing an ERC20 token for which the total unminted SherX tokens need to be calculated.
+
+Return Value:
+`sherX`: The function returns a `uint256` value representing the total amount of unminted SherX tokens.
+
+Code Breakdown:
+1. The function starts by accessing the `PoolStorage.Base` and `SherXStorage.Base` structs using the `_token` parameter. These structs store essential information related to the pool and SherX token.
+2. The `sherX` variable is initialized to store the total unminted SherX tokens.
+3. The calculation for `sherX` involves the following steps:
+   a. Subtracting the `sherXLastAccrued` value stored in the pool storage from the current block number (`block.number`). This calculates the number of blocks that have passed since the last SherX accrual.
+   b. Multiplying the result of the previous step by the `sherXPerBlock` value stored in the SherX storage. This gives the total SherX tokens accrued per block.
+   c. Multiplying the result of the previous step by the `sherXWeight` value stored in the pool storage. This adjusts the SherX tokens based on the pool's weight.
+   d. Dividing the result of the previous step by `uint16(-1)`. This is likely used as a scaling factor or divisor to adjust the final SherX token amount.
+
+Summary:
+The `getTotalUnmintedSherX` function calculates the total amount of SherX tokens that have not been minted yet for a specific ERC20 token. It retrieves necessary information from the pool and SherX storage, performs calculations based on block numbers, SherX per block, and pool weight, and returns the total unminted SherX tokens.

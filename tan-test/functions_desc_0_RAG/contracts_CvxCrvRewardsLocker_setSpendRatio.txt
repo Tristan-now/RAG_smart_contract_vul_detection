@@ -1,0 +1,16 @@
+This code defines an external function named `setSpendRatio`, which allows the governance to set the spend ratio. The function accepts one parameter, `_spendRatio`, which is a `uint256` representing the new spend ratio to be set. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_spendRatio`: A `uint256` value representing the new spend ratio to be set by the governance.
+
+Return Value:
+The function returns a boolean value indicating whether the spend ratio was successfully set.
+
+Code Breakdown:
+The function signature includes the `setSpendRatio` function, which is external, meaning it can be called from outside the contract. The function is restricted to be called only by the governance through the `onlyGovernance` modifier. The function requires that the `_spendRatio` parameter does not exceed the maximum boost payment allowed by the `ICvxLocker` contract, which is accessed through the `CVX_LOCKER` address. If the `_spendRatio` exceeds the maximum boost payment, the function will revert with the error message `Error.EXCEEDS_MAX_BOOST`. If the `_spendRatio` is within the allowed range, the spend ratio variable is updated with the new value. An event `NewSpendRatio` is emitted to log the new spend ratio value. Finally, the function returns `true` to indicate that the spend ratio was successfully updated.
+
+Vulnerability prediction:
+This function does not exhibit any vulnerabilities based on the provided vulnerability reports.
+
+Summary:
+The `setSpendRatio` function allows the governance to set the spend ratio within the constraints of the maximum boost payment allowed by the `ICvxLocker` contract. The function ensures that the new spend ratio does not exceed the maximum boost payment and updates the spend ratio variable accordingly.

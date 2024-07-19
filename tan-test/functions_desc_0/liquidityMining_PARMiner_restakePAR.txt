@@ -1,0 +1,16 @@
+This code defines a public virtual function named `restakePAR` that allows a user to restake their tokens. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_user`: The address of the user who wants to restake their tokens.
+
+Code Breakdown:
+1. The function starts by declaring a `UserInfo` storage variable named `userInfo` that references the user's information stored in the `_users` mapping using the `_user` address.
+2. The `_refresh` function is called to update any necessary state variables.
+3. The `_refreshPAR` function is called to update the total stake amount.
+4. The variable `pending` is calculated by taking the difference between the user's stake multiplied by the difference in accumulated PAR amount per share and the user's previously accumulated PAR amount per share.
+5. The `_parBalanceTracker` is then reduced by the `pending` amount, representing the pending PAR tokens that will be restaked.
+6. The user's `accParAmountPerShare` is updated to the current accumulated PAR amount per share.
+7. The `_increaseStake` function is called to increase the user's stake by the `pending` amount, effectively restaking the pending PAR tokens.
+
+Summary:
+The `restakePAR` function allows a user to restake their pending PAR tokens by updating their stake amount and accumulated PAR amount per share. It ensures that the user's stake reflects the latest changes in the total stake and accumulated PAR amount per share.

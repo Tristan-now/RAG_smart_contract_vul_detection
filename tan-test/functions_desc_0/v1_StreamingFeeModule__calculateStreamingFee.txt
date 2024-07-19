@@ -1,0 +1,15 @@
+This code defines an internal function named `_calculateStreamingFee` that calculates the streaming fee for a given SetToken. The function takes a SetToken `_setToken` as a parameter and returns a `uint256` value representing the calculated streaming fee.
+
+Parameters:
+1. `_setToken`: A SetToken for which the streaming fee needs to be calculated.
+
+Return Value:
+The function returns a `uint256` value representing the streaming fee for the given SetToken.
+
+Code Breakdown:
+The `_calculateStreamingFee` function calculates the streaming fee for a given SetToken based on the time elapsed since the last fee was charged. The function first calculates the `timeSinceLastFee` by subtracting the timestamp of the last streaming fee from the current block timestamp using `block.timestamp.sub(_lastStreamingFeeTimestamp(_setToken))`.
+
+Next, the function calculates the streaming fee by multiplying the `timeSinceLastFee` by the streaming fee percentage obtained from the `_streamingFeePercentage` function and then dividing the result by `ONE_YEAR_IN_SECONDS` to convert the fee to an annualized rate.
+
+Summary:
+The `_calculateStreamingFee` function calculates the streaming fee for a given SetToken based on the time elapsed since the last fee was charged and the streaming fee percentage. The function returns the calculated streaming fee as a `uint256` value.

@@ -1,0 +1,17 @@
+This code defines an external function named `emergencyWithdraw`, which allows users to withdraw their locked staking tokens in case of an emergency. The function performs the following steps:
+
+1. It first checks if the contract is in a shutdown state by requiring the `isShutdown` variable to be true. This ensures that the emergency withdrawal can only be done when the contract is in a shutdown state.
+
+2. It retrieves the array of locked balances associated with the user who is calling the function and the storage reference to the user's balance.
+
+3. It checks if the user has any tokens locked by verifying that the locked amount (`amt`) is greater than 0. If there are no tokens locked, the function reverts with the message "Nothing locked".
+
+4. If the user has locked tokens, the function proceeds to unlock them by setting the user's locked balance to 0 and updating the `nextUnlockIndex` to the length of the locks array.
+
+5. The total locked supply is then decreased by the amount being withdrawn (`amt`).
+
+6. An event `Withdrawn` is emitted to log the withdrawal of tokens by the user.
+
+7. Finally, the staking tokens are transferred back to the user using the `safeTransfer` function of the `stakingToken` contract.
+
+This function is designed to allow users to withdraw their locked staking tokens in case of an emergency when the contract is in a shutdown state. It ensures that the withdrawal process is secure and that the user's balances are updated correctly.

@@ -1,0 +1,5 @@
+        Type of vulnerability: LP pricing formula manipulation
+        Cause of vulnerability: Vulnerable LP pricing formula used in the burnAsset function of LimboDAO
+        Execution process: Attacker swaps a large number of tokens into the pool to inflate LP token value, then burns LP tokens to get more reward
+        Detailed characteristics: Attacker manipulates LP token value to gain more voting power or profits by exploiting flashloans
+        Vulnerable code: DAO/LimboDAO.sol#L356, DAO/LimboDAO.sol#L392

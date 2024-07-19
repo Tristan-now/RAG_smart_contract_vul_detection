@@ -1,0 +1,22 @@
+This code defines an internal view function named `_calculateAdjustedComponentIssuanceUnits`, which calculates the adjusted issuance units for a set token based on the quantity, equity adjustments, and debt adjustments. The function accepts five parameters: an `ISetToken` instance `_setToken`, an unsigned integer `_quantity`, a boolean `_isIssue`, an array of signed integers `_equityAdjustments`, and an array of signed integers `_debtAdjustments`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the `ISetToken` interface representing the set token for which the adjusted issuance units are calculated.
+2. `_quantity`: An unsigned integer representing the quantity of the set token.
+3. `_isIssue`: A boolean indicating whether the operation is an issuance (`true`) or a redemption (`false`).
+4. `_equityAdjustments`: An array of signed integers representing the adjustments to equity units for each component.
+5. `_debtAdjustments`: An array of signed integers representing the adjustments to debt units for each component.
+
+Return Value:
+The function returns three arrays of data: `components` (addresses of components), `totalEquityUnits` (adjusted equity units), and `totalDebtUnits` (adjusted debt units).
+
+Code Breakdown:
+The function first calls the internal function `_getTotalIssuanceUnits(_setToken)` to retrieve the total issuance units for the set token, storing the components, equity units, and debt units in respective arrays.
+It then initializes two new arrays, `totalEquityUnits` and `totalDebtUnits`, to store the adjusted equity and debt units for each component.
+A loop iterates over the components array to calculate the adjusted equity and debt units for each component based on the provided adjustments and quantity.
+For each component, the function adjusts the equity units by adding the corresponding equity adjustment and then multiplying by the quantity using `preciseMulCeil` for issuance and `preciseMul` for redemption.
+Similarly, the function adjusts the debt units by subtracting the corresponding debt adjustment and then multiplying by the quantity using `preciseMul` for issuance and `preciseMulCeil` for redemption.
+The function then returns the arrays of components, total equity units, and total debt units as the result.
+
+Summary:
+The `_calculateAdjustedComponentIssuanceUnits` function calculates the adjusted issuance units for a set token based on the provided quantity, equity adjustments, and debt adjustments. It adjusts the equity and debt units for each component according to the adjustments and quantity, returning the updated values for further processing.

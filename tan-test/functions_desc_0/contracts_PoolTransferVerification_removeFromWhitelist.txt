@@ -1,0 +1,15 @@
+This code defines a public function named `removeFromWhitelist` that allows the removal of an address from a whitelist. The function requires the caller to have the `ADMIN_ROLE` role, as specified by the `onlyRole` modifier. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_address`: The address that needs to be removed from the whitelist.
+
+Modifiers:
+- `onlyRole(ADMIN_ROLE, "Must have admin role")`: This modifier ensures that only addresses with the `ADMIN_ROLE` role can call the `removeFromWhitelist` function. If the caller does not have the required role, an error message "Must have admin role" will be displayed.
+
+Functionality:
+- The function first checks if the `_address` is not already present in the `whitelist` mapping. If the address is not in the whitelist, the function simply returns without making any changes.
+- If the `_address` is present in the whitelist, the function sets the value associated with that address in the `whitelist` mapping to `false`, effectively removing it from the whitelist.
+- After removing the address from the whitelist, the function emits a `RemoveFromWhitelist` event, indicating that the specified address has been successfully removed from the whitelist.
+
+Summary:
+The `removeFromWhitelist` function provides a way to remove an address from the whitelist by setting its value to `false` in the `whitelist` mapping. This function can only be called by addresses with the `ADMIN_ROLE` role, as enforced by the `onlyRole` modifier.

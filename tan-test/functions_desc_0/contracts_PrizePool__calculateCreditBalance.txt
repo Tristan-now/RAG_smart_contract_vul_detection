@@ -1,0 +1,16 @@
+This code defines an internal view function named `_calculateCreditBalance`, which calculates the credit balance for a user based on their controlled token balance, accrued credit, and any additional credit. The function accepts four parameters: the user's address (`user`), the controlled token address (`controlledToken`), the balance of the controlled token (`controlledTokenBalance`), and an additional credit amount (`extra`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `user`: The address of the user for whom the credit balance is being calculated.
+2. `controlledToken`: The address of the controlled token for which the credit balance is being calculated.
+3. `controlledTokenBalance`: The balance of the controlled token for the user.
+4. `extra`: An additional credit amount that can be added to the credit balance.
+
+Return Value:
+`newBalance`: The function returns a `uint256` value representing the calculated credit balance for the user.
+
+Code Breakdown:
+The function signature includes the parameters `user`, `controlledToken`, `controlledTokenBalance`, and `extra`. `_calculateCreditBalance` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function initializes a `uint256` variable named `newBalance` to store the calculated credit balance. It also creates a reference to the `CreditBalance` struct stored in the `_tokenCreditBalances` mapping for the specified `controlledToken` and `user`. If the `creditBalance` for the user and controlled token is not initialized, the `newBalance` is set to 0. Otherwise, the function calculates the accrued credit for the user using the `_calculateAccruedCredit` function and applies the credit limit using the `_applyCreditLimit` function. The result of this calculation is stored in the `newBalance` variable. Finally, the function returns the calculated `newBalance`.
+
+Summary:
+The `_calculateCreditBalance` function calculates the credit balance for a user based on their controlled token balance, accrued credit, and any additional credit. It retrieves the user's credit balance from the `_tokenCreditBalances` mapping, calculates the accrued credit, applies the credit limit, and returns the final credit balance.

@@ -1,0 +1,17 @@
+This code snippet defines an external view function named `nextFYToken` that is part of a contract and overrides a function from an inherited interface. The function simply returns the address of the `_nextFYToken` variable.
+
+Here's a detailed explanation of how this function works:
+
+- Function Signature:
+  - `nextFYToken()`: This is an external view function, meaning it can be called from outside the contract and does not modify the contract's state.
+  - `override`: Indicates that this function is overriding a function from an inherited interface.
+  - `returns (address)`: Specifies that the function returns an address type value.
+
+- Return Value:
+  - The function returns the address stored in the `_nextFYToken` variable.
+
+- Code Breakdown:
+  - The function body consists of a single line that simply returns the value of the `_nextFYToken` variable.
+  - When this function is called, it will return the address stored in the `_nextFYToken` variable without performing any additional calculations or modifications.
+
+In summary, the `nextFYToken` function provides external visibility to retrieve the address stored in the `_nextFYToken` variable, allowing external entities to access this information without altering the contract's state.

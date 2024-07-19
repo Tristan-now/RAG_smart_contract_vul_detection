@@ -1,0 +1,7 @@
+This code snippet defines an interface named `IExtraRewardsDistributor` that includes the following functions:
+
+1. `addReward(address _token, uint256 _amount) external;`: This function allows adding rewards for a specific token. It takes two parameters: `_token`, which is the address of the token for which rewards are being added, and `_amount`, which is the amount of rewards being added.
+
+The purpose of this interface is to provide a standardized way for contracts to interact with an external rewards distributor contract. By implementing this interface, a contract can ensure that it has the necessary functions to interact with the rewards distributor contract.
+
+The functions defined in this interface allow for adding rewards, queuing new rewards, notifying reward amounts, and getting rewards for a specific account. The `IExtraRewardsDistributor` interface acts as a blueprint for contracts that want to distribute extra rewards to users based on certain conditions or events.

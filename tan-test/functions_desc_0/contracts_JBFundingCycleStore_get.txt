@@ -1,0 +1,20 @@
+This code snippet defines an external view function named `get` that is part of a contract implementing an interface with a function signature matching the `get` function. The function takes two parameters: `_projectId` of type `uint256` and `_configuration` of type `uint256`, and it returns a `JBFundingCycle` struct.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_projectId`: A `uint256` value representing the project ID for which the funding cycle information is requested.
+2. `_configuration`: A `uint256` value representing the configuration ID for the specific funding cycle within the project.
+
+Return Value:
+`fundingCycle`: A `JBFundingCycle` struct containing information about the funding cycle for the specified project and configuration.
+
+Code Breakdown:
+The `get` function is an external view function, meaning it can be called from outside the contract and does not modify the contract state.
+Within the function, it calls a private internal function `_getStructFor` passing the `_projectId` and `_configuration` as parameters. This internal function is responsible for retrieving and returning the `JBFundingCycle` struct associated with the provided project and configuration.
+The `_getStructFor` function is not shown in the provided code snippet, but it is assumed to handle the logic of fetching the funding cycle information based on the provided project ID and configuration ID.
+The `get` function simply acts as a wrapper around the internal logic of retrieving the funding cycle information and returning it to the external caller.
+When the `get` function is called with a specific project ID and configuration ID, it internally fetches the corresponding `JBFundingCycle` struct and returns it to the caller.
+
+Summary:
+The `get` function serves as an interface function that allows external callers to retrieve funding cycle information for a specific project and configuration by calling the internal logic implemented in the `_getStructFor` function.

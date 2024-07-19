@@ -1,0 +1,17 @@
+This code defines a public function named `approveMax` that approves the maximum allowance for a specific ERC20 token to be spent by a contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. None
+
+Return Value:
+None
+
+Code Breakdown:
+The `approveMax` function is a public function, meaning it can be called externally by anyone. Within this function, the `IERC20` interface is used to interact with the ERC20 token contract associated with the `savings` contract's underlying token. The `safeApprove` function is called on the ERC20 token contract, with two parameters:
+- The first parameter is the address of the `savings` contract, indicating that the ERC20 token is approving the `savings` contract to spend its tokens.
+- The second parameter is `type(uint256).max`, which represents the maximum value that can be approved as allowance. By passing `type(uint256).max`, the contract is approving the maximum possible amount of tokens to be spent by the `savings` contract.
+
+After successfully approving the maximum allowance, the function emits an `ApprovedMax` event, indicating that the approval process was completed.
+
+Summary:
+The `approveMax` function allows the contract to approve the maximum possible allowance for the ERC20 token associated with the `savings` contract to be spent by the `savings` contract itself. This approval is done using the `safeApprove` function with the maximum allowance value, and an event is emitted to signal the completion of the approval process.

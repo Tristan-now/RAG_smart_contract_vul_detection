@@ -1,0 +1,16 @@
+This code snippet defines an external function named `removeLiquidityETHCollateral`, which is part of a smart contract. The function takes a parameter of type `RemoveLiquidityETHCollateral` and returns two values: `assetOut` of type `uint256` and `collateralOut` of type `uint128`.
+
+Parameters:
+- `params`: This parameter of type `RemoveLiquidityETHCollateral` likely contains the necessary information for removing liquidity involving ETH collateral.
+
+Return Values:
+- `assetOut`: This variable of type `uint256` will store the amount of assets received after removing liquidity.
+- `collateralOut`: This variable of type `uint128` will store the amount of collateral received after removing liquidity.
+
+Code Breakdown:
+- The function delegates the actual logic of removing liquidity involving ETH collateral to a function called `removeLiquidityETHCollateral` defined in the `natives` contract. It passes the `factory`, `weth`, and `params` as arguments to this function.
+- The `natives.removeLiquidityETHCollateral` function is responsible for executing the removal of liquidity involving ETH collateral and calculating the amounts of assets and collateral to be returned.
+- The function then assigns the returned values of `assetOut` and `collateralOut` from the `natives.removeLiquidityETHCollateral` function to the variables `assetOut` and `collateralOut` in the current contract's context.
+- Finally, the function returns these values to the caller.
+
+In summary, this function acts as a wrapper that facilitates the removal of liquidity involving ETH collateral by calling a separate function in the `natives` contract and returning the resulting asset and collateral amounts.

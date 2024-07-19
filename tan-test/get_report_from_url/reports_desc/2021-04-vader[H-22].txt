@@ -1,0 +1,10 @@
+Type of vulnerability: Unintentional removal of liquidity under a phishing attack
+Cause of vulnerability: The removeLiquidity function in Pools.sol uses tx.origin to determine the caller, assuming it is always called from the router, which may not be true if a user is under a phishing attack.
+Execution process: An attacker could impersonate the router and trick a user into unintentionally removing liquidity from the pool.
+Detailed characteristics: The vulnerability arises from the assumption that tx.origin always represents the router, leading to potential unauthorized removal of liquidity by an attacker.
+Vulnerable code:
+```solidity
+function removeLiquidity() {
+    // code assuming tx.origin is the router
+}
+```

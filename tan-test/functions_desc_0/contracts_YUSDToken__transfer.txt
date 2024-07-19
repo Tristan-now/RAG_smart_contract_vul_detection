@@ -1,0 +1,18 @@
+This code snippet defines an internal function `_transfer` that handles the transfer of tokens between two addresses. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `sender`: The address initiating the token transfer.
+2. `recipient`: The address receiving the transferred tokens.
+3. `amount`: The amount of tokens to be transferred.
+
+Code Breakdown:
+The function `_transfer` starts with two `require` statements to ensure that neither the sender nor the recipient address is the zero address. This is a common security measure to prevent transfers to or from the zero address, which is typically used as an invalid or uninitialized address.
+
+Next, the function deducts the `amount` of tokens from the `sender`'s balance by using the `sub` function from the SafeMath library. The `sub` function ensures that the subtraction operation does not result in an underflow (i.e., the balance becoming negative). If the subtraction operation fails (i.e., the sender does not have enough tokens to transfer), the function will revert with an error message indicating that the transfer amount exceeds the sender's balance.
+
+After deducting the tokens from the sender's balance, the function adds the same `amount` of tokens to the `recipient`'s balance using the `add` function from the SafeMath library. This addition operation ensures that the recipient's balance is updated correctly without risking an overflow (i.e., exceeding the maximum value of a `uint256`).
+
+Finally, the function emits a `Transfer` event to log the details of the token transfer, including the sender, recipient, and the amount of tokens transferred.
+
+Summary:
+The `_transfer` function enforces checks to ensure that the sender and recipient addresses are valid, updates the token balances of the sender and recipient using safe arithmetic operations to prevent underflows and overflows, and emits a `Transfer` event to record the token transfer details. This function is crucial for securely transferring tokens within the smart contract.

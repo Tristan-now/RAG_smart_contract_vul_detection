@@ -1,0 +1,22 @@
+This code defines an external view function named `getVaultDeltaForDeposit`, which calculates the delta values for each vault based on a deposit amount. The function returns three values: an array of invest deltas (`investDelta`), an array of vault indexes (`vaultIndexes`), and a total count value.
+
+Parameters:
+1. `amount`: A `uint256` value representing the deposit amount.
+
+Return Values:
+- `investDelta`: An array of `uint256` values representing the delta values for each vault.
+- `vaultIndexes`: An array of `uint256` values representing the indexes of the vaults.
+- `total count`: A `uint256` value representing the total count of vaults.
+
+Code Breakdown:
+- The function signature includes the `amount` parameter and specifies that the function is external, view, and overrides a function in the parent contract.
+- Two arrays, `investDelta` and `vaultIndexes`, are initialized to store delta values and vault indexes, respectively.
+- The function calls the `exposure.getUnifiedAssets` function to get the total assets and vault assets from the controller's vaults.
+- If the deposited amount is less than a certain percentage of the total assets, the deposit is considered a tuna deposit and is allocated to a single vault.
+  - The function then sorts the vaults by delta values and sets the invest delta for the first vault to 10000.
+  - The function updates the vault indexes array with the sorted vault indexes and returns the invest delta, vault indexes, and a count of 1.
+- If the deposited amount exceeds the threshold, the deposit is considered a whale deposit and is spread across all vaults based on allocation targets.
+  - The function returns the invest delta, vault indexes, and the total count of vaults.
+
+Summary:
+The `getVaultDeltaForDeposit` function determines whether a deposit is a tuna deposit or a whale deposit based on the amount deposited relative to the total assets. It calculates the delta values for each vault and returns the invest deltas, vault indexes, and total count accordingly.

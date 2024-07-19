@@ -1,0 +1,21 @@
+This code snippet defines an internal function named `_getOwner` that overrides the `view` function from the `ERC1271` contract. The function returns the address of the owner of the contract by calling the `owner()` function from the `OwnableERC721` contract.
+
+Explanation:
+
+Parameters:
+- None
+
+Return Value:
+- `ownerAddress`: The function returns the address of the owner of the contract.
+
+Code Breakdown:
+- The `_getOwner` function is marked as internal, meaning it can only be accessed within the contract or its derived contracts.
+- The function overrides the `view` function from the `ERC1271` contract, indicating that it provides read-only access to the contract state.
+- Within the function, the `owner()` function is called on the `OwnableERC721` contract to retrieve the address of the contract owner.
+- The retrieved owner address is then returned as the output of the `_getOwner` function.
+
+Vulnerability Prediction:
+- This code snippet does not exhibit any vulnerabilities based on the provided information.
+
+Summary:
+- The `_getOwner` function is an internal view function that returns the address of the owner of the contract by calling the `owner()` function from the `OwnableERC721` contract.

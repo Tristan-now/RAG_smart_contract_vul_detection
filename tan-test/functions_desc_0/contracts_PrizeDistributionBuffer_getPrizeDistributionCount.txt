@@ -1,0 +1,21 @@
+This code defines an external view function named `getPrizeDistributionCount` that returns a `uint32` value representing the count of prize distributions in a ring buffer. Here’s a detailed explanation of how this function works:
+
+Parameters:
+None
+
+Return Value:
+`uint32`: The function returns a `uint32` value representing the count of prize distributions.
+
+Code Breakdown:
+The function begins by declaring a `DrawRingBufferLib.Buffer` memory variable named `buffer` and assigns it the value of `bufferMetadata`. This variable is used to access the metadata of the ring buffer.
+
+Next, the function checks if the `lastDrawId` in the buffer is equal to 0. If it is, indicating that there are no prize distributions in the buffer, the function returns 0.
+
+If there are prize distributions in the buffer, the function retrieves the `nextIndex` from the buffer.
+
+The function then checks if the prize distribution at the `nextIndex` in the `prizeDistributionRingBuffer` has a non-zero `matchCardinality`. If this condition is met, it means that the buffer is full, and the function returns the `cardinality` of the buffer, which represents the total count of prize distributions.
+
+If the prize distribution at the `nextIndex` does not have a non-zero `matchCardinality`, it means that the buffer is not full yet, and the function returns the `nextIndex` as the count of prize distributions.
+
+Summary:
+The `getPrizeDistributionCount` function retrieves the metadata of a ring buffer containing prize distributions. It checks if the buffer is empty and returns 0 if it is. If the buffer contains prize distributions, it determines whether the buffer is full or not based on the `matchCardinality` of the next index in the buffer. The function then returns either the total count of prize distributions in the buffer or the index of the next prize distribution, depending on the buffer's fullness.

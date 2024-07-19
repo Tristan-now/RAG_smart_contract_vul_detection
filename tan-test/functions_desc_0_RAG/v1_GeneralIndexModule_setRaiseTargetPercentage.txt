@@ -1,0 +1,15 @@
+This code defines an external function named `setRaiseTargetPercentage`, which allows a manager to set the raise target percentage for a specific SetToken. The function accepts two parameters: an `ISetToken` instance `_setToken` and a `uint256` value `_raiseTargetPercentage`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An interface representing a SetToken instance for which the raise target percentage will be set.
+2. `_raiseTargetPercentage`: A `uint256` value indicating the target percentage that the manager wants to set for the specified SetToken.
+
+Function Modifiers:
+- `onlyManagerAndValidSet(_setToken)`: This modifier ensures that only the manager of the SetToken contract and a valid SetToken address can call this function.
+
+Code Breakdown:
+The function signature includes the parameters `_setToken` and `_raiseTargetPercentage`. The function is marked as `external`, meaning it can be called from outside the contract. The function first checks that the `_raiseTargetPercentage` is greater than 0 using the `require` statement. If the condition is not met, the function will revert with the error message "Target percentage must be > 0". 
+Next, the function updates the `raiseTargetPercentage` property of the `rebalanceInfo` mapping for the specified `_setToken` with the new `_raiseTargetPercentage` value.
+Finally, the function emits a `RaiseTargetPercentageUpdated` event, indicating that the raise target percentage for the specified SetToken has been successfully updated.
+
+In summary, the `setRaiseTargetPercentage` function allows a manager to set the raise target percentage for a specific SetToken, ensuring that the new target percentage is greater than 0 and emitting an event to notify the update.

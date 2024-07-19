@@ -1,0 +1,13 @@
+This code defines an external function named `lock`, which allows a user to lock a specified amount of tokens in the contract. The function performs the following steps:
+
+1. Parameters:
+   - `_account`: The address of the account that is locking the tokens.
+   - `_amount`: The amount of tokens to be locked.
+
+2. Token Transfer:
+   - The function first transfers the specified `_amount` of tokens from the `msg.sender` (the caller of the function) to the contract address using the `safeTransferFrom` function of the `stakingToken` ERC20 token contract.
+
+3. Locking Tokens:
+   - After transferring the tokens, the function calls the internal `_lock` function to actually lock the tokens for the `_account`. The `_lock` function is assumed to handle the logic of locking the tokens for the specified account.
+
+Overall, the `lock` function facilitates the transfer and locking of tokens in the contract, allowing users to stake their tokens for various purposes within the smart contract system.

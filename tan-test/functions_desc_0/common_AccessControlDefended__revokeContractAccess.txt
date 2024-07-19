@@ -1,0 +1,10 @@
+This code defines an internal function named `_revokeContractAccess`, which is responsible for revoking access to a contract for a specific account. The function takes one parameter:
+
+Parameter:
+1. `account`: An address representing the account for which access to the contract needs to be revoked.
+
+Code Breakdown:
+The `_revokeContractAccess` function is marked as internal, meaning it can only be called within the contract or its derived contracts. The function accepts one parameter `account`, which is the address of the account for which access is being revoked. Within the function, the `approved` mapping is updated for the specified `account`. The value corresponding to the `account` key in the `approved` mapping is set to `false`, indicating that access for that account has been revoked.
+
+Summary:
+The `_revokeContractAccess` function is used to update the `approved` mapping to revoke access to the contract for a specific account by setting the value to `false`.

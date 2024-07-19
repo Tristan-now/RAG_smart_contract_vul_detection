@@ -1,0 +1,20 @@
+This code defines an internal view function named `get` that retrieves and unpacks lockup information from a storage array of lockups. The function accepts two parameters: a storage reference to the `Lockups` struct (`lockups`) and an index (`index`) indicating the position of the lockup to retrieve. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `lockups`: A storage reference to the `Lockups` struct, which contains an array of lockup metadata.
+2. `index`: An index indicating the position of the lockup to retrieve from the `lockups` array.
+
+Return Value:
+`balance`: A `Lockup` struct memory variable containing the unpacked lockup information.
+
+Code Breakdown:
+The function signature includes the parameters `lockups` and `index`. The function is defined as internal, meaning it can only be called within the contract or its derived contracts. The function returns a `Lockup` struct memory variable named `balance`, which will store the unpacked lockup information.
+Within the function, the `unchecked` keyword is used to disable integer overflow and underflow checks for the subsequent operations.
+The function first retrieves the `lockupMetadata` value from the `lockups` array at the specified index. If the `lockupMetadata` is 0, indicating that there is no lockup data at that index, the function returns the initial value of `balance`.
+Next, the function extracts the `lockedBalanceBits` from the `lockupMetadata` based on whether the index is even or odd. If the index is even, the first 128 bits of `lockupMetadata` are used; otherwise, the last 128 bits are used.
+The function then unpacks the `lockedBalanceBits` to retrieve the expiration time and total locked amount of the lockup. The expiration time is extracted by shifting the bits by 96 positions to the right, and the total locked amount is obtained by taking the remainder after dividing by 2^96.
+The unpacked values are assigned to the `balance` struct fields: `expiration` and `totalAmount`.
+Finally, the function returns the `balance` struct containing the extracted lockup information.
+
+Summary:
+The `get` function retrieves and unpacks lockup information from the `Lockups` storage array based on the provided index. It extracts the expiration time and total locked amount from the lockup metadata and returns this information in a `Lockup` struct memory variable.

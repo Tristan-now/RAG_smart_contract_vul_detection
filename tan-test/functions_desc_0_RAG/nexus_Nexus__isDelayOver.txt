@@ -1,0 +1,16 @@
+This code defines a private view function named `_isDelayOver`, which checks if a specified timestamp has passed a certain upgrade delay period. The function takes a single parameter `_timestamp` of type `uint256` representing a specific timestamp to compare against the current block timestamp.
+
+Parameters:
+1. `_timestamp`: A `uint256` value representing a specific timestamp to check against the current block timestamp.
+
+Return Value:
+The function returns a boolean value indicating whether the upgrade delay period has elapsed.
+
+Code Breakdown:
+The function `_isDelayOver` is a private view function, meaning it can only be accessed internally and does not modify the contract state. It takes a single parameter `_timestamp` representing a specific timestamp to compare against the current block timestamp. The function first checks if the `_timestamp` is greater than 0 and if the current block timestamp is greater than or equal to the sum of `_timestamp` and the constant `UPGRADE_DELAY`. If this condition is met, the function returns `true`, indicating that the upgrade delay period has passed. Otherwise, it returns `false`.
+
+Vulnerability Prediction:
+This function does not exhibit any vulnerabilities based on the provided code snippet.
+
+Summary:
+The `_isDelayOver` function is used to determine whether a specified timestamp has passed a certain upgrade delay period defined by the constant `UPGRADE_DELAY`. It returns `true` if the delay is over and `false` otherwise.

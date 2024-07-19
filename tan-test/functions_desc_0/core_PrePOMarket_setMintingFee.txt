@@ -1,0 +1,20 @@
+This code defines an external function named `setMintingFee` that allows the owner of the contract to set a new minting fee. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_newMintingFee`: A `uint256` parameter representing the new minting fee that the owner wants to set.
+
+Modifiers:
+- `onlyOwner`: This modifier restricts the access to the function to only the owner of the contract.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function `setMintingFee` is defined as an external function, meaning it can be called from outside the contract. The function is marked with the `override` keyword, indicating that it overrides a function from an inherited interface or contract.
+
+The function accepts one parameter `_newMintingFee`, which is the new minting fee that the owner wants to set. The function includes a `require` statement to check if the new minting fee does not exceed a predefined `FEE_LIMIT`. If the condition is not met, the function will revert with the error message "Exceeds fee limit".
+
+If the new minting fee is within the allowed limit, the `_mintingFee` variable is updated with the new value `_newMintingFee`. An event `MintingFeeChanged` is emitted to log the change in the minting fee.
+
+Summary:
+The `setMintingFee` function allows the owner of the contract to set a new minting fee within a specified limit. It enforces the restriction that the new fee cannot exceed the predefined limit and emits an event to notify the change in the minting fee.

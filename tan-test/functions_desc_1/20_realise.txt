@@ -1,0 +1,19 @@
+This code defines an external function named `realise`, which is used to adjust the liquidity pool holdings based on the comparison of the SPARTA value of LP tokens and synths. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `pool`: The address of the liquidity pool for which the adjustments are being made.
+
+Code Breakdown:
+The function `realise` begins by calculating the SPARTA value of the LP tokens and synths associated with the provided `pool` address. 
+- `baseValueLP` is calculated using the `calcLiquidityHoldings` function from the `iUTILS` contract, which takes the LP token balance, the base token (BASE), and the pool address as parameters.
+- `baseValueSynth` is calculated using the `calcActualSynthUnits` function from the `iUTILS` contract, which takes the synth debt associated with the pool and the contract address as parameters.
+
+Next, the code checks if the `baseValueLP` is greater than `baseValueSynth`. If this condition is met, it calculates the premium (the difference between the two values) and proceeds with further actions only if the premium is greater than 10^18.
+
+If the premium is significant:
+- `premiumLP` is calculated using the `calcLiquidityUnitsAsym` function from the `iUTILS` contract, which converts the premium into LP token units based on the pool configuration.
+- The `premiumLP` value is subtracted from the `mapSynth_LPBalance[pool]` to reduce the LP token balance.
+- The `burn` function is called on the `Pool` contract associated with the `pool` address to burn the calculated `premiumLP` amount of LP tokens.
+
+Summary:
+The `realise` function adjusts the liquidity pool holdings by burning a portion of the LP tokens if the SPARTA value of the LP tokens exceeds the SPARTA value of the synths by a significant premium. This adjustment helps maintain the balance between LP tokens and synths in the liquidity pool.

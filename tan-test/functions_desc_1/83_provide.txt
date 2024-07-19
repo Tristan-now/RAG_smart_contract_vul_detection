@@ -1,0 +1,18 @@
+This code defines an external function named `provide`, which is accessible only to the `Guardian` role. The function is responsible for providing liquidity to a pool by adding USDM tokens and pool3 tokens in a 1:1 ratio. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_minimumLP`: A `uint256` parameter representing the minimum amount of LP (liquidity provider) tokens that the caller is willing to accept in return for providing liquidity.
+
+Code Breakdown:
+The function starts with a `require` statement to ensure that the contract holds enough USDM tokens to cover the total liquidity in the `totalLiquidity.usdm` variable.
+
+Next, the code calculates the amount of liquidity to be added by truncating the balance of USDM tokens held by the contract to the nearest multiple of `step`. This ensures that only amounts in multiples of `step` are added as liquidity.
+
+The `addingLiquidity` variable stores the calculated amount of liquidity to be added, which is then split equally between USDM and pool3 tokens in the `amounts` array.
+
+The contract then approves the spending of the calculated `addingLiquidity` amount of USDM and pool3 tokens by the `usdm3crv` contract.
+
+Finally, the `usdm3crv.add_liquidity` function is called with the `amounts` array and the `_minimumLP` parameter to add liquidity to the pool in a 1:1 ratio of USDM to pool3 tokens.
+
+Summary:
+The `provide` function ensures that the contract has enough USDM tokens to cover the required liquidity, calculates the amount of liquidity to be added in multiples of `step`, splits this amount equally between USDM and pool3 tokens, approves the spending of these tokens, and then adds liquidity to the pool in a 1:1 ratio.

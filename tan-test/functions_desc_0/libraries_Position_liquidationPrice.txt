@@ -1,0 +1,17 @@
+This code defines an internal view function named `liquidationPrice`, which calculates the liquidation price based on the provided parameters. The function accepts five parameters: a storage reference to a struct `Info` (`self`), total open interest (`totalOi`), total open interest shares (`totalOiShares`), entry price (`priceEntry`), and margin maintenance (`marginMaintenance`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `self`: A storage reference to a struct `Info` that contains relevant information.
+2. `totalOi`: A uint256 value representing the total open interest.
+3. `totalOiShares`: A uint256 value representing the total open interest shares.
+4. `priceEntry`: A uint256 value representing the entry price.
+5. `marginMaintenance`: A uint256 value representing the margin maintenance.
+
+Return Value:
+`liquidationPrice_`: The function returns a `uint256` value representing the calculated liquidation price.
+
+Code Breakdown:
+The function signature includes the parameters `self`, `totalOi`, `totalOiShares`, `priceEntry`, and `marginMaintenance`. `liquidationPrice` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function creates a memory copy `_self` of the storage struct `self`. This is done to avoid unnecessary gas costs associated with modifying storage variables. The variable `liquidationPrice_` is initialized to 0. The function then calls a private function `_liquidationPrice` passing in the copied struct `_self`, `totalOi`, `totalOiShares`, `priceEntry`, and `marginMaintenance`. The result of this function call is assigned to `liquidationPrice_`.
+
+Summary:
+The `liquidationPrice` function calculates the liquidation price based on the provided parameters by calling a private function `_liquidationPrice` with the necessary inputs. The function returns the calculated liquidation price as a `uint256` value.

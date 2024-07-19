@@ -1,0 +1,11 @@
+Type of vulnerability: Sandwich attack
+Cause of vulnerability: Lack of slippage protection in buyCvx() and sellCvx() functions
+Execution process: Users interacting directly with the VotiumStrategy contract are susceptible to sandwich attacks when calling functions like deposit(), depositRewards(), and withdraw() without slippage protection.
+Detailed characteristics: The exchange_underlying() function is called with a _min_dy parameter of 0, allowing attackers to manipulate the swap to their advantage.
+Vulnerable code: 
+```
+VotiumStrategyCore.sol#L233-L240
+ICrvEthPool(CVX_ETH_CRV_POOL_ADDRESS).exchange_underlying{value:_ethAmountIn}(0,1,_ethAmountIn,0// this is handled at the afEth level);
+VotiumStrategyCore.sol#L258-L263
+ICrvEthPool(CVX_ETH_CRV_POOL_ADDRESS).exchange_underlying(1,0,_cvxAmountIn,0// this is handled at the afEth level);
+```

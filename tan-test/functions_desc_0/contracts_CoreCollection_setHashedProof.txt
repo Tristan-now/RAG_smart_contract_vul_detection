@@ -1,0 +1,17 @@
+This code defines an external function named `setHashedProof` that allows the contract owner to set a hashed proof value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_proof`: A string parameter representing the hashed proof value that the owner wants to set.
+
+Function Modifier:
+- `onlyOwner`: This modifier restricts the execution of the function to only the owner of the contract.
+
+Code Breakdown:
+The function `setHashedProof` is an external function, meaning it can be called from outside the contract. The function accepts one parameter `_proof`, which is the new hashed proof value that the owner wants to set.
+
+Within the function, there is a `require` statement that checks if the length of the existing `HASHED_PROOF` is 0. This check ensures that the hashed proof value has not been set before. If the length of `HASHED_PROOF` is not 0, the function will revert with an error message indicating that the hashed proof is already set.
+
+If the `require` condition is met, the function proceeds to set the new hashed proof value `_proof` to the `HASHED_PROOF` state variable. After setting the new hashed proof value, the function emits an event `NewHashedProof` to notify external parties about the change.
+
+Summary:
+The `setHashedProof` function allows the contract owner to set a hashed proof value, provided that the current hashed proof value is not already set. This function ensures that the hashed proof value can only be set once by the owner and emits an event to notify observers of the change.

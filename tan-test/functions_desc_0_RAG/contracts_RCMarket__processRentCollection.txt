@@ -1,0 +1,20 @@
+This code defines an internal function named `_processRentCollection`, which handles the collection of rent for a specific card owned by a user. The function takes three parameters: `_user` (address of the user), `_card` (the ID of the card), and `_timeOfCollection` (the timestamp when the rent is collected). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_user`: Address of the user who owns the card.
+2. `_card`: ID of the card for which rent is being collected.
+3. `_timeOfCollection`: Timestamp indicating when the rent is being collected.
+
+Code Breakdown:
+1. Calculate the rent owed for the card based on the card price and the time elapsed since the last collection. The rent owed is calculated as `(cardPrice[_card] * (_timeOfCollection - timeLastCollected[_card])) / 1 days`.
+2. Pay the calculated rent to the treasury using the `treasury.payRent(_rentOwed)` function.
+3. Calculate the time held to increment by subtracting the last collection time from the current collection time.
+4. If the user has a time limit for holding the card, adjust it accordingly by reducing the time held limit and updating the card's time limit.
+5. Update the time held for the card by the user and the total time held for the card.
+6. Update the rent collected statistics for the user, card, and user-card combination.
+7. Update the total rent collected by adding the rent owed.
+8. Update the last collection time for the card to the current collection time.
+9. Track the longest owner of the card based on the time held by each user.
+10. Emit a `LogRentCollection` event with details of the rent collected, time held by the user, card ID, and user address.
+
+Overall, the `_processRentCollection` function manages the rent collection process for a specific card, updating various statistics and tracking the longest owner of the card based on the time held.

@@ -1,0 +1,17 @@
+This code defines a public function named `deposit` that allows users to deposit a specified amount of a token into the contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_token`: The address of the token that the user wants to deposit.
+2. `_amount`: The amount of the token that the user wants to deposit.
+
+Code Breakdown:
+The function signature includes two parameters: `_token` and `_amount`. The function first checks if the `_token` address is allowed for deposit by verifying if it exists in the `allowed` mapping. If the token is not listed (i.e., not allowed), the function will revert with an error message.
+
+If the token is allowed, the function transfers the specified `_amount` of the token from the user's address (`_msgSender()`) to the contract's address using the `transferFrom` function of the ERC20 token interface (`IERC20`). This step ensures that the contract receives the tokens from the user.
+
+Next, the function calls the `mintFor` function of the `IERC20Mintable` interface on the `stable` token contract. This function mints a specific amount of stable tokens for the user who deposited the original token. The parameters passed to `mintFor` include:
+- `_msgSender()`: The address of the user who initiated the deposit.
+- `_amount*(10**(18-IERC20Mintable(_token).decimals()))`: The amount of stable tokens to mint for the user. This amount is calculated based on the `_amount` of the deposited token and the decimal precision difference between the deposited token and the stable token.
+
+Summary:
+The `deposit` function allows users to deposit a specified amount of a token into the contract. It first checks if the token is allowed for deposit, transfers the token amount from the user to the contract, and then mints an equivalent amount of stable tokens for the user based on the deposited token's amount and decimal precision.

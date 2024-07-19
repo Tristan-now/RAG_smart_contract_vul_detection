@@ -1,0 +1,20 @@
+This code defines an internal function named `_withdrawReward`, which calculates the pending rewards for a specific account. The function accepts one parameter: the address of the account for which the rewards are being calculated. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `account`: The address of the account for which the pending rewards are being calculated.
+
+Return Value:
+The function returns a `uint256` value representing the pending rewards for the specified account.
+
+Code Breakdown:
+The function calculates the pending rewards for the specified `account` based on the difference between the accumulated reward per share and the last recorded reward per share for that account. The calculation is done as follows:
+- Calculate the pending rewards by multiplying the account balance by the difference between the accumulated reward per share (`accRewardPerShare`) and the last recorded reward per share for the account (`userLastAccRewardPerShare[account]`), and then dividing by 1e36.
+- If the calculated pending rewards are greater than 0, add them to the account's pending rewards balance (`userPendingRewards[account]`).
+- Update the last recorded reward per share for the account to the current accumulated reward per share (`accRewardPerShare`).
+- Return the calculated pending rewards.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the pending rewards calculation is not handled securely. Malicious actors could potentially exploit this vulnerability to manipulate the reward calculation process and drain funds from the contract.
+
+Summary:
+The `_withdrawReward` function calculates the pending rewards for a specific account based on the difference between the accumulated reward per share and the last recorded reward per share for that account. It updates the last recorded reward per share and returns the calculated pending rewards for the account.

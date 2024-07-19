@@ -1,0 +1,21 @@
+This code defines an internal pure function named `getHaircutCashClaims`, which calculates the haircut cash claims for a given liquidity token. The function accepts three parameters of custom data types: `PortfolioAsset`, `MarketParameters`, and `CashGroupParameters`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: A custom data type `PortfolioAsset` that represents the liquidity token for which the haircut cash claims are calculated.
+2. `market`: A custom data type `MarketParameters` that stores market-related parameters such as total asset cash, total fCash, total liquidity, etc.
+3. `cashGroup`: A custom data type `CashGroupParameters` that contains parameters specific to the cash group, including the currency ID and liquidity haircut.
+
+Return Value:
+The function returns a tuple of two `int256` values representing the asset cash and fCash claims after applying the liquidity haircut.
+
+Code Breakdown:
+The function begins with two `require` statements to validate the input parameters. The first `require` ensures that the `token` is a liquidity token and has a non-negative notional value. The second `require` checks if the currency ID of the `token` matches the currency ID of the `cashGroup`.
+
+Next, the function calculates the liquidity haircut for the given `token` by calling the `getLiquidityHaircut` function from the `cashGroup` and converting it to an `int256` value.
+
+Two variables, `assetCash` and `fCash`, are then calculated using the `_calcToken` function. This function takes the total asset cash or total fCash from the `market`, the notional value of the `token`, the liquidity haircut, and the total liquidity as input parameters to calculate the cash claims for the asset and fCash.
+
+Finally, the function returns a tuple containing the calculated `assetCash` and `fCash` values.
+
+Summary:
+The `getHaircutCashClaims` function calculates the haircut cash claims for a given liquidity token based on the liquidity haircut specified in the `cashGroup` parameters and the market-related parameters. It computes the asset cash and fCash claims by applying the liquidity haircut and returns these values as a tuple of `int256` values.

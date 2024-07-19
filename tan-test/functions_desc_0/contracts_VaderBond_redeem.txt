@@ -1,0 +1,17 @@
+This code defines an external function named `redeem` that allows a user to redeem their bond. The function calculates the amount that the user can redeem based on the vesting schedule and the time elapsed since the last interaction. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_depositor`: The address of the user who wants to redeem their bond.
+
+Return Value:
+The function returns a `uint` value representing the amount redeemed by the user.
+
+Code Breakdown:
+The function signature includes the parameters `_depositor`. `redeem` is an external function, meaning it can be called from outside the contract. The function first retrieves the bond information for the `_depositor` address from the `bondInfo` mapping and stores it in the `info` variable. It then calculates the percentage vested for the user using the `percentVestedFor` function, which calculates the percentage of the vesting term that has passed since the last interaction.
+
+If the user is fully vested (percentVested >= MAX_PERCENT_VESTED), the function deletes the user's bond information, emits a `BondRedeemed` event with the user's address and payout amount, transfers the payout tokens to the user, and returns the payout amount.
+
+If the user is not fully vested, the function calculates the payout amount that the user can redeem based on the percentage vested. It then updates the user's bond information with the new payout amount, vesting term, and last interaction block number. The function emits a `BondRedeemed` event with the user's address, the payout amount, and the remaining payout amount. Finally, it transfers the calculated payout amount to the user and returns this amount.
+
+Summary:
+The `redeem` function allows users to redeem their bond based on the vesting schedule and the time elapsed since the last interaction. If the user is fully vested, the function deletes the user's bond information and transfers the full payout amount. If the user is not fully vested, the function calculates the partial payout amount based on the percentage vested and updates the user's bond information before transferring the payout amount.

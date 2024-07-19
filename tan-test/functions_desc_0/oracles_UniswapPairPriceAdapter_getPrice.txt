@@ -1,0 +1,19 @@
+This code defines an external function named `getPrice`, which is used to retrieve the price of two assets relative to a master quote asset. The function requires the caller to be a system contract, as verified by the `controller.isSystemContract` function. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_assetOne`: The address of the first asset for which the price needs to be retrieved.
+2. `_assetTwo`: The address of the second asset for which the price needs to be retrieved.
+
+Return Value:
+The function returns a tuple containing a boolean value indicating whether the price retrieval was successful and a `uint256` value representing the price ratio of `_assetOne` to `_assetTwo` relative to the master quote asset.
+
+Code Breakdown:
+The function first checks if the caller is a system contract using the `controller.isSystemContract` function. It then determines whether `_assetOne` and `_assetTwo` are allowed Uniswap pools by checking their settings in the `uniswapPoolsToSettings` mapping.
+If both assets are not Uniswap pools, the function returns `(false, 0)`.
+The function then retrieves the price oracle instance from the controller and obtains the master quote asset address.
+Next, it calculates the price of `_assetOne` relative to the master quote asset. If `_assetOne` is an allowed Uniswap pool, the `_getUniswapPrice` function is called to get the price; otherwise, the price is fetched directly from the price oracle.
+Similarly, the function calculates the price of `_assetTwo` relative to the master quote asset using the same logic.
+Finally, the function returns `(true, assetOnePriceToMaster.preciseDiv(assetTwoPriceToMaster))`, where `preciseDiv` is a function that calculates the precise division of two `uint256` values.
+
+Summary:
+The `getPrice` function retrieves the prices of two assets relative to a master quote asset. It checks if the caller is a system contract, determines if the assets are allowed Uniswap pools, fetches the prices using the price oracle, and returns the price ratio of the two assets relative to the master quote asset.

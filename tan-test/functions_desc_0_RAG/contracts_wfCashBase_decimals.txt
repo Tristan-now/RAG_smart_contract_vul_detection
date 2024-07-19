@@ -1,0 +1,14 @@
+This code defines a function named `decimals` that is a public pure override function. The function returns a `uint8` value of 8, indicating the number of decimal places used for token values. Here's a detailed explanation of how this function works:
+
+Parameters:
+This function does not accept any parameters.
+
+Return Value:
+The function returns a `uint8` value of 8, representing the number of decimal places used for token values.
+
+Code Breakdown:
+The `decimals` function is a public function, meaning it can be called externally. The function is marked as `pure`, indicating that it does not read from or modify the contract's state. Additionally, the function is marked as `override`, which means it overrides a function from a parent contract or interface. In this case, the function overrides a function from an interface or abstract contract.
+
+The function simply returns the value 8, indicating that the token associated with this contract uses 8 decimal places for its values. This is a common practice in token contracts to define the precision of the token values.
+
+Overall, the `decimals` function provides information about the number of decimal places used for token values in the contract.

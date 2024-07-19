@@ -1,0 +1,22 @@
+This code defines an external view function named `distributionLimitOf` that retrieves the distribution limit and currency information for a specific project, configuration, payment terminal, and token. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_projectId`: A uint256 value representing the project ID for which the distribution limit is being queried.
+2. `_configuration`: A uint256 value representing the configuration ID for which the distribution limit is being queried.
+3. `_terminal`: An address of type `IJBPaymentTerminal` representing the payment terminal for which the distribution limit is being queried.
+4. `_token`: An address representing the token for which the distribution limit is being queried.
+
+Return Values:
+The function returns a tuple containing two uint256 values:
+1. The distribution limit (in bits 0-231).
+2. The currency information (in bits 232-255).
+
+Code Breakdown:
+1. The function signature includes the parameters `_projectId`, `_configuration`, `_terminal`, and `_token`. It is an external view function, meaning it can be called outside the contract and does not modify the state.
+2. The function first retrieves the packed distribution limit data for the specified `_projectId`, `_configuration`, `_terminal`, and `_token` from the `_packedDistributionLimitDataOf` mapping and stores it in the variable `_data`.
+3. The distribution limit is extracted from the lower 232 bits of `_data` by casting `_data` to a uint232 type.
+4. The currency information is extracted from the upper 24 bits (bits 232-255) of `_data` by shifting `_data` to the right by 232 bits.
+5. The function returns a tuple containing the distribution limit and currency information extracted in the previous steps.
+
+Summary:
+The `distributionLimitOf` function retrieves the distribution limit and currency information for a specific project, configuration, payment terminal, and token by unpacking the packed data stored in the `_packedDistributionLimitDataOf` mapping. It then returns this information as a tuple of uint256 values.

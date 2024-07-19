@@ -1,0 +1,18 @@
+This code defines an external view function named `pendingPremium` that calculates the pending premium for a specific index. The function takes an address `_index` as a parameter and returns a `uint256` value representing the pending premium.
+
+Parameters:
+1. `_index`: An address parameter that represents the index for which the pending premium is being calculated.
+
+Return Value:
+The function returns a `uint256` value representing the pending premium for the specified index.
+
+Code Breakdown:
+The function first retrieves the credit value associated with the given index `_index` from the `indicies` mapping and stores it in the `_credit` variable.
+If the `_credit` value is equal to 0, the function immediately returns 0 as there is no pending premium to calculate.
+If the `_credit` value is not 0, the function proceeds to calculate the pending premium.
+The pending premium calculation involves subtracting the `rewardDebt` value associated with the index from the product of `_credit` multiplied by `rewardPerCredit` divided by `MAGIC_SCALE_1E6`.
+The `_sub` function is used to perform the subtraction operation, ensuring that the result is a positive value.
+The calculated result represents the pending premium for the specified index, which is then returned by the function.
+
+Summary:
+The `pendingPremium` function calculates the pending premium for a specific index by retrieving the credit and reward debt values associated with the index from the `indicies` mapping. It then performs a calculation to determine the pending premium amount and returns this value as a `uint256`.

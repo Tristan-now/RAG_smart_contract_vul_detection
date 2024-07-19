@@ -1,0 +1,16 @@
+This code snippet consists of two parts: a set of function declarations within an interface and a contract that defines storage variables related to delegation.
+
+1. Interface Functions:
+- `mint(uint mintAmount) external virtual returns (uint);`: This function is used to mint a specific amount of tokens and returns the amount minted.
+- `redeem(uint redeemTokens) external virtual returns (uint);`: This function is used to redeem a specific number of tokens and returns the amount redeemed.
+- `redeemUnderlying(uint redeemAmount) external virtual returns (uint);`: This function is used to redeem a specific amount of underlying tokens and returns the amount redeemed.
+- `borrow(uint borrowAmount) external virtual returns (uint);`: This function is used to borrow a specific amount of tokens and returns the amount borrowed.
+- `repayBorrow(uint repayAmount) external virtual returns (uint);`: This function is used to repay a specific amount of borrowed tokens and returns the amount repaid.
+- `repayBorrowBehalf(address borrower, uint repayAmount) external virtual returns (uint);`: This function is used to repay a specific amount of borrowed tokens on behalf of a borrower and returns the amount repaid.
+- `liquidateBorrow(address borrower, uint repayAmount, CTokenInterface cTokenCollateral) external virtual returns (uint);`: This function is used to liquidate a borrower's debt by repaying a specific amount and using a collateral token. It returns the amount liquidated.
+- `_addReserves(uint addAmount) external virtual returns (uint);`: This function is an admin function used to add reserves to the contract and returns the amount added.
+
+2. Delegation Storage Contract:
+- `CDelegationStorage` contract defines a storage variable `implementation` of type `address`. This variable stores the implementation address for the contract, which is used for delegation purposes.
+
+Overall, the interface declares functions related to token minting, redemption, borrowing, and repayment, along with an admin function for adding reserves. The `CDelegationStorage` contract provides storage for the implementation address used in delegation.

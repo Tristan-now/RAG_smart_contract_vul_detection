@@ -1,0 +1,10 @@
+This code snippet defines an external function named `setMarketRegistry` that allows only the admin of the smart contract to set the address of the market registry. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_marketRegistry`: This is the address of the market registry that the admin wants to set.
+
+Functionality:
+The `setMarketRegistry` function is an external function, meaning it can be called from outside the contract. The function checks if the caller is the admin of the contract using the `onlyAdmin` modifier. If the caller is the admin, the function allows them to set the address of the market registry by updating the `marketRegistry` variable with the provided `_marketRegistry` address.
+
+Summary:
+The `setMarketRegistry` function provides a way for the admin to update the address of the market registry in the smart contract. It ensures that only the admin has the authority to modify this critical parameter, enhancing the security and control of the contract.

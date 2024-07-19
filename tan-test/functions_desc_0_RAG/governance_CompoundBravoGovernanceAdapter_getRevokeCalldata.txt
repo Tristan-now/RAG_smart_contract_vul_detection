@@ -1,0 +1,22 @@
+This code defines a function named `getRevokeCalldata` that is external and view, meaning it can be called from outside the contract and does not modify the state of the contract. The function returns a tuple containing an address, a uint256 value, and a bytes memory value.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- Tuple containing:
+  1. `governanceToken`: An address variable that is returned as the first element of the tuple.
+  2. `0`: A uint256 value of 0 that is returned as the second element of the tuple.
+  3. `callData`: A bytes memory value that contains the encoded function call to revoke a delegate.
+
+Code Breakdown:
+- The function first initializes a bytes memory variable `callData` by encoding the function call to revoke a delegate using `abi.encodeWithSignature(DELEGATE_SIGNATURE, ZERO_ADDRESS)`. This function call is encoded with the signature `DELEGATE_SIGNATURE` and the address `ZERO_ADDRESS`.
+- The function then returns a tuple containing the `governanceToken` (an address variable), the value 0 (a uint256 value), and the `callData` (a bytes memory value) that represents the encoded function call to revoke a delegate.
+
+Summary:
+The `getRevokeCalldata` function generates the encoded function call data to revoke a delegate using the `DELEGATE_SIGNATURE` and `ZERO_ADDRESS`. It returns this encoded data along with the `governanceToken` address and a uint256 value of 0 in a tuple.
+
+[REFERENCE VULNERABILITY REPORTS]
+- No specific vulnerability reports are referenced in this code snippet.

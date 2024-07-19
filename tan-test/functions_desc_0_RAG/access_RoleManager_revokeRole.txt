@@ -1,0 +1,23 @@
+This code defines a function named `revokeRole` that allows the governance to revoke a specific role from a given account. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `role`: A bytes32 variable representing the role that the governance wants to revoke from the account.
+2. `account`: An address variable representing the account from which the governance wants to revoke the role.
+
+Modifiers:
+- `onlyGovernance`: This modifier restricts the execution of the function to only the governance address.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function signature includes the parameters `role` and `account`. The function is restricted to be called only by the governance address using the `onlyGovernance` modifier. 
+The function first checks if the role to be revoked is not the governance role itself by comparing `role` with `Roles.GOVERNANCE` and raising an error if it is, to prevent the governance role from being revoked.
+Next, it checks if the account actually has the role that is being revoked by calling the `hasRole` function and raising an error if the account does not have the role.
+If both conditions pass, the function calls the internal `_revokeRole` function to revoke the specified role from the account.
+
+Vulnerability Prediction:
+This function may be vulnerable to a potential attack if the `onlyGovernance` modifier is not properly implemented or if there are vulnerabilities in the `_revokeRole` function that could allow unauthorized revocation of roles.
+
+Summary:
+The `revokeRole` function allows the governance to revoke a specific role from a given account. It performs necessary checks to ensure that the governance role itself cannot be revoked and that the account actually has the role before revoking it. The function is restricted to be called only by the governance address.

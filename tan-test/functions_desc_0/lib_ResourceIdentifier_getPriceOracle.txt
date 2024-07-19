@@ -1,0 +1,19 @@
+This code defines an internal function named `getPriceOracle` that retrieves the price oracle contract address from the controller contract. The function accepts one parameter, `_controller`, which is an instance of the `IController` interface.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_controller`: An instance of the `IController` interface that provides access to the controller contract.
+
+Return Value:
+The function returns an instance of the `IPriceOracle` interface, which represents the price oracle contract.
+
+Code Breakdown:
+The function signature includes the parameter `_controller`, which is an instance of the `IController` interface. The function is defined as internal, meaning it can only be accessed within the contract or its derived contracts. The function uses the `view` modifier, indicating that it does not modify the state of the contract.
+
+Within the function, it calls the `resourceId` function on the `_controller` instance, passing `PRICE_ORACLE_RESOURCE_ID` as an argument. This function retrieves the resource ID associated with the price oracle contract from the controller.
+
+The retrieved resource ID is then used to instantiate an `IPriceOracle` interface, casting it to the address of the price oracle contract. Finally, the function returns this instance of the price oracle contract.
+
+Summary:
+The `getPriceOracle` function retrieves the price oracle contract address from the controller contract by calling the `resourceId` function with the `PRICE_ORACLE_RESOURCE_ID` parameter. It then returns an instance of the `IPriceOracle` interface representing the price oracle contract.

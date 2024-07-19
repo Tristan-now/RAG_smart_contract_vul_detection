@@ -1,0 +1,19 @@
+This code defines a private function named `_redeemToBacking` that is responsible for redeeming principals and yields from a Tempus Pool to the backing asset. The function takes five parameters: `targetPool` (an instance of the Tempus Pool contract), `sender` (the address of the sender initiating the redemption), `principals` (the amount of principal tokens to redeem), `yields` (the amount of yield tokens to redeem), and `recipient` (the address where the redeemed assets will be sent).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `targetPool`: An instance of the Tempus Pool contract to redeem assets from.
+2. `sender`: The address of the sender initiating the redemption.
+3. `principals`: The amount of principal tokens to redeem.
+4. `yields`: The amount of yield tokens to redeem.
+5. `recipient`: The address where the redeemed assets will be sent.
+
+Code Breakdown:
+The function starts with a `require` statement to ensure that either `principals` or `yields` (or both) are greater than 0. This check ensures that the redemption involves actual assets.
+The function then calls the `redeemToBacking` function on the `targetPool` contract, passing in the `sender`, `principals`, `yields`, and `recipient` as parameters. The function returns four values: `redeemedYBT` (the amount of YBT tokens redeemed), `redeemedBT` (the amount of BT tokens redeemed), `fee` (the fee charged for the redemption), and `rate` (the exchange rate used for the redemption).
+The function determines whether the redemption is an early redemption by checking if the `targetPool` has matured.
+Finally, an `Redeemed` event is emitted with details of the redemption, including the `targetPool` address, `sender`, `recipient`, `principals`, `yields`, `redeemedYBT`, `redeemedBT`, `fee`, `rate`, and whether it was an early redemption.
+
+Summary:
+The `_redeemToBacking` function facilitates the redemption of principal and yield tokens from a Tempus Pool to the backing asset. It performs necessary checks, calls the `redeemToBacking` function on the `targetPool`, and emits an event to log the redemption details.

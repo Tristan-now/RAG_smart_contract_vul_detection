@@ -1,0 +1,31 @@
+This code defines an internal function named `_calculateStreamingFee`, which calculates the streaming fee for a given SetToken. The function accepts one parameter, `_setToken`, which is an instance of the SetToken contract. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the SetToken contract for which the streaming fee needs to be calculated.
+
+Return Value:
+The function returns a `uint256` value representing the streaming fee for the `_setToken`.
+
+Code Breakdown:
+The function `_calculateStreamingFee` calculates the streaming fee for a given SetToken based on the time elapsed since the last fee was charged. The function first calculates the `timeSinceLastFee` by subtracting the timestamp of the last fee charge from the current block timestamp using `block.timestamp.sub(_lastStreamingFeeTimestamp(_setToken))`. This gives the time elapsed in seconds since the last fee was charged.
+
+Next, the function calculates the streaming fee by multiplying the `timeSinceLastFee` by the streaming fee percentage for the `_setToken` obtained from the `_streamingFeePercentage` function and then dividing by the constant `ONE_YEAR_IN_SECONDS`. This calculation is based on the assumption that the streaming fee is charged proportionally to the time elapsed since the last fee was charged.
+
+Vulnerability prediction:
+This function may be vulnerable to a front-running attack if the streaming fee calculation is based on the current block timestamp. Front-runners could manipulate the timestamp to their advantage and potentially exploit the fee calculation process.
+
+Summary:
+The `_calculateStreamingFee` function calculates the streaming fee for a given SetToken based on the time elapsed since the last fee was charged. It uses the time difference and the streaming fee percentage to determine the fee amount, which is returned as a `uint256` value.
+
+[REFERENCE VULNERABILITY REPORTS]
+No specific vulnerability reports are referenced in this response.
+
+[TASK CODE]
+```solidity
+function _calculateStreamingFee(ISetToken _setToken) internal view returns(uint256) {
+    uint256 timeSinceLastFee = block.timestamp.sub(_lastStreamingFeeTimestamp(_setToken));
+
+    // Streaming fee is streaming fee times years since last fee
+    return timeSinceLastFee.mul(_streamingFeePercentage(_setToken)).div(ONE_YEAR_IN_SECONDS);
+}
+```

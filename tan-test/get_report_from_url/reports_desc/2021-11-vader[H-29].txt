@@ -1,0 +1,5 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: Lack of user-specified minimum amount of LP tokens to mint in VaderPoolV2 contract
+Execution process: Frontrunners manipulate the pool's reserves to devalue the LP's provided liquidity, extract value, and return the reserves back to normal
+Detailed characteristics: Users can provide liquidity in any ratio without specifying a minimum number of liquidity units, allowing potential manipulation by frontrunners
+Vulnerable code: https://github.com/code-423n4/2021-11-vader/blob/429970427b4dc65e37808d7116b9de27e395ce0c/contracts/dex-v2/pool/VaderPoolV2.sol#L271-L335

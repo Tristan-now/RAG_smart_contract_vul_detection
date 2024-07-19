@@ -1,0 +1,17 @@
+This code defines an external function named `setAccountDepositCap`, which allows the owner of the contract to set a new value for the account deposit cap. The function takes a single parameter `_newAccountDepositCap` of type `uint256`, representing the new account deposit cap value.
+
+Parameters:
+1. `_newAccountDepositCap`: A `uint256` value that represents the new account deposit cap to be set by the owner.
+
+Function Modifier:
+- `onlyOwner`: This modifier restricts the execution of the function to only the owner of the contract, ensuring that only the authorized entity can change the account deposit cap.
+
+Function Execution:
+- The function first assigns the value of `_newAccountDepositCap` to the `_accountDepositCap` state variable, updating the account deposit cap.
+- It then emits an `AccountDepositCapChanged` event, providing the new account deposit cap value as the emitted data.
+
+Summary:
+The `setAccountDepositCap` function allows the contract owner to update the account deposit cap value. By using the `onlyOwner` modifier, the function ensures that only the owner can modify this critical parameter, maintaining control over the deposit cap setting.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are relevant to the provided code snippet.

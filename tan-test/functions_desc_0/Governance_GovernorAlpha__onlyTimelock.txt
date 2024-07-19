@@ -1,0 +1,21 @@
+This code snippet defines a private view function named `_onlyTimelock` that enforces a restriction on the caller. The function checks if the `msg.sender` (the address of the entity sending the transaction) is equal to the address of a `timelock` contract. If the condition is not met, the function will revert the transaction with an error message indicating that only the `timelock` contract can call this function.
+
+Explanation:
+
+1. Function Signature:
+   - Visibility: `private` - This function is only accessible within the contract that defines it.
+   - Function Type: `view` - This function does not modify the state of the contract and is used to read data from the blockchain.
+   
+2. Parameters:
+   - None
+   
+3. Logic:
+   - The function contains a `require` statement that checks if the `msg.sender` is equal to the address of the `timelock` contract.
+   - If the condition is not met (i.e., the caller is not the `timelock` contract), the function will revert the transaction.
+   - The error message provided in the `require` statement will be displayed when the transaction is reverted.
+
+4. Purpose:
+   - This function serves as a modifier to restrict access to certain functions or operations within the contract to only the `timelock` contract.
+   - By using this function as a modifier in other functions, you can ensure that only the `timelock` contract can execute those functions, adding an additional layer of security and control to the contract.
+
+In summary, the `_onlyTimelock` function is a private view function that enforces a restriction on the caller, allowing only the `timelock` contract to call the function.

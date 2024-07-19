@@ -1,0 +1,13 @@
+This code defines an external function named `unpauseDeposits`, which allows only the governance address to unpause deposits. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. None
+
+Return Value:
+None
+
+Code Breakdown:
+The function signature includes the `external` visibility specifier, indicating that the function can be called from outside the contract. Within the function, the `_onlyGovernance()` modifier is called to ensure that only the governance address can unpause deposits. If the caller is not the governance address, the function will revert.
+Once the modifier check is passed, the `pausedDeposit` state variable is set to `false`, indicating that deposits are no longer paused. An event `UnpauseDeposits` is emitted with the `msg.sender` as the parameter to log the unpause action.
+Summary:
+The `unpauseDeposits` function allows the governance address to unpause deposits by setting the `pausedDeposit` state variable to `false`. This function ensures that only authorized users can control the deposit pausing mechanism in the contract.

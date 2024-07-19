@@ -1,0 +1,16 @@
+This code snippet defines an external function named `setURI` that allows the contract owner to set a new URI (Uniform Resource Identifier) for the contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_newURI`: A string parameter representing the new URI that the contract owner wants to set.
+
+Function Modifier:
+- `onlyOwner`: This modifier restricts the execution of the `setURI` function to only the owner of the contract. This ensures that only the owner can update the URI.
+
+Code Breakdown:
+- The `setURI` function is defined as an external function, meaning it can be called from outside the contract.
+- The function takes a single parameter `_newURI`, which is a string representing the new URI that the owner wants to set.
+- Inside the function, the current URI `_uri` is updated to the new URI `_newURI` provided by the owner.
+- The function can only be executed by the owner of the contract due to the `onlyOwner` modifier. This ensures that only the authorized entity can change the URI associated with the contract.
+
+Summary:
+The `setURI` function provides a way for the contract owner to update the URI associated with the contract. By passing a new URI as a parameter, the owner can modify the URI value stored in the contract. The function is restricted to the contract owner only, ensuring that unauthorized parties cannot change the URI.

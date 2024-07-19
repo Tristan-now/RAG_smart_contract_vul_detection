@@ -1,0 +1,15 @@
+This code defines an external function named `setPendingVaultGovernancesAdd`, which allows an admin to set pending vault governances to be added. The function accepts an array of addresses (`addresses`) as a parameter and updates the `_pendingVaultGovernancesAdd` state variable with the provided addresses. Additionally, it sets the `pendingVaultGovernancesAddTimestamp` to the current block timestamp plus a governance delay specified in the `params` variable.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `addresses`: An array of addresses that stores the addresses of pending vault governances to be added.
+
+Functionality:
+- The function signature includes the `setPendingVaultGovernancesAdd` function, which is marked as `external`, meaning it can be called from outside the contract.
+- The function first checks if the caller of the function is an admin by calling the `isAdmin` function with `msg.sender` as the parameter. If the caller is not an admin, the function will revert with an error message using the `ExceptionsLibrary.ADMIN` error code.
+- If the caller is an admin, the function proceeds to update the `_pendingVaultGovernancesAdd` state variable with the provided `addresses` array.
+- The `pendingVaultGovernancesAddTimestamp` variable is then set to the current block timestamp plus the governance delay specified in the `params.governanceDelay` variable. This timestamp represents the time at which the pending vault governances can be added to the system.
+
+Summary:
+The `setPendingVaultGovernancesAdd` function allows an admin to set pending vault governances to be added by updating the `_pendingVaultGovernancesAdd` state variable with the provided addresses and setting a timestamp for when these pending governances can be added to the system. The function ensures that only admins can perform this action to maintain control over the governance process.

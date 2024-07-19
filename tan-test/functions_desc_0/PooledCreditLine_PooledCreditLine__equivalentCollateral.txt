@@ -1,0 +1,19 @@
+This code defines a private view function named `_equivalentCollateral`, which calculates the equivalent collateral token amount needed for a given borrow token amount. The function accepts three parameters: the address of the collateral asset (`_collateralAsset`), the address of the borrow asset (`_borrowAsset`), and the amount of borrow tokens (`_borrowTokenAmount`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_collateralAsset`: The address of the collateral asset.
+2. `_borrowAsset`: The address of the borrow asset.
+3. `_borrowTokenAmount`: The amount of borrow tokens.
+
+Return Value:
+The function returns a `uint256` value representing the equivalent collateral token amount.
+
+Code Breakdown:
+The function signature includes the parameters `_collateralAsset`, `_borrowAsset`, and `_borrowTokenAmount`. `_equivalentCollateral` is a private view function, meaning it can only be called internally and does not modify the state of the contract. Within the function, a tuple `_ratioOfPrices` and `_decimals` is declared and assigned the return values of the `getLatestPrice` function from the `PRICE_ORACLE` contract. This function retrieves the latest price ratio between the collateral asset and the borrow asset, as well as the number of decimals used in the price calculation.
+
+Next, the `_collateralTokenAmount` is calculated by multiplying the `_borrowTokenAmount` by 10 raised to the power of `_decimals`, and then dividing the result by `_ratioOfPrices`. This calculation determines the equivalent amount of collateral tokens needed to cover the specified borrow token amount based on the price ratio and decimals obtained from the price oracle.
+
+Finally, the function returns the calculated `_collateralTokenAmount`, which represents the equivalent collateral token amount required for the given borrow token amount.
+
+Summary:
+The `_equivalentCollateral` function utilizes the price information obtained from the `PRICE_ORACLE` contract to calculate the equivalent collateral token amount needed for a specified borrow token amount. By applying the price ratio and decimals, the function ensures proper collateralization based on the current market prices of the assets involved.

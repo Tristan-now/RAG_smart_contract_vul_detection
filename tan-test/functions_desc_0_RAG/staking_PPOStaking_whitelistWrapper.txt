@@ -1,0 +1,16 @@
+This code defines an external function named `whitelistWrapper`, which allows a governor to whitelist a wrapper address. The function accepts one parameter:
+
+Parameter:
+1. `_wrapper`: An address representing the wrapper to be whitelisted.
+
+Access Restriction:
+The function is restricted to be called only by a governor, as indicated by the `onlyGovernor` modifier.
+
+Functionality:
+When called, the function sets the value of the `whitelistedWrappers` mapping at the `_wrapper` address to `true`, indicating that the wrapper is now whitelisted. It then emits a `WrapperWhitelist` event with the `_wrapper` address as the parameter.
+
+Summary:
+The `whitelistWrapper` function allows a governor to whitelist a specific wrapper address by setting the corresponding value in the `whitelistedWrappers` mapping to `true`. This function provides a way to manage and control access to specific wrappers within the contract.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are directly related to the provided code snippet.

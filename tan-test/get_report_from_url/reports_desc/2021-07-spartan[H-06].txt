@@ -1,0 +1,12 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: The weight calculation for users in the SynthVault contract depends on the spot value of the deposit synth amount in BASE, which can be manipulated.
+Execution process: By manipulating the pool spot price of the iSYNTH pool by dripping a lot of BASE into it repeatedly, a user can inflate their weight compared to the deposited amount and claim a large share of the rewards.
+Detailed characteristics: The reward is measured in BASE tokens unrelated to the pool's liquidity, making it profitable for an attacker under certain circumstances, depending on the pool's liquidity and reward reserve.
+Vulnerable code:
+```solidity
+function _deposit(uint _amount, uint _minShares, bool _isStake) internal {
+    // Add weight for the user that depends on the spot value of the deposit synth amount in BASE
+    uint weight = iUTILS(_DAO().UTILS()).calcSpotValueInBase(iSYNTH(_synth).LayerONE(), _amount);
+    // Other deposit logic
+}
+```

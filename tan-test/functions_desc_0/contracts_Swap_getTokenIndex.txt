@@ -1,0 +1,13 @@
+This code defines a function named `getTokenIndex` that is external and view, meaning it can be called from outside the contract and does not modify the state of the contract. The function takes an `address` parameter `tokenAddress` and returns a `uint8` value representing the index of the token in the `tokenIndexes` mapping.
+
+Parameters:
+1. `tokenAddress`: The address of the token for which the index needs to be retrieved.
+
+Return Value:
+`index`: The index of the token in the `tokenIndexes` mapping.
+
+Code Breakdown:
+The function first declares a `uint8` variable `index` and assigns the value stored in the `tokenIndexes` mapping at the key `tokenAddress` to it. The next line contains a `require` statement that ensures the token address retrieved from the `getToken` function at index `index` matches the input `tokenAddress`. If the addresses do not match, the function reverts with the error message "Token does not exist". Finally, the function returns the `index` value.
+
+Summary:
+The `getTokenIndex` function retrieves the index of a token stored in the `tokenIndexes` mapping based on the provided token address. It then verifies that the token address retrieved from the `getToken` function matches the input address before returning the index.

@@ -1,0 +1,16 @@
+This code snippet defines a function named `setMintFee` that allows for setting a new mint fee in basis points. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `newMintFeeBasisPoints`: A `uint256` parameter representing the new mint fee to be set in basis points.
+
+Modifiers:
+- `external`: Specifies that the function can be called from outside the contract.
+- `override`: Indicates that this function is overriding a function from an inherited contract.
+- `hasAnyOfTwoRoles(TribeRoles.GOVERNOR, TribeRoles.PARAMETER_ADMIN)`: Requires the caller to have either the `GOVERNOR` or `PARAMETER_ADMIN` role in the `TribeRoles` contract.
+
+Functionality:
+- The `setMintFee` function is accessible externally, meaning it can be called by external contracts or accounts.
+- The function allows either a `GOVERNOR` or `PARAMETER_ADMIN` to set a new mint fee in basis points.
+- When called, the function invokes the `_setMintFee` internal function with the provided `newMintFeeBasisPoints` parameter.
+
+Overall, this function provides a way for authorized roles to adjust the mint fee for the contract, ensuring that only designated entities can modify this critical parameter.

@@ -1,0 +1,5 @@
+Type of vulnerability: Flash loan manipulation
+Cause of vulnerability: The calculation of a user's pool share weight in the getPoolShareWeight function is based on the number of SPARTAN in the pool, allowing an attacker to manipulate their weight by swapping a large amount of TOKEN to SPARTAN.
+Execution process: Attacker swaps WBNB to SPARTAN, increases the baseAmount in the pool, adds LP tokens to increase weight in DaoVault, recalculates weight with artificially increased SPARTAN proportion, exploits higher weight for voting or rewards, and swaps back SPARTAN to WBNB.
+Detailed characteristics: Vulnerability arises from the proportional calculation of pool share weight based on SPARTAN in the pool, allowing an attacker to artificially increase their weight.
+Vulnerable code: getPoolShareWeight function in Utils.sol#L46-L50 and Utils.sol#L70-L77.

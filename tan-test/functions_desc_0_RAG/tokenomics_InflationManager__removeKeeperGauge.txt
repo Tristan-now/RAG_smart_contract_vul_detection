@@ -1,0 +1,17 @@
+This code defines an internal function named `_removeKeeperGauge`, which is responsible for removing a keeper gauge associated with a specific pool. The function performs the following steps:
+
+1. It retrieves the address of the keeper gauge associated with the given pool from the `_keeperGauges` mapping.
+2. It generates a key using the `_getKeeperGaugeKey` function to prepare for the removal of the keeper gauge.
+3. It calls the `_prepare` function with the generated key and a value of 0 to prepare for the removal process.
+4. It executes the removal of the keeper pool weight by calling the `_executeKeeperPoolWeight` function with the key, the pool address, and a boolean value of true.
+5. It removes the pool address entry from the `_keeperGauges` mapping.
+6. It calls the `kill` function on the `IKeeperGauge` interface with the keeper gauge address to deactivate the keeper gauge.
+7. It emits an event `KeeperGaugeDelisted` to notify that the keeper gauge has been delisted.
+
+It is important to note that the code does not delete the entry from the `gauges` map to allow claiming of any remaining balances associated with the keeper gauge.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the `kill` function of the `IKeeperGauge` interface allows for external calls that could potentially reenter the `_removeKeeperGauge` function before it completes its execution.
+
+Summary:
+The `_removeKeeperGauge` function is responsible for removing a keeper gauge associated with a specific pool. It performs various cleanup tasks such as deactivating the keeper gauge, removing the pool entry from the mapping, and emitting an event to notify the delisting of the keeper gauge.

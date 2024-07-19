@@ -1,0 +1,26 @@
+This code defines a function named `getLockTimestamp` that is accessible externally and returns the lock timestamp of a specific NFT (non-fungible token) identified by its `_nftId`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_nftId`: A `uint256` parameter representing the unique identifier of the NFT for which the lock timestamp is requested.
+
+Return Value:
+The function returns a `uint256` value representing the lock timestamp of the specified NFT.
+
+Code Breakdown:
+The function signature includes the parameter `_nftId`, which is used to identify the specific NFT for which the lock timestamp is being retrieved. The function is defined as `external`, meaning it can be called from outside the contract. The function accesses the `records` mapping using the provided `_nftId` as the key to retrieve the corresponding `lockTimestamp` value. This value is then returned to the caller.
+
+Vulnerability Prediction:
+Since this function is a simple view function that only reads data from the contract without modifying it, there are no apparent vulnerabilities associated with it.
+
+Summary:
+The `getLockTimestamp` function allows external callers to retrieve the lock timestamp of a specific NFT by providing its unique identifier `_nftId`. The function provides transparency regarding the locking time of NFTs stored in the contract.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerabilities are identified in the provided code snippet.
+
+[TASK CODE]
+```solidity
+function getLockTimestamp(uint256 _nftId) external view returns (uint256) {
+    return records[_nftId].lockTimestamp;
+}
+```

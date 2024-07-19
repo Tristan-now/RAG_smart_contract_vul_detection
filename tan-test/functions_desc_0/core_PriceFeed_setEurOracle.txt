@@ -1,0 +1,12 @@
+This code snippet defines a public function named `setEurOracle` that overrides a function from a parent contract and can only be called by a manager. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_oracle`: An address parameter representing the new oracle address that will provide EUR price data.
+
+Functionality:
+- The function first checks that the `_oracle` address provided is not the zero address using the `require` statement.
+- If the `_oracle` address is valid, the function assigns the `_oracle` address to the `eurOracle` variable, which is of type `AggregatorV3Interface`.
+- An event `EurOracleUpdated` is emitted, indicating that the EUR oracle has been updated with the new `_oracle` address and the sender of the transaction.
+
+Summary:
+The `setEurOracle` function allows a manager to update the EUR oracle address used for fetching EUR price data. It ensures that the provided oracle address is valid and then updates the `eurOracle` variable with the new address. Finally, it emits an event to notify interested parties about the oracle update.

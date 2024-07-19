@@ -1,0 +1,20 @@
+This code snippet defines an internal function named `_distributeFees` that is responsible for distributing fees to a fee receiver. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `amount`: A `uint256` value representing the amount of fees to be distributed.
+
+Code Breakdown:
+The function `_distributeFees` is an internal function, meaning it can only be called within the contract or its derived contracts. It takes a single parameter `amount`, which is the amount of fees to be distributed.
+
+Within the function, there is a conditional check to ensure that the `amount` is greater than 0. If the `amount` is greater than 0, the function proceeds to distribute the fees.
+
+The address of the fee receiver is obtained by calling the `feeReceiver` function on the `vaultFactory` contract. This address is stored in the `feeReceiver` variable.
+
+Next, the function mints the specified `amount` of tokens to the `feeReceiver` address using the `_mint` function. This action effectively creates new tokens representing the fees to be distributed.
+
+After minting the fees, the function calls the `distribute` function on the `INFTXFeeDistributor` contract, passing the `vaultId` as an argument. This step triggers the distribution of the fees to the appropriate parties associated with the `vaultId`.
+
+In summary, the `_distributeFees` function mints a specified amount of tokens representing fees to the fee receiver address obtained from the `vaultFactory` contract and then triggers the distribution of these fees using the `INFTXFeeDistributor` contract.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are referenced for this specific code snippet.

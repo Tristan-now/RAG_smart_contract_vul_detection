@@ -1,0 +1,19 @@
+This code defines a public function named `recoverTokens` that allows the stream creator to recover excess tokens from the contract under certain conditions. The function accepts two parameters: `token` (address of the token to recover) and `recipient` (address where the recovered tokens will be sent). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: Address of the token to recover.
+2. `recipient`: Address where the recovered tokens will be sent.
+
+Conditions:
+1. If the `token` is equal to `depositToken`, the function checks if the current timestamp is greater than `endDepositLock`. If true, it calculates the excess tokens in the contract by subtracting the deposited token amount from the redeemed deposit tokens. The excess tokens are then transferred to the `recipient` address using the `safeTransfer` function from the ERC20 token contract.
+2. If the `token` is equal to `rewardToken`, the function checks if the current timestamp is greater than `endRewardLock`. It calculates the excess tokens in the contract by subtracting the total reward token amount and the reward token fee amount. The excess tokens are transferred to the `recipient` address.
+3. If the `token` is an incentivized token with a positive incentive value, the function checks if the current timestamp is greater than or equal to `endStream`. It calculates the excess tokens in the contract by subtracting the incentive amount. The excess tokens are transferred to the `recipient` address.
+4. If the `token` is not the reward token, deposit token, or an incentivized token, the function transfers all the tokens held by the contract to the `recipient` address.
+
+The function ensures that the stream creator has the authority to recover tokens and handles different scenarios based on the type of token being recovered and the current timestamp. It also emits an event `RecoveredTokens` after each successful token recovery.
+
+Vulnerability prediction:
+This function may be vulnerable to a rebase attack if the token being recovered undergoes a rebase operation, leading to incorrect calculations of token balances and potential rug pulls.
+
+Summary:
+The `recoverTokens` function allows the stream creator to recover excess tokens from the contract under specific conditions based on the type of token and the current timestamp. It ensures that the recovered tokens are transferred to the designated recipient address and emits an event for transparency.

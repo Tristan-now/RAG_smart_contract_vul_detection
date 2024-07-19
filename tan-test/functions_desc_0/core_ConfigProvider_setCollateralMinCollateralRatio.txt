@@ -1,0 +1,16 @@
+This code defines a public function named `setCollateralMinCollateralRatio` that allows the manager to set the minimum collateral ratio for a specific collateral type. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_collateralType`: The address of the collateral type for which the minimum collateral ratio is being set.
+2. `_minCollateralRatio`: The uint256 value representing the minimum collateral ratio to be set for the specified collateral type.
+
+Modifiers:
+- `onlyManager`: This modifier restricts the access to the function to only the manager.
+
+Functionality:
+- The function first checks that the `_minCollateralRatio` provided is greater than or equal to the liquidation ratio of the collateral type. This check ensures that the minimum collateral ratio is set at a reasonable level to prevent liquidation risks.
+- If the requirement is met, the function updates the `minCollateralRatio` property of the collateral configuration associated with the `_collateralType` provided.
+- After updating the minimum collateral ratio, the function emits an update event by calling the `_emitUpdateEvent` function with the `_collateralType` as an argument. This event notifies the system about the change in the minimum collateral ratio for the specified collateral type.
+
+Summary:
+The `setCollateralMinCollateralRatio` function allows the manager to adjust the minimum collateral ratio for a specific collateral type, ensuring that it meets the necessary requirements to prevent liquidation risks. The function enforces access control through the `onlyManager` modifier and emits an update event to inform the system about the change in the collateral configuration.

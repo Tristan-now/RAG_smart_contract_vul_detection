@@ -1,0 +1,17 @@
+This code defines a function named `provide` that is accessible externally and can only be called by a specific role (in this case, `onlyGuardian`). The function performs the following steps:
+
+1. It checks if the contract's balance of a specific token (`usdm`) is greater than or equal to the total amount of USDM liquidity in the contract (`totalLiquidity.usdm`). If this condition is not met, the function reverts with the error message "<liquidity".
+
+2. It calculates the amount of liquidity to add by dividing the balance of `usdm` in the contract by a predefined constant `step`, and then multiplying the result by `step`. This step effectively truncates the amount of `usdm` to be added to the liquidity pool to be a multiple of `step`.
+
+3. It creates an array `amounts` with two elements, both set to the calculated `addingLiquidity` value. This array represents the amounts of `usdm` and `pool3` tokens to be added to the liquidity pool in a 1:1 ratio.
+
+4. It approves the `usdm3crv` contract to spend the calculated `addingLiquidity` amount of `usdm` and `pool3` tokens on behalf of the current contract.
+
+5. It calls the `add_liquidity` function of the `usdm3crv` contract, passing the `amounts` array and the `_minimumLP` parameter. This function call adds liquidity to the pool with the specified amounts of tokens and a minimum LP token amount required.
+
+Vulnerability prediction:
+This function may be vulnerable to a front-running attack due to the use of external approvals and subsequent function calls. An attacker could potentially front-run the `add_liquidity` function call with higher gas fees to manipulate the transaction order and gain an advantage.
+
+Summary:
+The `provide` function adds liquidity to a pool by providing an equal amount of `usdm` and `pool3` tokens in a 1:1 ratio. It ensures that the contract has sufficient `usdm` balance, calculates the amount of liquidity to add based on a predefined step, approves the spending of tokens by the `usdm3crv` contract, and then adds liquidity to the pool with the specified amounts.

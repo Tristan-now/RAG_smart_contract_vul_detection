@@ -1,0 +1,19 @@
+This code defines an internal pure function named `getCashClaims`, which calculates the cash claims for a given `PortfolioAsset` token based on the provided `MarketParameters`. The function accepts two parameters: a `PortfolioAsset` struct named `token` and a `MarketParameters` struct named `market`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: A `PortfolioAsset` struct that represents the token for which cash claims are to be calculated. It includes the asset type and notional value of the token.
+2. `market`: A `MarketParameters` struct that contains market parameters such as total asset cash, total fCash, and total liquidity.
+
+Return Values:
+- `assetCash`: An `int256` value representing the cash claim on the asset portion of the token.
+- `fCash`: An `int256` value representing the cash claim on the fCash portion of the token.
+
+Code Breakdown:
+- The function signature includes the parameters `token` and `market`. `getCashClaims` is an internal pure function, meaning it does not modify the state of the contract and only performs calculations based on the input parameters.
+- The function first checks if the provided `token` is a liquidity token and has a non-negative notional value using the `require` statement. If the conditions are not met, the function will revert with an error message.
+- The `assetCash` variable is calculated by multiplying the total asset cash in the market by the notional value of the token and then dividing the result by the total liquidity in the market.
+- Similarly, the `fCash` variable is calculated by multiplying the total fCash in the market by the notional value of the token and then dividing the result by the total liquidity in the market.
+- The calculated `assetCash` and `fCash` values are then returned as the result of the function.
+
+Summary:
+The `getCashClaims` function calculates the cash claims for a given liquidity token represented by the `PortfolioAsset` struct `token` based on the market parameters provided in the `MarketParameters` struct `market`. It computes the cash claims on the asset and fCash portions of the token and returns these values as `int256` variables `assetCash` and `fCash`, respectively.

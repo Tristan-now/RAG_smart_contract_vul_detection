@@ -1,0 +1,19 @@
+This code defines an external function named `withdraw`, which allows the controller to withdraw a specified amount of tokens from the contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: A `uint256` value representing the amount of tokens to withdraw from the contract.
+
+Modifiers:
+- `onlyController`: This modifier restricts the access to the `withdraw` function to only the controller address.
+
+Code Breakdown:
+The function signature includes the parameter `_amount`, which specifies the amount of tokens to withdraw. The function is marked as `external`, meaning it can be called from outside the contract. It also overrides a function from an interface or base contract.
+
+Within the function, the first step is to retrieve the current balance of the contract in the `want` token using the `balanceOfWant` function. This balance is stored in the `_balance` variable.
+
+Next, the function checks if the available balance `_balance` is less than the requested withdrawal amount `_amount`. If this condition is true, it means that the contract does not have enough tokens to fulfill the withdrawal request. In this case, the function calls the `_withdrawSome` internal function to withdraw an additional amount of tokens to cover the shortfall. The `_withdrawSome` function is expected to return the actual amount of tokens withdrawn, which is then added to the initial `_balance` to get the total `_amount` that can be withdrawn.
+
+Finally, the function transfers the calculated `_amount` of tokens from the contract to the `controller` address using the `safeTransfer` function of the `IERC20` interface. This ensures that the token transfer is executed safely to prevent potential vulnerabilities.
+
+Summary:
+The `withdraw` function allows the controller to withdraw a specified amount of tokens from the contract. It first checks the contract's token balance, adjusts the withdrawal amount if necessary, and then transfers the tokens to the controller address. The function ensures the safety of the token transfer operation.

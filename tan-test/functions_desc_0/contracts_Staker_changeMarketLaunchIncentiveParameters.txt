@@ -1,0 +1,18 @@
+This code defines an external function named `changeMarketLaunchIncentiveParameters`, which allows only the admin to modify the launch incentive parameters for a specific market. The function takes three parameters: `marketIndex` (a uint32 value representing the index of the market), `period` (a uint256 value representing the period for the incentive), and `initialMultiplier` (a uint256 value representing the initial multiplier for the incentive).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `marketIndex`: A uint32 value that specifies the index of the market for which the launch incentive parameters are being changed.
+2. `period`: A uint256 value that represents the period for the launch incentive.
+3. `initialMultiplier`: A uint256 value that represents the initial multiplier for the launch incentive.
+
+Access Restriction:
+The function is restricted to be called only by the admin of the contract, as indicated by the `onlyAdmin` modifier.
+
+Function Execution:
+1. The function `_changeMarketLaunchIncentiveParameters` is called with the provided `marketIndex`, `period`, and `initialMultiplier` parameters to update the launch incentive parameters for the specified market.
+2. An event `MarketLaunchIncentiveParametersChanges` is emitted with the `marketIndex` and the new `period` and `initialMultiplier` values to notify external entities about the changes made to the launch incentive parameters.
+
+Summary:
+The `changeMarketLaunchIncentiveParameters` function allows the admin to update the launch incentive parameters for a specific market by calling the internal `_changeMarketLaunchIncentiveParameters` function and emitting an event to log the changes made. This functionality provides flexibility for adjusting the incentive structure based on market conditions or requirements.

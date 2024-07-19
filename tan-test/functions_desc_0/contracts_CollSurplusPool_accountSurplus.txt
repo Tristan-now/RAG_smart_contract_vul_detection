@@ -1,0 +1,16 @@
+This code defines an external function named `accountSurplus`, which is part of a contract that implements an interface with a function override. The function is responsible for updating the collateral balances of a specific account based on the provided tokens and amounts. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: The address of the account for which the collateral balances need to be updated.
+2. `_tokens`: An array of addresses that stores the addresses of multiple tokens.
+3. `_amounts`: An array of uint256 values that represent the amounts of the corresponding tokens in the `_tokens` array.
+
+Functionality:
+The `accountSurplus` function is an external function, meaning it can be called from outside the contract. The function first checks that the caller is the Trove Manager contract by calling the `_requireCallerIsTroveManager` function. This check ensures that only authorized contracts can update the collateral balances of an account.
+
+Next, the function updates the collateral balances of the `_account` address by calling the `_sumColls` function. This function takes the existing balances of the `_account`, the array of token addresses `_tokens`, and the corresponding amounts `_amounts` as parameters. The `_sumColls` function calculates the new collateral balances based on the provided tokens and amounts and returns the updated balances.
+
+After updating the balances, the function emits a `CollBalanceUpdated` event to notify external parties that the collateral balances of the `_account` address have been updated.
+
+Summary:
+The `accountSurplus` function allows the Trove Manager contract to update the collateral balances of a specific account by providing the tokens and corresponding amounts. It ensures that only authorized contracts can perform this operation and emits an event to signal the completion of the balance update.

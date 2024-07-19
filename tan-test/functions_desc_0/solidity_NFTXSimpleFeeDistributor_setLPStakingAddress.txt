@@ -1,0 +1,12 @@
+This code snippet defines a public function named `setLPStakingAddress` that allows the contract owner to set the LP staking address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_lpStaking`: This is the address of the LP staking contract that the owner wants to set.
+
+Functionality:
+- The function first checks if the `_lpStaking` address is not equal to the zero address using the `require` statement. This ensures that a valid address is provided for the LP staking contract.
+- If the address is valid, the function updates the `lpStaking` variable with the provided `_lpStaking` address.
+- An event `UpdateLPStakingAddress` is emitted to log the update of the LP staking address.
+
+Summary:
+In summary, the `setLPStakingAddress` function allows the contract owner to set the LP staking address by providing a valid address as a parameter. This function ensures that only the contract owner can update the LP staking address, and it emits an event to log the address update for transparency and tracking purposes.

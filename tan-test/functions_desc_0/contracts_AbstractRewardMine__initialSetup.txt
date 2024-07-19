@@ -1,0 +1,15 @@
+This code defines an internal function named `_initialSetup`, which is responsible for setting up initial configurations within the smart contract. The function takes two parameters: `_rewardToken` and `_miningService`, both of type `address`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_rewardToken`: An address representing the token that will be used as a reward within the smart contract.
+2. `_miningService`: An address representing the mining service that will interact with the smart contract.
+
+Code Breakdown:
+The `_initialSetup` function is marked as internal, meaning it can only be accessed within the contract or its derived contracts. Within the function, two roles are set up using the `_roleSetup` function. The roles set up are `MINING_SERVICE_ROLE` and `REWARD_MANAGER_ROLE`, both assigned to the `_miningService` address. These roles likely define permissions and access control within the smart contract.
+
+Next, the `_rewardToken` address is used to instantiate an ERC20 token contract, which is stored in the `rewardToken` variable. This allows the smart contract to interact with the reward token using the ERC20 standard functions.
+
+Finally, the `_miningService` address is stored in the `miningService` variable, which likely represents the address of the mining service that will be utilized within the smart contract.
+
+Summary:
+The `_initialSetup` function is responsible for setting up initial configurations within the smart contract. It assigns roles to specific addresses, instantiates an ERC20 token contract for the reward token, and stores the address of the mining service. This function plays a crucial role in initializing the smart contract with necessary parameters and configurations.

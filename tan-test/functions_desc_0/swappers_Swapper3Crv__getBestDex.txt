@@ -1,0 +1,21 @@
+This code defines an internal view function named `_getBestDex`, which determines the best decentralized exchange (DEX) to use for swapping a given amount of tokens from one token to another. The function accepts three parameters: the address of the token to swap from (`fromToken`), the address of the token to swap to (`toToken`), and the amount of tokens to swap (`amount`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `fromToken`: The address of the token to swap from.
+2. `toToken`: The address of the token to swap to.
+3. `amount`: The amount of tokens to swap.
+
+Return Values:
+- `bestDex`: The address of the best DEX to use for the token swap.
+- `amountOut`: The amount of tokens received after the swap.
+
+Code Breakdown:
+The function signature includes the parameters `fromToken`, `toToken`, and `amount`. `_getBestDex` is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract.
+Two variables, `uniswap_` and `sushiSwap_`, are initialized with the same value `UNISWAP`. These variables store the addresses of the Uniswap and SushiSwap DEXs, respectively.
+The function calculates the amount of `toToken` that will be received after swapping `amount` of `fromToken` using Uniswap and SushiSwap by calling the `_tokenAmountOut` function for each DEX.
+The `_tokenAmountOut` function calculates the amount of `toToken` that will will be received after swapping `amount` of `fromToken` on a specific DEX.
+The results of the swaps on Uniswap and SushiSwap are stored in `amountOutUniswap` and `amountOutSushiSwap` variables, respectively.
+The function then compares the amounts received from Uniswap and SushiSwap. If the amount received from Uniswap is greater than or equal to the amount received from SushiSwap, the function returns the address of Uniswap as the best DEX and the amount received from Uniswap. Otherwise, it returns the address of SushiSwap as the best DEX and the amount received from SushiSwap.
+
+Summary:
+The `_getBestDex` function determines the best DEX (either Uniswap or SushiSwap) to use for swapping a given amount of tokens from one token to another. It calculates the amount of tokens that will be received after the swap on each DEX and returns the address of the best DEX and the corresponding amount of tokens received.

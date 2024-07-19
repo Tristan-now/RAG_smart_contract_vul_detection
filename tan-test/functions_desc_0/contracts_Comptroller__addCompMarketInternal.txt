@@ -1,0 +1,18 @@
+This code defines an internal function named `_addCompMarketInternal`, which is responsible for adding a Compound market to the protocol. The function performs several checks and updates the state of the market accordingly. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `cToken`: The address of the Compound token (cToken) that represents the market being added.
+
+Code Breakdown:
+The function `_addCompMarketInternal` is an internal function, meaning it can only be called within the contract or its derived contracts. It takes the `cToken` address as a parameter.
+
+1. The function first retrieves the `Market` struct associated with the given `cToken` from the `markets` mapping.
+2. It then checks if the market is listed and if it has not already been added as a Compound market. If either of these conditions is not met, the function reverts with an error message.
+3. If the market is listed and has not been added as a Compound market, the function sets the `isComped` flag to true in the `Market` struct, indicating that the market has been added as a Compound market.
+4. An event `MarketComped` is emitted to notify external listeners that the market has been successfully added as a Compound market.
+5. The function then checks if the `compSupplyState` for the market has not been initialized yet (index and block are both zero). If this is the case, it initializes the `compSupplyState` with an initial index value and the current block number.
+6. Similarly, the function checks if the `compBorrowState` for the market has not been initialized yet and initializes it if necessary.
+7. The `safe32` function is used to ensure that the block number does not exceed 32 bits, preventing potential overflow issues.
+
+Summary:
+The `_addCompMarketInternal` function adds a Compound market to the protocol by updating the market state, emitting an event, and initializing the supply and borrow states if necessary. It ensures that the market is listed and has not already been added as a Compound market before making these updates.

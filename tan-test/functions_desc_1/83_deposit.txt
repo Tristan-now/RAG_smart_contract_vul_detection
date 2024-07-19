@@ -1,0 +1,16 @@
+This code defines an external function named `deposit` that allows users to deposit liquidity into a contract. The function takes a parameter of type `Liquidity` named `_deposits`, which contains the amounts of two tokens: `usdm` and `pool3`.
+
+Parameters:
+1. `_deposits`: A struct containing the amounts of `usdm` and `pool3` tokens that the user wants to deposit.
+
+Code Breakdown:
+The function first initializes two `Liquidity` struct variables: `total` and `user`, which represent the total liquidity in the contract and the liquidity of the user calling the function, respectively.
+
+Next, the function checks if the user wants to deposit any `usdm` tokens. If the amount is greater than 0, the function transfers the specified amount of `usdm` tokens from the user's address to the contract address using the `safeTransferFrom` function. The total `usdm` liquidity and the user's `usdm` liquidity are then updated accordingly.
+
+If the user also wants to deposit `pool3` tokens, the function first checks if the total `usdm` liquidity in the contract is greater than 4000000e18 (4,000,000 `usdm`). If this condition is met, the function transfers the specified amount of `pool3` tokens from the user to the contract. The total `pool3` liquidity and the user's `pool3` liquidity are updated.
+
+Finally, the function updates the total liquidity in the contract and the user's liquidity mapping with the new values. An event `Deposit` is emitted to notify external systems about the deposit transaction.
+
+Summary:
+The `deposit` function allows users to deposit `usdm` and `pool3` tokens into the contract. It performs the necessary token transfers, updates the total and user liquidity values, and emits an event to track the deposit transaction.

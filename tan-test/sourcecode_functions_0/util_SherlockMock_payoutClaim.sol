@@ -1,0 +1,1 @@
+function payoutClaim(address _receiver, uint256 _amount) external override {}

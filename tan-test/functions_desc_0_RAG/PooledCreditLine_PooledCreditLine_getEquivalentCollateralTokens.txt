@@ -1,0 +1,34 @@
+This code defines an external function named `getEquivalentCollateralTokens`, which calculates the equivalent collateral tokens based on a given borrow token amount for a specific credit line. The function accepts two parameters: the credit line ID `_id` and the borrow token amount `_borrowTokenAmount`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: A uint256 value representing the ID of the credit line for which the equivalent collateral tokens are calculated.
+2. `_borrowTokenAmount`: A uint256 value representing the amount of borrow tokens for which the equivalent collateral tokens are determined.
+
+Return Value:
+The function returns a uint256 value representing the equivalent collateral tokens based on the provided borrow token amount.
+
+Code Breakdown:
+The function signature includes the parameters `_id` and `_borrowTokenAmount`. `getEquivalentCollateralTokens` is an external function, meaning it can be called from outside the contract. Within the function, the collateral asset address `_collateralAsset` is retrieved from the `pooledCreditLineConstants` mapping using the provided credit line ID `_id`. A `require` statement is used to ensure that the `_collateralAsset` is not the zero address, indicating that a valid collateral asset is associated with the credit line.
+Next, the borrow asset address `_borrowAsset` is obtained from the `pooledCreditLineConstants` mapping using the provided credit line ID `_id`.
+The function then calls the `_equivalentCollateral` internal function with the parameters `_collateralAsset`, `_borrowAsset`, and `_borrowTokenAmount` to calculate the equivalent collateral tokens based on the provided borrow token amount.
+The calculated equivalent collateral tokens value is returned by the function.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the `_equivalentCollateral` function modifies state variables in an unsafe manner.
+
+Summary:
+The `getEquivalentCollateralTokens` function retrieves the collateral asset and borrow asset addresses associated with a specific credit line using the provided ID. It then calls an internal function `_equivalentCollateral` to calculate the equivalent collateral tokens based on the provided borrow token amount and returns this value.
+
+[REFERENCE VULNERABILITY REPORTS]
+No specific vulnerability reports are referenced in this context.
+
+[TASK CODE]
+```solidity
+function getEquivalentCollateralTokens(uint256 _id, uint256 _borrowTokenAmount) external view returns (uint256) {
+    address _collateralAsset = pooledCreditLineConstants[_id].collateralAsset;
+    require(_collateralAsset != address(0), 'PCL:CTTL1');
+    address _borrowAsset = pooledCreditLineConstants[_id].borrowAsset;
+
+    return _equivalentCollateral(_collateralAsset, _borrowAsset, _borrowTokenAmount);
+}
+```

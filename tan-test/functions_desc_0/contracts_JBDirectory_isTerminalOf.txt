@@ -1,0 +1,14 @@
+This code defines a public view function named `isTerminalOf` that checks if a given payment terminal is associated with a specific project. The function takes two parameters: `_projectId`, which is a uint256 representing the project ID, and `_terminal`, which is an instance of the `IJBPaymentTerminal` interface.
+
+Parameters:
+1. `_projectId`: A uint256 value representing the ID of the project for which the association with the payment terminal needs to be checked.
+2. `_terminal`: An instance of the `IJBPaymentTerminal` interface representing the payment terminal to be checked for association with the project.
+
+Return Value:
+The function returns a boolean value indicating whether the given payment terminal is associated with the specified project.
+
+Code Breakdown:
+The function iterates over the array of payment terminals associated with the specified project ID. The loop starts with `_i` initialized to 0 and continues until `_i` is less than the length of the array `_terminalsOf[_projectId]`. In each iteration, the function checks if the current element in the array `_terminalsOf[_projectId][_i]` is equal to the provided `_terminal`. If a match is found, the function immediately returns `true`, indicating that the terminal is associated with the project. If no match is found after iterating through all elements in the array, the function returns `false` to indicate that the terminal is not associated with the project.
+
+Summary:
+The `isTerminalOf` function efficiently determines whether a specific payment terminal is associated with a given project by iterating through the array of terminals associated with the project and comparing each terminal with the provided terminal instance. If a match is found, the function returns `true`; otherwise, it returns `false`.

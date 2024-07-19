@@ -1,0 +1,23 @@
+This code defines a function named `getPrice` that calculates the price ratio between two assets. The function accepts two parameters: `_assetOne` and `_assetTwo`, which represent the addresses of the two assets for which the price ratio needs to be calculated. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_assetOne`: The address of the first asset.
+2. `_assetTwo`: The address of the second asset.
+
+Return Value:
+The function returns a tuple containing a boolean value and a uint256 value. The boolean value indicates whether the calculation was successful, and the uint256 value represents the price ratio between `_assetOne` and `_assetTwo`.
+
+Code Breakdown:
+1. The function starts with a `require` statement to ensure that the caller is a system contract as defined by the `controller` contract.
+2. It checks if both `_assetOne` and `_assetTwo` are valid Uniswap pools by looking up their settings in the `uniswapPoolsToSettings` mapping.
+3. If neither asset is a valid Uniswap pool, the function returns `(false, 0)`.
+4. The function then retrieves the `masterQuoteAsset` address from the price oracle using the `getPriceOracle` function of the `controller`.
+5. It calculates the price of `_assetOne` relative to the `masterQuoteAsset` by calling the `_getUniswapPrice` function if `_assetOne` is a valid Uniswap pool, otherwise by directly calling `getPrice` on the price oracle.
+6. Similarly, it calculates the price of `_assetTwo` relative to the `masterQuoteAsset`.
+7. Finally, it returns a tuple containing `true` and the price ratio between `_assetOne` and `_assetTwo` by dividing `assetOnePriceToMaster` by `assetTwoPriceToMaster`.
+
+Vulnerability Prediction:
+This function may be vulnerable to price manipulation attacks if the Uniswap pools or price oracle are not properly secured against manipulation.
+
+Summary:
+The `getPrice` function calculates the price ratio between two assets by retrieving their prices relative to a common `masterQuoteAsset` from the price oracle. It handles cases where the assets are Uniswap pools or direct price oracles and returns the price ratio as a result.

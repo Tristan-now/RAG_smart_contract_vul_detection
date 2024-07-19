@@ -1,0 +1,20 @@
+This code defines an external function named `removeSet` that allows the owner of the contract to remove a specific set token from the list of existing set tokens. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: The address of the set token that needs to be removed from the list of existing set tokens.
+
+Modifiers:
+- `onlyInitialized`: Ensures that the contract has been initialized before allowing the function to be executed.
+- `onlyOwner`: Restricts the execution of the function to only the owner of the contract.
+
+Code Breakdown:
+The function signature includes the parameter `_setToken`, which represents the address of the set token to be removed. The function first checks if the set token exists in the `isSet` mapping by using the `require` statement. If the set token does not exist, it reverts the transaction with an error message.
+
+If the set token exists, the function proceeds to remove the set token from the `sets` array by calling the `remove` function on the array. The `remove` function removes the specified element from the array and returns the updated array.
+
+Next, the function sets the value corresponding to the `_setToken` key in the `isSet` mapping to `false`, indicating that the set token has been removed.
+
+Finally, the function emits an `SetRemoved` event, indicating that the specified set token has been successfully removed from the list of existing set tokens.
+
+Summary:
+The `removeSet` function allows the owner of the contract to remove a specific set token from the list of existing set tokens. It first checks if the set token exists, removes it from the `sets` array, updates the `isSet` mapping, and emits an event to notify the removal of the set token.

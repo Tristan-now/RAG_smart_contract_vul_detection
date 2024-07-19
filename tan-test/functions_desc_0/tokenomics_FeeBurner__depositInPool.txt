@@ -1,0 +1,11 @@
+This code defines an internal function named `_depositInPool` that facilitates depositing funds into a liquidity pool. The function takes two parameters: `underlying_`, which represents the address of the underlying asset being deposited, and `pool_`, which is an instance of the `ILiquidityPool` interface representing the target liquidity pool.
+
+Code Breakdown:
+
+1. The function first checks if the `underlying_` asset is ETH by comparing it to the address `0`. If it is ETH, the function calculates the ETH balance of the contract using `address(this).balance` and then calls the `deposit` function of the `pool_` contract, passing the ETH balance as the value to be deposited. The return value of this deposit function call is stored in the `received` variable, which is then returned by the function.
+
+2. If the `underlying_` asset is not ETH, the function assumes it is an ERC20 token. It then calls the internal `_approve` function to approve the `pool_` contract to spend the ERC20 tokens on behalf of the contract. This approval step is necessary for interacting with ERC20 tokens.
+
+3. After approval, the function retrieves the balance of the ERC20 token held by the contract using `IERC20(underlying_).balanceOf(address(this))` and then calls the `deposit` function of the `pool_` contract, passing the token balance as the amount to be deposited. The return value of this deposit function call is stored in the `received` variable, which is then returned by the function.
+
+In summary, the `_depositInPool` function handles deposits into a liquidity pool, supporting both ETH and ERC20 token deposits. It ensures proper approval for ERC20 tokens and interacts with the liquidity pool contract to deposit the funds, returning the amount received from the deposit operation.

@@ -1,0 +1,27 @@
+This code snippet defines an internal function named `_burn`, which is an override of a function from a parent contract. The function takes a single parameter `_id` of type `uint256`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: A `uint256` value representing the identifier of the bond to be burned.
+
+Code Breakdown:
+1. The function `_burn` is marked as `internal` and is an override of a function from the parent contract.
+2. Within the function, the `_idToBond` mapping is used to delete the entry corresponding to the provided `_id`. This operation removes the bond associated with the given `_id`.
+3. The `super._burn(_id)` statement is called to invoke the `_burn` function from the parent contract, which actually performs the burning operation. By calling `super._burn(_id)`, the function ensures that the parent contract's logic for burning is executed after deleting the bond entry.
+
+Summary:
+The `_burn` function internally deletes the bond entry associated with the provided `_id` using the `_idToBond` mapping and then calls the parent contract's `_burn` function to complete the burning process.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are referenced in this code snippet.
+
+[TASK CODE]
+```solidity
+function _burn(
+    uint256 _id
+) internal override {
+    delete _idToBond[_id];
+    super._burn(_id);
+}
+```

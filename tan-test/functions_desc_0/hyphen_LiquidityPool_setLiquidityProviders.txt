@@ -1,0 +1,12 @@
+This code defines a public function named `setLiquidityProviders` that allows the contract owner to set the liquidity providers address. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_liquidityProviders`: The address of the liquidity providers contract that will be set by the owner.
+
+Functionality:
+- The function first checks if the `_liquidityProviders` address provided is not equal to 0 using the `require` statement. If the address is 0, it will revert the transaction with the error message "LiquidityProviders can't be 0".
+- If the address is valid, the function sets the `liquidityProviders` variable to an instance of the `ILiquidityProviders` interface, casting the `_liquidityProviders` address to this interface.
+- An event `LiquidityProvidersChanged` is emitted to log the change in the liquidity providers address.
+
+Summary:
+The `setLiquidityProviders` function allows the contract owner to update the liquidity providers address by providing a new address. It ensures that the provided address is not 0 and then sets the `liquidityProviders` variable to the new address. Finally, it emits an event to record the change in the liquidity providers address.

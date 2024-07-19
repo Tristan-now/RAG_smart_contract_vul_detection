@@ -1,0 +1,19 @@
+This code snippet defines an external function named `addStrategy` that allows the owner of the contract to add a new strategy address to a list of strategies. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_strategy`: The address of the new strategy that the owner wants to add.
+
+Functionality:
+- The function first checks three conditions using `require` statements:
+  1. It ensures that the total number of strategies in the list does not exceed the maximum allowed (`maxStrategies`).
+  2. It checks if the `_strategy` address being added is not already present in the `registry` mapping to avoid duplicates.
+  3. It verifies that the `_strategy` address is not the zero address.
+
+- If all the `require` conditions are met, the function proceeds to update the `registry` mapping by setting the value at the `_strategy` address to 1, indicating that this address is now registered as a strategy.
+
+- The `_strategy` address is then added to the `strategies` array using the `push` function, expanding the list of available strategies.
+
+- Finally, an `emit` statement is used to trigger an event `StrategyAdded` with the `_strategy` address as the parameter, notifying external listeners that a new strategy has been successfully added.
+
+Summary:
+The `addStrategy` function allows the contract owner to add a new strategy address to the list of strategies, subject to certain conditions. It updates the registry mapping, adds the new strategy address to the strategies array, and emits an event to inform external parties about the addition of the new strategy.

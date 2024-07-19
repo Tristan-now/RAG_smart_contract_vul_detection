@@ -1,0 +1,1 @@
+function getFloorLongPayout() external view override returns (uint256) { return floorLongPayout; }

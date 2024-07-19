@@ -1,0 +1,19 @@
+This code defines a public function named `withdraw` that allows a user to withdraw a specified amount of tokens from a liquidity pool. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_pid`: An unsigned integer representing the pool ID from which the user wants to withdraw tokens.
+2. `_amount`: An unsigned integer representing the amount of tokens the user wants to withdraw.
+
+Code Breakdown:
+1. The function starts by accessing the `PoolInfo` and `UserInfo` structs for the specified pool ID `_pid` and the message sender (`msg.sender`).
+2. A `require` statement checks if the user has enough tokens (`user.amount`) to withdraw `_amount`. If not, the function reverts with an error message.
+3. The `updatePool` function is called to update the pool information before proceeding with the withdrawal.
+4. The variable `pending` is calculated by multiplying the user's token amount by the pool's accumulated CVX per share and dividing by 1e12, then subtracting the user's `rewardDebt`.
+5. The `safeRewardTransfer` function is called to transfer the pending rewards to the user.
+6. The user's token amount is reduced by `_amount`, and the user's `rewardDebt` is updated based on the new token amount and the pool's accumulated CVX per share.
+7. The specified `_amount` of tokens is transferred from the pool's LP token contract to the user's address.
+8. If the pool has a rewarder contract assigned (`_rewarder`), the `onReward` function of the rewarder contract is called to handle any extra rewards for the user.
+9. Events `RewardPaid` and `Withdraw` are emitted to log the reward payment and token withdrawal actions, respectively.
+
+Summary:
+The `withdraw` function allows users to withdraw a specified amount of tokens from a liquidity pool. It calculates pending rewards, transfers them to the user, updates user and pool information, transfers tokens, handles extra rewards if applicable, and emits events to log the actions taken during the withdrawal process.

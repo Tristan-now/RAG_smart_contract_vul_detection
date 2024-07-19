@@ -1,0 +1,8 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: Lack of validation in the address parameter of the function setFallbackHandler()
+Execution process: Attacker sets the fallback handler address of the safe to be the address of the token he wants to hijack, then sends a transferFrom() call to the safe contract with specific parameters.
+Detailed characteristics: Allows an attacker to hijack any ERC721 or ERC1155 tokens rented by manipulating the fallback handler address.
+Vulnerable code: 
+```solidity
+function setFallbackHandler(address handler) external;
+```

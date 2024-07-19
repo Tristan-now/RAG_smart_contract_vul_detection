@@ -1,0 +1,22 @@
+This code defines an external function named `removeStrategy` that allows the controller to remove a strategy associated with a specific vault. The function takes three parameters: the address of the vault `_vault`, the address of the strategy `_strategy` to be removed, and a timeout value `_timeout`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_vault`: The address of the vault from which the strategy needs to be removed.
+2. `_strategy`: The address of the strategy that is to be removed from the vault.
+3. `_timeout`: A uint256 value representing the timeout period.
+
+Function Modifier:
+- `onlyController`: This modifier restricts the execution of the function to be only called by the controller.
+
+Code Breakdown:
+- The function first initializes a variable `tail` to store the length of the `addresses` array within the `strategies` mapping associated with the `_vault`.
+- It then initializes variables `index` and `found` to keep track of the index of the strategy to be removed and whether it was found in the array.
+- A `for` loop is used to iterate over the `addresses` array within the `strategies` mapping for the given `_vault`. It checks if the current strategy address matches the `_strategy` address. If a match is found, it sets the `index` to the current index, marks `found` as true, and breaks out of the loop.
+- If the strategy is found (`found` is true), it replaces the strategy address at the `index` with the last address in the array, then pops the last element from the array to remove the strategy.
+- The function updates the `timeout` value for the `_vault` in the `strategies` mapping with the provided `_timeout`.
+- Finally, it emits an `StrategyRemoved` event with the details of the removed strategy.
+
+Summary:
+The `removeStrategy` function allows the controller to remove a specific strategy associated with a vault. It searches for the strategy address in the array of strategies for the vault, removes it if found, updates the timeout value, and emits an event to notify the removal of the strategy.

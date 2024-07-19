@@ -1,0 +1,30 @@
+This code defines an external function named `batchAddDex`, which allows the contract owner to add multiple decentralized exchanges (DEXs) to a whitelist. The function accepts an array of addresses (`_dexs`) representing the DEXs to be added.
+
+Parameters:
+1. `_dexs`: An array of addresses that stores the addresses of multiple DEXs to be added to the whitelist.
+
+Functionality:
+- The function starts by calling `LibDiamond.enforceIsContractOwner()` to ensure that only the contract owner can execute this function.
+- It then iterates over the `_dexs` array using a `for` loop. For each address in the array:
+  - If the address is already present in the `dexWhitelist` mapping (indicating it is already whitelisted), the loop continues to the next address.
+  - If the address is not in the whitelist, it is added to the `dexWhitelist` mapping and also pushed to the `dexs` array.
+
+Overall, the `batchAddDex` function allows the contract owner to efficiently add multiple DEXs to the whitelist, ensuring that each DEX is only added once and maintaining a list of all whitelisted DEXs.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are referenced in this context.
+
+[TASK CODE]
+```solidity
+function batchAddDex(address[] calldata _dexs) external {
+    LibDiamond.enforceIsContractOwner();
+
+    for (uint256 i; i < _dexs.length; i++) {
+        if (s.dexWhitelist[_dexs[i]] == true) {
+            continue;
+        }
+        s.dexWhitelist[_dexs[i]] = true;
+        s.dexs.push(_dexs[i]);
+    }
+}
+```

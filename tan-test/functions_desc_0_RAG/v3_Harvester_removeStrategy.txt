@@ -1,0 +1,12 @@
+This code defines an external function named `removeStrategy`, which allows the controller to remove a strategy from a vault. The function accepts three parameters: the address of the vault `_vault`, the address of the strategy `_strategy` to be removed, and a timeout value `_timeout`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_vault`: The address of the vault from which the strategy will be removed.
+2. `_strategy`: The address of the strategy to be removed from the vault.
+3. `_timeout`: A uint256 value representing the timeout for the strategy removal.
+
+Code Breakdown:
+The function signature includes the parameters `_vault`, `_strategy`, and `_timeout`. `removeStrategy` is an external function, meaning it can be called from outside the contract by the controller. The function first retrieves the length of the `addresses` array within the `strategies` mapping for the given vault `_vault` and stores it in the variable `tail`. It then initializes variables `index` and `found` to keep track of the index of the strategy to be removed and whether it was found, respectively. 
+A `for` loop is used to iterate over the `addresses` array of strategies for the vault. The loop starts with `i` initialized to 0 and runs until `i` is less than `tail`, incrementing `i` by 1 each iteration. Within the loop, it checks if the current strategy address matches the `_strategy` address. If a match is found, it sets `index` to the current index, sets `found` to true, and breaks out of the loop.
+If a matching strategy is found, it replaces the strategy address at the `index` with the last strategy address in the array, removes the last element from the array, updates the timeout value for the vault's strategies, and emits a `StrategyRemoved` event with the details of the removed strategy.
+This function efficiently removes a strategy from a vault by swapping it with the last strategy in the array and then popping the last element to maintain array integrity.

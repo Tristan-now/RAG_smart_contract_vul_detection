@@ -1,0 +1,15 @@
+This code defines a public view function named `currentRound` that calculates the current round number based on the number of rounds since the `roundLength` was last updated. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `uint256`: The function returns a `uint256` value representing the current round number.
+
+Code Breakdown:
+- The function starts by calculating the number of rounds since the `roundLength` was last updated. This is done by subtracting the `lastRoundLengthUpdateStartBlock` from the current block number (`blockNum()`) and then dividing the result by the `roundLength`. This calculation gives the `roundsSinceUpdate`.
+- The current round number is then determined by adding the `lastRoundLengthUpdateRound` (which represents the round that the `roundLength` was last updated) to the `roundsSinceUpdate`. This calculation gives the current round number.
+- Finally, the function returns the calculated current round number.
+
+Summary:
+- The `currentRound` function calculates the current round number based on the number of rounds since the `roundLength` was last updated. It uses the `lastRoundLengthUpdateStartBlock`, `roundLength`, `lastRoundLengthUpdateRound`, and the current block number to perform the necessary calculations and return the current round number.

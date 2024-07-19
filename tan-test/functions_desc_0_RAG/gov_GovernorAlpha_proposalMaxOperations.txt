@@ -1,0 +1,12 @@
+This code snippet defines a public pure function named `proposalMaxOperations` that returns a `uint` value. The function does not take any parameters and simply returns the constant value 10.
+
+Explanation:
+- Function Name: `proposalMaxOperations`
+- Visibility: Public
+- Modifiability: Pure (does not read or modify state)
+- Return Type: `uint`
+- Return Value: 10
+
+This function serves as a getter function that provides the maximum number of operations allowed in a proposal. It is a constant function that does not interact with the blockchain state and simply returns the fixed value of 10.
+
+If you have any further questions or need additional information, feel free to ask.

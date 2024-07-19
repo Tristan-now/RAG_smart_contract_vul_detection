@@ -1,0 +1,5 @@
+Type of vulnerability: Impermanent Loss (IL) exploitation
+Cause of vulnerability: IL protection paid for all token pairs without considering potential manipulation
+Execution process: Attacker flashloans a large amount of Vader, deploys a token TKN that can be minted, adds liquidity to a new pool with a large amount of Vader and a small amount of TKN, uses minting ability to buy up all Vader in the pool, repays flashloan with extracted Vader, waits for IL protection to accumulate, and cashes out for profit.
+Detailed characteristics: Attacker benefits from significant IL protection funds from the reserve by manipulating pool creation and token prices.
+Vulnerable code: https://github.com/code-423n4/2021-11-vader/blob/3a43059e33d549f03b021d6b417b7eeba66cf62e/contracts/dex/router/VaderRouter.sol#L187-L206

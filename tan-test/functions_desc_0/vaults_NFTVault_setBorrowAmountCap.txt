@@ -1,0 +1,16 @@
+This code defines an external function named `setBorrowAmountCap` that allows setting the borrow amount cap. The function can only be called by an address with the DAO_ROLE role.
+
+Parameters:
+1. `_borrowAmountCap`: A `uint256` value representing the new borrow amount cap to be set.
+
+Functionality:
+The `setBorrowAmountCap` function takes a single parameter `_borrowAmountCap` which is of type `uint256`. This parameter represents the new borrow amount cap that will be set in the contract's settings. The function is marked as `external`, meaning it can be called from outside the contract.
+
+Access Control:
+The function includes a modifier `onlyRole(DAO_ROLE)` which restricts access to addresses that have been assigned the DAO_ROLE role. This ensures that only authorized entities with the DAO_ROLE role can call this function and modify the borrow amount cap.
+
+Setting the Borrow Amount Cap:
+Within the function, the borrow amount cap in the contract's settings is updated to the value passed as the `_borrowAmountCap` parameter. This is done by assigning the `_borrowAmountCap` value to `settings.borrowAmountCap`.
+
+Summary:
+The `setBorrowAmountCap` function provides a way to update the borrow amount cap in the contract's settings. It enforces access control by allowing only addresses with the DAO_ROLE role to modify this setting.

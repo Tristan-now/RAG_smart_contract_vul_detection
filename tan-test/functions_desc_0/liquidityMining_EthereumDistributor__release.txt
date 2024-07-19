@@ -1,0 +1,13 @@
+This code snippet defines an internal function named `_release`, which is an override of a parent function. The function is responsible for releasing payments to a payee based on the total new tokens received and the payee's share of total shares.
+
+Parameters:
+1. `_totalnewTokensReceived`: A `uint256` value representing the total new tokens received.
+2. `_payee`: An `address` representing the recipient of the payment.
+
+Code Breakdown:
+The function calculates the payment amount to be released to the payee by performing the following steps:
+1. Calculate the payment amount by multiplying `_totalnewTokensReceived` by the payee's share and then dividing by the total shares.
+2. Transfer the calculated payment amount (`payment`) of tokens to the payee's address using the `safeTransfer` function of the ERC20 token contract associated with the MIMO token.
+
+Summary:
+The `_release` function calculates and transfers the payment amount to the specified payee based on their share of total shares and the total new tokens received. It ensures the secure transfer of tokens using the `safeTransfer` function to prevent potential vulnerabilities in token transfers.

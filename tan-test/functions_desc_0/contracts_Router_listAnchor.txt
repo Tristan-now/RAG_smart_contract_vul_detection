@@ -1,0 +1,16 @@
+This code defines an external function named `listAnchor` that adds a new token to an array of anchor tokens. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: The address of the token to be added as an anchor.
+
+Code Breakdown:
+The function `listAnchor` starts with two `require` statements:
+- The first `require` statement checks if the length of the `arrayAnchors` is less than `anchorLimit`, ensuring that the number of anchor tokens does not exceed a predefined limit.
+- The second `require` statement calls the `isAnchor` function from the `iPOOLS` contract (with the address `POOLS`) to verify that the token being added is indeed an anchor token.
+
+If both `require` statements pass, the function proceeds to add the token to the `arrayAnchors` array using the `push` method. Additionally, the function calculates the value of the token in base currency (presumably using the `calcValueInBase` function from the `iUTILS` contract with the address `UTILS`) and pushes this value to the `arrayPrices` array.
+
+Furthermore, the `_isCurated` mapping is updated to mark the newly added token as curated by setting its value to `true`. Finally, the `updateAnchorPrice` function is called to update the price of the newly listed anchor token.
+
+Summary:
+The `listAnchor` function adds a new token to the array of anchor tokens, calculates its value in base currency, marks it as curated, and updates its price. The function includes checks to ensure that the token meets certain criteria before being added to the list of anchor tokens.

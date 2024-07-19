@@ -1,0 +1,10 @@
+keras_self_attention==0.51.0
+lightgbm==4.3.0
+# matplotlib==3.8.0
+matplotlib==3.8.3
+numpy==1.26.4
+pandas==2.2.2
+scikit_learn==1.4.1.post1
+seaborn==0.13.2
+tensorflow==2.16.1
+torch==2.2.1

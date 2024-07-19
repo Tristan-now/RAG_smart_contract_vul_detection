@@ -1,0 +1,15 @@
+This code defines a public `initialize` function that takes three parameters: `_name` (a string representing the name of the token), `_symbol` (a string representing the symbol of the token), and `_gac` (an address representing the Global Access Control contract). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_name`: A string parameter that represents the name of the token.
+2. `_symbol`: A string parameter that represents the symbol of the token.
+3. `_gac`: An address parameter that represents the Global Access Control contract.
+
+Functionality:
+1. The `initialize` function is marked as `public`, meaning it can be called from outside the contract.
+2. Within the function, the `__ERC20_init` and `__GlobalAccessControlManaged_init` functions are called to initialize the ERC20 token with the provided name and symbol, and to set the Global Access Control contract address, respectively.
+3. The `__ERC20_init` function initializes the ERC20 token with the provided `_name` and `_symbol`, setting the name and symbol of the token.
+4. The `__GlobalAccessControlManaged_init` function initializes the contract with the provided `_gac` address, setting the Global Access Control contract address.
+
+Summary:
+The `initialize` function is used to initialize the ERC20 token with the provided name and symbol, and to set the Global Access Control contract address. This function is typically called only once during the deployment of the contract to set initial values and configurations.

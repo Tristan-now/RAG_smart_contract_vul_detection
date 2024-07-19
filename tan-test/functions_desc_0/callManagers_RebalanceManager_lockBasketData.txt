@@ -1,0 +1,16 @@
+This code defines an internal function named `lockBasketData`, which is responsible for locking the data in the `basket` contract by calling the `setLock` function with a specified block number. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_block`: A `uint256` value representing the block number to set as the lock.
+
+Code Breakdown:
+The `lockBasketData` function is an internal function, meaning it can only be called within the contract or its derived contracts. This function takes a single parameter `_block`, which is the block number to be set as the lock for the data in the `basket` contract.
+
+Within the function, a call is made to the `singleCall` function of the `basket` contract. This function is used to execute a single function call on a target contract with a specified payload.
+
+The parameters for the `singleCall` function are:
+1. The target contract address, which is `address(basket)` in this case.
+2. The encoded function call data generated using `abi.encodeWithSelector(basket.setLock.selector, _block)`. This encodes the function selector for the `setLock` function of the `basket` contract along with the `_block` parameter.
+3. The value to be sent along with the function call, which is `0` in this case.
+
+In summary, the `lockBasketData` function is used to lock the data in the `basket` contract by calling the `setLock` function with the specified block number `_block`. This function call is executed using the `singleCall` function, passing the target contract address, encoded function call data, and value parameters.

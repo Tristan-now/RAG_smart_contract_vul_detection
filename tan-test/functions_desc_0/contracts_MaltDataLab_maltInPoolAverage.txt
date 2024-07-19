@@ -1,0 +1,13 @@
+This code defines a public view function named `maltInPoolAverage` that calculates the moving average of the MALT token reserve in a pool. The function takes one parameter `_lookback`, which represents the number of historical data points to consider for calculating the moving average. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_lookback`: A `uint256` parameter that specifies the number of historical data points to consider for calculating the moving average.
+
+Return Value:
+The function returns a `uint256` value representing the moving average of the MALT token reserve in the pool.
+
+Code Breakdown:
+The `maltInPoolAverage` function is a public view function, meaning it can be called externally and does not modify the contract state. The function takes one parameter `_lookback`, which determines the number of historical data points to consider for the moving average calculation. Inside the function, it calls the `getValueWithLookback` function on the `poolMaltReserveMA` contract instance, passing the `_lookback` parameter. This function calculates the moving average of the MALT token reserve in the pool based on the specified lookback period and returns the result.
+
+Summary:
+The `maltInPoolAverage` function provides a way to retrieve the moving average of the MALT token reserve in a pool by calling the `getValueWithLookback` function on the `poolMaltReserveMA` contract instance with the specified lookback period.

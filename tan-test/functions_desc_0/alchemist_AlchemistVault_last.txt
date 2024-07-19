@@ -1,0 +1,19 @@
+This code defines an internal function named `last`, which is used to retrieve the last element in a list. The function accepts a single parameter, a storage reference to a list (`_self`), and returns a storage reference to the data of the last element in the list.
+
+Parameters:
+1. `_self`: A storage reference to a list, which is a user-defined data structure that contains elements.
+
+Return Value:
+The function returns a storage reference to the data of the last element in the list.
+
+Code Breakdown:
+The function signature includes the parameter `_self`, which is a storage reference to a list. The function is marked as `internal`, meaning it can only be called within the contract or its derived contracts. The function returns a storage reference to the data of the last element in the list.
+
+Within the function, `_self.lastIndex()` is called to retrieve the index of the last element in the list. This function is assumed to be defined elsewhere in the contract and returns the index of the last element in the list.
+
+The function then accesses the `elements` mapping of the list `_self` using the index of the last element obtained from `_self.lastIndex()`. This retrieves the storage reference to the data of the last element in the list.
+
+Finally, this storage reference to the data of the last element is returned by the function.
+
+Summary:
+The `last` function is used to retrieve the data of the last element in a list. It does this by first obtaining the index of the last element using `_self.lastIndex()` and then accessing the `elements` mapping of the list to retrieve the data of the last element. The function returns a storage reference to this data.

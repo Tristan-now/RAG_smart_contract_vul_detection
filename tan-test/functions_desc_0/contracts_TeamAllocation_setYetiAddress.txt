@@ -1,0 +1,14 @@
+This code snippet defines an external function named `setYetiAddress` that allows only the team members to set the address of the YETI token contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_YETI`: This parameter of type `IERC20` represents the address of the YETI token contract that the team wants to set.
+
+Functionality:
+- The function `setYetiAddress` is an external function, meaning it can be called from outside the contract.
+- The function can only be executed by team members, as indicated by the `onlyTeam` modifier.
+- When the function is called, it takes the `_YETI` parameter, which is the address of the YETI token contract that the team wants to set.
+- Inside the function, the global variable `YETI` is assigned the value of `_YETI`, effectively setting the YETI token contract address.
+- Additionally, the boolean variable `yetiSet` is set to `true`, indicating that the YETI token address has been successfully set.
+
+Summary:
+The `setYetiAddress` function allows team members to set the address of the YETI token contract by providing the contract address as a parameter. Once the address is set, the function updates the `YETI` variable with the new address and sets the `yetiSet` flag to true to indicate that the YETI token address has been successfully configured.

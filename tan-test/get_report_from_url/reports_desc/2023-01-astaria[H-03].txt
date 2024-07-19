@@ -1,0 +1,12 @@
+Type of vulnerability: Improper validations
+Cause of vulnerability: The ClearingHouse contract assumes valid call parameters when using the safeTransferFrom function, allowing for the manipulation of paymentToken address.
+Execution process: A malicious actor can call ClearingHouse.safeTransferFrom with dummy data and a dummy ERC20 token address as paymentToken, causing the collateral NFT to be locked in the contract without a way to retrieve it.
+Detailed characteristics: The vulnerability arises from improper validation of parameters in the safeTransferFrom function, allowing for the manipulation of paymentToken address and locking the collateral NFT in the contract.
+Vulnerable code:
+```
+// call safeTransferFrom on clearinghouse with the worthless token as paymentToken
+// this will trigger the cleaning up after successful auction
+uint256 tokenAsInt = uint256(uint160(address(worthlessToken)));
+bytes memory emptyBytes;
+CH.safeTransferFrom(address(0), address(bidder), tokenAsInt, 0, emptyBytes);
+```

@@ -1,0 +1,28 @@
+This code defines a public view function named `getTotalUnmintedSherX`, which calculates the total amount of SherX tokens that have not been minted yet. The function accepts one parameter, `_token`, which is an interface representing an ERC20 token.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_token`: An interface representing an ERC20 token.
+
+Return Value:
+`sherX`: The function returns a `uint256` value representing the total amount of unminted SherX tokens.
+
+Code Breakdown:
+The function signature includes the parameter `_token`. `getTotalUnmintedSherX` is a public view function, meaning it can be called externally and does not modify the state of the contract. Inside the function, a storage variable `ps` of type `PoolStorage.Base` is declared and initialized to the storage reference returned by the `PoolStorage.ps(_token)` function. Similarly, a storage variable `sx` of type `SherXStorage.Base` is declared and initialized to the storage reference returned by the `SherXStorage.sx()` function.
+
+The calculation for `sherX` is performed using the following formula:
+`sherX = block.number.sub(ps.sherXLastAccrued).mul(sx.sherXPerBlock).mul(ps.sherXWeight).div(uint16(-1));`
+
+- `block.number.sub(ps.sherXLastAccrued)`: This calculates the difference between the current block number and the `sherXLastAccrued` value stored in the `ps` storage variable.
+- `.mul(sx.sherXPerBlock)`: This multiplies the result by the `sherXPerBlock` value stored in the `sx` storage variable.
+- `.mul(ps.sherXWeight)`: This further multiplies the result by the `sherXWeight` value stored in the `ps` storage variable.
+- `.div(uint16(-1))`: Finally, the result is divided by `uint16(-1)`.
+
+This calculation determines the total amount of unminted SherX tokens based on the block number, the last accrued SherX value, the SherX per block rate, and the SherX weight.
+
+Vulnerability prediction:
+This function does not exhibit any obvious vulnerabilities based on the provided code snippet.
+
+Summary:
+The `getTotalUnmintedSherX` function calculates the total amount of SherX tokens that have not been minted yet based on various parameters stored in the contract's storage variables.

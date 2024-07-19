@@ -1,0 +1,18 @@
+This code defines an external function named `withdraw` that allows users to withdraw liquidity from a pool. The function takes a parameter of type `Liquidity` named `_withdrawal`, which contains the amounts of two tokens: `usdm` and `pool3`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_withdrawal`: A struct of type `Liquidity` that contains the amounts of `usdm` and `pool3` tokens that the user wants to withdraw.
+
+Code Breakdown:
+The function first initializes two `Liquidity` variables: `total` and `user`, which store the total liquidity in the pool and the user's liquidity, respectively.
+
+Next, the function checks if the user wants to withdraw any `usdm` tokens. If the withdrawal amount is greater than 0, it checks if the `usdm` tokens are unlockable. If they are unlockable, the function transfers the specified amount of `usdm` tokens to the user's address using the `safeTransfer` function of the `usdm` token contract. It then deducts the withdrawn amount from both the total liquidity and the user's liquidity for `usdm`.
+
+Similarly, the function checks if the user wants to withdraw any `pool3` tokens. If the withdrawal amount is greater than 0, it transfers the specified amount of `pool3` tokens to the user's address using the `safeTransfer` function of the `pool3` token contract. It then deducts the withdrawn amount from both the total liquidity and the user's liquidity for `pool3`.
+
+After processing the withdrawals, the function updates the `totalLiquidity` variable with the new total liquidity and updates the `userLiquidity` mapping with the user's updated liquidity values.
+
+Finally, the function emits a `Withdraw` event to notify external systems about the withdrawal transaction.
+
+Summary:
+The `withdraw` function allows users to withdraw `usdm` and `pool3` tokens from a liquidity pool. It checks if the requested tokens are unlockable, transfers the tokens to the user, updates the total liquidity and user's liquidity, and emits an event to track the withdrawal transaction.

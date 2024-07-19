@@ -1,0 +1,10 @@
+This code defines an external function named `uncap` that allows only the governance address to execute it. The function checks if the deposit cap is currently set (meaning the contract is capped) using the `isCapped` function. If the contract is capped, the deposit cap is set to 0, effectively uncapping the contract. The function then returns `true` to indicate a successful uncapping operation.
+
+Parameters:
+None
+
+Return Value:
+`bool`: Returns `true` if the uncapping operation is successful.
+
+Summary:
+The `uncap` function is used to remove the deposit cap on the contract, allowing unlimited deposits. Only the governance address is permitted to call this function.

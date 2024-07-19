@@ -1,0 +1,25 @@
+This code defines a function named `uniClassGetPriceCAvgPriceHAvgPrice`, which calculates the current price, cumulative average price, and historical average price of a token pair on a Uniswap V2 pair. The function accepts four parameters: `pair` (the address of the Uniswap V2 pair contract), `priceOracle` (a struct containing price information), `desToken` (the address of the desired token), `quoteToken` (the address of the quote token), and `decimals` (the number of decimal places for the price).
+
+Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `pair`: The address of the Uniswap V2 pair contract.
+2. `priceOracle`: A struct containing price information, including `price0`, `price1`, and `blockTimestampLast`.
+3. `desToken`: The address of the desired token in the pair.
+4. `quoteToken`: The address of the quote token in the pair.
+5. `decimals`: The number of decimal places for the price.
+
+Return Values:
+- `price`: The current price of the token pair.
+- `cAvgPrice`: The cumulative average price of the token pair.
+- `hAvgPrice`: The historical average price of the token pair.
+- `timestamp`: The timestamp of the last price update.
+
+Code Breakdown:
+- The function first determines whether `desToken` is token0 or token1 in the Uniswap pair.
+- It then retrieves the reserves of token0 and token1 from the Uniswap pair contract and calculates the current price based on the reserves and decimals.
+- The function retrieves the historical average price (`hAvgPrice`) and timestamp of the last price update from the `priceOracle` struct.
+- If the block timestamp of the Uniswap pair is less than or equal to the timestamp of the last price update, the cumulative average price (`cAvgPrice`) is set to the historical average price (`hAvgPrice`).
+- If the block timestamp of the Uniswap pair is greater than the timestamp of the last price update, the function calculates the cumulative average price based on the price accumulations and time elapsed since the last update using the `calTPrice` function.
+
+Overall, this function provides a way to calculate the current price, cumulative average price, and historical average price of a token pair on a Uniswap V2 pair contract.

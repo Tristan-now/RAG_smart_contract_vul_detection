@@ -1,0 +1,19 @@
+This code defines a private function `_withdraw` that handles the withdrawal process for a user in a smart contract system. The function takes a `WithdrawParameter` struct as a parameter, which contains various withdrawal parameters such as the user's account, the vault type (`pwrd`), the LP amount to withdraw, minimum amounts for each token, and flags for different withdrawal scenarios.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `parameters`: A struct containing withdrawal parameters including the user's account, vault type, LP amount, minimum amounts for each token, and flags for different withdrawal scenarios.
+
+Code Breakdown:
+1. The function starts by ensuring that the caller is an externally owned account (EOA) and checks if the safety check condition is met using the `buoy.safetyCheck()` function.
+2. It initializes variables to store the deducted USD amount, the returned USD amount, the LP amount after fees, and an array to store token amounts.
+3. If the `all` flag is set to true in the `parameters`, it calculates the total USD assets of the user, deducts the withdrawal fee, calculates the LP amount after fees, and sets the return USD amount accordingly.
+4. If the `all` flag is false, it calculates the user's total assets, deducts the LP amount, calculates the fee, and ensures that the deducted USD amount does not exceed the user's balance.
+5. It calculates the hodler bonus and checks if the user is a whale (a large investor) based on the return USD amount.
+6. If the `balanced` flag is true, it calls the `_withdrawBalanced` function to perform a balanced withdrawal across all tokens.
+7. If the `balanced` flag is false, it calls the `_withdrawSingle` function to perform a withdrawal for a single asset based on the specified index.
+8. It then burns the corresponding GToken, representing the user's share in the vault, based on the withdrawal parameters.
+9. Finally, it emits a `LogNewWithdrawal` event with details of the withdrawal including the user's account, referrals, vault type, withdrawal type, amounts, and token amounts.
+
+In summary, the `_withdraw` function handles the withdrawal process for users in the smart contract system, considering different withdrawal scenarios and ensuring proper deduction and return of assets based on the specified parameters.

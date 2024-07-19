@@ -1,0 +1,18 @@
+This code defines an internal function named `_deposit`, which handles the deposit of a specified amount of a synthetic asset by a member. The function performs several operations to record the deposit details and update various mappings and variables. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_synth`: The address of the synthetic asset being deposited.
+2. `_member`: The address of the member making the deposit.
+3. `_amount`: The amount of the synthetic asset being deposited.
+
+Code Breakdown:
+1. The function first checks if the `_synth` asset is already marked as a staked synth. If not, it sets the `isStakedSynth[_synth]` flag to true and adds the `_synth` address to the `stakedSynthAssets` array.
+2. It records the deposit time for the member and the specific synthetic asset in the `mapMemberSynth_lastTime` mapping and the overall deposit time for the member in the `mapMember_depositTime` mapping.
+3. The function then updates the member's balance for the specific synthetic asset by adding the deposited `_amount` to `mapMemberSynth_deposit[_member][_synth]`.
+4. Next, it calculates the SPARTA weight of the deposit using the `calcSpotValueInBase` function from the `iUTILS` contract, based on the LayerONE asset of the synthetic asset and the deposited amount. This weight is stored in the `mapMemberSynth_weight` mapping for the member and synthetic asset pair and also added to the member's total weight in the `mapMemberTotal_weight` mapping.
+5. The total weight of all deposits in the vault is updated by adding the calculated weight to the `totalWeight` variable.
+6. The member is marked as a member of the synthetic asset by setting `isSynthMember[_member][_synth]` to true.
+7. Finally, an event `MemberDeposits` is emitted to log the details of the deposit, including the synthetic asset, member address, deposited amount, weight, and total weight.
+
+Summary:
+The `_deposit` function handles the deposit of a synthetic asset by a member, updating various mappings and variables to record the deposit details and calculate the weight of the deposit. It also emits an event to log the deposit information for transparency and tracking purposes.

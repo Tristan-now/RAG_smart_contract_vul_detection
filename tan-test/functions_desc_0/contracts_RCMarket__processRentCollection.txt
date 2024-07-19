@@ -1,0 +1,30 @@
+This code defines an internal function named `_processRentCollection`, which is responsible for processing rent collection for a specific user and card. The function takes three parameters: `_user` (address of the user), `_card` (uint256 representing the card), and `_timeOfCollection` (uint256 representing the time of collection).
+
+Here's a detailed explanation of how this function works:
+
+1. Calculate Rent Owed:
+   - The function calculates the rent owed by the user for the specific card based on the card price and the time elapsed since the last collection. The formula used is:
+     `_rentOwed = (cardPrice[_card] * (_timeOfCollection - timeLastCollected[_card])) / 1 days;`
+   - This calculates the rent owed in terms of the card's price per day.
+
+2. Pay Rent:
+   - The function then calls the `payRent` function of the `treasury` contract to pay the calculated rent amount `_rentOwed`.
+
+3. Adjust Time Held and Time Limit:
+   - It calculates the `_timeHeldToIncrement` as the time elapsed since the last collection.
+   - If the user has a time limit for holding the card (`cardTimeLimit[_card] != 0`), it adjusts the time held limit and reduces the remaining time limit accordingly.
+   - It updates the time held for the specific card and user, as well as the total time held for the card.
+
+4. Update Rent Collection Metrics:
+   - It updates various rent collection metrics such as `rentCollectedPerUser`, `rentCollectedPerCard`, `rentCollectedPerUserPerCard`, and `totalRentCollected` with the rent amount collected.
+
+5. Update Time Last Collected:
+   - It updates the `timeLastCollected` for the specific card to the current `_timeOfCollection`.
+
+6. Longest Owner Tracking:
+   - It tracks the longest owner of the card by comparing the time held by the current user with the longest time held for that card. If the current user has held the card for a longer time, it updates the `longestTimeHeld` and `longestOwner` accordingly.
+
+7. Emit Event:
+   - Finally, the function emits a `LogRentCollection` event with details such as the rent amount collected, time held by the user for the card, card ID, and user address.
+
+In summary, the `_processRentCollection` function handles the rent collection process for a specific user and card, updating various metrics and tracking the longest owner of the card based on the time held.

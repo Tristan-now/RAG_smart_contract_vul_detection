@@ -1,0 +1,13 @@
+This code defines an external function named `unstakeMulti`, which allows users to unstake and claim rewards from multiple hypervisors in a single transaction. The function accepts an array of `UnstakeRequest` structs as a parameter. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `requests`: An array of `UnstakeRequest` structs that contain information about the hypervisor, vault, amount to unstake, and permission to claim rewards.
+
+Code Breakdown:
+The function signature includes a single parameter `requests`, which is an array of `UnstakeRequest` structs. The function iterates over each `UnstakeRequest` in the `requests` array using a `for` loop. Inside the loop, the current `UnstakeRequest` is obtained by accessing `requests[index]` and storing it in a local variable `request`. For each `UnstakeRequest`, the function calls the `unstakeAndClaim` function of the corresponding hypervisor contract using the `IHypervisor(request.hypervisor).unstakeAndClaim` syntax. The parameters passed to `unstakeAndClaim` are the vault address (`request.vault`), the amount to unstake (`request.amount`), and the permission to claim rewards (`request.permission`).
+
+Vulnerability prediction:
+This function may be vulnerable to a front-running attack due to the lack of slippage checks or minimum amount out parameters. Attackers could manipulate the input parameters in the `UnstakeRequest` structs to exploit potential vulnerabilities in the `unstakeAndClaim` function of the hypervisor contracts.
+
+Summary:
+The `unstakeMulti` function allows users to unstake and claim rewards from multiple hypervisors in a single transaction by providing an array of `UnstakeRequest` structs. Each `UnstakeRequest` contains information about the hypervisor, vault, amount to unstake, and permission to claim rewards. The function iterates over the array of `UnstakeRequest` structs and calls the `unstakeAndClaim` function of the corresponding hypervisor contract for each request.

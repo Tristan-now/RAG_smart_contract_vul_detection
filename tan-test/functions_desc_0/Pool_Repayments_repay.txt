@@ -1,0 +1,13 @@
+This code defines an external function named `repay`, which allows a user to repay a certain amount of a specified asset to a pool. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_poolID`: The address of the pool to which the user wants to repay the asset.
+2. `_amount`: The amount of the asset that the user wants to repay.
+
+Code Breakdown:
+The function signature includes the parameters `_poolID` and `_amount`. The function is marked as `external`, meaning it can be called from outside the contract. The function first retrieves the asset address that needs to be repaid from the `repayConstants` mapping using the `_poolID`. It then calls the internal `_repay` function to calculate the actual amount to be repaid, passing the `_poolID`, `_amount`, and a boolean value `false` as parameters. The result of this calculation is stored in the `_amountRepaid` variable.
+
+Next, the function uses the `safeTransferFrom` function of the ERC20 token contract corresponding to the asset being repaid. It transfers the `_amountRepaid` from the `msg.sender` (the user calling the function) to the `_poolID` (the pool address). This transfer ensures that the asset is successfully repaid to the pool.
+
+Summary:
+The `repay` function allows a user to repay a specified amount of an asset to a pool. It calculates the actual amount to be repaid internally and then transfers this amount from the user to the pool using the ERC20 token's `safeTransferFrom` function.

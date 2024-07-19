@@ -1,0 +1,16 @@
+This code defines an internal function named `_addCollateralAssets`, which is responsible for adding new collateral assets to a SetToken. The function accepts two parameters: the SetToken `_setToken` and an array of ERC20 tokens `_newCollateralAssets`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: The SetToken to which the new collateral assets will be added.
+2. `_newCollateralAssets`: An array of ERC20 tokens that represent the new collateral assets to be added.
+
+Code Breakdown:
+The function starts with a `for` loop that iterates over the `_newCollateralAssets` array. In each iteration, it retrieves the ERC20 token at index `i` and assigns it to the variable `collateralAsset`. 
+Next, the function calls two internal functions: `_validateNewCollateralAsset` and `_updateUseReserveAsCollateral`. 
+- `_validateNewCollateralAsset` is responsible for validating the new collateral asset before adding it to the SetToken. 
+- `_updateUseReserveAsCollateral` updates the use of the reserve as collateral for the specified collateral asset in the SetToken.
+After validating and updating the collateral asset, the function sets the `collateralAssetEnabled` mapping for the `_setToken` and `collateralAsset` to `true`, indicating that the collateral asset is enabled for the SetToken. Additionally, it adds the address of the collateral asset to the `collateralAssets` array in the `enabledAssets` mapping for the `_setToken`.
+Finally, the function emits an event `CollateralAssetsUpdated` to signal that the collateral assets have been successfully added to the SetToken.
+
+Summary:
+The `_addCollateralAssets` function iterates over an array of ERC20 tokens representing new collateral assets to be added to a SetToken. It validates each new collateral asset, updates its use as collateral in the SetToken, and enables it for the SetToken by updating mappings. The function then emits an event to notify that the collateral assets have been updated successfully.

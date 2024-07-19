@@ -1,0 +1,15 @@
+This code defines an external function named `setDev` that allows an admin to update the developer address. The function requires the sender to have the admin role, which is checked using the `accessControls.hasAdminRole` function. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_devaddr`: The new developer address that the admin wants to set.
+
+Code Breakdown:
+The function signature includes the parameter `_devaddr`, which represents the new developer address. The function is marked as `external`, meaning it can be called from outside the contract. Within the function, there is a `require` statement that checks if the sender has the admin role by calling the `accessControls.hasAdminRole` function. If the sender does not have the admin role, the function will revert with the error message "Sender must be admin".
+
+If the sender has the admin role, the function emits an `DevAddressUpdated` event with the old developer address `devaddr` and the new developer address `_devaddr`. Then, the developer address `devaddr` is updated to the new address `_devaddr`.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the developer address update triggers external calls that can modify the contract state before the developer address is updated. To prevent reentrancy attacks, ensure that state changes are made before any external calls are made.
+
+Summary:
+The `setDev` function allows an admin to update the developer address. It checks if the sender has the admin role before updating the developer address. If the sender is an admin, the function emits an event with the old and new developer addresses and updates the developer address to the new value.

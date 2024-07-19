@@ -1,0 +1,13 @@
+This code defines an external function named `setGuestList` that allows the contract owner to set the guest list address. The function requires the caller to be the governance address, ensuring that only authorized users can update the guest list. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_guestList`: The address of the new guest list contract that will be set.
+
+Functionality:
+- The `setGuestList` function is an external function, meaning it can be called from outside the contract.
+- The function first calls the `_onlyGovernance` modifier to ensure that only the governance address can execute this function.
+- Once the modifier check is passed, the function sets the `guestList` variable to the new guest list contract address provided as `_guestList`.
+- The `guestList` variable is of type `BadgerGuestListAPI`, indicating that it is an instance of the `BadgerGuestListAPI` contract.
+
+Summary:
+The `setGuestList` function allows the contract owner to update the guest list contract address. By requiring the caller to be the governance address, it ensures that only authorized users can modify this critical parameter. This function enhances the flexibility and security of the contract by enabling dynamic updates to the guest list contract.

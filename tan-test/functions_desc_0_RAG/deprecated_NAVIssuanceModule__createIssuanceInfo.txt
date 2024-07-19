@@ -1,0 +1,21 @@
+This code defines an internal function named `_createIssuanceInfo`, which is used to calculate various information related to issuing new Set tokens. The function accepts three parameters: an `ISetToken` instance `_setToken`, an address `_reserveAsset`, and a `uint256` `_reserveAssetQuantity`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the `ISetToken` interface representing the Set token.
+2. `_reserveAsset`: An address representing the reserve asset used for issuing new Set tokens.
+3. `_reserveAssetQuantity`: A `uint256` value representing the quantity of the reserve asset to be used for issuing new Set tokens.
+
+Return Value:
+The function returns an `ActionInfo` struct containing various information related to the issuance process.
+
+Code Breakdown:
+1. The function initializes an `ActionInfo` struct named `issueInfo` to store the information related to the issuance process.
+2. It retrieves the total supply of the Set token `_setToken` before the issuance and stores it in `issueInfo.previousSetTokenSupply`.
+3. The quantity of the reserve asset `_reserveAssetQuantity` is stored in `issueInfo.preFeeReserveQuantity`.
+4. The function `_getFees` is called to calculate the protocol fees, manager fee, and net flow quantity after deducting fees. These values are stored in `issueInfo.protocolFees`, `issueInfo.managerFee`, and `issueInfo.netFlowQuantity` respectively.
+5. The function `_getSetTokenMintQuantity` is called to determine the quantity of Set tokens to be minted based on the net flow quantity, previous Set token supply, and reserve asset.
+6. The function `_getIssuePositionMultiplier` is called to calculate the new Set token supply and position multiplier after the issuance. The new values are stored in `issueInfo.newSetTokenSupply` and `issueInfo.newPositionMultiplier`.
+7. The function `_getIssuePositionUnit` is called to determine the new reserve position unit for the `_reserveAsset` after the issuance. This value is stored in `issueInfo.newReservePositionUnit`.
+8. Finally, the function returns the `issueInfo` struct containing all the calculated information.
+
+This function is a crucial part of the issuance process for Set tokens, as it calculates various parameters required for issuing new tokens and adjusting the Set token's composition.

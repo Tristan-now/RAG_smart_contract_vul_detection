@@ -1,0 +1,25 @@
+This code defines an external function named `mintFungible` that allows users to mint liquidity tokens by depositing native and foreign assets into a pool. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `foreignAsset`: The address of the foreign asset (token) being deposited.
+2. `nativeDeposit`: The amount of native asset to deposit.
+3. `foreignDeposit`: The amount of foreign asset to deposit.
+4. `from`: The address from which the assets are being transferred.
+5. `to`: The address to which the minted liquidity tokens will be sent.
+
+Return Value:
+`liquidity`: The function returns a `uint256` value representing the amount of liquidity tokens minted.
+
+Code Breakdown:
+The function signature includes the parameters `foreignAsset`, `nativeDeposit`, `foreignDeposit`, `from`, and `to`. It is an external function, meaning it can be called from outside the contract. The function first checks if the provided `foreignAsset` is supported by the pool by looking up the token in the `wrapper` mapping. If the token is not supported, it reverts with an error message.
+Next, the function retrieves the reserves of the pool for the `foreignAsset` using the `getReserves` function for gas savings.
+The function then transfers the `nativeDeposit` and `foreignDeposit` amounts from the `from` address to the contract address using the `safeTransferFrom` function of the respective assets.
+The function accesses the `PairInfo` struct for the `foreignAsset` and calculates the total liquidity units in the pool. If the total liquidity units are 0, the `liquidity` is set to `nativeDeposit`. Otherwise, the function calculates the `liquidity` using the `VaderMath.calculateLiquidityUnits` function based on the deposited amounts and existing reserves.
+An assertion checks if the calculated `liquidity` is greater than 0 to ensure that sufficient liquidity is provided.
+The total supply of liquidity tokens for the `foreignAsset` pair is updated by adding the newly minted `liquidity` units.
+The reserves of the pool are updated with the new deposit amounts.
+The liquidity tokens are minted and transferred to the `to` address using the `mint` function of the liquidity pool token contract (`lp`).
+An `Mint` event is emitted to log the minting of liquidity tokens.
+
+Summary:
+The `mintFungible` function allows users to deposit native and foreign assets into a pool, mint liquidity tokens, and update the pool reserves and total supply of liquidity tokens. It ensures that the provided liquidity is sufficient and emits an event to track the minting process.

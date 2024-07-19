@@ -1,0 +1,19 @@
+This code defines an external function named `withdraw` that allows a user to withdraw a specified amount of tokens from a vault. The function has modifiers `onlyEnabledVault` and `onlyMetaVault` to ensure that only authorized users can call this function.
+
+Parameters:
+1. `address`: The address of the token to be withdrawn.
+2. `uint256 _amount`: The amount of tokens to be withdrawn.
+
+Code Breakdown:
+The function first retrieves the balance of the token held by the contract using `token.balanceOf(address(this))` and stores it in `_balance`. It then checks if the contract has enough balance to cover the withdrawal amount. If the balance is sufficient, the function transfers the specified amount of tokens to the `metavault` using `token.safeTransfer(metavault, _amount)` and emits a `Withdraw` event.
+
+If the balance is not enough to cover the withdrawal amount, the function calculates the additional amount needed to withdraw by subtracting the current balance from the withdrawal amount. It then interacts with the `cachedVault` to convert the token amount to vault shares. The function retrieves the list of tokens held by the vault using `cachedVault.getTokens()` and ensures that the token list is not empty.
+
+Next, the function calculates the expected amount of the token to be withdrawn by calling `converter.expected(address(token), _tokens[0], _toWithdraw)`. It then converts this expected amount to vault shares based on the current share price using `_shares = _expected.mul(1e18).div(cachedVault.getPricePerFullShare())`. The function then withdraws the calculated shares from the vault using `cachedVault.withdraw(_shares, _tokens[0])`.
+
+After withdrawing the shares, the function transfers the withdrawn tokens to the `converter` contract using `IERC20(_tokens[0]).safeTransfer(address(converter), _balance)`. The function then converts the withdrawn tokens to the original token using `converter.convert(_tokens[0], address(token), _balance, 1)`.
+
+Finally, the function emits a `Withdraw` event with the updated balance of the token held by the contract and transfers the remaining token balance to the `metavault` using `token.safeTransfer(metavault, token.balanceOf(address(this)))`.
+
+Summary:
+The `withdraw` function allows users to withdraw tokens from a vault. If the contract has enough balance, it directly transfers the tokens to the `metavault`. If the balance is insufficient, it converts the token amount to vault shares, withdraws the shares from the vault, converts the withdrawn tokens back to the original token, and transfers the remaining balance to the `metavault`.

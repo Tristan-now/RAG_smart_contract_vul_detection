@@ -1,0 +1,15 @@
+This code defines an external view function named `getInternalCollateralAsset`, which retrieves the internal collateral asset address associated with a given external asset address. The function accepts one parameter:
+
+Parameter:
+1. `_externalAsset`: An address representing the external asset for which the internal collateral asset address needs to be retrieved.
+
+Return Value:
+The function returns an address representing the internal collateral asset associated with the provided external asset address.
+
+Code Explanation:
+The function signature includes the parameter `_externalAsset`, which is the address of the external asset for which the internal collateral asset address is to be retrieved. The function is marked as `external`, meaning it can be called from outside the contract, and `view`, indicating that it does not modify the contract state.
+
+Within the function, the internal mapping `_collateralAssets` is accessed using the provided `_externalAsset` address as the key. The function then returns the corresponding internal collateral asset address stored in the mapping.
+
+Summary:
+The `getInternalCollateralAsset` function allows external callers to retrieve the internal collateral asset address associated with a given external asset address by accessing the `_collateralAssets` mapping and returning the stored internal collateral asset address.

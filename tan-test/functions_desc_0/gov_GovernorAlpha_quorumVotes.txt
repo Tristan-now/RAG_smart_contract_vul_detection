@@ -1,0 +1,13 @@
+This code defines a public view function named `quorumVotes` that calculates the number of votes required for a quorum at a specific block number. The function accepts one parameter:
+
+Parameter:
+1. `blockNumber`: A uint representing the block number for which the quorum votes are calculated.
+
+Return Value:
+The function returns a uint value representing the number of votes required for a quorum at the specified block number.
+
+Code Breakdown:
+The `quorumVotes` function is a public view function, meaning it can be called externally and does not modify the contract state. The function takes a `blockNumber` as input, which is used to determine the total supply of tokens at that specific block number by calling the `totalSupplyAt` function of the `xole` contract. The total supply at the given block number is divided by 25 to calculate the number of votes required for a quorum. This value is then returned as the result of the function.
+
+Summary:
+The `quorumVotes` function calculates the number of votes required for a quorum at a specific block number by dividing the total token supply at that block number by 25. This function provides transparency on the number of votes needed for a quorum at a particular point in the blockchain.

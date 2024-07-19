@@ -1,0 +1,19 @@
+This code defines an external function named `setCurvePool` that allows only the admin to set the Curve pool for a specific token pair. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_tokenIn`: The address of the token to be swapped into the Curve pool.
+2. `_tokenOut`: The address of the token to be received from the Curve pool.
+3. `_pool`: The address of the Curve pool contract.
+
+Modifiers:
+- `onlyAdmin`: This modifier restricts the access to the function to only the admin of the contract.
+
+Code Breakdown:
+The function `setCurvePool` is an external function, meaning it can be called from outside the contract. It takes three parameters: `_tokenIn`, `_tokenOut`, and `_pool`, representing the input token, output token, and Curve pool address, respectively.
+
+The function starts with a `require` statement that checks if the `_pool` address is not equal to `address(0)`. If the `_pool` address is `address(0)`, it will revert the transaction with the error message `Errors.VT_INVALID_CONFIGURATION`.
+
+If the `_pool` address is valid, the function then assigns the `_pool` address to the `_curvePools` mapping at the key `_tokenIn][_tokenOut`. This means that the admin can set the Curve pool address for a specific token pair by calling this function.
+
+Summary:
+The `setCurvePool` function allows the admin to set the Curve pool address for a specific token pair. It performs a validity check on the `_pool` address and then updates the `_curvePools` mapping with the provided Curve pool address for the given token pair.

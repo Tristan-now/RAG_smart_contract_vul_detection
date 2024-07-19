@@ -1,0 +1,13 @@
+This code defines an external function named `getPricePerFullShareStored`, which retrieves the price per full share stored in the pool. The function is marked as `view`, indicating that it does not modify the contract state and is free to call without consuming gas. Here’s a detailed explanation of how this function works:
+
+Parameters:
+None
+
+Return Value:
+`uint256`: The function returns a `uint256` value representing the price per full share stored in the pool.
+
+Code Breakdown:
+The function signature includes the `external` visibility specifier, indicating that the function can be called from outside the contract. The function name is `getPricePerFullShareStored`, and it overrides a function from an inherited interface. The function body simply returns the result of calling the `pricePerPrincipalShareStored` function on the `pool` contract instance. This function call retrieves the price per full share stored in the pool and returns it as a `uint256` value.
+
+Summary:
+The `getPricePerFullShareStored` function provides a read-only view of the price per full share stored in the pool by calling the `pricePerPrincipalShareStored` function on the `pool` contract instance and returning the result as a `uint256` value.

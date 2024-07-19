@@ -1,0 +1,10 @@
+Type of vulnerability: Flash loan attack
+Cause of vulnerability: Lack of proper validation and manipulation of exchange rates
+Execution process: 
+1. Take out a flash loan of DAI
+2. Exchange a large amount of DAI for UST, manipulating the exchange rate
+3. Withdraw or deposit from the vault with favorable terms due to manipulated rates
+4. Transfer back UST to DAI
+5. Repay the flash loan
+Detailed characteristics: Vulnerability exists in the NonUSTStrategy contract due to a vulnerability in handling flash loans on curve pools.
+Vulnerable code: https://github.com/code-423n4/2022-01-sandclock/blob/a90ad3824955327597be00bb0bd183a9c228a4fb/sandclock/contracts/strategy/NonUSTStrategy.sol#L135

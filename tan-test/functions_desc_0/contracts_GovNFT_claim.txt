@@ -1,0 +1,16 @@
+This code defines an external function named `claim`, which allows a user to claim their pending token rewards. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_tigAsset`: The address of the token that the user wants to claim as a reward.
+
+Return Value:
+This function does not return any value.
+
+Code Breakdown:
+The function signature includes the parameter `_tigAsset`, which is the address of the token that the user wants to claim. Inside the function, the address of the message sender (`_msgsender`) is obtained using the `_msgSender()` function, which is a context-aware function provided by OpenZeppelin to get the actual sender of the transaction.
+The function then calculates the amount of pending tokens that the user can claim by calling the `pending` function with the `_msgsender` address and the `_tigAsset` address as parameters. The calculated amount is stored in the `amount` variable.
+The function then increments the amount of tokens that the user has already claimed for the specific `_tigAsset` by adding the `amount` to the `userPaid[_msgsender][_tigAsset]` mapping.
+Finally, the function transfers the calculated `amount` of tokens from the `_tigAsset` token contract to the `_msgsender` address using the `transfer` function of the ERC20 token interface (`IERC20`).
+
+Summary:
+The `claim` function allows a user to claim their pending token rewards by calculating the amount, updating the user's claimed balance, and transferring the tokens to the user's address.

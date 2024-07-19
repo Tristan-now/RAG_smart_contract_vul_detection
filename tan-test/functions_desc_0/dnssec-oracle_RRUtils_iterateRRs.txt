@@ -1,0 +1,18 @@
+This code defines an internal function named `iterateRRs` that iterates over a byte array representing a collection of RRs (Resource Records) and returns an `RRIterator` struct. The function accepts two parameters: a byte array `self` containing the RRs data and an offset indicating the starting position for iteration.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `self`: A byte array containing the RRs data that needs to be iterated over.
+2. `offset`: An integer indicating the starting position within the byte array for iteration.
+
+Return Value:
+`ret`: An `RRIterator` struct containing the iterator's current data and the next offset for iteration.
+
+Code Breakdown:
+The function signature includes the parameters `self` and `offset`. `iterateRRs` is an internal function, meaning it can only be called within the contract or its derived contracts. The function initializes an `RRIterator` struct named `ret` and sets its `data` field to the input byte array `self` and `nextOffset` field to the provided offset.
+
+The function then calls the `next` function, passing the `ret` struct as an argument. The `next` function is assumed to be defined elsewhere in the contract or its dependencies and is responsible for advancing the iterator to the next RR in the byte array.
+
+Summary:
+The `iterateRRs` function sets up an iterator over a byte array of RRs data by initializing an `RRIterator` struct with the input data and offset. It then calls a separate function (`next`) to advance the iterator to the next RR in the byte array.

@@ -1,0 +1,24 @@
+This code defines an internal view function named `_createRedemptionInfo`, which is responsible for creating and returning an `ActionInfo` struct that contains various information related to a redemption action. The function takes three parameters: an `ISetToken` instance `_setToken`, an `address` `_reserveAsset`, and a `uint256` `_setTokenQuantity`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An instance of the `ISetToken` interface representing the Set token involved in the redemption action.
+2. `_reserveAsset`: An address representing the reserve asset used in the redemption action.
+3. `_setTokenQuantity`: A `uint256` value representing the quantity of Set tokens being redeemed.
+
+Return Value:
+The function returns an `ActionInfo` struct that contains various information related to the redemption action.
+
+Code Breakdown:
+- The function starts by declaring an `ActionInfo` struct variable named `redeemInfo`.
+- The `setTokenQuantity` field of the `redeemInfo` struct is set to the `_setTokenQuantity` parameter.
+- The `preFeeReserveQuantity` field of the `redeemInfo` struct is calculated by calling the `_getRedeemReserveQuantity` function with the `_setToken`, `_reserveAsset`, and `_setTokenQuantity` parameters.
+- The `protocolFees`, `managerFee`, and `netFlowQuantity` fields of the `redeemInfo` struct are set by calling the `_getFees` function with parameters `_setToken`, `redeemInfo.preFeeReserveQuantity`, and various fee indices.
+- The `previousSetTokenSupply` field of the `redeemInfo` struct is set to the total supply of the `_setToken`.
+- The `newSetTokenSupply` and `newPositionMultiplier` fields of the `redeemInfo` struct are calculated by calling the `_getRedeemPositionMultiplier` function with parameters `_setToken`, `_setTokenQuantity`, and `redeemInfo`.
+- The `newReservePositionUnit` field of the `redeemInfo` struct is calculated by calling the `_getRedeemPositionUnit` function with parameters `_setToken`, `_reserveAsset`, and `redeemInfo`.
+- Finally, the function returns the `redeemInfo` struct containing all the calculated information.
+
+Summary:
+The `_createRedemptionInfo` function is responsible for calculating and aggregating various information related to a redemption action, such as fees, quantities, and positions. It returns an `ActionInfo` struct containing all the necessary information for processing the redemption action.

@@ -1,0 +1,21 @@
+This code defines an internal function named `_transfer` that handles the transfer of a non-fungible token (NFT) from one address to another. The function takes two parameters: `_to`, which is the address where the NFT will be transferred, and `_tokenId`, which is the unique identifier of the NFT being transferred.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_to`: The address where the NFT will be transferred.
+2. `_tokenId`: The unique identifier of the NFT being transferred.
+
+Code Breakdown:
+The function starts by assigning the current owner of the NFT (identified by `_tokenId`) to the variable `from` by looking up the owner address in the `idToOwner` mapping.
+
+The `_clearApproval` function is called to remove any existing approval for the transfer of the NFT identified by `_tokenId`.
+
+The `_removeNFToken` function is called to remove the NFT identified by `_tokenId` from the current owner's list of owned NFTs.
+
+The `_addNFToken` function is called to add the NFT identified by `_tokenId` to the list of owned NFTs for the new owner specified by `_to`.
+
+Finally, the `Transfer` event is emitted with the parameters `from` (the previous owner), `_to` (the new owner), and `_tokenId` (the identifier of the transferred NFT). This event notifies external applications or interfaces about the NFT transfer.
+
+Summary:
+The `_transfer` function facilitates the transfer of an NFT from one address to another by updating the ownership information in the contract's state variables and emitting a `Transfer` event to notify external entities about the ownership change.

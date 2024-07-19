@@ -1,0 +1,18 @@
+This code defines an internal function named `_stableToLp`, which calculates the amount of LP tokens to be minted or redeemed based on the provided stablecoin token amounts. The function accepts two parameters: an array of token amounts (`tokenAmounts`) and a boolean flag (`deposit`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `tokenAmounts`: An array of uint256 values representing the amounts of stablecoin tokens to be deposited or withdrawn.
+2. `deposit`: A boolean flag indicating whether the operation is a deposit (true) or a withdrawal (false).
+
+Return Value:
+The function returns a `uint256` value representing the amount of LP tokens to be minted or redeemed based on the provided stablecoin token amounts.
+
+Code Breakdown:
+The function signature includes the parameters `tokenAmounts` and `deposit`. `_stableToLp` is an internal function, meaning it can only be called within the contract or its derived contracts. The function accepts an array of token amounts `tokenAmounts` and a boolean flag `deposit`. It also initializes a memory array `_tokenAmounts` to store the token amounts for further processing.
+The function first checks if the length of the `tokenAmounts` array matches the constant `N_COINS` to ensure the correct number of token amounts is provided.
+A loop is then used to iterate over each element in the `tokenAmounts` array. Inside the loop, each token amount is copied to the corresponding index in the `_tokenAmounts` array.
+Once all token amounts are copied, the function calls the `curvePool.calc_token_amount` function with the `_tokenAmounts` array and the `deposit` flag as parameters. This function calculates the amount of LP tokens to be minted or redeemed based on the provided stablecoin token amounts and the operation type.
+The calculated amount of LP tokens is then returned as the result of the `_stableToLp` function.
+
+Summary:
+The `_stableToLp` function processes the provided stablecoin token amounts to determine the amount of LP tokens to be minted or redeemed based on the operation type specified by the `deposit` flag. It ensures the correct number of token amounts is provided, copies the token amounts to a new array for processing, and calls the `curvePool.calc_token_amount` function to calculate the LP token amount, which is then returned as the function result.

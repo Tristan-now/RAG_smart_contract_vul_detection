@@ -1,0 +1,17 @@
+This code defines a public function named `revokeRole` that allows the governance to revoke a specific role from a given account. The function requires two parameters: a bytes32 role and an address account. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `role`: A bytes32 variable representing the role that the governance wants to revoke from the account.
+2. `account`: An address variable representing the account from which the governance wants to revoke the role.
+
+Modifiers:
+- `onlyGovernance`: This modifier restricts the execution of the function to only the governance address.
+
+Code Breakdown:
+The function signature includes the parameters `role` and `account`, and it is restricted to be called only by the governance address using the `onlyGovernance` modifier. 
+The function first checks if the role to be revoked is not the governance role itself by using the `require` statement with the condition `role != Roles.GOVERNANCE`. If the condition is not met, it will revert with the error message `Error.CANNOT_REVOKE_ROLE`.
+Next, the function checks if the account actually has the role that is being revoked by using another `require` statement with the condition `hasRole(role, account)`. If the condition is not met, it will revert with the error message `Error.INVALID_ARGUMENT`.
+If both conditions are satisfied, the function calls the internal `_revokeRole` function to revoke the specified role from the account.
+
+Summary:
+The `revokeRole` function allows the governance to revoke a specific role from a given account. It ensures that the role being revoked is not the governance role itself and that the account actually has the role before revoking it. This function helps in managing and updating roles within the governance system of the smart contract.

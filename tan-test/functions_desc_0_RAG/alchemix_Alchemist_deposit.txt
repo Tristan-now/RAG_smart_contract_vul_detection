@@ -1,0 +1,20 @@
+This code defines an external function named `deposit`, which allows users to deposit a specified amount of tokens into a contract. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_amount`: A `uint256` value representing the amount of tokens to be deposited.
+
+Modifiers:
+1. `nonReentrant`: Ensures that the function is not reentrant, meaning it cannot be called recursively.
+2. `noContractAllowed`: Checks if the caller is not a contract to prevent potential reentrancy attacks.
+3. `expectInitialized`: Ensures that the contract is initialized before allowing deposits.
+
+Functionality:
+1. The function first checks if the `emergencyExit` flag is not enabled, indicating that emergency pause is not active.
+2. It then retrieves the user's CDP (Collateralized Debt Position) data from the `_cdps` mapping and updates it with the current context `_ctx`.
+3. The function transfers the specified `_amount` of tokens from the caller's address to the contract's address using the `safeTransferFrom` function of the `token` contract.
+4. If the deposited amount is greater than or equal to the `flushActivator` threshold, the function calls the `flushActiveVault` function.
+5. The total deposited amount (`totalDeposited`) is incremented by the deposited `_amount`.
+6. The user's CDP's `totalDeposited` value is also incremented by the deposited `_amount`, and the `lastDeposit` timestamp is updated to the current block number.
+7. Finally, an `TokensDeposited` event is emitted to notify external systems about the deposit.
+
+Overall, the `deposit` function allows users to deposit tokens into the contract, updating relevant data structures and emitting an event to track the deposit transaction.

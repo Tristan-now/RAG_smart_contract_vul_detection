@@ -1,0 +1,23 @@
+This code defines an internal function named `functionDelegateCall`, which facilitates delegate calls to a target contract. The function accepts three parameters: the address of the target contract (`target`), the data to be passed to the target contract (`data`), and an error message (`errorMessage`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `target`: The address of the target contract to which the delegate call will be made.
+2. `data`: The data to be passed to the target contract during the delegate call.
+3. `errorMessage`: A string message that will be used if the delegate call fails.
+
+Return Value:
+The function returns a `bytes` variable representing the return data from the delegate call.
+
+Code Breakdown:
+The function signature includes the parameters `target`, `data`, and `errorMessage`. `functionDelegateCall` is an internal function, meaning it can only be called within the contract or its derived contracts. The function first checks if the `target` address is a contract by calling the `isContract` function and passing the `target` address as an argument. If the `target` address is not a contract, the function will revert with the error message "Address: delegate call to non-contract".
+
+If the `target` address is a contract, the function proceeds to make a delegate call to the target contract using the `delegatecall` function. The `delegatecall` function executes the code of the target contract in the context of the calling contract, allowing the target contract to modify the state of the calling contract.
+
+The `delegatecall` function returns two values: a boolean `success` indicating whether the delegate call was successful, and the `returndata` containing the return value of the delegate call.
+
+The function then calls the `verifyCallResult` function, passing the `success`, `returndata`, and `errorMessage` as arguments. The `verifyCallResult` function is responsible for handling the return data from the delegate call and reverting with the provided error message if the delegate call was unsuccessful.
+
+Finally, the function returns the `returndata` obtained from the delegate call, allowing the caller to access the result of the delegate call.
+
+Summary:
+The `functionDelegateCall` function enables delegate calls to a target contract by verifying that the target address is a contract, making the delegate call, and handling the return data. It provides a convenient way to interact with other contracts and retrieve data or execute functions in the context of the calling contract.

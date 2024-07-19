@@ -1,0 +1,32 @@
+This code defines a smart contract named `L1Migrator` that facilitates the migration of data and assets from Layer 1 (L1) to Layer 2 (L2) in the Livepeer protocol. The contract inherits functionalities from various other contracts such as `L1ArbitrumMessenger`, `IMigrator`, `EIP712`, `AccessControl`, and `Pausable`.
+
+Here is a detailed breakdown of the key components and functionalities of the `L1Migrator` contract:
+
+1. **Contract Variables**:
+   - The contract has several immutable variables that store addresses of various contracts and components in the Livepeer protocol.
+   - These variables include `bondingManagerAddr`, `ticketBrokerAddr`, `bridgeMinterAddr`, `tokenAddr`, `l1LPTGatewayAddr`, and `l2MigratorAddr`.
+
+2. **Events**:
+   - The contract emits events such as `MigrateDelegatorInitiated`, `MigrateUnbondingLocksInitiated`, and `MigrateSenderInitiated` when migration processes are initiated.
+
+3. **Roles**:
+   - The contract defines a `GOVERNOR_ROLE` using the `AccessControl` contract to manage access control for certain functions.
+
+4. **Migration Functions**:
+   - The contract provides functions like `migrateDelegator`, `migrateUnbondingLocks`, and `migrateSender` to initiate the migration of delegator, unbonding locks, and sender data respectively from L1 to L2.
+   - These functions require authorization either from the sender or a valid signature.
+   - The contract constructs the necessary parameters and calldata for the migration functions on L2Migrator contract and emits corresponding events.
+
+5. **Pause Functionality**:
+   - The contract includes functions to pause and unpause contract operations, which can only be called by addresses with the `GOVERNOR_ROLE`.
+
+6. **Helper Functions**:
+   - The contract provides helper functions like `getMigrateDelegatorParams`, `getMigrateSenderParams`, and `getMigrateUnbondingLocksParams` to retrieve migration parameters and calldata for L2 migration functions.
+
+7. **Signature Verification**:
+   - The contract includes a function `recoverSigner` to verify the validity of a signature provided during migration authorization.
+
+8. **ETH and Token Migration**:
+   - The contract includes functions like `migrateETH` and `migrateLPT` to facilitate the migration of ETH and Livepeer Token (LPT) from L1 to L2 using the Bridge Minter and L1LPTGateway contracts.
+
+Overall, the `L1Migrator` contract serves as a bridge between L1 and L2 in the Livepeer protocol, allowing for the seamless migration of data and assets while ensuring proper authorization and control over the migration process.

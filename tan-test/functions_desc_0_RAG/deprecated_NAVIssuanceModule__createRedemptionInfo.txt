@@ -1,0 +1,22 @@
+This code defines an internal function named `_createRedemptionInfo`, which is used to calculate various information related to a redemption action involving a SetToken. The function accepts three parameters: an `ISetToken` instance `_setToken`, an address `_reserveAsset`, and a `uint256` `_setTokenQuantity`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An interface representing a SetToken instance on which the redemption action will be performed.
+2. `_reserveAsset`: An address representing the reserve asset involved in the redemption.
+3. `_setTokenQuantity`: A `uint256` value representing the quantity of SetToken to be redeemed.
+
+Return Value:
+The function returns an `ActionInfo` struct containing various information related to the redemption action.
+
+Code Breakdown:
+1. The function initializes an `ActionInfo` struct named `redeemInfo` to store the information related to the redemption action.
+2. The `setTokenQuantity` field of `redeemInfo` is set to the provided `_setTokenQuantity`.
+3. The `preFeeReserveQuantity` field of `redeemInfo` is calculated by calling the `_getRedeemReserveQuantity` function, which determines the quantity of the reserve asset to be redeemed based on the SetToken quantity and reserve asset.
+4. The function `_getFees` is called to calculate the protocol fees, manager fee, and net flow quantity involved in the redemption action. These fees are based on the SetToken, pre-fee reserve quantity, and fee indices.
+5. The `previousSetTokenSupply` field of `redeemInfo` is set to the total supply of the SetToken before the redemption action.
+6. The function `_getRedeemPositionMultiplier` is called to determine the new SetToken supply and position multiplier after the redemption action.
+7. The function `_getRedeemPositionUnit` is called to calculate the new reserve position unit for the redemption action.
+8. The calculated information is stored in the `redeemInfo` struct, and the struct is returned as the result of the function.
+
+Summary:
+The `_createRedemptionInfo` function calculates various information related to a redemption action involving a SetToken, including the quantity of SetToken to be redeemed, reserve asset quantity, fees, SetToken supply changes, and reserve position unit adjustments. The function returns an `ActionInfo` struct containing all the calculated information.

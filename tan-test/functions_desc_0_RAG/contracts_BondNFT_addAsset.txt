@@ -1,0 +1,19 @@
+This code defines an external function named `addAsset`, which allows the contract owner to add a new asset to the list of assets. The function performs the following steps:
+
+1. Parameter:
+   - `_asset`: The address of the asset to be added.
+
+2. Modifiers:
+   - `onlyOwner`: Ensures that only the owner of the contract can call this function.
+
+3. Functionality:
+   - The function first checks if the `assets` array is empty or if the asset being added is not already in the array to prevent duplicate additions.
+   - If the asset is not already in the array, it assigns the index of the asset in the `assets` array to `assetsIndex[_asset]`.
+   - It then adds the new asset address to the `assets` array.
+   - Sets `allowedAsset[_asset]` to `true`, indicating that the asset is allowed.
+   - Calculates the epoch for the asset based on the current block timestamp divided by the number of seconds in a day (`DAY`).
+
+This function essentially allows the contract owner to add new assets to the contract, ensuring that each asset is unique and has the necessary attributes set for further processing within the contract.
+
+[REFERENCE VULNERABILITY REPORTS]
+- No specific vulnerability reported for the provided code snippet.

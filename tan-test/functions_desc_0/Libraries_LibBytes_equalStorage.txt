@@ -1,0 +1,25 @@
+This code defines an internal function named `equalStorage`, which is used to compare two byte arrays stored in storage. The function takes two parameters: a storage reference to the first byte array `_preBytes` and a memory reference to the second byte array `_postBytes`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_preBytes`: A storage reference to the first byte array that needs to be compared.
+2. `_postBytes`: A memory reference to the second byte array that needs to be compared.
+
+Return Value:
+The function returns a boolean value indicating whether the two byte arrays are equal (`true`) or not (`false`).
+
+Code Breakdown:
+The function starts by initializing a boolean variable `success` to `true`, which will be used to track the comparison result. The function uses inline assembly to directly interact with the EVM to optimize gas usage.
+
+Within the assembly block:
+1. It loads the storage slot of `_preBytes` and extracts the length of the stored array.
+2. It loads the length of the second byte array `_postBytes`.
+3. It compares the lengths of the two arrays. If the lengths do not match, the function sets `success` to `false`.
+4. If the lengths match, it proceeds to compare the contents of the arrays.
+5. If the length is less than 32 bytes, it compares the contents directly.
+6. If the length is greater than or equal to 32 bytes, it enters a loop to compare the contents byte by byte.
+7. The loop iterates over the arrays, comparing each byte until the end of the arrays or a mismatch is found.
+8. If a mismatch is found, the function sets `success` to `false` and breaks out of the loop.
+9. If the comparison is successful, the function returns `true`.
+
+Summary:
+The `equalStorage` function efficiently compares two byte arrays stored in storage by directly accessing storage slots and using inline assembly to optimize gas usage. It compares the lengths of the arrays first and then compares the contents byte by byte to determine if the arrays are equal. The function returns `true` if the arrays are equal and `false` otherwise.

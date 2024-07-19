@@ -1,0 +1,18 @@
+This code defines a function named `fetchPricePoint` that calculates and returns a `PricePoint` struct. The function retrieves price and liquidity information from two different Uniswap V3 pools (marketFeed and ovlFeed) and computes the price point based on the gathered data. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `price_`: A `PricePoint` struct containing the microTick, macroTick, and computed depth values.
+
+Code Breakdown:
+1. The function initializes several variables to store price and liquidity data: `_ticks` and `_liqs` for tick and liquidity values, `_ovlPrice` for the OVL price, and `_marketLiquidity` for market liquidity.
+2. The function then defines two separate blocks of code enclosed in curly braces. Each block retrieves data from a different Uniswap V3 pool and calculates specific values.
+3. The first block of code retrieves tick and liquidity data from the `marketFeed` pool using the `observe` function. It calculates the microTick and macroTick values based on the retrieved tick data and computes the square root price and liquidity.
+4. The second block of code retrieves tick data from the `ovlFeed` pool and calculates the OVL price using the `getQuoteAtTick` function from the `OracleLibraryV2`.
+5. Finally, the function constructs a `PricePoint` struct using the calculated microTick, macroTick, and the result of the `computeDepth` function, which computes the depth based on market liquidity and OVL price.
+6. The function returns the `PricePoint` struct as the output of the `fetchPricePoint` function.
+
+Summary:
+The `fetchPricePoint` function fetches price and liquidity data from two Uniswap V3 pools, calculates various values such as microTick, macroTick, market liquidity, and OVL price, and constructs a `PricePoint` struct based on these calculations. The function then returns this `PricePoint` struct as the final result.

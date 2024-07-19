@@ -1,0 +1,20 @@
+Type of vulnerability: Invalid Validation
+Cause of vulnerability: Insufficient validation in the function `paybackBadDebtNoReward()` does not check if the repay token exists in the user array, allowing for the elimination of user debt.
+Execution process: By calling `paybackBadDebtNoReward()` with a non-existent token, the logic reaches `_corePayback()` which removes the last token in the user borrow tokens, effectively erasing the user's debt.
+Detailed characteristics: The vulnerability arises from the assumption that the token passed as `poolToken` always exists in the user token array, leading to the deletion of user borrow information.
+Vulnerable code:
+```solidity
+function paybackBadDebtNoReward(uint256 _nftId, address _paybackToken, uint256 _shares) external returns (uint256 paybackAmount) {
+    updatePositionCurrentBadDebt(_nftId);
+    if (badDebtPosition[_nftId] == 0) {
+        return 0;
+    }
+    if (WISE_LENDING.getTotalDepositShares(_paybackToken) == 0) {
+        revertPoolNotActive();
+    }
+    paybackAmount = WISE_LENDING.paybackAmount(_paybackToken, _shares);
+    WISE_LENDING.corePaybackFeeManager(_paybackToken, _nftId, paybackAmount, _shares);
+    _updateUserBadDebt(_nftId);
+    // [...]
+}
+```

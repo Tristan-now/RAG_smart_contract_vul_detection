@@ -1,0 +1,21 @@
+This code defines a private pure function named `calcProtocolExposureDelta`, which calculates the delta in USD and the index of the protocol exposure that exceeds a specified rebalance threshold. The function accepts two parameters: an array of protocol exposures (`protocolExposure`) and a struct (`sysState`) containing system state information. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `protocolExposure`: An array of `uint256` values representing the exposure of each protocol.
+2. `sysState`: A struct containing system state information including the rebalance threshold, target buffer, and total current assets in USD.
+
+Return Values:
+- `protocolExposedDeltaUsd`: The delta in USD between the exposure and the target for the protocol that exceeds the rebalance threshold.
+- `protocolExposedIndex`: The index of the protocol in the `protocolExposure` array that exceeds the rebalance threshold.
+
+Code Breakdown:
+- The function signature includes the parameters `protocolExposure` and `sysState`. It is marked as `private` to restrict access and `pure` to indicate that it does not modify state.
+- Two variables `protocolExposedDeltaUsd` and `protocolExposedIndex` are initialized to 0. These variables will store the delta in USD and the index of the protocol exposure that exceeds the rebalance threshold, respectively.
+- A `for` loop is used to iterate over the `protocolExposure` array. The loop starts with `i` initialized to 0 and runs until `i` is less than the length of `protocolExposure`.
+- Within the loop, an `if` statement checks if `protocolExposedDeltaUsd` is 0 and if the current protocol exposure (`protocolExposure[i]`) is greater than the rebalance threshold stored in `sysState.rebalanceThreshold`.
+- If the condition is met, the function calculates the delta between the exposure and the target by subtracting the target buffer from the rebalance threshold. It then calculates the delta in USD by multiplying this difference by the total current assets in USD and dividing by a constant `PERCENTAGE_DECIMAL_FACTOR`.
+- The calculated `protocolExposedDeltaUsd` and the index `i` are assigned to the respective variables.
+- The function continues iterating over the remaining protocol exposures, but the `protocolExposedDeltaUsd` and `protocolExposedIndex` values are only updated for the first protocol that exceeds the rebalance threshold.
+
+Summary:
+The `calcProtocolExposureDelta` function iterates over an array of protocol exposures, identifies the first protocol that exceeds a specified rebalance threshold, calculates the delta in USD between the exposure and the target, and returns this delta along with the index of the protocol.

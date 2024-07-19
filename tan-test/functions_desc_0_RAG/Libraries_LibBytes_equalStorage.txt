@@ -1,0 +1,27 @@
+This code defines an internal function named `equalStorage`, which is used to compare the contents of a storage variable of type `bytes` with a memory variable of type `bytes`. The function checks if the storage variable and the memory variable contain the same data.
+
+Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_preBytes`: A storage variable of type `bytes` that stores the data to be compared.
+2. `_postBytes`: A memory variable of type `bytes` that contains the data to compare with the storage variable.
+
+Return Value:
+The function returns a boolean value indicating whether the storage variable and the memory variable are equal (`true` if equal, `false` if not equal).
+
+Code Breakdown:
+The function uses inline assembly to access the storage variable `_preBytes` and the memory variable `_postBytes`. It first loads the slot of the storage variable to get the length of the stored array. It then loads the length of the memory variable.
+
+The function compares the lengths of the storage and memory variables. If the lengths match, it proceeds to compare the contents of the arrays. If the length is less than 32 bytes, it handles the comparison differently.
+
+For arrays longer than 32 bytes, the function uses a loop to compare the contents of the storage and memory variables byte by byte. It calculates the keccak hash of the storage variable to access the contents of the array in storage. The loop iterates over the arrays and compares each element. If any difference is found, the function sets the `success` variable to `0` indicating that the arrays are not equal.
+
+If the lengths of the storage and memory variables do not match, the function sets `success` to `0`.
+
+Finally, the function returns the `success` variable, which indicates whether the storage and memory variables are equal.
+
+Vulnerability Prediction:
+This function may be vulnerable to a storage manipulation attack if the comparison logic is not implemented correctly. Care should be taken to ensure that the comparison process is secure and accurate.
+
+Summary:
+The `equalStorage` function compares the contents of a storage variable of type `bytes` with a memory variable of type `bytes` to determine if they are equal. It uses inline assembly to access the storage variable and memory variable, compares their lengths, and then compares their contents byte by byte to check for equality.

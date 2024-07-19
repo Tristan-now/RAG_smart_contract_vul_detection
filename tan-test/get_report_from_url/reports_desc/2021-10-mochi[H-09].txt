@@ -1,0 +1,5 @@
+Type of vulnerability: Sandwich attack
+Cause of vulnerability: Permissionless function allowing anyone to trigger veCRVlock
+Execution process: Attacker uses flashloan to buy CRV at a high price, triggers veCRVlock function, treasury buys CRV at inflated price, attacker sells CRV to pay back the loan
+Detailed characteristics: Vulnerability allows for manipulation of prices through flashloan and triggering of functions
+Vulnerable code: MochiTreasuryV0.sol#L73-L94

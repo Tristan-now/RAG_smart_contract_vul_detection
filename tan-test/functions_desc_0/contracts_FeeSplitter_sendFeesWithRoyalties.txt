@@ -1,0 +1,16 @@
+This code defines an external function named `sendFeesWithRoyalties`, which is responsible for sending fees with royalties to a specified royalties target address. The function takes three parameters: `_royaltiesTarget` (address of the royalties target), `_token` (an ERC20 token contract address), and `_amount` (the amount of tokens to be sent as fees with royalties). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_royaltiesTarget`: The address of the royalties target where the royalties will be sent.
+2. `_token`: The ERC20 token contract address representing the token used for sending fees with royalties.
+3. `_amount`: The amount of tokens to be sent as fees with royalties.
+
+Functionality:
+- The function first checks if the `_royaltiesTarget` address is not equal to `address(0)` to ensure that a valid royalties target address is provided. If the condition is not met, it reverts with the error message "FeeSplitter: INVALID_ROYALTIES_TARGET_ADDRESS".
+- The function then calls two internal functions: `_sendFees` and `_addShares`.
+  - `_sendFees`: This function is responsible for sending fees to various recipients based on their respective weights. It takes the `_token`, `_amount`, and `totalWeights` as parameters. The `totalWeights` variable is assumed to be defined elsewhere in the contract.
+  - `_addShares`: This function adds shares to the royalties target address based on the computed share count. It takes the `_royaltiesTarget`, the result of `_computeShareCount`, and the address of the `_token` as parameters.
+    - `_computeShareCount`: This function calculates the share count based on the provided `_amount`, `royaltiesWeight`, and `totalWeights`. The `royaltiesWeight` is assumed to be defined elsewhere in the contract.
+
+Summary:
+The `sendFeesWithRoyalties` function is used to send fees with royalties to a specified royalties target address. It ensures the validity of the royalties target address, sends fees to various recipients based on their weights, and adds shares to the royalties target based on the computed share count. This function facilitates the distribution of fees with royalties in a controlled and transparent manner within the contract.

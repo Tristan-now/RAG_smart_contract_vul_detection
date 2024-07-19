@@ -1,0 +1,13 @@
+This code snippet defines an external function named `blackListDigest` that allows the contract owner to blacklist a specific hash value by setting its corresponding address to a predefined value. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_hash`: A bytes32 type parameter representing the hash value that the owner wants to blacklist.
+
+Functionality:
+The `blackListDigest` function takes a single parameter `_hash`, which is the hash value that the owner wants to blacklist. Within the function, the `_hash` value is used as a key in the `usedDigests` mapping. The mapping `usedDigests` is used to keep track of blacklisted hash values and their corresponding addresses. By setting the value of the `_hash` key in the `usedDigests` mapping to `address(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF)`, the contract owner effectively blacklists the specified hash value.
+
+Access Restriction:
+The function is marked as `external`, meaning it can be called from outside the contract. Additionally, there is a modifier `onlyOwner` that restricts access to the function, ensuring that only the contract owner can blacklist hash values.
+
+Summary:
+The `blackListDigest` function provides a mechanism for the contract owner to blacklist specific hash values by associating them with a predefined address in the `usedDigests` mapping. This functionality can be useful for maintaining a list of invalid or malicious hash values within the contract.

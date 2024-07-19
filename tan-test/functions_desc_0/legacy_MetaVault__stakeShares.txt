@@ -1,0 +1,15 @@
+This code defines an internal function named `_stakeShares`, which is responsible for staking a certain number of shares for a user. The function performs several operations to update the user's information and handle rewards. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_shares`: An unsigned integer representing the number of shares to be staked by the user.
+
+Code Breakdown:
+The function `_stakeShares` is an internal function, meaning it can only be called within the contract or its derived contracts. Within the function, a `UserInfo` struct named `user` is declared and initialized to the storage reference of the user's information based on the `msg.sender` address.
+The `updateReward` function is called to update the reward information for the user before proceeding with the stake operation.
+The `_getReward` function is called to retrieve any pending rewards for the user before staking the shares.
+The user's `amount` is increased by the `_shares` value using the `add` function, which is a safe arithmetic operation to prevent overflow.
+The `yaxRewardDebt` for the user is updated by multiplying the user's `amount` by the accumulated YAX rewards per share and dividing by 1e12 (1 followed by 12 zeros). This calculation helps in tracking the user's share of rewards accurately.
+An `Deposit` event is emitted to log the deposit action, including the `msg.sender` address and the number of shares deposited.
+
+Summary:
+The `_stakeShares` function handles the staking of shares for a user by updating their information, calculating and distributing rewards, and emitting an event to log the deposit action. It ensures that the user's stake and rewards are accurately tracked within the contract.

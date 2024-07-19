@@ -1,0 +1,35 @@
+This code defines a `deploy` function that is used to deploy various contracts and set up their configurations. Let's break down the working process of this code:
+
+1. The `deploy` function starts by creating a `TimelockController` contract named `turboTimelock` with a specified timelock delay and empty arrays for proposers and executors.
+
+2. Next, a `MultiRolesAuthority` contract named `turboAuthority` is created with the current contract address as the admin and no parent authority.
+
+3. The `turboAuthority` contract is then configured by setting role capabilities for three roles: `GIBBER_ROLE`, `TURBO_POD_ROLE`, allowing specific functions from the `TurboSafe` contract to be called by these roles.
+
+4. A `TurboMaster` contract named `master` is deployed with parameters such as the pool address, FEI token address, current contract address, and the `turboAuthority` contract.
+
+5. A `TurboClerk` contract named `clerk` is created with the current contract address and no parent authority. The default fee percentage is set, and the owner is set to `feiDAOTimelock`.
+
+6. The `clerk` contract is then associated with the `master` contract by calling `setClerk` on the `master` contract.
+
+7. A `TurboBooster` contract named `booster` is deployed with `feiDAOTimelock` as the owner and no parent authority.
+
+8. The `booster` contract is linked to the `master` contract by calling `setBooster` on the `master` contract.
+
+9. A `TurboGibber` contract named `gibber` is created with the `master` contract, `turboTimelock` address, and no parent authority.
+
+10. The `turboAuthority` contract grants the `GIBBER_ROLE` to the `gibber` contract.
+
+11. A `TurboSavior` contract named `savior` is deployed with the `master` contract, the current contract address, and no parent authority.
+
+12. The `savior` contract is configured by setting the minimum debt percentage for saving to 80%.
+
+13. A `TurboRouter` contract named `router` is created with the `master` contract, an empty string for a name, and the WETH token address.
+
+14. The `master` contract is updated with the default safe authority by configuring the default authority with the `turboTimelock`, `router`, and `savior` addresses.
+
+15. The `savior` contract is linked to the default safe authority, and the owner is set to `feiDAOTimelock`.
+
+16. Finally, the owner of the `master` contract is set to the `turboTimelock` address.
+
+This `deploy` function orchestrates the deployment and configuration of multiple contracts in a structured manner to set up the Turbo system with various roles and functionalities.

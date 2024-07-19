@@ -1,0 +1,23 @@
+This code defines an external function named `rampA2` that allows for the adjustment of a parameter `futureA2` in a Swap contract. The function takes in three parameters: a storage reference to the Swap contract (`self`), the desired future value of `futureA2` (`futureA2_`), and the timestamp for when the future value should take effect (`futureTime_`).
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `self`: A storage reference to the Swap contract where the ramping of `futureA2` will take place.
+2. `futureA2_`: The desired future value of `futureA2` that needs to be set.
+3. `futureTime_`: The timestamp indicating when the future value of `futureA2` should take effect.
+
+Requirements:
+1. The current timestamp must be at least 1 day after the initial setting of `A2` in the Swap contract.
+2. The future timestamp provided must be greater than the current timestamp plus a minimum ramp time.
+3. The future value of `futureA2` must be within the range of 0 to `MAX_A`.
+4. If the future value of `futureA2` is less than the initial value of `A2`, it must not decrease by more than a certain percentage defined by `MAX_A_CHANGE`.
+5. If the future value of `futureA2` is greater than the initial value of `A2`, it must not increase by more than a certain percentage defined by `MAX_A_CHANGE`.
+
+Functionality:
+1. The function calculates the precise values of the initial `A2` and the future `A2` by multiplying the provided values by `A_PRECISION`.
+2. It checks whether the future `A2` is within the allowed range of change compared to the initial `A2`.
+3. If all requirements are met, the function updates the `initialA2`, `futureA2`, `initialA2Time`, and `futureA2Time` values in the Swap contract storage.
+4. Finally, the function emits an event `RampA2` containing the updated values and timestamps.
+
+This function essentially allows for the controlled adjustment of the `futureA2` parameter in the Swap contract, ensuring that the changes are within specified limits and timeframes to maintain the integrity of the contract's functionality.

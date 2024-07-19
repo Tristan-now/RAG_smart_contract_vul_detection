@@ -1,0 +1,11 @@
+Type of vulnerability: Permissionless token listing vulnerability
+Cause of vulnerability: Lack of proper access control and weak token verification
+Execution process: Attacker can call Pools.addLiquidity(VADER, token, _) to set token as an anchor without actually sending any tokens, then use flash loans to manipulate prices and potentially remove rewards from curated pools.
+Detailed characteristics: The vulnerability allows anyone to list anchors and curate tokens without proper verification, potentially leading to price manipulation and reward removal from curated pools.
+Vulnerable code: 
+```
+function listAnchor(token) {
+    require(iPOOLS(POOLS).isAnchor(token));
+    // Lack of proper access control and weak token verification
+}
+```

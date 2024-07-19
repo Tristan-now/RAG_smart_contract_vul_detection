@@ -1,0 +1,15 @@
+This code defines an internal view function named `_calculateSymbol` that takes an `IERC20Extended` token as a parameter and returns a string representing the symbol of the token with a suffix ".s". Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `token`: An `IERC20Extended` token interface representing a specific token for which the symbol needs to be calculated.
+
+Return Value:
+The function returns a string representing the symbol of the token with a suffix ".s".
+
+Code Breakdown:
+The function signature includes the parameter `token` of type `IERC20Extended`. The function is marked as internal, meaning it can only be accessed within the contract or its derived contracts. Additionally, the function is marked as view, indicating that it does not modify the state of the contract.
+
+Within the function, the `_combine` function is called with two arguments: `token.symbol()` and ".s". The `token.symbol()` function retrieves the symbol of the token passed as an argument. The `_combine` function concatenates the symbol of the token with the ".s" suffix to form the final symbol representation.
+
+Summary:
+The `_calculateSymbol` function takes an `IERC20Extended` token as input, retrieves the symbol of the token, appends ".s" to it using the `_combine` function, and returns the concatenated string as the symbol representation of the token.

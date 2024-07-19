@@ -1,0 +1,16 @@
+This code snippet defines an external function named `setGlobalRateLimitedMinter` that allows setting a new `GlobalRateLimitedMinter` contract. The function requires the caller to have either the `GOVERNOR` role or the `PSM_ADMIN_ROLE` role from the `TribeRoles` contract.
+
+Here's a detailed breakdown of how this function works:
+
+1. **Parameters**:
+   - `newMinter`: This parameter of type `GlobalRateLimitedMinter` represents the new minter contract that will be set.
+
+2. **Access Control**:
+   - The function is marked as `external`, meaning it can be called from outside the contract.
+   - The function uses the `override` keyword to explicitly indicate that it is overriding a function from an inherited interface.
+   - The `hasAnyOfTwoRoles` modifier is applied to the function, which checks if the caller has either the `GOVERNOR` role or the `PSM_ADMIN_ROLE` role from the `TribeRoles` contract. This ensures that only authorized users can call this function.
+
+3. **Function Execution**:
+   - Within the function body, `_setGlobalRateLimitedMinter(newMinter)` is called. This function is presumably a private or internal function that actually sets the new `GlobalRateLimitedMinter` contract.
+
+In summary, this function provides a way for authorized users with either the `GOVERNOR` or `PSM_ADMIN_ROLE` to set a new `GlobalRateLimitedMinter` contract by calling the internal `_setGlobalRateLimitedMinter` function. The access control mechanism ensures that only users with the required roles can perform this action.

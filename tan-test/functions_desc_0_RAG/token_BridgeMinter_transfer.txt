@@ -1,0 +1,23 @@
+This code defines a smart contract named `BridgeMinter` that facilitates the migration of tokens and ETH from one minter contract to another. The contract includes functions to set addresses for the token, L1Migrator, and L1LPTGateway, as well as functions to migrate to a new minter, withdraw ETH and LPT to L1Migrator, mint LPT to an address, deposit ETH, and get the Controller address.
+
+Here's a detailed explanation of how this contract works:
+
+1. The contract has modifiers `onlyL1Migrator` and `onlyL1LPTGateway` to restrict access to certain functions to specific addresses (`l1MigratorAddr` and `l1LPTGatewayAddr`).
+
+2. The constructor initializes the contract with the Controller address, token address, L1Migrator address, and L1LPTGateway address.
+
+3. The contract allows the Controller owner to set the token address, L1Migrator address, and L1LPTGateway address using the `setToken`, `setL1Migrator`, and `setL1LPTGateway` functions respectively.
+
+4. The `migrateToNewMinter` function allows the Controller owner to migrate to a new minter by transferring ownership of the token to the new minter, transferring the current minter's LPT balance to the new minter, and transferring the current minter's ETH balance to the new minter.
+
+5. The `withdrawETHToL1Migrator` function allows the L1Migrator to withdraw ETH from the contract.
+
+6. The `withdrawLPTToL1Migrator` function allows the L1Migrator to withdraw LPT tokens from the contract.
+
+7. The `bridgeMint` function allows the L1LPTGateway to mint LPT tokens to a specified address.
+
+8. The `depositETH` function allows the contract to receive ETH.
+
+9. The `getController` function returns the Controller address.
+
+Overall, the `BridgeMinter` contract provides functionality for managing token and ETH transfers during the migration process between different minters.

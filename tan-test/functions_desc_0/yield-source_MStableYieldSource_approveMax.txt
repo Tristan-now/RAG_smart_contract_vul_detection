@@ -1,0 +1,15 @@
+This code defines a public function named `approveMax` that approves the maximum allowance for a specific ERC20 token to be spent by a contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. None
+
+Return Value:
+None
+
+Code Breakdown:
+The `approveMax` function is a public function, meaning it can be called externally by anyone. Within this function, the `IERC20` interface is used to interact with the ERC20 token contract associated with the `savings` contract's underlying token. The `safeApprove` function is called on the ERC20 token contract, with two parameters: the spender address (in this case, the `savings` contract address) and the allowance value. The `type(uint256).max` is a Solidity feature that represents the maximum value that a `uint256` variable can hold, effectively approving an unlimited allowance for the spender to transfer the ERC20 tokens on behalf of the caller.
+
+After successfully approving the maximum allowance, an event named `ApprovedMax` is emitted, indicating that the approval was completed.
+
+Summary:
+The `approveMax` function allows the caller to approve the maximum allowance for the ERC20 token associated with the `savings` contract to be spent by the `savings` contract itself. This function ensures that the contract can interact with the ERC20 token without any restrictions on the amount that can be spent.

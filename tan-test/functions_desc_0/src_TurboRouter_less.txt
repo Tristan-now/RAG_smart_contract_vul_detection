@@ -1,0 +1,13 @@
+This code snippet defines an external function named `less`, which interacts with a TurboSafe contract and an ERC4626 vault contract to reduce the amount of FEI tokens held in the vault. The function takes three parameters: a TurboSafe contract instance `safe`, an ERC4626 vault contract instance `vault`, and a `uint256` value `feiAmount` representing the amount of FEI tokens to be removed from the vault. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `safe`: A TurboSafe contract instance that provides a safe mechanism for interacting with the vault.
+2. `vault`: An ERC4626 vault contract instance where the FEI tokens are stored.
+3. `feiAmount`: A `uint256` value representing the amount of FEI tokens to be removed from the vault.
+
+Functionality:
+The `less` function is an external function, meaning it can be called from outside the contract. The function requires the caller to be authenticated as the address of the `safe` contract. This authentication is enforced by the `authenticate` modifier, which ensures that only the `safe` contract can call this function.
+
+Inside the function, the `safe.less` function is called with two parameters: the `vault` contract instance and the `feiAmount` value. This function call triggers the `less` function in the `safe` contract, which handles the logic of reducing the specified amount of FEI tokens from the vault.
+
+Overall, the `less` function serves as a gateway for the `safe` contract to interact with the `vault` contract and remove a specific amount of FEI tokens from the vault in a secure and controlled manner.

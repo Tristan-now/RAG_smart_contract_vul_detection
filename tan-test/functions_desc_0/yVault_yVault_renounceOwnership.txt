@@ -1,0 +1,15 @@
+This code snippet defines a function named `renounceOwnership` that is a public view function and overrides a function from a parent contract with the `onlyOwner` modifier. Here's a detailed explanation of how this function works:
+
+- Visibility and Modifier:
+  - `public`: This function can be called from outside the contract.
+  - `view`: This function does not modify the state of the contract.
+  - `override`: This function overrides a function from a parent contract.
+  - `onlyOwner`: This is a custom modifier that restricts access to the function to only the owner of the contract.
+
+- Functionality:
+  - The `renounceOwnership` function is designed to prevent the current owner of the contract from renouncing their ownership. 
+  - When this function is called, it immediately reverts the transaction with the error message "Cannot renounce ownership".
+  - This means that the contract owner is not allowed to renounce their ownership rights, ensuring that the ownership remains with the designated owner.
+
+- Summary:
+  - The `renounceOwnership` function serves as a security measure to prevent the current owner from renouncing their ownership rights, thereby maintaining control of the contract within the designated owner.

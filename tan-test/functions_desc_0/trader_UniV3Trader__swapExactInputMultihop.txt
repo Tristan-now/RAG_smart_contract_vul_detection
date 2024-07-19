@@ -1,0 +1,16 @@
+This code defines an internal function named `_swapExactInputMultihop`, which facilitates swapping a specific amount of tokens through a multihop path. The function takes four parameters: `amount` (the input token amount to be swapped), `recipient` (the address to receive the swapped tokens), `path` (an array of `PathItem` structs representing the token path), and `options` (a struct containing additional options for the swap).
+
+Parameters:
+1. `amount`: A `uint256` value representing the amount of input tokens to be swapped.
+2. `recipient`: The address where the swapped tokens will be sent.
+3. `path`: An array of `PathItem` structs representing the multihop path for the token swap.
+4. `options`: A struct containing additional options for the swap, including the deadline and the minimum amount of output tokens expected.
+
+Return Value:
+`amountOut`: The function returns a `uint256` value representing the amount of output tokens received after the swap.
+
+Code Breakdown:
+The function signature includes the parameters `amount`, `recipient`, `path`, and `options`. `_swapExactInputMultihop` is an internal function, meaning it can only be called within the contract or its derived contracts. Inside the function, the input token address is extracted from the first element of the `path` array and stored in the `input` variable. An `ExactInputParams` struct is created with the necessary parameters for the swap, including the multihop path, recipient address, deadline, input amount, and minimum output amount. The input tokens are transferred from the sender to the contract using the `safeTransferFrom` function of the `IERC20` interface. The contract then approves the `swapRouter` contract to spend the input tokens by calling the `_approveERC20TokenIfNecessary` function. Finally, the `exactInput` function of the `swapRouter` contract is called with the `params` struct to execute the token swap, and the output amount of tokens received is stored in the `amountOut` variable.
+
+Summary:
+The `_swapExactInputMultihop` function facilitates swapping a specific amount of tokens through a multihop path. It transfers the input tokens from the sender to the contract, approves the `swapRouter` contract to spend the tokens, and executes the swap using the provided parameters. The function returns the amount of output tokens received after the swap.

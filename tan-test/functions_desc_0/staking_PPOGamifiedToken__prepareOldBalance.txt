@@ -1,0 +1,19 @@
+This code defines a private function named `_prepareOldBalance` that is responsible for preparing the old balance of a specific account. The function takes an address `_account` as a parameter and returns two values: a `Balance` struct named `oldBalance` and a `uint256` value named `oldScaledBalance`.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_account`: An address representing the account for which the old balance needs to be prepared.
+
+Return Values:
+1. `oldBalance`: A `Balance` struct that stores the old balance of the `_account`.
+2. `oldScaledBalance`: A `uint256` value that represents the scaled balance of the old balance.
+
+Code Breakdown:
+1. The function `_prepareOldBalance` is defined as a private function, meaning it can only be accessed within the contract where it is defined.
+2. Inside the function, the old balance of the `_account` is retrieved from the `_balances` mapping and stored in the `oldBalance` variable.
+3. The `oldBalance` is then passed to the `_scaleBalance` function, which scales the balance and returns a `uint256` value representing the scaled balance. This scaled balance is stored in the `oldScaledBalance` variable.
+4. After obtaining the old balance and scaled balance, the function takes the opportunity to check for any season finish by calling the `checkForSeasonFinish` function of the `achievementsManager` contract. The result of this function call is used to update the `achievementsMultiplier` field of the `_balances[_account]` struct.
+
+Summary:
+The `_prepareOldBalance` function is used to prepare the old balance of a specific account by retrieving the old balance, scaling it, and checking for any season finish. The function returns the old balance as a `Balance` struct and the scaled balance as a `uint256` value.

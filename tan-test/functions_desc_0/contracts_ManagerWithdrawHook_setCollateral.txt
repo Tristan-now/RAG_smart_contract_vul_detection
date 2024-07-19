@@ -1,0 +1,14 @@
+This code snippet defines an external function named `setCollateral` that allows changing the collateral address used in the contract. The function takes an `ICollateral` type parameter `_newCollateral` representing the new collateral address to be set. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_newCollateral`: An `ICollateral` type parameter representing the new collateral address to be set in the contract.
+
+Function Modifier:
+- `onlyRole(SET_COLLATERAL_ROLE)`: This modifier restricts the access to the `setCollateral` function to only those who have the `SET_COLLATERAL_ROLE` role assigned in the contract.
+
+Functionality:
+- The `setCollateral` function updates the `collateral` state variable with the new collateral address `_newCollateral`.
+- It emits an event `CollateralChange` with the address of the new collateral as the parameter.
+
+Summary:
+The `setCollateral` function provides a way to update the collateral address used in the contract, ensuring that only authorized users with the `SET_COLLATERAL_ROLE` role can perform this action. This function helps in maintaining the flexibility and upgradability of the contract by allowing the collateral to be changed when needed.

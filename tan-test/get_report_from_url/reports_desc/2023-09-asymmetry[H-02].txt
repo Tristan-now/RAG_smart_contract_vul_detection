@@ -1,0 +1,13 @@
+Type of vulnerability: Zero amount withdrawal
+Cause of vulnerability: The unstake function in the SafEth contract reverts if the amount is zero, causing the withdrawal process to fail. Similarly, the Curve pool used in the VotiumStrategy contract also requires the input amount to be greater than zero, leading to a failed withdrawal if the amount is zero.
+Execution process: If a user attempts to withdraw an amount of SafEth or Votium that results in zero tokens, the withdrawal process will fail, potentially bricking the entire withdrawal transaction.
+Detailed characteristics: The vulnerability arises from the requirement for non-zero withdrawal amounts in both the SafEth and VotiumStrategy contracts, causing the withdrawal process to revert if zero tokens are requested to be withdrawn.
+Vulnerable code:
+In SafEth contract:
+```
+124: if(_safEthAmount==0) revertAmountTooLow();
+```
+In Curve pool implementation:
+```
+714: assert dx > 0  # dev: do not exchange 0 coins
+```

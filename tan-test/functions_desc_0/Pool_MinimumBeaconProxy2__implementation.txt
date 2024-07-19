@@ -1,0 +1,15 @@
+This code defines an internal view function named `_implementation` that returns the address of the implementation contract stored in a beacon contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `beacon`: This is a variable that holds the address of the beacon contract.
+
+Return Value:
+The function returns an `address` representing the implementation contract address stored in the beacon.
+
+Code Breakdown:
+The function signature includes the keyword `internal` indicating that it can only be called within the contract or its derived contracts, and `view` indicating that it does not modify the state of the contract.
+Within the function body, the function calls the `implementation()` function of the `IBeacon` interface, passing the `beacon` address as an argument. This function call retrieves the address of the implementation contract stored in the beacon contract.
+The retrieved implementation contract address is then returned by the `_implementation` function.
+
+Summary:
+The `_implementation` function retrieves and returns the address of the implementation contract stored in the beacon contract. This allows the contract to dynamically upgrade its implementation by changing the address stored in the beacon.

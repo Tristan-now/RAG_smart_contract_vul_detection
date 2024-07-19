@@ -1,0 +1,22 @@
+This code defines an internal view function named `_getDefaultTradeInfo` that returns a `TradeInfo` struct. The function takes three parameters: an `ISetToken` `_setToken`, an `IERC20` `_component`, and a boolean `calculateTradeDirection`. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_setToken`: An `ISetToken` interface representing a Set token.
+2. `_component`: An `IERC20` interface representing a token component.
+3. `calculateTradeDirection`: A boolean flag indicating whether to calculate the trade direction.
+
+Return Value:
+`tradeInfo`: A `TradeInfo` struct containing various trade-related information.
+
+Code Breakdown:
+- The function signature includes the parameters `_setToken`, `_component`, and `calculateTradeDirection`. It is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state.
+- The function initializes a `TradeInfo` struct variable named `tradeInfo`.
+- The function sets the `setToken` field of `tradeInfo` to the input `_setToken` and retrieves the total supply of the Set token using `_setToken.totalSupply()`, storing it in `setTotalSupply`.
+- It then calls the internal `_getExchangeAdapter` function to determine the exchange adapter for the given `_setToken` and `_component` and assigns it to `exchangeAdapter`.
+- The function retrieves the exchange data for the `_setToken` and `_component` pair from the `executionInfo` mapping and stores it in `exchangeData`.
+- If `calculateTradeDirection` is true, the function calls the `_calculateTradeSizeAndDirection` function to determine the trade direction and size based on the Set token, component token, and total supply. It sets the `isSendTokenFixed` and `totalFixedQuantity` fields accordingly.
+- Based on the trade direction (`isSendTokenFixed`), the function sets the `sendToken` and `receiveToken` addresses. If `isSendTokenFixed` is true, `_component` is the send token and `weth` is the receive token; otherwise, `weth` is the send token and `_component` is the receive token.
+- The function retrieves the pre-trade balances of the send token and receive token for the `_setToken` contract and stores them in `preTradeSendTokenBalance` and `preTradeReceiveTokenBalance`, respectively.
+
+Summary:
+The `_getDefaultTradeInfo` function retrieves various trade-related information for a given Set token and component token. It determines the trade direction, exchange adapter, exchange data, token addresses, and pre-trade token balances. The function returns a `TradeInfo` struct containing this information.

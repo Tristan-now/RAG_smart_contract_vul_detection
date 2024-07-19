@@ -1,0 +1,17 @@
+This code defines an external function named `setAllowedStrategy` that allows the governance to set whether a particular strategy is allowed or not. The function takes two parameters: `_strategy`, which is the address of the strategy contract, and `_allowed`, which is a boolean indicating whether the strategy is allowed or not. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_strategy`: The address of the strategy contract that the governance wants to set the allowance for.
+2. `_allowed`: A boolean value indicating whether the strategy is allowed (true) or not allowed (false).
+
+Modifiers:
+1. `notHalted`: This modifier ensures that the contract is not in a halted state, meaning certain functions are disabled.
+2. `onlyGovernance`: This modifier restricts the function to be called only by the governance address.
+
+Functionality:
+1. The function first checks if the manager of the strategy contract (`IStrategy(_strategy).manager()`) is the same as the contract calling this function (address(this)). If they are not the same, the function reverts with the error message "!manager". This check ensures that only the manager of the strategy contract (which should be the current contract) can set the allowance for the strategy.
+2. If the manager check passes, the function updates the `allowedStrategies` mapping with the `_strategy` address as the key and the `_allowed` boolean as the value. This effectively sets whether the strategy is allowed or not.
+3. Finally, the function emits an `AllowedStrategy` event with the `_strategy` address and the `_allowed` boolean as parameters to notify external parties about the change in the strategy's allowance.
+
+Summary:
+The `setAllowedStrategy` function allows the governance to control which strategies are allowed to be used. It verifies that the caller is the manager of the strategy contract and then updates the allowance status in the `allowedStrategies` mapping. This function provides a way for the governance to manage and control the strategies used within the system.

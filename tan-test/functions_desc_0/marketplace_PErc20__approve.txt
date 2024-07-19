@@ -1,0 +1,15 @@
+This code defines an internal virtual function named `_approve`, which is used to approve a specific address to spend a certain amount of tokens on behalf of the owner. The function takes three parameters: the owner address (`o`), the spender address (`s`), and the amount of tokens to be approved (`a`). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `o`: The address of the token owner who is approving the spender to spend tokens on their behalf.
+2. `s`: The address of the spender who is being approved to spend tokens.
+3. `a`: The amount of tokens that the spender is approved to spend.
+
+Code Breakdown:
+The function signature includes the parameters `o`, `s`, and `a`. The function is marked as `internal virtual`, meaning it can only be accessed within the contract or its derived contracts and can be overridden by derived contracts. 
+The function first checks that neither the owner address nor the spender address is the zero address, as approving from or to the zero address is not allowed. 
+If the conditions are met, the function updates the allowance mapping `allowances` with the approved amount `a` for the owner `o` and spender `s`. 
+After updating the allowance, the function emits an `Approval` event, indicating that the owner `o` has approved the spender `s` to spend the amount `a` of tokens.
+
+Summary:
+The `_approve` function is used to set an allowance for a spender to spend a specific amount of tokens on behalf of the owner. It performs input validations to ensure that the addresses are valid and then updates the allowance mapping with the approved amount before emitting an `Approval` event.

@@ -1,0 +1,325 @@
+[
+    {
+        "Threshold": 0.05,
+        "Mean Accuracy": 0.9468944099378882,
+        "Mean Precision": 0.5894621411010729,
+        "Mean Recall": 0.7005994822171294,
+        "Mean F1 Score": 0.6220249946463715,
+        "Total Confusion Matrix": [
+            [
+                14522,
+                533
+            ],
+            [
+                322,
+                723
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.1,
+        "Mean Accuracy": 0.9509937888198757,
+        "Mean Precision": 0.6269128143098732,
+        "Mean Recall": 0.6582450686568332,
+        "Mean F1 Score": 0.6242541025803762,
+        "Total Confusion Matrix": [
+            [
+                14632,
+                423
+            ],
+            [
+                366,
+                679
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.15000000000000002,
+        "Mean Accuracy": 0.9526708074534163,
+        "Mean Precision": 0.6494590466722819,
+        "Mean Recall": 0.6312713675213676,
+        "Mean F1 Score": 0.6228460262105554,
+        "Total Confusion Matrix": [
+            [
+                14688,
+                367
+            ],
+            [
+                395,
+                650
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.2,
+        "Mean Accuracy": 0.9534161490683231,
+        "Mean Precision": 0.6703090667502433,
+        "Mean Recall": 0.6031260781701958,
+        "Mean F1 Score": 0.6163260705817457,
+        "Total Confusion Matrix": [
+            [
+                14730,
+                325
+            ],
+            [
+                425,
+                620
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.25,
+        "Mean Accuracy": 0.9544099378881988,
+        "Mean Precision": 0.6839162096073861,
+        "Mean Recall": 0.5893558761499939,
+        "Mean F1 Score": 0.614779097960732,
+        "Total Confusion Matrix": [
+            [
+                14760,
+                295
+            ],
+            [
+                439,
+                606
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.3,
+        "Mean Accuracy": 0.9549689440993789,
+        "Mean Precision": 0.6956295795707561,
+        "Mean Recall": 0.5763990551931729,
+        "Mean F1 Score": 0.6117143343729642,
+        "Total Confusion Matrix": [
+            [
+                14782,
+                273
+            ],
+            [
+                452,
+                593
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.35000000000000003,
+        "Mean Accuracy": 0.9556521739130436,
+        "Mean Precision": 0.706364565989566,
+        "Mean Recall": 0.569239964284082,
+        "Mean F1 Score": 0.6114045885037015,
+        "Total Confusion Matrix": [
+            [
+                14801,
+                254
+            ],
+            [
+                460,
+                585
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.4,
+        "Mean Accuracy": 0.9555900621118013,
+        "Mean Precision": 0.712299075924076,
+        "Mean Recall": 0.5567513972955149,
+        "Mean F1 Score": 0.6054765470502326,
+        "Total Confusion Matrix": [
+            [
+                14814,
+                241
+            ],
+            [
+                474,
+                571
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.45,
+        "Mean Accuracy": 0.9556521739130435,
+        "Mean Precision": 0.7219109085359087,
+        "Mean Recall": 0.5422476053358407,
+        "Mean F1 Score": 0.5994617045906587,
+        "Total Confusion Matrix": [
+            [
+                14830,
+                225
+            ],
+            [
+                489,
+                556
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.5,
+        "Mean Accuracy": 0.9562111801242236,
+        "Mean Precision": 0.7337756132756132,
+        "Mean Recall": 0.5366397409779763,
+        "Mean F1 Score": 0.6000615561694105,
+        "Total Confusion Matrix": [
+            [
+                14845,
+                210
+            ],
+            [
+                495,
+                550
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.55,
+        "Mean Accuracy": 0.9555279503105593,
+        "Mean Precision": 0.7362187812187813,
+        "Mean Recall": 0.5142037602919955,
+        "Mean F1 Score": 0.5849742362586486,
+        "Total Confusion Matrix": [
+            [
+                14858,
+                197
+            ],
+            [
+                519,
+                526
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.6000000000000001,
+        "Mean Accuracy": 0.9557763975155282,
+        "Mean Precision": 0.7472576312576313,
+        "Mean Recall": 0.5015916044739575,
+        "Mean F1 Score": 0.5801715227698669,
+        "Total Confusion Matrix": [
+            [
+                14875,
+                180
+            ],
+            [
+                532,
+                513
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.6500000000000001,
+        "Mean Accuracy": 0.9553416149068324,
+        "Mean Precision": 0.7560919913419915,
+        "Mean Recall": 0.4832085430908961,
+        "Mean F1 Score": 0.56912312573907,
+        "Total Confusion Matrix": [
+            [
+                14888,
+                167
+            ],
+            [
+                552,
+                493
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.7000000000000001,
+        "Mean Accuracy": 0.9552795031055902,
+        "Mean Precision": 0.7684022366522367,
+        "Mean Recall": 0.4628385895150602,
+        "Mean F1 Score": 0.5571018146052807,
+        "Total Confusion Matrix": [
+            [
+                14909,
+                146
+            ],
+            [
+                574,
+                471
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.7500000000000001,
+        "Mean Accuracy": 0.9551552795031059,
+        "Mean Precision": 0.7824141414141415,
+        "Mean Recall": 0.44658454780513607,
+        "Mean F1 Score": 0.5481309942917494,
+        "Total Confusion Matrix": [
+            [
+                14923,
+                132
+            ],
+            [
+                590,
+                455
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.8,
+        "Mean Accuracy": 0.9546583850931679,
+        "Mean Precision": 0.7958015873015871,
+        "Mean Recall": 0.4205343202549085,
+        "Mean F1 Score": 0.5320219673537752,
+        "Total Confusion Matrix": [
+            [
+                14940,
+                115
+            ],
+            [
+                615,
+                430
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.8500000000000001,
+        "Mean Accuracy": 0.9538509316770188,
+        "Mean Precision": 0.8091230158730158,
+        "Mean Recall": 0.39304680939975056,
+        "Mean F1 Score": 0.5112474841979486,
+        "Total Confusion Matrix": [
+            [
+                14957,
+                98
+            ],
+            [
+                645,
+                400
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.9000000000000001,
+        "Mean Accuracy": 0.9534161490683232,
+        "Mean Precision": 0.8282579365079366,
+        "Mean Recall": 0.3686264895235483,
+        "Mean F1 Score": 0.49162466120051257,
+        "Total Confusion Matrix": [
+            [
+                14976,
+                79
+            ],
+            [
+                671,
+                374
+            ]
+        ]
+    },
+    {
+        "Threshold": 0.9500000000000001,
+        "Mean Accuracy": 0.9516770186335407,
+        "Mean Precision": 0.8455277777777778,
+        "Mean Recall": 0.31670089714207356,
+        "Mean F1 Score": 0.4442550184593528,
+        "Total Confusion Matrix": [
+            [
+                14998,
+                57
+            ],
+            [
+                721,
+                324
+            ]
+        ]
+    }
+]

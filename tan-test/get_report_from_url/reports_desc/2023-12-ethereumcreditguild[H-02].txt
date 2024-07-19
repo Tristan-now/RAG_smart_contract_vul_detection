@@ -1,0 +1,32 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: Caching error when transferring credit tokens to oneself while in rebase
+Execution process: When a user transfers credit tokens to themselves while in rebase, they can steal all unminted distributed rewards until that point due to a caching error in the code. This allows the user to mint extra tokens and exit rebase with more tokens than they should have.
+Detailed characteristics: The vulnerability occurs when the shares spent by the user are not updated correctly in the storage variable, leading to incorrect calculations of the token balance. This allows the user to manipulate the minting process and steal rewards meant for other users.
+Vulnerable code: 
+```solidity
+if(rebasingStateFrom.isRebasing==1) {
+    uint256 shares = uint256(rebasingStateFrom.nShares);
+    uint256 rebasedBalance = _shares2balance(shares, _rebasingSharePrice, 0, fromBalanceBefore);
+    uint256 mintAmount = rebasedBalance - fromBalanceBefore;
+    if(mintAmount != 0) {
+        ERC20._mint(msg.sender, mintAmount);
+        fromBalanceBefore += mintAmount;
+        decreaseUnmintedRebaseRewards(mintAmount);
+        emit RebaseReward(msg.sender, block.timestamp, mintAmount);
+    }
+}
+if(rebasingStateFrom.isRebasing == 1) {
+    uint256 fromBalanceAfter = fromBalanceBefore - amount;
+    uint256 fromSharesAfter = _balance2shares(fromBalanceAfter, _rebasingSharePrice);
+    uint256 sharesSpent = rebasingStateFrom.nShares - fromSharesAfter;
+    sharesDelta -= int256(sharesSpent);
+    rebasingState[msg.sender] = RebasingState({isRebasing: 1, nShares: uint248(fromSharesAfter)});
+}
+uint256 toBalanceAfter = _shares2balance(rebasingStateTo.nShares, _rebasingSharePrice, amount, rawToBalanceAfter);
+uint256 mintAmount = toBalanceAfter - rawToBalanceAfter;
+if(mintAmount != 0) {
+    ERC20._mint(to, mintAmount);
+    decreaseUnmintedRebaseRewards(mintAmount);
+    emit RebaseReward(to, block.timestamp, mintAmount);
+}
+```

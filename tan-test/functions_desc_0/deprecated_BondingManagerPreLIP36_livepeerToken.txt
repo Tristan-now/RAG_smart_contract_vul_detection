@@ -1,0 +1,16 @@
+This code defines an internal view function named `livepeerToken` that returns an instance of the `ILivepeerToken` interface. The function retrieves the Livepeer token contract address from the controller contract using the `getContract` function with the identifier `keccak256("LivepeerToken")`. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `ILivepeerToken`: The function returns an instance of the `ILivepeerToken` interface, which represents the Livepeer token contract.
+
+Code Breakdown:
+- The function signature includes the `livepeerToken` function name, specifying that it is an internal view function, meaning it does not modify the state of the contract and only reads data.
+- Inside the function, it calls the `controller.getContract` function with the identifier `keccak256("LivepeerToken")` to retrieve the Livepeer token contract address.
+- The retrieved token contract address is then used to instantiate an `ILivepeerToken` interface, which represents the Livepeer token contract.
+- Finally, the function returns this instance of the `ILivepeerToken` interface.
+
+Summary:
+The `livepeerToken` function is an internal view function that retrieves the Livepeer token contract address from the controller contract and returns an instance of the `ILivepeerToken` interface representing the Livepeer token contract.

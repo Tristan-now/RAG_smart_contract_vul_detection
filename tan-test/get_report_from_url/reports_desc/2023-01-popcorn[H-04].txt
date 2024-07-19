@@ -1,0 +1,22 @@
+Type of vulnerability: Reentrancy
+Cause of vulnerability: Failing to clear accrued rewards before transferring tokens
+Execution process: Attacker uses a hook to reenter the contract and drain rewards by repeatedly claiming rewards without clearing accrued rewards first
+Detailed characteristics: Lack of adherence to checks-effects-interactions pattern, clearing accrued rewards after transfer instead of before
+Vulnerable code:
+```solidity
+function claimRewards(address user, IERC20[] memory _rewardTokens) external accrueRewards(msg.sender, user) {
+    for (uint8 i; i < _rewardTokens.length; i++) {
+        uint256 rewardAmount = accruedRewards[user][_rewardTokens[i]];
+        if (rewardAmount == 0) revert ZeroRewards(_rewardTokens[i]);
+        EscrowInfo memory escrowInfo = escrowInfos[_rewardTokens[i]];
+        if (escrowInfo.escrowPercentage > 0) {
+            _lockToken(user, _rewardTokens[i], rewardAmount, escrowInfo);
+            emit RewardsClaimed(user, _rewardTokens[i], rewardAmount, true);
+        } else {
+            _rewardTokens[i].transfer(user, rewardAmount);
+            emit RewardsClaimed(user, _rewardTokens[i], rewardAmount, false);
+        }
+        accruedRewards[user][_rewardTokens[i]] = 0;
+    }
+}
+```

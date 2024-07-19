@@ -1,0 +1,16 @@
+This code defines an internal function named `_requireCallerIsActivePool`, which is used to ensure that the caller of the function is the active pool address. Here’s a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+- The function `_requireCallerIsActivePool` is an internal function, meaning it can only be called within the contract or its derived contracts.
+- The function does not accept any parameters.
+- The function uses the `require` statement to check if the `msg.sender` (the address of the caller) is equal to the `activePoolAddress`. If they are not equal, the function will revert with the error message "SYETI: caller is not ActivePool".
+- This function is used to enforce access control within the contract, ensuring that only the active pool address can call certain functions.
+
+Summary:
+The `_requireCallerIsActivePool` function is a simple access control function that verifies if the caller of the function is the active pool address. If the caller is not the active pool, the function will revert with an error message. This function helps to restrict access to certain functionalities within the contract to only the active pool address.

@@ -1,0 +1,16 @@
+This code snippet defines a private view function named `_onlyOnline` that enforces a condition check to ensure that the contract is currently online. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- None
+
+Code Breakdown:
+- The function `_onlyOnline` is marked as private, meaning it can only be accessed within the contract where it is defined.
+- The function is also marked as view, indicating that it does not modify the state of the contract and only reads data.
+- Within the function, there is a `require` statement that checks whether the contract is online by calling the `isOnline()` function. If the contract is not online, the require statement will revert the transaction with the error message "Powered: is not online".
+- The `isOnline()` function is assumed to be defined elsewhere in the contract or inherited from a parent contract. It likely contains the logic to determine whether the contract is currently online based on certain conditions or parameters.
+
+Summary:
+The `_onlyOnline` function serves as a modifier that ensures the contract is online before allowing certain functions or operations to be executed. It provides a way to enforce a specific condition (in this case, being online) before proceeding with further actions within the contract.

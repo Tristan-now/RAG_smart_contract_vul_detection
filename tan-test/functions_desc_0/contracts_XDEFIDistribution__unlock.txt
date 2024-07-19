@@ -1,0 +1,24 @@
+This code defines an internal function named `_unlock`, which is responsible for unlocking a position NFT and withdrawing the corresponding XDEFI tokens. The function takes two parameters: `account_`, which is the address of the account trying to unlock the position, and `tokenId_`, which is the unique identifier of the position NFT being unlocked. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `account_`: The address of the account attempting to unlock the position NFT.
+2. `tokenId_`: The unique identifier of the position NFT to be unlocked.
+
+Return Value:
+`amountUnlocked_`: The function returns a `uint256` value representing the amount of XDEFI tokens unlocked and withdrawn.
+
+Code Breakdown:
+The function begins with a `require` statement to ensure that the `account_` is the owner of the position NFT identified by `tokenId_`. If the condition is not met, the function will revert with the error message "NOT_OWNER".
+
+Next, the function retrieves the details of the position NFT identified by `tokenId_` from the `positionOf` mapping. It fetches the number of units, the amount of deposited XDEFI tokens, and the expiry timestamp of the position.
+
+The function then checks if enough time has elapsed for the position to be unlocked. It verifies that the `expiry` timestamp is set (not equal to 0) and that the current block timestamp is greater than or equal to the `expiry` timestamp. If the conditions are not met, the function reverts with the corresponding error messages "NO_LOCKED_POSITION" or "CANNOT_UNLOCK".
+
+After validating the time constraint, the function calculates the withdrawable amount of XDEFI tokens for the position using the `_withdrawableGiven` function, which takes into account the number of units, deposited XDEFI tokens, and points correction of the position.
+
+The function then updates the total deposited XDEFI amount by subtracting the deposited XDEFI tokens of the unlocked position. It also adjusts the total units by subtracting the units of the unlocked position and removes the position from the `positionOf` mapping.
+
+Finally, the function emits an event `LockPositionWithdrawn` to signal that the position has been successfully unlocked and the XDEFI tokens have been withdrawn.
+
+Summary:
+The `_unlock` function verifies ownership of the position NFT, checks the time constraint for unlocking, calculates the withdrawable amount of XDEFI tokens, updates the total deposited XDEFI and total units, and emits an event to notify the successful withdrawal of XDEFI tokens from the unlocked position.

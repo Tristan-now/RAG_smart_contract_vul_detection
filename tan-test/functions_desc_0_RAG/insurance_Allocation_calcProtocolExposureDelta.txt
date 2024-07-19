@@ -1,0 +1,21 @@
+This code defines a private pure function named `calcProtocolExposureDelta`, which calculates the delta in USD value between the exposure of a protocol and its target threshold. The function accepts two parameters: an array of protocol exposures (`protocolExposure`) and a struct representing the system state (`sysState`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `protocolExposure`: An array of uint256 values representing the exposure of each protocol.
+2. `sysState`: A struct containing various system state variables, including the rebalance threshold, target buffer, and total current assets in USD.
+
+Return Values:
+- `protocolExposedDeltaUsd`: The function returns a uint256 value representing the delta in USD between the exposure of a protocol and its target threshold.
+- `protocolExposedIndex`: The function also returns a uint256 value representing the index of the protocol with exposure exceeding the rebalance threshold.
+
+Code Breakdown:
+The function iterates over the `protocolExposure` array using a `for` loop. Inside the loop, it checks if the `protocolExposedDeltaUsd` is zero and if the exposure of the current protocol (`protocolExposure[i]`) is greater than the rebalance threshold (`sysState.rebalanceThreshold`).
+If the condition is met, the function calculates the target exposure by subtracting the target buffer from the rebalance threshold. It then calculates the delta in USD between the exposure and the target using the formula provided and stores it in `protocolExposedDeltaUsd`.
+Additionally, the function sets the `protocolExposedIndex` to the current index `i` to keep track of the protocol index that exceeded the rebalance threshold.
+It's important to note that the function only calculates the delta for the first protocol that exceeds the rebalance threshold and then exits the loop.
+
+Vulnerability Prediction:
+This function does not seem to have any specific vulnerabilities based on the provided code snippet.
+
+Summary:
+The `calcProtocolExposureDelta` function iterates over an array of protocol exposures, calculates the delta in USD value between the exposure of a protocol and its target threshold, and identifies the index of the protocol with exposure exceeding the rebalance threshold.

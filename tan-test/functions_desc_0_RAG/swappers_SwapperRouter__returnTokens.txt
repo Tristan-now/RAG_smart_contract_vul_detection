@@ -1,0 +1,23 @@
+This code defines an internal function named `_returnTokens`, which is responsible for returning tokens or ETH to the caller. The function accepts two parameters: `token_`, which is the address of the token to be returned, and `amount_`, which is the amount of tokens to be returned.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `token_`: The address of the token to be returned. If it is the zero address, it indicates ETH.
+2. `amount_`: The amount of tokens to be returned.
+
+Return Value:
+`amountReturned`: The function returns a `uint256` value representing the amount of tokens returned.
+
+Code Breakdown:
+The function first checks if the `token_` address is the zero address, which indicates ETH. If it is, the function transfers the specified `amount_` of ETH to the caller using `payable(msg.sender).transfer(amount_)` and returns the `amount_`.
+
+If the `token_` address is not the zero address, it is assumed to be an ERC20 token. The function then uses the `safeTransfer` function from the `IERC20` interface to transfer the specified `amount_` of tokens to the caller's address (`msg.sender`).
+
+Finally, the function returns the `amount_` of tokens that were successfully returned.
+
+Vulnerability Prediction:
+This function does not appear to have any specific vulnerabilities based on the provided code snippet. However, it is important to ensure that token transfers are handled securely to prevent potential vulnerabilities such as reentrancy attacks or unauthorized token transfers.
+
+Summary:
+The `_returnTokens` function handles the return of tokens or ETH to the caller based on the provided `token_` address and `amount_`. If the `token_` address is the zero address, indicating ETH, the function transfers the specified amount of ETH to the caller. If the `token_` address is an ERC20 token, the function transfers the specified amount of tokens to the caller. The function then returns the amount of tokens or ETH that were successfully returned.

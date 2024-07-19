@@ -1,0 +1,18 @@
+This code defines an external function named `setAddresses` that allows the contract owner to set the addresses of three different contracts: `_sortedTrovesAddress`, `_troveManagerAddress`, and `_whitelistAddress`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_sortedTrovesAddress`: The address of the contract that manages sorted troves.
+2. `_troveManagerAddress`: The address of the contract that manages troves.
+3. `_whitelistAddress`: The address of the contract that manages whitelists.
+
+Modifiers:
+- `onlyOwner`: This modifier restricts the execution of the function to only the contract owner.
+
+Functionality:
+- The function first checks if the provided addresses are valid contracts by calling the `checkContract` function for each address.
+- It then assigns the provided addresses to the corresponding contract interfaces: `sortedTroves`, `troveManager`, and `whitelist`.
+- After setting the addresses, the function emits three events (`SortedTrovesAddressChanged`, `TroveManagerAddressChanged`, `WhitelistAddressChanged`) to notify external parties about the changes.
+- Finally, the function renounces ownership by calling the `_renounceOwnership` function, effectively transferring ownership to a null address.
+
+Summary:
+The `setAddresses` function allows the contract owner to set the addresses of three different contracts and ensures that the provided addresses are valid contracts before assigning them. It emits events to notify external parties about the changes and renounces ownership after setting the addresses.

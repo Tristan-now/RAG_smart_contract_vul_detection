@@ -1,0 +1,5 @@
+Type of vulnerability: Flash loan manipulation in governance voting
+Cause of vulnerability: Flash loans can significantly increase a single voter’s weight in a governance vote.
+Execution process: A voter borrows a significant quantity of tokens through a flash loan to increase their voting weight and deterministically influence the voting outcome in their favor.
+Detailed characteristics: Flash loans can be used to impact the voting outcome in a decentralized autonomous organization (DAO) by borrowing tokens to manipulate the governance vote.
+Vulnerable code: The vulnerability lies in the countMemberVotes() function of the DAO contract, where the weight of individual voters is not capped or accounted for flash loans, allowing malicious actors to manipulate the voting outcome.

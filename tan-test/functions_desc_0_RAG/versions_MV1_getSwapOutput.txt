@@ -1,0 +1,33 @@
+This code defines a function named `getSwapOutput`, which calculates the output amount of a swap between two assets. The function accepts three parameters: the input asset address (`_input`), the output asset address (`_output`), and the quantity of the input asset (`_inputQuantity`). Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_input`: The address of the input asset for the swap.
+2. `_output`: The address of the output asset for the swap.
+3. `_inputQuantity`: The quantity of the input asset to be swapped.
+
+Return Value:
+`swapOutput`: The function returns a `uint256` value representing the output amount of the swap.
+
+Code Breakdown:
+The function starts with two `require` statements to ensure that the input and output assets are different (`_input != _output`) and that the input quantity is greater than zero (`_inputQuantity > 0`).
+
+1. Load the bAssets from storage:
+   - The function retrieves information about the input and output assets by calling the `_getAsset` function for both `_input` and `_output`.
+
+2. If a bAsset swap, calculate the validity, output, and fee:
+   - The function then calls the `computeSwap` function from the `MassetLogic` contract to calculate the output amount of the swap. 
+   - The parameters passed to `computeSwap` include:
+     - `data.bAssetData`: Data related to the bAssets.
+     - `input.idx`: Index of the input asset.
+     - `output.idx`: Index of the output asset.
+     - `_inputQuantity`: Quantity of the input asset.
+     - `data.swapFee`: Fee for the swap.
+     - `_getConfig()`: Configuration data for the swap.
+
+The `swapOutput` variable is assigned the output amount calculated by the `computeSwap` function, and this value is returned as the result of the `getSwapOutput` function.
+
+Vulnerability prediction:
+This function may be vulnerable to a reentrancy attack if the swap logic allows for external calls that could modify the state of the contract before the swap is completed.
+
+Summary:
+The `getSwapOutput` function calculates the output amount of a swap between two assets by loading information about the input and output assets and then calling the `computeSwap` function to determine the swap output based on the input quantity, swap fee, and other parameters.

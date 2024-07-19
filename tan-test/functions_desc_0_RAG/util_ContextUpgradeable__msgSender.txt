@@ -1,0 +1,13 @@
+This code defines an internal view function named `_msgSender`, which returns the address of the message sender as a payable address. Here’s a detailed explanation of how this function works:
+
+Function Explanation:
+The `_msgSender` function is an internal view function, meaning it can only be called within the contract or its derived contracts and does not modify the state of the contract. The function returns the address of the message sender as a payable address.
+
+Return Value:
+The function returns an `address payable` value representing the address of the message sender.
+
+Code Breakdown:
+The function signature includes the visibility specifier `internal`, the state mutability specifier `view`, and the return type `address payable`. Inside the function, it simply returns `msg.sender`, which is a global variable representing the address of the account that sent the current transaction.
+
+Summary:
+The `_msgSender` function provides a convenient way to retrieve the address of the message sender within a smart contract. It is commonly used in contract functions to determine the origin of a transaction.

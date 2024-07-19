@@ -1,0 +1,24 @@
+This code defines a function named `createStream` that is used to create a new stream. The function accepts several parameters including the reward token address, deposit token address, start time, stream duration, deposit lock duration, reward lock duration, and a boolean flag indicating whether it is a sale stream or not. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `rewardToken`: The address of the token that will be used as a reward in the stream.
+2. `depositToken`: The address of the token that users need to deposit to participate in the stream.
+3. `startTime`: The timestamp when the stream will start.
+4. `streamDuration`: The duration of the stream in seconds.
+5. `depositLockDuration`: The duration for which the deposited tokens will be locked.
+6. `rewardLockDuration`: The duration for which the reward tokens will be locked.
+7. `isSale`: A boolean flag indicating whether it is a sale stream.
+
+Return Value:
+The function returns a `Stream` object, which represents the newly created stream.
+
+Code Breakdown:
+1. The function starts with performing several checks using `require` statements to ensure the validity of the input parameters. These checks include verifying that the start time is in the future, the stream duration is within specified limits, and the lock durations do not exceed certain thresholds.
+2. The function then generates a unique salt value based on the current `currStreamId` and increments `currStreamId` to ensure uniqueness for each stream.
+3. The variable `that_stream` is assigned the current stream ID.
+4. A `bytes32` salt value is created using the `that_stream` value.
+5. A new `Stream` contract instance is created using the `new Stream{salt: salt}` syntax. The constructor of the `Stream` contract is called with various parameters including the stream ID, creator address, stream details, fee parameters, and other relevant information.
+6. An event `StreamCreated` is emitted to log the creation of the stream along with the stream ID and the address of the newly created stream contract.
+7. Finally, the function returns the newly created `Stream` object.
+
+This function is responsible for creating new streams with specified parameters and ensuring the integrity and uniqueness of each stream created within the system.

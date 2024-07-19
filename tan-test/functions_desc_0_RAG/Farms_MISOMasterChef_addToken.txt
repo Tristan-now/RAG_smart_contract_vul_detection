@@ -1,0 +1,19 @@
+This code defines a function named `addToken` that allows an admin to add a new token pool to the MasterChef contract. The function accepts three parameters: `_allocPoint` (the allocation point for the new token pool), `_lpToken` (the ERC20 token used for liquidity provision), and `_withUpdate` (a boolean flag indicating whether to update all pools before adding the new one). Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_allocPoint`: An unsigned integer representing the allocation point for the new token pool.
+2. `_lpToken`: An ERC20 token contract address used for liquidity provision in the new pool.
+3. `_withUpdate`: A boolean flag indicating whether to update all existing pools before adding the new one.
+
+Code Breakdown:
+- The function first checks if the sender has the admin role by calling the `hasAdminRole` function. If the sender is not an admin, the function reverts with an error message.
+- If `_withUpdate` is true, the function calls `massUpdatePools` to update all existing pools before proceeding.
+- The function then determines the `lastRewardBlock` by taking the maximum value between the current block number and the `startBlock` defined elsewhere in the contract.
+- The total allocation points (`totalAllocPoint`) are increased by the `_allocPoint` for the new pool.
+- A new `PoolInfo` struct is created and added to the `poolInfo` array. This struct contains information about the new pool, including the `_lpToken`, `_allocPoint`, `lastRewardBlock`, and `accRewardsPerShare` (initialized to 0).
+
+Summary:
+The `addToken` function allows an admin to add a new token pool to the MasterChef contract. It performs necessary checks, updates existing pools if required, calculates the allocation points, and adds the new pool information to the `poolInfo` array.
+
+[REFERENCE VULNERABILITY REPORTS]
+No vulnerability reports are provided for the given code snippet.

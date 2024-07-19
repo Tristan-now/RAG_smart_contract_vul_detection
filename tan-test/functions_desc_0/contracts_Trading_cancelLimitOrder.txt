@@ -1,0 +1,16 @@
+This code defines an external function named `cancelLimitOrder` that allows a trader to cancel a specific limit order. Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_id`: A `uint256` parameter representing the ID of the limit order to be canceled.
+2. `_trader`: An `address` parameter representing the address of the trader canceling the limit order.
+
+Code Breakdown:
+1. The function starts by calling two internal functions `_validateProxy` and `_checkOwner` to ensure that the trader has the necessary permissions to cancel the limit order.
+2. The function then retrieves the trade information associated with the provided `_id` from the `position` contract and stores it in the `_trade` variable.
+3. The function checks if the order type of the trade is not equal to 0 (indicating it is not a limit order). If it is not a limit order, the function reverts the transaction.
+4. If the trade is a limit order, the function mints the margin amount of the trade's TIG asset to the trader's address using the `IStable(_trade.tigAsset).mintFor(_trader, _trade.margin)` function call.
+5. After minting the TIG asset, the function burns (deletes) the trade by calling `position.burn(_id)`.
+6. Finally, the function emits a `LimitCancelled` event with the ID of the canceled order and the trader's address.
+
+Summary:
+The `cancelLimitOrder` function allows a trader to cancel a specific limit order by minting the margin amount of the trade's TIG asset back to the trader, burning the trade, and emitting a `LimitCancelled` event. The function ensures that only authorized traders can cancel their own limit orders.

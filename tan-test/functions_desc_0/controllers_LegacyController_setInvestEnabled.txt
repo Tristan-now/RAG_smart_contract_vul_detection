@@ -1,0 +1,12 @@
+This code defines an external function named `setInvestEnabled` that allows only the strategist to set the `investEnabled` variable. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `_investEnabled`: A boolean parameter that indicates whether investing is enabled or disabled.
+
+Functionality:
+The `setInvestEnabled` function is an external function, meaning it can be called from outside the contract. It takes a single parameter `_investEnabled`, which is a boolean value representing whether investing is enabled or not. The function is restricted to be called only by the strategist, as indicated by the `onlyStrategist` modifier.
+
+When this function is called, it updates the `investEnabled` state variable with the value of `_investEnabled`. This allows the strategist to control whether investing functionality is enabled or disabled within the contract.
+
+Summary:
+The `setInvestEnabled` function provides a way for the strategist to toggle the `investEnabled` state variable, which determines whether investing is allowed in the contract. By setting this variable, the strategist can control the behavior of the contract with respect to investment activities.

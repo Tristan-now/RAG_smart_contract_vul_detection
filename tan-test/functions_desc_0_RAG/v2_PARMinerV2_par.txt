@@ -1,0 +1,9 @@
+This code snippet defines a public view function named `par` that overrides a function from an interface. The function returns an `IERC20` interface type variable `_par`.
+
+Explanation:
+- The function `par` is a public view function, meaning it can be called externally and does not modify the state of the contract.
+- The function is marked with the `override` keyword, indicating that it overrides a function from an interface.
+- The function returns an `IERC20` interface type variable `_par`.
+- When this function is called, it will return the `_par` variable, which is of type `IERC20`.
+
+In summary, the `par` function simply returns the `_par` variable of type `IERC20` and does not perform any complex operations.

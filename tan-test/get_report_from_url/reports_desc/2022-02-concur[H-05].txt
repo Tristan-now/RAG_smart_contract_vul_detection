@@ -1,0 +1,5 @@
+Type of vulnerability: AMM price oracle manipulation
+Cause of vulnerability: Direct deposits and withdrawals of specific tokens leading to imbalanced pool and discrepancy between real balances and storage balances
+Execution process: Deposit equal amounts of USDM and 3CRV LP, do one trade on CRV, withdraw the LP resulting in real balances not matching the balances in storage
+Detailed characteristics: Protocol uses real balances for liquidity provision instead of the ones stored, leading to imbalance after trades and withdrawals
+Vulnerable code: USDMPegRecovery.sol#L90, USDMPegRecovery.sol#L110, USDMPegRecovery.sol#L73, USDMPegRecovery.sol#L84

@@ -1,0 +1,27 @@
+This code defines a private view function named `_getMarketInfo` that retrieves and returns information about a market based on the provided market address. The function accepts the market address `_marketAddress` as a parameter and returns a struct `MarketBaseInfo` containing various market-related details.
+
+Here's a detailed explanation of how this function works:
+
+Parameters:
+1. `_marketAddress`: The address of the market for which information is to be retrieved.
+
+Return Value:
+`marketInfo`: A struct of type `MarketBaseInfo` containing the following fields:
+- `addr`: The address of the market.
+- `templateId`: The template ID of the market.
+- `startTime`: The start time of the market.
+- `endTime`: The end time of the market.
+- `finalized`: A boolean indicating whether the market has been finalized.
+- `tokenInfo`: Information about the token associated with the market.
+
+Code Breakdown:
+1. The function first declares a variable `templateId` of type `uint64` to store the template ID of the market retrieved using the `getMarketTemplateId` function from the `market` contract.
+2. It then declares variables `auctionToken`, `startTime`, `endTime`, and `finalized` to store the base information of the market obtained by calling the `getBaseInformation` function on the `IBaseAuction` interface at the `_marketAddress`.
+3. The function further calls the `getTokenInfo` function to retrieve information about the token associated with the market and stores it in a variable `tokenInfo` of type `TokenInfo`.
+4. Finally, the function populates the `marketInfo` struct with the retrieved information, including the market address, template ID, start time, end time, finalized status, and token information.
+
+Vulnerability Prediction:
+This function may be vulnerable to a reentrancy attack if any external calls are made after updating the state variables. It is crucial to ensure that state changes are handled securely to prevent reentrancy vulnerabilities.
+
+Summary:
+The `_getMarketInfo` function retrieves and compiles information about a specific market based on the provided market address. It fetches details such as the template ID, auction token, start and end times, finalization status, and token information, and encapsulates them into a `MarketBaseInfo` struct for further processing or display.

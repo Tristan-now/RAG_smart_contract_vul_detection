@@ -1,0 +1,14 @@
+This code defines an internal view function named `_implementation`, which is used to retrieve the address of the child implementation contract from the Beacon contract. Here's a detailed explanation of how this function works:
+
+Parameters:
+- None
+
+Return Value:
+- `address`: The function returns an `address` value representing the address of the child implementation contract.
+
+Code Breakdown:
+- The function signature includes the keyword `internal`, `view`, `virtual`, and `override`, indicating that this function is internal, view-only, can be overridden by derived contracts, and overrides a function from a parent contract.
+- The function body consists of a single line of code that calls the `childImplementation` function on the Beacon contract obtained from the `_beacon()` function. This function call returns the address of the child implementation contract.
+
+Summary:
+- The `_implementation` function is a view function that retrieves the address of the child implementation contract from the Beacon contract by calling the `childImplementation` function. This allows the contract to dynamically fetch the address of the current implementation contract from the Beacon contract.

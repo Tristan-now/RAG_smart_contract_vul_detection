@@ -1,0 +1,12 @@
+This code defines an internal pure function named `trimToSize`, which is used to trim a byte array to a specified new length. The function accepts two parameters: a `bytes` memory variable `b` and a `uint` variable `newLen`. Here’s a detailed explanation of how this function works:
+
+Parameters:
+1. `b`: A `bytes` memory variable that represents the byte array to be trimmed.
+2. `newLen`: A `uint` variable that specifies the new length to which the byte array should be trimmed.
+
+Code Breakdown:
+The function signature includes the parameters `b` and `newLen`. `trimToSize` is an internal pure function, meaning it can only be called within the contract or its derived contracts and does not read or modify state variables. The function first checks if the length of the byte array `b` is greater than the specified new length `newLen` using the `require` statement. If the length is not greater, it will revert with the error message "BytesLib: only shrinking".
+Inside the assembly block, the function uses the `mstore` opcode to update the length of the byte array `b` to the new length `newLen`. This operation effectively trims the byte array to the specified size.
+
+Summary:
+The `trimToSize` function trims a given byte array `b` to a specified new length `newLen` by updating the length of the byte array in memory. It ensures that the byte array is only shrunk to the new length and reverts if the new length is not smaller than the current length.
